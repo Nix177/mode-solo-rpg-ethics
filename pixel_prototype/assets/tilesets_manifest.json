@@ -1,0 +1,20 @@
+{
+  "tileSize": 32,
+  "tileOrder": [
+    "floor",
+    "wall",
+    "doorClosed",
+    "doorOpen",
+    "terminal",
+    "altFloor",
+    "liquidOrHazard",
+    "panel"
+  ],
+  "themes": [
+    "nature",
+    "urbain",
+    "laboratoire",
+    "espace",
+    "bureaucratie"
+  ]
+}

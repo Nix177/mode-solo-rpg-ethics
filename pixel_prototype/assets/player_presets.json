@@ -1,0 +1,52 @@
+{
+  "tileSize": 32,
+  "framesPerDirection": 3,
+  "directions": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "presets": [
+    {
+      "id": "preset_01",
+      "label": "Ayla / Cyberpunk"
+    },
+    {
+      "id": "preset_02",
+      "label": "Noah / Corpo"
+    },
+    {
+      "id": "preset_03",
+      "label": "Mina / Casual"
+    },
+    {
+      "id": "preset_04",
+      "label": "Iris / Futuriste"
+    },
+    {
+      "id": "preset_05",
+      "label": "Kai / Techwear"
+    },
+    {
+      "id": "preset_06",
+      "label": "Sana / Pilote"
+    },
+    {
+      "id": "preset_07",
+      "label": "Leo / Chercheur"
+    },
+    {
+      "id": "preset_08",
+      "label": "Nora / Rebelle"
+    },
+    {
+      "id": "preset_09",
+      "label": "Yun / Diplomate"
+    },
+    {
+      "id": "preset_10",
+      "label": "Tao / Nomade"
+    }
+  ]
+}
