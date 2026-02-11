@@ -1147,80 +1147,131 @@ function generateTexture(type, palette) {
   ctx.fillStyle = palette.base || "#000";
   ctx.fillRect(0, 0, 32, 32);
 
-  if (type === "noise" || type === "grass") {
-    // Organic Noise pattern
-    for (let i = 0; i < 48; i++) {
+  if (type === "grass") {
+    // Advanced Grass: layered noise + tufts
+    for (let i = 0; i < 64; i++) {
       ctx.fillStyle = Math.random() < 0.5 ? palette.light : palette.shadow;
-      const x = Math.floor(Math.random() * 32);
-      const y = Math.floor(Math.random() * 32);
-      const size = Math.random() < 0.3 ? 2 : 1;
-      ctx.fillRect(x, y, size, size);
+      const x = Math.random() * 32;
+      const y = Math.random() * 32;
+      ctx.fillRect(x, y, 2, 2);
+    }
+    // Grass tufts
+    ctx.strokeStyle = palette.light;
+    ctx.lineWidth = 1;
+    for (let i = 0; i < 8; i++) {
+      const x = Math.random() * 28 + 2;
+      const y = Math.random() * 28 + 2;
+      ctx.beginPath();
+      ctx.moveTo(x, y); ctx.lineTo(x - 2, y - 3);
+      ctx.moveTo(x, y); ctx.lineTo(x + 2, y - 3);
+      ctx.stroke();
     }
   } else if (type === "bricks") {
-    // Brick pattern
+    // Detailed Brick pattern with depth
     ctx.fillStyle = palette.mortar || "#333";
     for (let y = 0; y < 32; y += 8) ctx.fillRect(0, y, 32, 1);
     for (let y = 0; y < 32; y += 8) {
       let offset = (y / 8) % 2 === 0 ? 0 : 4;
       for (let x = offset; x < 32; x += 8) ctx.fillRect(x, y, 1, 8);
     }
-    // Texture noise
-    for (let i = 0; i < 12; i++) {
-      ctx.fillStyle = "rgba(0,0,0,0.15)";
-      ctx.fillRect(Math.random() * 32, Math.random() * 32, 2, 2);
+    // Pixel shading on bricks
+    ctx.fillStyle = "rgba(0,0,0,0.2)";
+    for (let y = 0; y < 32; y += 8) {
+      let offset = (y / 8) % 2 === 0 ? 0 : 4;
+      for (let x = offset; x < 32; x += 8) {
+        ctx.fillRect(x + 1, y + 7, 7, 1); // Bottom shadow
+        ctx.fillRect(x + 7, y + 1, 1, 7); // Right shadow
+      }
     }
-  } else if (type === "metal" || type === "plate") {
-    // Metal panels with rivets
-    ctx.strokeStyle = palette.highlight || "rgba(255,255,255,0.2)";
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(0, 0); ctx.lineTo(32, 0); ctx.lineTo(32, 32);
-    ctx.stroke();
+  } else if (type === "metal") {
+    // Brushed metal with rivets
+    ctx.strokeStyle = palette.highlight || "rgba(255,255,255,0.1)";
+    for (let i = 0; i < 10; i++) {
+      const y = Math.random() * 32;
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(32, y + Math.random() * 2); ctx.stroke();
+    }
+
+    // Panel lines
+    ctx.strokeStyle = "rgba(0,0,0,0.3)";
+    ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(32, 0); ctx.lineTo(32, 32); ctx.stroke();
+    ctx.fillStyle = "rgba(255,255,255,0.1)";
+    ctx.fillRect(1, 1, 30, 1); ctx.fillRect(1, 1, 1, 30);
 
     // Rivets
-    ctx.fillStyle = palette.shadow || "rgba(0,0,0,0.3)";
-    const rivet = 2;
-    ctx.fillRect(2, 2, rivet, rivet); ctx.fillRect(28, 2, rivet, rivet);
-    ctx.fillRect(2, 28, rivet, rivet); ctx.fillRect(28, 28, rivet, rivet);
-
-    // Scratches
-    for (let i = 0; i < 6; i++) {
-      ctx.fillStyle = Math.random() < 0.5 ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)";
-      ctx.fillRect(Math.random() * 32, Math.random() * 32, 3, 1);
-    }
+    ctx.fillStyle = palette.shadow || "#000";
+    ctx.beginPath();
+    ctx.arc(3, 3, 1, 0, Math.PI * 2);
+    ctx.arc(29, 3, 1, 0, Math.PI * 2);
+    ctx.arc(3, 29, 1, 0, Math.PI * 2);
+    ctx.arc(29, 29, 1, 0, Math.PI * 2);
+    ctx.fill();
   } else if (type === "hazard") {
-    // Hazard stripes
+    // Clean hazard stripes
     ctx.fillStyle = palette.stripes || "#000";
     ctx.beginPath();
     for (let i = -32; i < 32; i += 8) {
-      ctx.moveTo(i, 0);
-      ctx.lineTo(i + 4, 0);
-      ctx.lineTo(i + 36, 32);
-      ctx.lineTo(i + 32, 32);
+      ctx.moveTo(i, 0); ctx.lineTo(i + 4, 0); ctx.lineTo(i + 36, 32); ctx.lineTo(i + 32, 32);
     }
     ctx.fill();
+    // Gloss
+    ctx.fillStyle = "rgba(255,255,255,0.1)";
+    ctx.fillRect(0, 0, 32, 4);
   } else if (type === "carpet") {
-    // Dot pattern for carpet
-    ctx.fillStyle = palette.pattern || "rgba(255,255,255,0.1)";
-    for (let y = 2; y < 32; y += 4) {
-      for (let x = (y % 8 === 2 ? 2 : 0); x < 32; x += 4) {
-        ctx.fillRect(x, y, 1, 1);
+    // Rich carpet pattern
+    ctx.fillStyle = palette.pattern || "rgba(0,0,0,0.1)";
+    for (let y = 0; y < 32; y += 2) {
+      for (let x = 0; x < 32; x += 2) {
+        if ((x + y) % 4 === 0) ctx.fillRect(x, y, 1, 1);
       }
     }
+    // Border
+    ctx.strokeStyle = "rgba(0,0,0,0.2)";
+    ctx.strokeRect(0, 0, 32, 32);
   } else if (type === "tiles") {
-    // Clean square tiles
-    ctx.strokeStyle = palette.grout || "rgba(0,0,0,0.2)";
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    // 16x16 tiles (4 per block)
-    ctx.moveTo(16, 0); ctx.lineTo(16, 32);
-    ctx.moveTo(0, 16); ctx.lineTo(32, 16);
-    ctx.stroke();
+    // Clean lab/hospital tiles
+    ctx.fillStyle = palette.grout || "#ccc";
+    ctx.fillRect(15, 0, 1, 32);
+    ctx.fillRect(0, 15, 32, 1);
+    ctx.fillStyle = "rgba(255,255,255,0.4)";
+    ctx.fillRect(2, 2, 10, 2); ctx.fillRect(18, 18, 10, 2);
+  } else if (type === "noise") {
+    // Generic noise fallback
+    for (let i = 0; i < 32; i++) {
+      ctx.fillStyle = Math.random() < 0.5 ? palette.light : palette.shadow;
+      ctx.fillRect(Math.random() * 32, Math.random() * 32, 2, 2);
+    }
   }
 
   const img = new Image();
   img.src = c.toDataURL();
   return img;
+}
+
+function drawDetail(ctx, type, theme) {
+  const p = theme === "nature" ? { main: "#2e7d32", sec: "#5d4037" } :
+    theme === "urbain" ? { main: "#546e7a", sec: "#263238" } :
+      theme === "laboratoire" ? { main: "#00acc1", sec: "#eceff1" } :
+        theme === "espace" ? { main: "#ff6f00", sec: "#212121" } :
+          { main: "#8d6e63", sec: "#d7ccc8" };
+
+  // Draw based on type...
+  if (type === "tree" || type === "column") {
+    ctx.fillStyle = p.sec;
+    ctx.fillRect(10, 20, 12, 12); // Trunk/Base
+    ctx.fillStyle = p.main;
+    ctx.beginPath(); ctx.arc(16, 16, 12, 0, Math.PI * 2); ctx.fill(); // Top
+    // Highlight
+    ctx.fillStyle = "rgba(255,255,255,0.2)";
+    ctx.beginPath(); ctx.arc(12, 12, 4, 0, Math.PI * 2); ctx.fill();
+  } else if (type === "computer") {
+    ctx.fillStyle = p.sec;
+    ctx.fillRect(4, 12, 24, 18); // Desk
+    ctx.fillStyle = "#111";
+    ctx.fillRect(8, 6, 16, 12); // Monitor
+    ctx.fillStyle = "#0f0";
+    ctx.font = "8px monospace";
+    ctx.fillText(">_", 9, 14);
+  }
 }
 
 function createProceduralAssets() {
@@ -1235,72 +1286,78 @@ function createProceduralAssets() {
   state.assets["B-2"] = generateSprite("npc", { "1": "#145a32", "2": "#27ae60", "3": "#f1c40f", "4": "#1e8449" });
   state.assets["C-3"] = generateSprite("npc", { "1": "#6e2c00", "2": "#d35400", "3": "#111111", "4": "#a04000" });
 
-  // --- Theme Definitions ---
   state.assets.themeTiles = {};
 
-  // 1. Nature: Organic, Forest, Ruins
-  state.assets.themeTiles.nature = {
-    floor: generateTexture("grass", { base: "#2e7d32", light: "#66bb6a", shadow: "#1b5e20" }),
-    wall: generateTexture("bricks", { base: "#4e342e", mortar: "#3e2723" }), // Log cabin / bark
-    door_closed: generateSprite("door", { "1": "#5d4037", "2": "#795548", "3": "#c0392b" }),
-    door_open: generateSprite("door", { "1": "#5d4037", "2": "#795548", "3": "#8bc34a" }),
-    computer: generateSprite("computer", { "1": "#4e342e", "2": "#6d4c41", "3": "#a5d6a7" }), // Old terminal
-    alt: generateTexture("grass", { base: "#388e3c", light: "#81c784", shadow: "#2e7d32" }), // High grass
-    liquid: generateTexture("grass", { base: "#0277bd", light: "#29b6f6", shadow: "#01579b" }), // Water
-    altar: generateSprite("wall", { "1": "#8d6e63", "2": "#a1887f", "3": "#e8f5e9" }), // Stone altar
+  // Helper to generate a full theme set
+  const makeTheme = (themeName) => {
+    const isNature = themeName === "nature";
+    const isUrban = themeName === "urbain";
+    const isLab = themeName === "laboratoire";
+    const isSpace = themeName === "espace";
+
+    // Palettes
+    const floorPal = isNature ? { base: "#2e7d32", light: "#66bb6a", shadow: "#1b5e20" } :
+      isUrban ? { base: "#455a64", mortar: "#37474f" } :
+        isLab ? { base: "#eceff1", grout: "#b0bec5" } :
+          isSpace ? { base: "#263238", highlight: "#37474f", shadow: "#102027" } :
+            { base: "#5d4037", pattern: "#795548" }; // Bureau
+
+    const wallPal = isNature ? { base: "#4e342e", mortar: "#3e2723" } :
+      isUrban ? { base: "#a1887f", mortar: "#5d4037" } :
+        isLab ? { base: "#b0bec5", highlight: "#fff", shadow: "#78909c" } :
+          isSpace ? { base: "#3e2723", highlight: "#ff6f00", shadow: "#1b0000" } :
+            { base: "#d7ccc8", grout: "#a1887f" };
+
+    // Texture Types
+    const floorType = isNature ? "grass" : isLab ? "tiles" : isSpace || isUrban ? "metal" : "carpet";
+    const wallType = isNature || isUrban ? "bricks" : "metal";
+
+    // Objects
+    const computer = generateSprite("computer", isNature ? { "1": "#5d4037", "2": "#795548", "3": "#a5d6a7" } :
+      isLab ? { "1": "#eceff1", "2": "#ffffff", "3": "#00bcd4" } :
+        { "1": "#263238", "2": "#37474f", "3": "#ffca28" });
+
+    // Generate Base Textures
+    const set = {
+      floor: generateTexture(floorType, floorPal),
+      wall: generateTexture(wallType, wallPal),
+      door_closed: generateSprite("door", { "1": "#424242", "2": "#616161", "3": "#ef5350" }),
+      door_open: generateSprite("door", { "1": "#424242", "2": "#616161", "3": "#66bb6a" }),
+      computer: computer,
+      alt: generateTexture("hazard", { stripes: isLab ? "#29b6f6" : "#fbc02d" }),
+      liquid: generateTexture("noise", { base: isNature ? "#0277bd" : "#d32f2f", light: "#fff", shadow: "#000" }),
+      altar: generateSprite("wall", { "1": "#607d8b", "2": "#78909c", "3": "#ffffff" })
+    };
+
+    // Add Detailed Object Overlays
+    // We create a composite canvas for specific complex objects if needed, 
+    // but for now we'll just use the sprites we generated.
+    // PRO TIP: We can draw *on top* of the generated sprites to add detail.
+
+    const enhance = (baseSprite, type) => {
+      const c = document.createElement("canvas");
+      c.width = 32; c.height = 32;
+      const ctx = c.getContext("2d");
+      ctx.drawImage(baseSprite, 0, 0);
+      drawDetail(ctx, type, themeName);
+      const i = new Image(); i.src = c.toDataURL(); return i;
+    };
+
+    // Enhance props
+    set.computer = enhance(set.computer, "computer");
+    // set.altar = enhance(set.altar, "column"); // Optional
+
+    return set;
   };
 
-  // 2. Urban: City, Asphalt, Concrete
-  state.assets.themeTiles.urbain = {
-    floor: generateTexture("bricks", { base: "#455a64", mortar: "#37474f" }), // Pavement
-    wall: generateTexture("bricks", { base: "#a1887f", mortar: "#5d4037" }), // Red Brick wall
-    door_closed: generateSprite("door", { "1": "#424242", "2": "#616161", "3": "#ef5350" }),
-    door_open: generateSprite("door", { "1": "#424242", "2": "#616161", "3": "#66bb6a" }),
-    computer: generateSprite("computer", { "1": "#37474f", "2": "#455a64", "3": "#29b6f6" }),
-    alt: generateTexture("hazard", { stripes: "#fbc02d" }), // Caution area
-    liquid: generateTexture("noise", { base: "#212121", light: "#424242", shadow: "#000000" }), // Oil/Tar
-    altar: generateSprite("wall", { "1": "#607d8b", "2": "#78909c", "3": "#ffffff" }), // Voting booth
-  };
-
-  // 3. Laboratory: Clean, White, Tech
-  state.assets.themeTiles.laboratoire = {
-    floor: generateTexture("tiles", { base: "#eceff1", grout: "#cfd8dc" }), // White tiles
-    wall: generateTexture("metal", { base: "#b0bec5", highlight: "#ffffff", shadow: "#78909c" }), // Metal panels
-    door_closed: generateSprite("door", { "1": "#b0bec5", "2": "#cfd8dc", "3": "#e91e63" }), // Blast door
-    door_open: generateSprite("door", { "1": "#b0bec5", "2": "#cfd8dc", "3": "#00e676" }),
-    computer: generateSprite("computer", { "1": "#eceff1", "2": "#ffffff", "3": "#00bcd4" }), // High-tech console
-    alt: generateTexture("hazard", { stripes: "#29b6f6" }), // Bio-hazard
-    liquid: generateTexture("noise", { base: "#00acc1", light: "#26c6da", shadow: "#00838f" }), // Chemical fluid
-    altar: generateSprite("wall", { "1": "#cfd8dc", "2": "#eceff1", "3": "#00bcd4" }), // Lab input station
-  };
-
-  // 4. Space: Dark, Metal, Gold
-  state.assets.themeTiles.espace = {
-    floor: generateTexture("metal", { base: "#263238", highlight: "#37474f", shadow: "#102027" }), // Dark plating
-    wall: generateTexture("metal", { base: "#3e2723", highlight: "#ff6f00", shadow: "#1b0000" }), // Rusty/Mars hull
-    door_closed: generateSprite("door", { "1": "#212121", "2": "#424242", "3": "#ff6f00" }), // Airlock
-    door_open: generateSprite("door", { "1": "#212121", "2": "#424242", "3": "#76ff03" }),
-    computer: generateSprite("computer", { "1": "#263238", "2": "#37474f", "3": "#ffca28" }), // Hologram proj
-    alt: generateTexture("noise", { base: "#000000", light: "#ffffff", shadow: "#000000" }), // Void/Stars
-    liquid: generateTexture("noise", { base: "#e65100", light: "#ff9800", shadow: "#bf360c" }), // Lava/Plasma
-    altar: generateSprite("wall", { "1": "#ff6f00", "2": "#ff8f00", "3": "#fff8e1" }), // Golden terminal
-  };
-
-  // 5. Bureaucracy: Wood, Carpet, Beige
-  state.assets.themeTiles.bureaucratie = {
-    floor: generateTexture("carpet", { base: "#5d4037", pattern: "#795548" }), // Brown carpet
-    wall: generateTexture("tiles", { base: "#d7ccc8", grout: "#a1887f" }), // Beige panels
-    door_closed: generateSprite("door", { "1": "#8d6e63", "2": "#a1887f", "3": "#8e24aa" }), // Office door
-    door_open: generateSprite("door", { "1": "#8d6e63", "2": "#a1887f", "3": "#ab47bc" }),
-    computer: generateSprite("computer", { "1": "#d7ccc8", "2": "#efebe9", "3": "#795548" }), // Vintage PC
-    alt: generateTexture("carpet", { base: "#880e4f", pattern: "#ad1457" }), // Red VIP carpet
-    liquid: generateTexture("carpet", { base: "#1a237e", pattern: "#283593" }), // Blue carpet
-    altar: generateSprite("wall", { "1": "#5d4037", "2": "#795548", "3": "#ffc107" }), // Manager desk
-  };
+  state.assets.themeTiles.nature = makeTheme("nature");
+  state.assets.themeTiles.urbain = makeTheme("urbain");
+  state.assets.themeTiles.laboratoire = makeTheme("laboratoire");
+  state.assets.themeTiles.espace = makeTheme("espace");
+  state.assets.themeTiles.bureaucratie = makeTheme("bureaucratie");
 
   // Set default
-  const defaultSet = state.assets.themeTiles.nature;
-  Object.assign(state.assets, defaultSet);
+  Object.assign(state.assets, state.assets.themeTiles.nature);
 }
 
 
