@@ -292,6 +292,11 @@ function applyThemeAssets(theme) {
   state.assets.alt = set.alt;
   state.assets.liquid = set.liquid;
   state.assets.altar = set.altar;
+
+  // Swap NPCs to match theme
+  if (set.npc_1) state.assets["A-1"] = set.npc_1;
+  if (set.npc_2) state.assets["B-2"] = set.npc_2;
+  if (set.npc_3) state.assets["C-3"] = set.npc_3;
 }
 
 function mapPersonas(list) {
@@ -538,14 +543,27 @@ function generateWorld(scene) {
     const zoneH = y1 - y0;
     if (zoneW < 3 || zoneH < 3) return;
 
-    // Add interior obstacles (furniture, trees, machines)
-    const obstacleCount = Math.floor(zoneW * zoneH * 0.08);
+    // Add thematic obstacles inside zones
+    const obstacleCount = Math.floor(zoneW * zoneH * 0.12);
     for (let i = 0; i < obstacleCount; i += 1) {
       const ox = randomInt(rng, x0, x1);
       const oy = randomInt(rng, y0, y1);
       if (Math.abs(ox - spawnX) < 6 && Math.abs(oy - spawnY) < 5) continue;
       if (Math.abs(ox - doorX) < 3 && oy <= spawnY && oy >= doorY - 1) continue;
-      tiles[oy][ox] = 1;
+
+      const r = rng();
+      if (r < 0.4) {
+        tiles[oy][ox] = 1; // Standard wall/obstacle
+      } else if (r < 0.6) {
+        deco[oy][ox] = "computer";
+        tiles[oy][ox] = 1; // Prop blocks movement
+      } else if (r < 0.8) {
+        deco[oy][ox] = "building";
+        tiles[oy][ox] = 1; // Building blocks movement
+      } else {
+        deco[oy][ox] = "vehicle";
+        tiles[oy][ox] = 1; // Vehicle blocks movement
+      }
     }
 
     // Add decorative patches
@@ -1274,6 +1292,80 @@ function drawDetail(ctx, type, theme) {
   }
 }
 
+function drawBuilding(theme) {
+  const c = document.createElement("canvas");
+  c.width = 32; c.height = 32;
+  const ctx = c.getContext("2d");
+
+  // Base Facade
+  const isUrban = theme === "urbain";
+  const isSpace = theme === "espace";
+
+  ctx.fillStyle = isUrban ? "#a1887f" : isSpace ? "#37474f" : "#5d4037"; // Brick vs Metal vs Wood
+  ctx.fillRect(2, 2, 28, 30);
+
+  // Roof / Top trim
+  ctx.fillStyle = isUrban ? "#5d4037" : isSpace ? "#263238" : "#3e2723";
+  ctx.fillRect(0, 0, 32, 4);
+
+  // Window
+  ctx.fillStyle = isSpace ? "#0277bd" : "#81d4fa";
+  ctx.fillRect(8, 10, 6, 8);
+  ctx.fillRect(18, 10, 6, 8);
+
+  // Door
+  ctx.fillStyle = "#3e2723";
+  ctx.fillRect(12, 22, 8, 10);
+
+  const img = new Image(); img.src = c.toDataURL(); return img;
+}
+
+function drawVehicle(theme) {
+  const c = document.createElement("canvas");
+  c.width = 32; c.height = 32;
+  const ctx = c.getContext("2d");
+
+  // Shadow
+  ctx.fillStyle = "rgba(0,0,0,0.3)";
+  ctx.beginPath(); ctx.ellipse(16, 28, 12, 4, 0, 0, Math.PI * 2); ctx.fill();
+
+  const isNature = theme === "nature";
+  const isSpace = theme === "espace";
+  const isLab = theme === "laboratoire";
+
+  if (isNature) {
+    // Wooden Cart
+    ctx.fillStyle = "#5d4037";
+    ctx.fillRect(4, 12, 24, 12);
+    // Wheels
+    ctx.fillStyle = "#3e2723";
+    ctx.beginPath(); ctx.arc(8, 24, 4, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(24, 24, 4, 0, Math.PI * 2); ctx.fill();
+  } else if (isSpace || isLab) {
+    // Rover / Bot
+    ctx.fillStyle = isSpace ? "#ff6f00" : "#eceff1";
+    ctx.beginPath();
+    ctx.moveTo(4, 24); ctx.lineTo(16, 8); ctx.lineTo(28, 24); ctx.fill();
+    // Eye
+    ctx.fillStyle = "#00e5ff";
+    ctx.fillRect(14, 14, 4, 2);
+  } else {
+    // Car (Urban/Bureau)
+    ctx.fillStyle = theme === "urbain" ? "#c62828" : "#1a237e";
+    ctx.fillRect(4, 16, 24, 8); // Body
+    ctx.fillRect(8, 10, 16, 6); // Top
+    // Windows
+    ctx.fillStyle = "#81d4fa";
+    ctx.fillRect(9, 11, 6, 4); ctx.fillRect(17, 11, 6, 4);
+    // Wheels
+    ctx.fillStyle = "#111";
+    ctx.fillRect(6, 22, 4, 4); ctx.fillRect(22, 22, 4, 4);
+  }
+
+  const img = new Image(); img.src = c.toDataURL(); return img;
+}
+
+
 function createProceduralAssets() {
   const pPal = { "1": "#e74c3c", "2": "#f1948a", "3": "#ffffff", "4": "#7b241c" };
   // Keep original players/NPCs for now
@@ -1317,6 +1409,28 @@ function createProceduralAssets() {
       isLab ? { "1": "#eceff1", "2": "#ffffff", "3": "#00bcd4" } :
         { "1": "#263238", "2": "#37474f", "3": "#ffca28" });
 
+    const building = drawBuilding(themeName);
+    const vehicle = drawVehicle(themeName);
+
+    // Theme NPCs
+    const npcPal1 = isNature ? { "1": "#33691e", "2": "#558b2f", "3": "#dcedc8", "4": "#1b5e20" } : // Ranger
+      isLab ? { "1": "#ffffff", "2": "#eceff1", "3": "#00bcd4", "4": "#b0bec5" } : // Scientist
+        isSpace ? { "1": "#ff6f00", "2": "#ff8f00", "3": "#212121", "4": "#bf360c" } : // Engineer
+          isUrban ? { "1": "#607d8b", "2": "#78909c", "3": "#eceff1", "4": "#455a64" } : // Citizen
+            { "1": "#5d4037", "2": "#795548", "3": "#d7ccc8", "4": "#3e2723" }; // Bureaucrat
+
+    const npcPal2 = isNature ? { "1": "#5d4037", "2": "#795548", "3": "#a1887f", "4": "#3e2723" } : // Hiker
+      isLab ? { "1": "#00acc1", "2": "#26c6da", "3": "#e0f7fa", "4": "#00838f" } : // Assistant
+        isSpace ? { "1": "#212121", "2": "#424242", "3": "#76ff03", "4": "#000000" } : // Marine
+          isUrban ? { "1": "#37474f", "2": "#546e7a", "3": "#cfd8dc", "4": "#263238" } : // Punk
+            { "1": "#4e342e", "2": "#6d4c41", "3": "#ffe0b2", "4": "#3e2723" }; // Manager
+
+    const npcPal3 = isNature ? { "1": "#1b5e20", "2": "#2e7d32", "3": "#81c784", "4": "#003300" } : // Spirit
+      isLab ? { "1": "#e91e63", "2": "#f06292", "3": "#fce4ec", "4": "#880e4f" } : // Director
+        isSpace ? { "1": "#0277bd", "2": "#29b6f6", "3": "#e1f5fe", "4": "#01579b" } : // Pilot
+          isUrban ? { "1": "#212121", "2": "#000000", "3": "#ff5722", "4": "#3e2723" } : // Goth
+            { "1": "#8d6e63", "2": "#a1887f", "3": "#ffffff", "4": "#5d4037" }; // Intern
+
     // Generate Base Textures
     const set = {
       floor: generateTexture(floorType, floorPal),
@@ -1324,6 +1438,11 @@ function createProceduralAssets() {
       door_closed: generateSprite("door", { "1": "#424242", "2": "#616161", "3": "#ef5350" }),
       door_open: generateSprite("door", { "1": "#424242", "2": "#616161", "3": "#66bb6a" }),
       computer: computer,
+      building: building,
+      vehicle: vehicle,
+      npc_1: generateSprite("npc", npcPal1),
+      npc_2: generateSprite("npc", npcPal2),
+      npc_3: generateSprite("npc", npcPal3),
       alt: generateTexture("hazard", { stripes: isLab ? "#29b6f6" : "#fbc02d" }),
       liquid: generateTexture("noise", { base: isNature ? "#0277bd" : "#d32f2f", light: "#fff", shadow: "#000" }),
       altar: generateSprite("wall", { "1": "#607d8b", "2": "#78909c", "3": "#ffffff" })
@@ -2591,11 +2710,16 @@ function draw() {
       const isWall = state.world.tiles[y]?.[x] === 1;
       const cellTheme = state.world.themes?.[y]?.[x] || state.currentTheme;
       const themeSet = state.assets.themeTiles?.[cellTheme] || state.assets.themeTiles?.[state.currentTheme] || state.assets;
-      const baseTile = isWall ? themeSet.wall : themeSet.floor;
-      if (baseTile) ctx.drawImage(baseTile, dx, dy, TILE_SIZE, TILE_SIZE);
       const decoKey = state.world.deco[y]?.[x];
-      if (!isWall && decoKey && themeSet[decoKey]) {
+
+      if (decoKey && themeSet[decoKey]) {
+        // Draw floor underneath decor
+        if (themeSet.floor) ctx.drawImage(themeSet.floor, dx, dy, TILE_SIZE, TILE_SIZE);
+        // Draw decor
         ctx.drawImage(themeSet[decoKey], dx, dy, TILE_SIZE, TILE_SIZE);
+      } else {
+        const baseTile = isWall ? themeSet.wall : themeSet.floor;
+        if (baseTile) ctx.drawImage(baseTile, dx, dy, TILE_SIZE, TILE_SIZE);
       }
     }
   }
