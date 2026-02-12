@@ -15,6 +15,82 @@ const INSIGHTS_REQUIRED = 2;
 const FORCE_DECISION_TURNS = 7;
 const DEFAULT_TILE_ORDER = ["floor", "wall", "doorClosed", "doorOpen", "terminal", "altFloor", "liquidOrHazard", "panel"];
 
+// --- LOCALIZATION ---
+const LANG = {
+  fr: {
+    start_game: "COMMENCER LA SIMULATION",
+    select_mediator: "CHOISISSEZ VOTRE MÉDIATEUR",
+    level: "Niveau",
+    objective: "Objectif",
+    interact_prompt: "[E] Interagir",
+    prompt_talk: "[E] Parler",
+    prompt_enter: "[E] Franchir",
+    prompt_vote: "[E] Voter",
+    prompt_loot: "[E] Récupérer",
+    prompt_read: "[E] Lire",
+    tutorial_move: "Utilisez ZQSD ou les Flèches pour bouger.",
+    tutorial_interact: "Approchez un personnage et appuyez sur E pour discuter.",
+    tutorial_chat: "Répondez aux questions pour gagner des points.",
+    tutorial_skip: "Passer le tutoriel",
+    intro_title: "INTRO NIVEAU",
+    intro_continue: "[ESPACE] pour continuer",
+    choice_title: "FAITES VOTRE CHOIX",
+    choice_waiting: "En attente...",
+    game_over: "FIN DE LA SIMULATION",
+    thanks: "Merci d'avoir joué.",
+  },
+  en: {
+    start_game: "START SIMULATION",
+    select_mediator: "CHOOSE YOUR MEDIATOR",
+    level: "Level",
+    objective: "Objective",
+    interact_prompt: "[E] Interact",
+    prompt_talk: "[E] Talk",
+    prompt_enter: "[E] Enter",
+    prompt_vote: "[E] Vote",
+    prompt_loot: "[E] Loot",
+    prompt_read: "[E] Read",
+    tutorial_move: "Use WASD or Arrows to move.",
+    tutorial_interact: "Approach a character and press E to chat.",
+    tutorial_chat: "Answer questions to earn points.",
+    tutorial_skip: "Skip Tutorial",
+    intro_title: "LEVEL INTRO",
+    intro_continue: "[SPACE] to continue",
+    choice_title: "MAKE YOUR CHOICE",
+    choice_waiting: "Waiting...",
+    game_over: "SIMULATION ENDED",
+    thanks: "Thanks for playing.",
+  },
+  de: {
+    start_game: "SIMULATION STARTEN",
+    select_mediator: "WÄHLEN SIE IHREN VERMITTLER",
+    level: "Ebene",
+    objective: "Ziel",
+    interact_prompt: "[E] Interagieren",
+    prompt_talk: "[E] Reden",
+    prompt_enter: "[E] Eintreten",
+    prompt_vote: "[E] Abstimmen",
+    prompt_loot: "[E] Plündern",
+    prompt_read: "[E] Lesen",
+    tutorial_move: "Benutzen Sie WASD oder Pfeile zum Bewegen.",
+    tutorial_interact: "Gehen Sie zu einem Charakter und drücken Sie E.",
+    tutorial_chat: "Beantworten Sie Fragen, um Punkte zu sammeln.",
+    tutorial_skip: "Tutorial überspringen",
+    intro_title: "LEVEL EINFÜHRUNG",
+    intro_continue: "[LEERTASTE] zum Fortfahren",
+    choice_title: "TREFFEN SIE IHRE WAHL",
+    choice_waiting: "Warten...",
+    game_over: "SIMULATION BEENDET",
+    thanks: "Danke fürs Spielen.",
+  }
+};
+
+const getText = (key) => {
+  const lang = state.language || "fr";
+  return LANG[lang][key] || key;
+};
+
+
 const uiLevel = document.getElementById("level-id");
 const uiDialog = document.getElementById("dialog-box");
 const uiDialogName = document.getElementById("dialog-name");
@@ -190,10 +266,9 @@ function generateSprite(key, colorMap, flip = false) {
       }
     }
   }
-  const img = new Image();
-  img.src = c.toDataURL();
-  return img;
+  return c;
 }
+
 
 async function loadImage(path) {
   return new Promise((resolve, reject) => {
@@ -612,13 +687,13 @@ function getAdjacentInteractable() {
 }
 
 function interactionLabel(entity) {
-  if (!entity) return "[E] Interagir";
-  if (entity.type === "npc") return "[E] Parler";
-  if (entity.type === "door") return "[E] Franchir";
-  if (entity.type === "altar") return "[E] Voter";
-  if (entity.type === "insight") return "[E] Recuperer module";
-  if (entity.type === "computer") return "[E] Lire";
-  return "[E] Interagir";
+  if (!entity) return getText("interact_prompt");
+  if (entity.type === "npc") return getText("prompt_talk");
+  if (entity.type === "door") return getText("prompt_enter");
+  if (entity.type === "altar") return getText("prompt_vote");
+  if (entity.type === "insight") return getText("prompt_loot");
+  if (entity.type === "computer") return getText("prompt_read");
+  return getText("interact_prompt");
 }
 
 function resolveAvatarUrl(raw) {
@@ -1149,11 +1224,9 @@ function recolorSprite(sourceCanvas, paletteMapping) {
     }
   }
 
-  ctx.putImageData(imageData, 0, 0);
-  const img = new Image();
-  img.src = c.toDataURL();
-  return img;
+  return c;
 }
+
 
 function generateTexture(type, palette) {
   const c = document.createElement("canvas");
@@ -1260,10 +1333,9 @@ function generateTexture(type, palette) {
     }
   }
 
-  const img = new Image();
-  img.src = c.toDataURL();
-  return img;
+  return c;
 }
+
 
 function drawDetail(ctx, type, theme) {
   const p = theme === "nature" ? { main: "#2e7d32", sec: "#5d4037" } :
@@ -1317,8 +1389,9 @@ function drawBuilding(theme) {
   ctx.fillStyle = "#3e2723";
   ctx.fillRect(12, 22, 8, 10);
 
-  const img = new Image(); img.src = c.toDataURL(); return img;
+  return c;
 }
+
 
 function drawVehicle(theme) {
   const c = document.createElement("canvas");
@@ -1362,8 +1435,9 @@ function drawVehicle(theme) {
     ctx.fillRect(6, 22, 4, 4); ctx.fillRect(22, 22, 4, 4);
   }
 
-  const img = new Image(); img.src = c.toDataURL(); return img;
+  return c;
 }
+
 
 
 function createProceduralAssets() {
@@ -1409,10 +1483,44 @@ function createProceduralAssets() {
       isLab ? { "1": "#eceff1", "2": "#ffffff", "3": "#00bcd4" } :
         { "1": "#263238", "2": "#37474f", "3": "#ffca28" });
 
-    const building = drawBuilding(themeName);
-    const vehicle = drawVehicle(themeName);
+    // Helper to extract sprite from sheet
+    const extractSprite = (sheet, index) => {
+      if (!sheet) return null;
+      const c = document.createElement("canvas");
+      c.width = 32; c.height = 32;
+      const ctx = c.getContext("2d");
+      // Assume 32x32 grid, sheet width determines cols
+      const cols = Math.floor(sheet.width / 32);
+      const row = Math.floor(index / cols);
+      const col = index % cols;
+      ctx.drawImage(sheet, col * 32, row * 32, 32, 32, 0, 0, 32, 32);
+      return c;
+    };
+
+
+    // Buildings: Try high-fidelity first
+    let building;
+    if (isNature && state.assets.sheets?.buildings_nature) building = extractSprite(state.assets.sheets.buildings_nature, Math.floor(Math.random() * 4));
+    else if (isUrban && state.assets.sheets?.buildings_urbain) building = extractSprite(state.assets.sheets.buildings_urbain, Math.floor(Math.random() * 4));
+    else if (isLab && state.assets.sheets?.buildings_laboratoire) building = extractSprite(state.assets.sheets.buildings_laboratoire, Math.floor(Math.random() * 4));
+
+    if (!building) building = drawBuilding(themeName); // Fallback
+
+    const vehicle = drawVehicle(themeName); // Vehicles still procedural for now
 
     // Theme NPCs
+    // Map themes to rows in npcs_themes.png (assuming 5 themes * 3 npcs = 15 sprites)
+    // Row 0: Nature, Row 1: Urban, Row 2: Lab, Row 3: Space, Row 4: Bureau
+    const themeRow = isNature ? 0 : isUrban ? 1 : isLab ? 2 : isSpace ? 3 : 4;
+
+    let npc1, npc2, npc3;
+    if (state.assets.sheets?.npcs_themes) {
+      npc1 = extractSprite(state.assets.sheets.npcs_themes, themeRow * 3 + 0);
+      npc2 = extractSprite(state.assets.sheets.npcs_themes, themeRow * 3 + 1);
+      npc3 = extractSprite(state.assets.sheets.npcs_themes, themeRow * 3 + 2);
+    }
+
+    // Fallback Procedural Palettes
     const npcPal1 = isNature ? { "1": "#33691e", "2": "#558b2f", "3": "#dcedc8", "4": "#1b5e20" } : // Ranger
       isLab ? { "1": "#ffffff", "2": "#eceff1", "3": "#00bcd4", "4": "#b0bec5" } : // Scientist
         isSpace ? { "1": "#ff6f00", "2": "#ff8f00", "3": "#212121", "4": "#bf360c" } : // Engineer
@@ -1448,6 +1556,21 @@ function createProceduralAssets() {
       altar: generateSprite("wall", { "1": "#607d8b", "2": "#78909c", "3": "#ffffff" })
     };
 
+    // --- OVERRIDES FOR HIGH FIDELITY ASSETS ---
+    if (isSpace && state.assets.sheets?.buildings_espace) {
+      // Space Buildings
+      set.building = extractSprite(state.assets.sheets.buildings_espace, randomInt(rng, 0, 8));
+    }
+
+    // Vehicles (Generic handling: row 0=Nature, 1=Urban, 2=Lab, 3=Space?? Checking sheet content is hard, assume grid)
+    if (state.assets.sheets?.vehicles) {
+      // let's just pick random vehicles for now as improved fallback
+      const vRow = isNature ? 0 : isUrban ? 1 : isLab ? 2 : isSpace ? 3 : 4;
+      // Assume 5 rows, 4 cols
+      set.vehicle = extractSprite(state.assets.sheets.vehicles, vRow * 4 + randomInt(rng, 0, 3));
+    }
+
+
     // Add Detailed Object Overlays
     // We create a composite canvas for specific complex objects if needed, 
     // but for now we'll just use the sprites we generated.
@@ -1459,8 +1582,9 @@ function createProceduralAssets() {
       const ctx = c.getContext("2d");
       ctx.drawImage(baseSprite, 0, 0);
       drawDetail(ctx, type, themeName);
-      const i = new Image(); i.src = c.toDataURL(); return i;
+      return c;
     };
+
 
     // Enhance props
     set.computer = enhance(set.computer, "computer");
@@ -1494,7 +1618,14 @@ async function createAssets() {
       tilesLab,
       tilesEspace,
       tilesBureau,
+      buildingsNature,
+      buildingsUrban,
+      buildingsLab,
+      buildingsEspace, // New
+      vehicles,        // New
+      npcsThemes,
     ] = await Promise.all([
+
       loadJson("./assets/player_presets.json").catch(() => null),
       loadJson("./assets/npcs.json").catch(() => null),
       loadJson("./assets/tilesets_manifest.json").catch(() => null),
@@ -1505,9 +1636,18 @@ async function createAssets() {
       loadImage("./assets/tilesets_laboratoire.png"),
       loadImage("./assets/tilesets_espace.png"),
       loadImage("./assets/tilesets_bureaucratie.png"),
+      loadImage("./assets/buildings_nature.png").catch(() => null),
+      loadImage("./assets/buildings_urban.png").catch(() => null),
+      loadImage("./assets/buildings_lab.png").catch(() => null),
+      loadImage("./assets/buildings_espace.png").catch(() => null),
+      loadImage("./assets/vehicles.png").catch(() => null),
+      loadImage("./assets/npcs_themes.png").catch(() => null),
     ]);
 
+
+
     state.assets.playerManifest = playerManifest;
+
     state.assets.npcManifest = npcManifest;
     state.assets.tilesetsManifest = tilesetsManifest;
     state.assets.player_sheet = playerSheet;
@@ -1520,6 +1660,20 @@ async function createAssets() {
       espace: tilesEspace,
       bureaucratie: tilesBureau,
     };
+
+    state.assets.sheets = {
+      buildings_nature: buildingsNature,
+      buildings_urbain: buildingsUrban,
+      buildings_laboratoire: buildingsLab,
+      buildings_espace: buildingsEspace,
+      vehicles: vehicles,
+      npcs_themes: npcsThemes
+    };
+
+
+
+
+
     rebuildThemeTiles();
     applyThemeAssets("nature");
     state.assets.useExternal = true;
@@ -2793,6 +2947,14 @@ async function init() {
   setupInput();
   if (typeof collapseChatPanel === 'function') collapseChatPanel();
 
+  // Load Language
+  state.language = localStorage.getItem("rpg_lang") || "fr";
+  const langSel = document.getElementById("language-select");
+  if (langSel) langSel.value = state.language;
+  // Apply language
+  if (typeof window.changeLanguage === 'function') window.changeLanguage(state.language);
+
+
   await createAssets();
 
   if (state.assets.useExternal) {
@@ -2829,4 +2991,38 @@ async function init() {
 window.sendPlayerAction = sendPlayerAction;
 window.sendUserMessage = sendPlayerAction;
 
+// --- LANGUAGE ---
+window.changeLanguage = (lang) => {
+  state.language = lang;
+  localStorage.setItem("rpg_lang", lang);
+
+  // Refresh UI
+  if (uiLevel) uiLevel.innerHTML = `${getText("level")}: ${state.levelData?.id || 1}`;
+
+  // Refresh Tutorial if active
+  if (state.tutorial.active) {
+    const stepText = [getText("tutorial_move"), getText("tutorial_interact"), getText("tutorial_chat")];
+    if (uiTutorialText) uiTutorialText.textContent = stepText[state.tutorial.step] || "...";
+  }
+
+  // Refresh Intro if visible
+  const intro = document.getElementById("intro-overlay");
+  if (intro && intro.style.display !== "none") {
+    intro.querySelector("h1").textContent = getText("intro_title");
+    intro.querySelector("p").innerText = getText("intro_continue");
+  }
+
+  // Refresh Player Selection if visible
+  const selBtn = document.getElementById("start-game-btn");
+  if (selBtn) selBtn.textContent = getText("start_game");
+
+  const selTitle = document.querySelector(".selection-modal h2");
+  if (selTitle) selTitle.textContent = getText("select_mediator");
+};
+
+// Expose state for debugging
+window.state = state;
+
 init();
+
+
