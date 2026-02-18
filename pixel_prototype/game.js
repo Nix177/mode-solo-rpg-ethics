@@ -583,8 +583,8 @@ class NPCWalker {
       // If real sheet logic:
       // ctx.drawImage(this.sheet, this.charIndex * 64, 0, 64, 64, this.x - 32, this.y - 64, 64, 64);
 
-      // Placeholder logic:
-      ctx.drawImage(this.sheet, this.x - 25, this.y - 50, 50, 50);
+      // Placeholder logic (Reasonable Size):
+      ctx.drawImage(this.sheet, this.x - 20, this.y - 40, 40, 40);
 
       // Nano Banana indicator (tiny yellow dot if not implemented)
       if (this.charIndex === 4) { // 1 in 5 has banana
@@ -841,42 +841,61 @@ function generateWorld(scene) {
     const zoneH = y1 - y0;
     if (zoneW < 3 || zoneH < 3) return;
 
-    // Add thematic obstacles inside zones
-    const obstacleCount = Math.floor(zoneW * zoneH * 0.12);
+    // Add thematic obstacles inside zones (Reduced Density V2)
+    const obstacleCount = Math.floor(zoneW * zoneH * 0.05); // Reduced from 0.12
     for (let i = 0; i < obstacleCount; i += 1) {
       const ox = randomInt(rng, x0, x1);
       const oy = randomInt(rng, y0, y1);
       if (Math.abs(ox - spawnX) < 6 && Math.abs(oy - spawnY) < 5) continue;
       if (Math.abs(ox - doorX) < 3 && oy <= spawnY && oy >= doorY - 1) continue;
 
+      // Spacing check
+      let crowded = false;
+      for (let dy = -2; dy <= 2; dy++) {
+        for (let dx = -2; dx <= 2; dx++) {
+          if (tiles[oy + dy]?.[ox + dx] === 1) crowded = true;
+        }
+      }
+      if (crowded) continue;
+
       const r = rng();
       if (r < 0.4) {
-        tiles[oy][ox] = 1; // Standard wall/obstacle
+        tiles[oy][ox] = 1;
       } else if (r < 0.6) {
         deco[oy][ox] = "computer";
-        tiles[oy][ox] = 1; // Prop blocks movement
+        tiles[oy][ox] = 1;
       } else if (r < 0.8) {
         deco[oy][ox] = "building";
-        tiles[oy][ox] = 1; // Building blocks movement
+        tiles[oy][ox] = 1;
       } else {
         deco[oy][ox] = "vehicle";
-        tiles[oy][ox] = 1; // Vehicle blocks movement
+        tiles[oy][ox] = 1;
       }
     }
 
-    // Add decorative patches
-    const decoCount = Math.floor(zoneW * zoneH * 0.15);
+    // Add decorative patches (Reduced Density V2)
+    const decoCount = Math.floor(zoneW * zoneH * 0.06); // Reduced from 0.15
     for (let i = 0; i < decoCount; i += 1) {
       const dx = randomInt(rng, x0, x1);
       const dy = randomInt(rng, y0, y1);
       if (tiles[dy][dx] === 1 || deco[dy][dx]) continue;
       if (Math.abs(dx - spawnX) < 5 && Math.abs(dy - spawnY) < 4) continue;
+
+      // Spacing check for deco
+      let crowded = false;
+      for (let sy = -1; sy <= 1; sy++) {
+        for (let sx = -1; sx <= 1; sx++) {
+          if (deco[dy + sy]?.[dx + sx]) crowded = true;
+        }
+      }
+      if (crowded) continue;
+
       deco[dy][dx] = rng() < 0.7 ? "alt" : "liquid";
     }
   });
 
-  // Add scattered decoration outside zones
-  const scatterCount = 60;
+  // Add scattered decoration outside zones (Reduced Density V2)
+  const scatterCount = 20; // Reduced from 60
   for (let i = 0; i < scatterCount; i += 1) {
     const x = randomInt(rng, 2, w - 3);
     const y = randomInt(rng, 2, h - 3);
@@ -3195,8 +3214,16 @@ function draw() {
         // Draw decor with bottom-center anchor to support larger assets
         const asset = themeSet[decoKey];
         if (asset) {
-          const dw = asset.width;
-          const dh = asset.height;
+          let dw = asset.width;
+          let dh = asset.height;
+
+          // Clamp massive placeholders (V2 Fix)
+          if (dw > 120 || dh > 120) {
+            const scale = Math.min(120 / dw, 120 / dh);
+            dw *= scale;
+            dh *= scale;
+          }
+
           // Align bottom-center of asset with bottom-center of tile
           const ox = dx + (TILE_SIZE - dw) / 2;
           const oy = dy + (TILE_SIZE - dh);
