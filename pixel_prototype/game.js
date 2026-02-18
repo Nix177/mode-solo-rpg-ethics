@@ -500,6 +500,101 @@ function applyThemeAssets(theme) {
   if (set.npc_3) state.assets["C-3"] = set.npc_3;
   if (set.building) state.assets.building = set.building;
   if (set.vehicle) state.assets.vehicle = set.vehicle;
+
+  // Init Walkers (5 per scene)
+  state.walkers = [];
+  const themeKey = (t === "nature" || t === "urbain" || t === "laboratoire" || t === "espace" || t === "bureaucratie") ? t : "nature";
+  // Map theme name to key ("bureaucratie" -> "bureau"?)
+  let walkerTheme = themeKey;
+  if (walkerTheme === "bureaucratie") walkerTheme = "bureau"; // Match key in ASSETS_V2_NPCS naming
+
+  for (let i = 0; i < 5; i++) {
+    state.walkers.push(new NPCWalker(walkerTheme, 100 + Math.random() * 600, 300 + Math.random() * 200));
+  }
+}
+
+// --- NPC WALKER CLASS (V2) ---
+class NPCWalker {
+  constructor(theme, x, y) {
+    this.x = x;
+    this.y = y;
+    this.targetX = x;
+    this.targetY = y;
+    this.speed = 1.5; // pixels per frame
+    this.theme = theme;
+    this.sprite = null;
+    this.frame = 0;
+    this.animTimer = 0;
+
+    // Pick random sprite from theme sheet
+    // We assume sheet is 5 chars wide (placeholder is 1 char, but logic supports multiple)
+    // If placeholder is single image, we just use it.
+    const sheet = state.assets.sheets?.v2_npcs?.[theme];
+    if (sheet) {
+      this.sheet = sheet;
+      this.charIndex = Math.floor(Math.random() * 5); // 0-4
+      // Since placeholder is single image, we might need logic adjustment
+      // If explicit sheet, we crop.
+    }
+    this.waitTime = 0;
+  }
+
+  update() {
+    if (this.waitTime > 0) {
+      this.waitTime--;
+      if (this.waitTime <= 0) this.pickTarget();
+      return;
+    }
+
+    const dx = this.targetX - this.x;
+    const dy = this.targetY - this.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    if (dist < this.speed) {
+      this.x = this.targetX;
+      this.y = this.targetY;
+      this.waitTime = 60 + Math.floor(Math.random() * 120); // Wait 1-3s
+    } else {
+      this.x += (dx / dist) * this.speed;
+      this.y += (dy / dist) * this.speed;
+      this.animTimer++;
+      if (this.animTimer > 10) {
+        this.frame = (this.frame + 1) % 4; // Simple 4 frame walking?
+        this.animTimer = 0;
+      }
+    }
+  }
+
+  pickTarget() {
+    // Pick random point within canvas bounds (padding 50)
+    this.targetX = 50 + Math.random() * (800 - 100);
+    this.targetY = 50 + Math.random() * (600 - 100);
+  }
+
+  draw(ctx) {
+    if (this.sheet) {
+      // Draw simple sprite
+      // Assuming placeholder is just an image for now.
+      // When real sheets arrive: assume 64x64 per char?
+      // User said "5 modèles... sprite sheet".
+      // Let's assume sheet is 5 columns.
+      // For placeholder, we just draw the whole image scaled down.
+
+      // If real sheet logic:
+      // ctx.drawImage(this.sheet, this.charIndex * 64, 0, 64, 64, this.x - 32, this.y - 64, 64, 64);
+
+      // Placeholder logic:
+      ctx.drawImage(this.sheet, this.x - 25, this.y - 50, 50, 50);
+
+      // Nano Banana indicator (tiny yellow dot if not implemented)
+      if (this.charIndex === 4) { // 1 in 5 has banana
+        ctx.fillStyle = "yellow";
+        ctx.beginPath();
+        ctx.arc(this.x + 15, this.y - 20, 3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+  }
 }
 
 function mapPersonas(list) {
@@ -1733,9 +1828,25 @@ function createProceduralAssets() {
 
 
 
-// --- SLICED ASSETS LISTS ---
+// --- SLICED ASSETS LISTS (V1 & V2) ---
+// V2 New Assets
+const ASSETS_V2_TREES = ["tree_v2_01.png", "tree_v2_02.png", "tree_v2_03.png", "tree_v2_04.png", "tree_v2_05.png"];
+const ASSETS_V2_VEHICLES = ["vehicle_v2_01.png", "vehicle_v2_02.png", "vehicle_v2_03.png", "vehicle_v2_04.png", "vehicle_v2_05.png"];
+const ASSETS_V2_BUILDINGS = [
+  "building_v2_01.png", "building_v2_02.png", "building_v2_03.png", "building_v2_04.png", "building_v2_05.png",
+  "building_v2_06.png", "building_v2_07.png", "building_v2_08.png", "building_v2_09.png", "building_v2_10.png"
+];
+const ASSETS_V2_NPCS = {
+  nature: "npc_sheet_nature.png",
+  urban: "npc_sheet_urban.png",
+  lab: "npc_sheet_lab.png",
+  space: "npc_sheet_space.png",
+  bureau: "npc_sheet_bureau.png"
+};
+
 const ASSETS_BUILDINGS_SPACE = [
   "building_space_habitat_long.png",
+  // ... existing ...
   "building_space_observatory_01.png",
   "building_space_observatory_02.png",
   "building_space_complex_01.png",
@@ -1757,6 +1868,8 @@ const ASSETS_VEHICLES_RUSTIC = [
   "vehicle_rustic_cart_5_01.png", "vehicle_rustic_cart_7_01.png", "vehicle_rustic_cart_8_01.png", "vehicle_rustic_cart_9_01.png",
   "vehicle_rustic_wagon_empty_10_01.png", "vehicle_rustic_wagon_empty_11_01.png", "vehicle_rustic_wagon_empty_12_01.png", "vehicle_rustic_wagon_empty_13_01.png", "vehicle_rustic_wagon_empty_14_01.png"
 ];
+
+
 
 const ASSETS_VEHICLES_SCIFI = [
   "vehicle_scifi_heavy_15_01.png", "vehicle_scifi_heavy_16_01.png", "vehicle_scifi_heavy_19_01.png"
@@ -1792,6 +1905,11 @@ async function createAssets() {
       buildingsEspace, // New
       vehicles,        // New
       npcsThemes,
+      // V2 Assets (Added at end to preserve destructuing order)
+      v2Trees,
+      v2Vehicles,
+      v2Buildings,
+      v2Npcs
     ] = await Promise.all([
 
       loadJson("./assets/player_presets.json").catch(() => null),
@@ -1810,6 +1928,12 @@ async function createAssets() {
       loadImage("./assets/buildings_espace.png").catch(() => null),
       loadImage("./assets/vehicles.png").catch(() => null),
       loadImage("./assets/npcs_themes.png").catch(() => null),
+
+      // V2 Loading
+      Promise.all(ASSETS_V2_TREES.map(f => loadImage(`../assets/v2/trees/${f}`).catch(e => null))),
+      Promise.all(ASSETS_V2_VEHICLES.map(f => loadImage(`../assets/v2/vehicles/${f}`).catch(e => null))),
+      Promise.all(ASSETS_V2_BUILDINGS.map(f => loadImage(`../assets/v2/buildings/${f}`).catch(e => null))),
+      Promise.all(Object.entries(ASSETS_V2_NPCS).map(async ([k, f]) => [k, await loadImage(`../assets/v2/npcs/${f}`).catch(e => null)])).then(entries => Object.fromEntries(entries)),
     ]);
 
     console.log("[ASSETS] Promise.all resolved", { tilesetsManifest, buildingsNature });
@@ -1850,7 +1974,12 @@ async function createAssets() {
       buildings_laboratoire: buildingsLab,
       buildings_espace: buildingsEspace,
       vehicles: vehicles,
-      npcs_themes: npcsThemes
+      npcs_themes: npcsThemes,
+      // V2
+      v2_trees: v2Trees,
+      v2_vehicles: v2Vehicles,
+      v2_buildings: v2Buildings,
+      v2_npcs: v2Npcs
     };
 
 
@@ -3101,6 +3230,14 @@ function draw() {
       if (asset) ctx.drawImage(asset, ex, ey, TILE_SIZE, TILE_SIZE);
     }
   });
+
+  // Draw Walkers
+  if (state.walkers) {
+    state.walkers.forEach(w => {
+      w.update();
+      w.draw(ctx);
+    });
+  }
 
   drawPlayer(camX, camY);
 
