@@ -605,11 +605,7 @@ function generateWorld(scene) {
       }
     }
   };
-
-  // Draw room boundaries for each zone
-  zones.forEach((zone) => {
-    drawRoomBoundaries(zone);
-  });
+  zones.forEach(drawRoomBoundaries);
 
   // Clear spawn area and main path again (after zone walls)
   clearRectInMatrix(tiles, spawnX - 6, spawnY - 5, 13, 10, 0);
@@ -617,16 +613,16 @@ function generateWorld(scene) {
 
   // Add thematic obstacles inside zones
   zones.forEach((zone) => {
-    const x0 = Math.floor(zone.rect[0] * w) + 2;
-    const y0 = Math.floor(zone.rect[1] * h) + 2;
-    const x1 = Math.floor(zone.rect[2] * w) - 2;
-    const y1 = Math.floor(zone.rect[3] * h) - 2;
+    const x0 = Math.floor(zone.rect[0] * w) + 1;
+    const y0 = Math.floor(zone.rect[1] * h) + 1;
+    const x1 = Math.floor(zone.rect[2] * w) - 1;
+    const y1 = Math.floor(zone.rect[3] * h) - 1;
     const zoneW = x1 - x0;
     const zoneH = y1 - y0;
-    if (zoneW < 3 || zoneH < 3) return;
+    if (zoneW <= 0 || zoneH <= 0) return;
 
     // Add thematic obstacles inside zones
-    const obstacleCount = Math.floor(zoneW * zoneH * 0.12);
+    const obstacleCount = Math.floor(zoneW * zoneH * 0.15);
     for (let i = 0; i < obstacleCount; i += 1) {
       const ox = randomInt(rng, x0, x1);
       const oy = randomInt(rng, y0, y1);
@@ -634,12 +630,12 @@ function generateWorld(scene) {
       if (Math.abs(ox - doorX) < 3 && oy <= spawnY && oy >= doorY - 1) continue;
 
       const r = rng();
-      if (r < 0.4) {
+      if (r < 0.3) {
         tiles[oy][ox] = 1; // Standard wall/obstacle
-      } else if (r < 0.6) {
+      } else if (r < 0.5) {
         deco[oy][ox] = "computer";
         tiles[oy][ox] = 1; // Prop blocks movement
-      } else if (r < 0.8) {
+      } else if (r < 0.7) {
         deco[oy][ox] = "building";
         tiles[oy][ox] = 1; // Building blocks movement
       } else {
@@ -649,7 +645,7 @@ function generateWorld(scene) {
     }
 
     // Add decorative patches
-    const decoCount = Math.floor(zoneW * zoneH * 0.15);
+    const decoCount = Math.floor(zoneW * zoneH * 0.25);
     for (let i = 0; i < decoCount; i += 1) {
       const dx = randomInt(rng, x0, x1);
       const dy = randomInt(rng, y0, y1);
@@ -660,7 +656,7 @@ function generateWorld(scene) {
   });
 
   // Add scattered decoration outside zones
-  const scatterCount = 60;
+  const scatterCount = 120;
   for (let i = 0; i < scatterCount; i += 1) {
     const x = randomInt(rng, 2, w - 3);
     const y = randomInt(rng, 2, h - 3);
@@ -688,9 +684,13 @@ function getAdjacentInteractable() {
     { x: p.x, y: p.y + 1 },
     { x: p.x - 1, y: p.y },
     { x: p.x + 1, y: p.y },
+    { x: p.x - 1, y: p.y - 1 },
+    { x: p.x + 1, y: p.y - 1 },
+    { x: p.x - 1, y: p.y + 1 },
+    { x: p.x + 1, y: p.y + 1 },
   ];
   return state.entities.find((e) => !e.removed && typeof e.interact === "function"
-    && neighbors.some((n) => n.x === e.x && n.y === e.y));
+    && neighbors.some((n) => Math.abs(n.x - e.x) <= 1 && Math.abs(n.y - e.y) <= 1));
 }
 
 function interactionLabel(entity) {
@@ -1373,28 +1373,43 @@ function drawDetail(ctx, type, theme) {
 
 function drawBuilding(theme) {
   const c = document.createElement("canvas");
-  c.width = 32; c.height = 32;
+  c.width = 40; c.height = 40;
   const ctx = c.getContext("2d");
 
   // Base Facade
   const isUrban = theme === "urbain";
   const isSpace = theme === "espace";
+  const isNature = theme === "nature";
 
-  ctx.fillStyle = isUrban ? "#a1887f" : isSpace ? "#37474f" : "#5d4037"; // Brick vs Metal vs Wood
-  ctx.fillRect(2, 2, 28, 30);
+  if (isNature) {
+    ctx.fillStyle = "#3e2723"; // Wood
+    ctx.fillRect(4, 4, 32, 36);
+    ctx.fillStyle = "#5d4037";
+    ctx.fillRect(8, 8, 24, 32);
+    // Roof
+    ctx.fillStyle = "#1b5e20"; // Mossy roof
+    ctx.beginPath();
+    ctx.moveTo(20, 0); ctx.lineTo(0, 16); ctx.lineTo(40, 16); ctx.fill();
+    // Door
+    ctx.fillStyle = "#263238";
+    ctx.fillRect(16, 26, 8, 14);
+  } else {
+    ctx.fillStyle = isUrban ? "#607d8b" : isSpace ? "#37474f" : "#5d4037";
+    ctx.fillRect(2, 6, 36, 34);
 
-  // Roof / Top trim
-  ctx.fillStyle = isUrban ? "#5d4037" : isSpace ? "#263238" : "#3e2723";
-  ctx.fillRect(0, 0, 32, 4);
+    // Roof
+    ctx.fillStyle = isUrban ? "#37474f" : isSpace ? "#263238" : "#3e2723";
+    ctx.fillRect(0, 0, 40, 8);
 
-  // Window
-  ctx.fillStyle = isSpace ? "#0277bd" : "#81d4fa";
-  ctx.fillRect(8, 10, 6, 8);
-  ctx.fillRect(18, 10, 6, 8);
+    // Window
+    ctx.fillStyle = isSpace ? "#00e5ff" : "#fff59d";
+    ctx.fillRect(8, 14, 8, 10);
+    ctx.fillRect(24, 14, 8, 10);
 
-  // Door
-  ctx.fillStyle = "#3e2723";
-  ctx.fillRect(12, 22, 8, 10);
+    // Door
+    ctx.fillStyle = "#212121";
+    ctx.fillRect(16, 28, 8, 12);
+  }
 
   return c;
 }
@@ -1509,7 +1524,7 @@ function createProceduralAssets() {
     let building;
     if (isNature && state.assets.sheets?.buildings_nature) building = extractSprite(state.assets.sheets.buildings_nature, Math.floor(Math.random() * 4));
     else if (isUrban && state.assets.sheets?.buildings_urbain) building = extractSprite(state.assets.sheets.buildings_urbain, Math.floor(Math.random() * 4));
-    else if (isLab && state.assets.sheets?.buildings_laboratoire) building = extractSprite(state.assets.sheets.buildings_laboratoire, Math.floor(Math.random() * 4));
+    else if (isLab && state.assets.sheets?.buildings_laboratoire) building = extractSprite(state.assets.sheets.buildings.laboratoire, Math.floor(Math.random() * 4));
 
     if (!building) building = drawBuilding(themeName); // Fallback
 
@@ -2282,6 +2297,10 @@ async function callAIInternal(systemPrompt) {
     data = await res.json();
   } catch (_e) {
     data = null;
+    // Fallback to text if JSON parsing fails
+    const text = await res.text();
+    console.warn("AI response not JSON, trying to parse as text:", text);
+    return text; // Return raw text for further processing
   }
 
   if (!res.ok || !data?.reply) {
@@ -2476,7 +2495,6 @@ async function checkAutoGreeting(personaId) {
   }
   const p = state.currentPersonas[personaId] || state.personas[personaId];
   const greetingPrompt = `
-ROLE: ${p?.displayName || personaId}
 CONTEXT: The mediator just turned to you in "${safeText(state.levelData?.theme)}".
 ACTION: Introduce yourself briefly and give your first stance.
 FORMAT: French, short (max 40 words).
@@ -2970,7 +2988,7 @@ function drawPublicDeco(ctx, theme, seed, dx, dy) {
       [160, 32], // fire hydrant
       [208, 32], // street lamp part
       [112, 16], // rubbish bin
-      [128, 48], // signpost
+      [144, 48], // generic urban scatter (shifted away from signpost)
       [224, 80] // generic urban scatter
     ];
     const idx = Math.floor(seed * picks.length) % picks.length;
@@ -2978,7 +2996,8 @@ function drawPublicDeco(ctx, theme, seed, dx, dy) {
     sy = picks[idx][1];
   }
 
-  if (img) ctx.drawImage(img, sx, sy, size, size, dx, dy, t, t);
+  // Custom cropping: draw carefully into center of 40x40 tile
+  if (img) ctx.drawImage(img, sx, sy, size, size, dx + 4, dy + 4, size * 2, size * 2);
 }
 
 function draw() {
@@ -3044,7 +3063,15 @@ function draw() {
       drawNpcEntity(e, camX, camY);
     } else {
       const asset = state.assets[e.asset];
-      if (asset) ctx.drawImage(asset, ex, ey, TILE_SIZE, TILE_SIZE);
+      if (asset) {
+        if (e.type === "terminal" || e.type === "altar" || e.type === "insight") {
+          // Inner glow for interactables
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = e.type === "terminal" ? "#00ffff" : e.type === "altar" ? "#ff00ff" : "#ffff00";
+        }
+        ctx.drawImage(asset, ex, ey, TILE_SIZE, TILE_SIZE);
+        ctx.shadowBlur = 0; // Reset
+      }
     }
   });
 
@@ -3073,10 +3100,18 @@ function draw() {
   if (target && !state.isLocked && !state.isChatting) {
     uiPrompt.textContent = interactionLabel(target);
     uiPrompt.classList.remove("hidden");
-    const px = target.x * TILE_SIZE - camX + (TILE_SIZE / 2);
-    const py = target.y * TILE_SIZE - camY;
-    uiPrompt.style.left = `${clamp(px, 70, canvas.width - 70)}px`;
-    uiPrompt.style.top = `${clamp(py - 10, 35, canvas.height - 35)}px`;
+    // Position bubble directly over the entity
+    const px = Math.floor((target.pixelX !== undefined ? target.pixelX : (target.x * TILE_SIZE)) - camX + (TILE_SIZE / 2));
+    const py = Math.floor((target.pixelY !== undefined ? target.pixelY : (target.y * TILE_SIZE)) - camY - 20); // 20px above object
+
+    // Convert to screen space based on canvas scaling
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = rect.width / canvas.width;
+    const scaleY = rect.height / canvas.height;
+
+    uiPrompt.style.left = `${rect.left + px * scaleX}px`;
+    uiPrompt.style.transform = `translateX(-50%)`;
+    uiPrompt.style.top = `${rect.top + py * scaleY}px`;
   } else {
     uiPrompt.classList.add("hidden");
   }
