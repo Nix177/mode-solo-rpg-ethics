@@ -1754,12 +1754,12 @@ async function createAssets() {
       npcs_themes: npcsThemes
     };
 
-    // Load Public Decorative Assets
+    // Load Public Decorative Assets locally
     const [decoNature, decoUrban, decoLab, decoOffice] = await Promise.all([
-      loadImage("https://opengameart.org/sites/default/files/tileset_16x16_suurtestbart_1.png"),
-      loadImage("https://opengameart.org/sites/default/files/16town.png"),
-      loadImage("https://opengameart.org/sites/default/files/cover_tileset_laboratory_pixelart.png"),
-      loadImage("https://opengameart.org/sites/default/files/tilesetprev7.png")
+      loadImage("./assets/decorations/nature.png"),
+      loadImage("./assets/decorations/urban.png"),
+      loadImage("./assets/decorations/lab.png"),
+      loadImage("./assets/decorations/office.png")
     ]);
 
     state.assets.publicDecorations = {
