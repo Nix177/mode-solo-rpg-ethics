@@ -3038,8 +3038,8 @@ async function init() {
 
   try {
     const [scenario, personas] = await Promise.all([
-      loadJson("../data/scenario.json"),
-      loadJson("../data/personas.json"),
+      loadJson("./data/scenario.json"),
+      loadJson("./data/personas.json"),
     ]);
     state.scenario = scenario;
     state.personas = mapPersonas(personas);

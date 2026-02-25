@@ -1,0 +1,24 @@
+{
+  "tileSize": 32,
+  "framesPerDirection": 3,
+  "directions": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "npcs": [
+    {
+      "id": "architecte",
+      "label": "L'Architecte"
+    },
+    {
+      "id": "poete",
+      "label": "Le Poète"
+    },
+    {
+      "id": "sceptique",
+      "label": "Le Sceptique"
+    }
+  ]
+}
