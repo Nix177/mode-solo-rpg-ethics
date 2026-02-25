@@ -372,6 +372,9 @@ function applyThemeAssets(theme) {
   if (set.building) state.assets.building = set.building;
   if (set.vehicle) state.assets.vehicle = set.vehicle;
 
+  // Decorations
+  if (set.decorations) state.assets.decorations = set.decorations;
+
   // Swap NPCs to match theme
   if (set.npc_1) state.assets["A-1"] = set.npc_1;
   if (set.npc_2) state.assets["B-2"] = set.npc_2;
@@ -1736,12 +1739,23 @@ async function createAssets() {
       npcs_themes: npcsThemes
     };
 
+    // Load Public Decorative Assets
+    const [decoNature, decoUrban, decoLab, decoOffice] = await Promise.all([
+      loadImage("https://opengameart.org/sites/default/files/tileset_16x16_suurtestbart_1.png"),
+      loadImage("https://opengameart.org/sites/default/files/16town.png"),
+      loadImage("https://opengameart.org/sites/default/files/cover_tileset_laboratory_pixelart.png"),
+      loadImage("https://opengameart.org/sites/default/files/tilesetprev7.png")
+    ]);
 
-
-
+    state.assets.publicDecorations = {
+      nature: decoNature,
+      urbain: decoUrban,
+      laboratoire: decoLab,
+      bureaucratie: decoOffice
+    };
 
     rebuildThemeTiles();
-    enrichThemeTilesWithProps();   // <-- NEW: add building/vehicle/NPC sprites
+    enrichThemeTilesWithProps();
     applyThemeAssets("nature");
     state.assets.useExternal = true;
   } catch (err) {
@@ -2903,6 +2917,70 @@ function drawMinimap() {
   ctx.fillText("MINIMAP", ox + 6, oy + 12);
 }
 
+function drawPublicDeco(ctx, theme, seed, dx, dy) {
+  const assets = state.assets.publicDecorations;
+  if (!assets) return;
+  const t = TILE_SIZE;
+  let img = assets.nature;
+  let sx = 0, sy = 0, size = 16;
+
+  if (theme === "nature" || theme === "espace") {
+    img = assets.nature;
+    // pick a random 16x16 sprite from nature tileset
+    const picks = [
+      [16, 16], // bush
+      [32, 16], // flower
+      [48, 16], // small rocks
+      [80, 16], // log
+      [112, 16], // mushroom
+      [16, 32], // small tree element
+      [32, 48]  // grass tuft
+    ];
+    const idx = Math.floor(seed * picks.length) % picks.length;
+    sx = picks[idx][0];
+    sy = picks[idx][1];
+  } else if (theme === "laboratoire") {
+    img = assets.laboratoire;
+    const picks = [
+      [16, 48], // weird tube
+      [64, 32], // computer
+      [96, 48], // large machinery part
+      [80, 80], // generator
+      [32, 80]  // tech box
+    ];
+    const idx = Math.floor(seed * picks.length) % picks.length;
+    sx = picks[idx][0];
+    sy = picks[idx][1];
+  } else if (theme === "bureaucratie") {
+    img = assets.bureaucratie;
+    const picks = [
+      [80, 16], // filing cabinet
+      [48, 64], // desk
+      [80, 64], // water cooler / shelves
+      [16, 112], // potted plant
+      [64, 112] // armchair / chair
+    ];
+    const idx = Math.floor(seed * picks.length) % picks.length;
+    sx = picks[idx][0];
+    sy = picks[idx][1];
+  } else {
+    img = assets.urbain;
+    const picks = [
+      [16, 32], // bench
+      [160, 32], // fire hydrant
+      [208, 32], // street lamp part
+      [112, 16], // rubbish bin
+      [128, 48], // signpost
+      [224, 80] // generic urban scatter
+    ];
+    const idx = Math.floor(seed * picks.length) % picks.length;
+    sx = picks[idx][0];
+    sy = picks[idx][1];
+  }
+
+  if (img) ctx.drawImage(img, sx, sy, size, size, dx, dy, t, t);
+}
+
 function draw() {
   updateCamera();
   const camX = state.camera.x;
@@ -2933,7 +3011,10 @@ function draw() {
       const themeSet = state.assets.themeTiles?.[cellTheme] || state.assets.themeTiles?.[state.currentTheme] || state.assets;
       const decoKey = state.world.deco[y]?.[x];
 
-      if (decoKey && themeSet[decoKey]) {
+      if (decoKey?.type === "random") {
+        if (themeSet.floor) ctx.drawImage(themeSet.floor, dx, dy, TILE_SIZE, TILE_SIZE);
+        drawPublicDeco(ctx, cellTheme, decoKey.seed, dx, dy);
+      } else if (decoKey && themeSet[decoKey]) {
         // Draw floor underneath decor
         if (themeSet.floor) ctx.drawImage(themeSet.floor, dx, dy, TILE_SIZE, TILE_SIZE);
         // Draw decor
