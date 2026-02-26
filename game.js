@@ -1625,144 +1625,13 @@ function createProceduralAssets() {
   Object.assign(state.assets, state.assets.themeTiles.nature);
 }
 
-// Procedural 16x16 Decor Spritesheet (Fallback to external files)
-// This generates a 128x128 grid (8x8 tiles) containing pixel-art props
-function generateDecorSpritesheet() {
-  const c = document.createElement("canvas");
-  c.width = 128;
-  c.height = 128;
-  const ctx = c.getContext("2d");
-
-  // Helper to draw a sprite slot
-  const drawSlot = (sx, sy, drawFn) => {
-    ctx.save();
-    ctx.translate(sx * 16, sy * 16);
-    drawFn(ctx);
-    ctx.restore();
-  };
-
-  // --- NATURE (Row 0) ---
-  // 0,0: Bush
-  drawSlot(0, 0, (g) => {
-    g.fillStyle = "#1b5e20"; g.beginPath(); g.arc(8, 10, 6, 0, Math.PI * 2); g.fill();
-    g.fillStyle = "#2e7d32"; g.beginPath(); g.arc(6, 6, 4, 0, Math.PI * 2); g.fill();
-    g.beginPath(); g.arc(10, 8, 4, 0, Math.PI * 2); g.fill();
-  });
-  // 1,0: Rock
-  drawSlot(1, 0, (g) => {
-    g.fillStyle = "#546e7a"; g.fillRect(4, 10, 8, 4);
-    g.fillStyle = "#78909c"; g.fillRect(5, 8, 6, 2);
-    g.fillStyle = "#cfd8dc"; g.fillRect(6, 6, 3, 2);
-  });
-  // 2,0: Log
-  drawSlot(2, 0, (g) => {
-    g.fillStyle = "#3e2723"; g.fillRect(2, 10, 12, 4);
-    g.fillStyle = "#5d4037"; g.fillRect(3, 11, 10, 2);
-    g.fillStyle = "#a1887f"; g.fillRect(12, 11, 2, 2); // cut end
-  });
-  // 3,0: Flower
-  drawSlot(3, 0, (g) => {
-    g.fillStyle = "#2e7d32"; g.fillRect(7, 10, 2, 4); // stem
-    g.fillStyle = "#f44336"; // petals
-    g.fillRect(5, 7, 6, 4); g.fillRect(6, 6, 4, 6);
-    g.fillStyle = "#ffeb3b"; g.fillRect(7, 8, 2, 2); // center
-  });
-
-  // --- LAB (Row 1) ---
-  // 0,1: Green Tube
-  drawSlot(0, 1, (g) => {
-    g.fillStyle = "#37474f"; g.fillRect(4, 2, 8, 2); g.fillRect(4, 12, 8, 2); // caps
-    g.fillStyle = "rgba(0,0,0,0.5)"; g.fillRect(5, 4, 6, 8); // glass back
-    g.fillStyle = "#00e676"; g.fillRect(5, 8, 6, 4); // liquid
-    g.fillStyle = "rgba(255,255,255,0.3)"; g.fillRect(6, 4, 1, 8); // glass reflection
-  });
-  // 1,1: Computer console
-  drawSlot(1, 1, (g) => {
-    g.fillStyle = "#263238"; g.fillRect(2, 6, 12, 8); // desk/base
-    g.fillStyle = "#000"; g.fillRect(4, 2, 8, 6); // screen
-    g.fillStyle = "#00e5ff"; g.fillRect(5, 3, 6, 4); // glow
-  });
-  // 2,1: Generator
-  drawSlot(2, 1, (g) => {
-    g.fillStyle = "#455a64"; g.fillRect(2, 4, 12, 10);
-    g.fillStyle = "#ffea00"; g.fillRect(4, 6, 8, 2); // caution stripe
-    g.fillStyle = "#ff1744"; g.fillRect(6, 10, 2, 2); // light
-  });
-  // 3,1: Vials
-  drawSlot(3, 1, (g) => {
-    g.fillStyle = "#2979ff"; g.fillRect(4, 10, 3, 4); g.fillRect(5, 8, 1, 2);
-    g.fillStyle = "#d500f9"; g.fillRect(9, 11, 3, 3);
-  });
-
-  // --- BUREAUCRATIE (Row 2) ---
-  // 0,2: Filing Cabinet
-  drawSlot(0, 2, (g) => {
-    g.fillStyle = "#b0bec5"; g.fillRect(4, 2, 8, 12);
-    g.fillStyle = "#78909c";
-    g.fillRect(5, 3, 6, 3); g.fillRect(5, 7, 6, 3); g.fillRect(5, 11, 6, 3); // drawers
-    g.fillStyle = "#263238"; g.fillRect(7, 4, 2, 1); g.fillRect(7, 8, 2, 1); g.fillRect(7, 12, 2, 1); // handles
-  });
-  // 1,2: Office Chair
-  drawSlot(1, 2, (g) => {
-    g.fillStyle = "#212121"; g.fillRect(5, 4, 6, 6); // backrest
-    g.fillRect(4, 10, 8, 2); // seat
-    g.fillStyle = "#424242"; g.fillRect(7, 12, 2, 3); // pole
-    g.fillRect(4, 14, 8, 1); // wheels base
-  });
-  // 2,2: Potted Plant
-  drawSlot(2, 2, (g) => {
-    g.fillStyle = "#5d4037"; g.fillRect(5, 11, 6, 4); // pot
-    g.fillStyle = "#4caf50"; g.beginPath(); g.arc(8, 7, 4, 0, Math.PI * 2); g.fill();
-    g.beginPath(); g.arc(6, 5, 3, 0, Math.PI * 2); g.fill();
-    g.beginPath(); g.arc(10, 6, 3, 0, Math.PI * 2); g.fill();
-  });
-  // 3,2: Water Cooler
-  drawSlot(3, 2, (g) => {
-    g.fillStyle = "#eceff1"; g.fillRect(5, 8, 6, 6); // base
-    g.fillStyle = "#00b0ff"; g.fillRect(5, 2, 6, 6); // bottle
-    g.fillStyle = "rgba(255,255,255,0.4)"; g.fillRect(9, 3, 1, 4); // reflection
-    g.fillStyle = "#ff1744"; g.fillRect(6, 9, 1, 1); // tap
-    g.fillStyle = "#2979ff"; g.fillRect(9, 9, 1, 1); // tap
-  });
-
-  // --- URBAIN (Row 3) ---
-  // 0,3: Trash Can / Bin
-  drawSlot(0, 3, (g) => {
-    g.fillStyle = "#546e7a"; g.fillRect(4, 6, 8, 8);
-    g.fillStyle = "#37474f"; g.fillRect(3, 4, 10, 2); // lid
-    for (let i = 0; i < 3; i++) g.fillRect(5 + i * 2, 7, 1, 6); // ridges
-  });
-  // 1,3: Fire Hydrant
-  drawSlot(1, 3, (g) => {
-    g.fillStyle = "#d50000"; g.fillRect(6, 6, 4, 8);
-    g.fillRect(5, 4, 6, 2); // top cap
-    g.fillRect(4, 8, 2, 2); g.fillRect(10, 8, 2, 2); // side caps
-    g.fillStyle = "#ff8a80"; g.fillRect(7, 5, 1, 1); // highlight
-  });
-  // 2,3: Street Lamp (Base)
-  drawSlot(2, 3, (g) => {
-    g.fillStyle = "#212121"; g.fillRect(6, 2, 4, 12);
-    g.fillRect(4, 12, 8, 2); // base
-    g.fillStyle = "#ffea00"; g.fillRect(5, 0, 6, 4); // light
-    g.fillStyle = "rgba(255, 234, 0, 0.4)"; g.beginPath(); g.arc(8, 2, 6, 0, Math.PI * 2); g.fill(); // glow
-  });
-  // 3,3: Crate / Box
-  drawSlot(3, 3, (g) => {
-    g.fillStyle = "#8d6e63"; g.fillRect(3, 6, 10, 8);
-    g.strokeStyle = "#5d4037"; g.lineWidth = 1;
-    g.strokeRect(3, 6, 10, 8);
-    g.beginPath(); g.moveTo(4, 7); g.lineTo(12, 13); g.stroke();
-    g.beginPath(); g.moveTo(12, 7); g.lineTo(4, 13); g.stroke();
-  });
-
-  return c;
-}
-
+// Procedural fallback removed in favor of user-provided downloaded pixel art assets
 
 // --- Enrich theme tile sets with building / vehicle / NPC sprites ---
 // Called AFTER rebuildThemeTiles() in the external-assets path,
-// so the draw loop can find themeSet.building, themeSet.vehicle, etc.
-function enrichThemeTilesWithProps() {
+// OR called immediately if we use default (data URL) tiles.
+// We map these to `state.assets.sheets.buildings_nature` etc.
+function mergeHighFiAssets(assetsHash) {
   const sheets = state.assets.sheets || {};
 
   // Helper: extract a 32×32 sprite from a sheet image
@@ -1887,20 +1756,21 @@ async function createAssets() {
       npcs_themes: npcsThemes
     };
 
-    // Load or generate fallback decorative assets
-    // Since external OpenGameArt links failed/were mockups, we use the procedural pixel-art canvas:
-    const decorSheet = generateDecorSpritesheet();
+    // Load user-provided decorative assets
+    const [decoNature, decoBureaucracy, decoWater] = await Promise.all([
+      loadImage("./assets/decorations/tileset_16x16_final_1.png"),
+      loadImage("./assets/decorations/tilesetformattedupdate1.png"),
+      loadImage("./assets/decorations/tileset_waterworld.png")
+    ]);
 
     state.assets.publicDecorations = {
-      nature: decorSheet,
-      urbain: decorSheet,
-      laboratoire: decorSheet,
-      bureaucratie: decorSheet,
-      espace: decorSheet, // Espace also uses the generated sheet for decor
+      natureSheet: decoNature,
+      bureaucracySheet: decoBureaucracy,
+      waterSheet: decoWater
     };
 
     rebuildThemeTiles();
-    enrichThemeTilesWithProps();
+    mergeHighFiAssets();
     applyThemeAssets("nature");
     state.assets.useExternal = true;
   } catch (err) {
@@ -3069,38 +2939,78 @@ function drawPublicDeco(ctx, theme, seed, dx, dy) {
   const assets = state.assets.publicDecorations;
   if (!assets) return;
   const t = TILE_SIZE;
-  // All themes use the procedural canvas fallback but map to different rows
-  const img = assets[theme] || assets.nature;
+  let img = assets.natureSheet;
   let sx = 0, sy = 0, sw = 16, sh = 16;
 
   if (theme === "nature" || theme === "espace") {
-    // Row 0 of procedural canvas
-    const picks = [[0, 0], [16, 0], [32, 0], [48, 0]];
+    img = assets.natureSheet;
+    // tileset_16x16_final_1.png
+    const picks = [
+      [16, 160, 16, 16], // bush
+      [80, 80, 16, 16], // rock
+      [112, 48, 16, 32], // pine tree
+      [160, 48, 16, 32], // pine tree
+      [80, 48, 16, 16], // stump
+    ];
     const idx = Math.floor(seed * picks.length) % picks.length;
-    [sx, sy] = picks[idx];
+    [sx, sy, sw, sh] = picks[idx];
   } else if (theme === "laboratoire") {
-    // Row 1
-    const picks = [[0, 16], [16, 16], [32, 16], [48, 16]];
+    // tileset_waterworld.png for sci-fi/lab
+    img = assets.waterSheet;
+    const picks = [
+      [128, 160, 16, 32], // strange tree
+      [112, 64, 16, 16], // tech glowing block
+      [128, 48, 16, 16], // puddle
+      [144, 176, 16, 16], // ground foliage
+    ];
     const idx = Math.floor(seed * picks.length) % picks.length;
-    [sx, sy] = picks[idx];
+    [sx, sy, sw, sh] = picks[idx];
   } else if (theme === "bureaucratie") {
-    // Row 2
-    const picks = [[0, 32], [16, 32], [32, 32], [48, 32]];
+    // tilesetformattedupdate1.png
+    img = assets.bureaucracySheet;
+    const picks = [
+      [16, 32, 16, 32], // chair front
+      [80, 32, 32, 32], // round table
+      [64, 64, 32, 32], // armor statue
+      [64, 112, 32, 48], // bookshelf
+      [112, 144, 32, 32] // dark desk
+    ];
     const idx = Math.floor(seed * picks.length) % picks.length;
-    [sx, sy] = picks[idx];
+    [sx, sy, sw, sh] = picks[idx];
   } else {
-    // Row 3 (Urban)
-    const picks = [[0, 48], [16, 48], [32, 48], [48, 48]];
+    // urban
+    img = assets.natureSheet;
+    const picks = [
+      [112, 16, 16, 16], // barrel
+      [128, 16, 16, 16], // chest
+      [160, 16, 16, 16], // fountain
+      [80, 96, 16, 16], // rocks
+      [80, 48, 16, 16] // stump
+    ];
     const idx = Math.floor(seed * picks.length) % picks.length;
-    [sx, sy] = picks[idx];
+    [sx, sy, sw, sh] = picks[idx];
   }
 
   // Custom cropping: draw carefully into center of 40x40 tile
   if (img) {
-    const renderW = 32; // 16x16 scaled 2x to 32x32
-    const renderH = 32;
-    const offsetX = dx + Math.floor((t - renderW) / 2); // centered in 40x40
+    // Calculate aspect-ratio preserving scaling
+    let renderW = sw;
+    let renderH = sh;
+
+    // if width or height is larger than TILE_SIZE, scale down
+    if (renderW > t || renderH > t) {
+      const ratio = Math.min(t / renderW, t / renderH);
+      renderW = Math.floor(renderW * ratio);
+      renderH = Math.floor(renderH * ratio);
+    } else {
+      // If smaller, double the size for pixel art scale (max bounds TILE_SIZE)
+      renderW = Math.min(sw * 2, t);
+      renderH = Math.min(sh * 2, t);
+    }
+
+    const offsetX = dx + Math.floor((t - renderW) / 2);
     const offsetY = dy + Math.floor((t - renderH) / 2);
+
     ctx.drawImage(img, sx, sy, sw, sh, offsetX, offsetY, renderW, renderH);
   }
 }
