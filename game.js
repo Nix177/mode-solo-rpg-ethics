@@ -14,6 +14,18 @@ const CURRENT_MODEL = "gpt-4o-mini";
 const INSIGHTS_REQUIRED = 2;
 const FORCE_DECISION_TURNS = 7;
 const DEFAULT_TILE_ORDER = ["floor", "wall", "doorClosed", "doorOpen", "terminal", "altFloor", "liquidOrHazard", "panel"];
+const AUDIO_DIR = "./assets/audio/";
+const SFX = {
+  click: "sfx_click.mp3",
+  hover: "sfx_hover.mp3",
+  error: "sfx_error.mp3",
+  next: "sfx_dialog_next.mp3",
+  move: "sfx_footstep.mp3",
+  mg_start: "mg_start.mp3",
+  mg_win: "mg_win.mp3",
+  mg_lose: "mg_lose.mp3",
+  mg_tick: "mg_tick.mp3"
+};
 
 // --- LOCALIZATION ---
 const LANG = {
@@ -89,6 +101,49 @@ const getText = (key) => {
   const lang = state.language || "fr";
   return LANG[lang][key] || key;
 };
+
+// --- AUDIO HELPERS ---
+function playSound(key) {
+  if (state.audio.muted) return;
+  const file = SFX[key];
+  if (!file) return;
+  if (!state.audio.sfxCache[key]) {
+    state.audio.sfxCache[key] = new Audio(`${AUDIO_DIR}${file}`);
+  }
+  const sfx = state.audio.sfxCache[key];
+  sfx.currentTime = 0;
+  sfx.play().catch(() => { });
+}
+
+function playLevelMusic(levelId) {
+  if (state.audio.muted) return;
+
+  const levelNum = parseLevelNumber(levelId);
+  const trackNum = Math.floor(Math.random() * 3) + 1; // Random track 1, 2 or 3 for the level
+  const file = `L${levelNum}_T${trackNum}.mp3`;
+
+  if (state.audio.currentTrack === file) return;
+
+  if (state.audio.music) {
+    state.audio.music.pause();
+    state.audio.music = null;
+  }
+
+  state.audio.music = new Audio(`${AUDIO_DIR}${file}`);
+  state.audio.music.loop = true;
+  state.audio.music.volume = 0.5;
+  state.audio.currentTrack = file;
+
+  state.audio.music.play().catch(e => {
+    console.warn("[AUDIO] Music play blocked until interaction:", e.message);
+  });
+}
+
+function parseLevelNumber(sceneId) {
+  if (!sceneId) return 1;
+  const m = String(sceneId).match(/\d+/);
+  return m ? parseInt(m[0], 10) : 1;
+}
 
 
 const uiLevel = document.getElementById("level-id");
@@ -189,6 +244,12 @@ const state = {
     },
   },
   choiceHistory: [], // Track decisions across levels
+  audio: {
+    music: null,
+    currentTrack: null,
+    muted: false,
+    sfxCache: {}
+  }
 };
 
 const BASE_SPRITES = {
@@ -1080,10 +1141,12 @@ function startNpcChat(personaId) {
 }
 
 function startMiniGame(onSuccess) {
+  playSound("mg_start");
   state.isLocked = true;
   minigameState.active = true;
   minigameState.type = Math.floor(Math.random() * MINIGAMES.length);
   minigameState.onComplete = () => {
+    playSound("mg_win");
     state.isLocked = false;
     minigameState.active = false;
     if (onSuccess) onSuccess();
@@ -2465,6 +2528,7 @@ async function loadLevel(sceneId) {
     state.tutorial.active = false;
     updateTutorialUI();
   }
+  playLevelMusic(targetId);
 
   const context = safeText(scene?.narrative?.context || scene?.theme || "");
   const introLines = [
@@ -2509,6 +2573,7 @@ async function loadLevel(sceneId) {
       blocking: true,
       allowedRect: zoneRect, // Store the zone rectangle for AI boundaries
       interact: async () => {
+        markTutorialEvent("npc_interact");
         if (!state.meta.minigamesPlayed) state.meta.minigamesPlayed = {};
         if (state.meta.minigamesPlayed[persona.id]) {
           startNpcChat(persona.id);
@@ -2664,8 +2729,9 @@ function startDialog(name, text) {
 }
 
 function closeDialog() {
-  state.isLocked = false;
+  playSound("next");
   uiDialog.classList.add("hidden");
+  state.isLocked = false;
 }
 
 async function callAIInternal(systemPrompt) {
@@ -3245,6 +3311,7 @@ function update() {
     state.input.keys.KeyE = false;
     state.input.keys.e = false;
     state.input.keys.E = false;
+    playSound("click");
     tryInteract();
   }
 }

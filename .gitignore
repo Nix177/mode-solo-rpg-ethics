@@ -6,3 +6,9 @@ dist/
 build/
 .vscode/
 .idea/
+generate_audio_complete.js
+resume_audio.js
+generate_music.js
+generate_audio.js
+test_audio.js
+tests/
