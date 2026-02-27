@@ -189,7 +189,369 @@ const state = {
     },
   },
   choiceHistory: [], // Track decisions across levels
+  levelNPCs: 0,
+  interactedNPCs: new Set(),
+  activeMinigame: false,
+  npcMinigameMap: new Map(), // personaId -> gameIndex
 };
+
+// --- MINIGAMES SYSTEM ---
+const MINIGAMES = [
+  {
+    name: "Le Bureaucrate",
+    desc: "Recopiez ce document (attention aux majuscules) :",
+    time: 30,
+    init: (container) => {
+      const target = "Je certifie que l'IA ne remplacera pas mon travail.";
+      container.innerHTML = `<div style="font-size: 1.1em; color:#888; margin-bottom:10px; font-style:italic;">${target}</div>
+        <textarea id="mg-bur-input" style="width:90%; height:60px; background:#000; color:#0f0; border:1px solid #0f0; padding:10px; font-family:monospace;"></textarea>`;
+      const input = document.getElementById("mg-bur-input");
+      setTimeout(() => input.focus(), 50);
+      return new Promise((resolve) => {
+        input.addEventListener("input", () => {
+          if (input.value === target) resolve(true);
+        });
+      });
+    }
+  },
+  {
+    name: "Détecteur de Mensonges",
+    desc: "Répondez (VRAI/FAUX) à ces 5 vérités absurdes :",
+    time: 30,
+    init: (container) => {
+      const Q = [
+        { q: "Le HTML est un langage de programmation.", a: false },
+        { q: "Les IA rêvent de moutons électriques.", a: true },
+        { q: "L'eau ça mouille.", a: true },
+        { q: "Le serveur de la BNF est sur la Lune.", a: false },
+        { q: "Le café compile le code.", a: true },
+        { q: "La Terre est plate.", a: false },
+        { q: "42 est la réponse universelle.", a: true }
+      ].sort(() => Math.random() - 0.5).slice(0, 5);
+
+      let step = 0;
+      return new Promise((resolve) => {
+        const render = () => {
+          if (step >= 5) { resolve(true); return; }
+          container.innerHTML = `<div style="font-size:1.2em; height:50px; margin-bottom:10px;">${step + 1}/5 : ${Q[step].q}</div>
+            <div style="display:flex; justify-content:center; gap:20px;">
+              <button id="mg-btn-v" style="padding:10px 20px; background:#0f0; color:#000; font-weight:bold; cursor:pointer;">VRAI</button>
+              <button id="mg-btn-f" style="padding:10px 20px; background:#f00; color:#fff; font-weight:bold; cursor:pointer;">FAUX</button>
+            </div>`;
+          document.getElementById("mg-btn-v").onclick = () => { if (Q[step].a) { step++; render(); } else { step = 0; render(); } };
+          document.getElementById("mg-btn-f").onclick = () => { if (!Q[step].a) { step++; render(); } else { step = 0; render(); } };
+        };
+        render();
+      });
+    }
+  },
+  {
+    name: "Chasse aux Bugs",
+    desc: "Cliquez sur 10 BUGS erratiques pour les écraser !",
+    time: 30,
+    init: (container) => {
+      container.innerHTML = `<div id="mg-bug-area" style="position:relative; width:100%; height:150px; overflow:hidden; border:1px solid #333;"></div>
+      <div id="mg-bug-count">Bugs restants: 10</div>`;
+      const area = document.getElementById("mg-bug-area");
+      const countLabel = document.getElementById("mg-bug-count");
+      let bugsLeft = 10;
+      let active = true;
+
+      return new Promise((resolve) => {
+        for (let i = 0; i < 10; i++) {
+          const btn = document.createElement("button");
+          btn.textContent = "🐛";
+          btn.style.cssText = `position:absolute; width:30px; height:30px; font-size:1.5em; background:transparent; border:none; cursor:crosshair; left:${Math.random() * 80}%; top:${Math.random() * 80}%; transition: all 0.5s;`;
+
+          const move = () => {
+            if (!active) return;
+            btn.style.left = (Math.random() * 80) + "%";
+            btn.style.top = (Math.random() * 80) + "%";
+            setTimeout(move, 500 + Math.random() * 1000);
+          };
+          setTimeout(move, Math.random() * 500);
+
+          btn.onclick = () => {
+            btn.remove();
+            bugsLeft--;
+            countLabel.textContent = `Bugs restants: ${bugsLeft}`;
+            if (bugsLeft <= 0) { active = false; resolve(true); }
+          };
+          area.appendChild(btn);
+        }
+      });
+    }
+  },
+  {
+    name: "Pompage de Données",
+    desc: "Spammez le clic pour remplir le buffer avant que la connexion ne lâche !",
+    time: 30,
+    init: (container) => {
+      container.innerHTML = `
+        <div style="width:100%; height:30px; border:2px solid #555; position:relative; overflow:hidden; margin-bottom:15px;">
+           <div id="mg-pump-bar" style="width:0; height:100%; background:linear-gradient(90deg, #f00, #0f0);"></div>
+        </div>
+        <button id="mg-pump-btn" style="padding:15px 30px; font-size:1.5em; background:#222; color:#0f0; border:2px solid #0f0; border-radius:10px; cursor:pointer; user-select:none;">TÉLÉCHARGER</button>
+      `;
+      const bar = document.getElementById("mg-pump-bar");
+      const btn = document.getElementById("mg-pump-btn");
+      let progress = 0;
+      let active = true;
+
+      return new Promise((resolve) => {
+        const leak = setInterval(() => {
+          if (!active) return;
+          progress -= 2; // Data leaks away
+          if (progress < 0) progress = 0;
+          bar.style.width = progress + "%";
+        }, 100);
+
+        btn.onclick = () => {
+          progress += 8;
+          if (progress >= 100) {
+            active = false;
+            clearInterval(leak);
+            bar.style.width = "100%";
+            resolve(true);
+          }
+        };
+      });
+    }
+  },
+  {
+    name: "Captcha Impossible",
+    desc: "Cochez UNIQUEMENT les images d'Intelligence Artificielle :",
+    time: 30,
+    init: (container) => {
+      const items = [
+        { icon: "🤖", isAI: true }, { icon: "🧠", isAI: true }, { icon: "💾", isAI: true },
+        { icon: "🐱", isAI: false }, { icon: "🍎", isAI: false }, { icon: "🚗", isAI: false },
+        { icon: "🌲", isAI: false }, { icon: "💻", isAI: true }, { icon: "🍔", isAI: false }
+      ].sort(() => Math.random() - 0.5);
+
+      let html = `<div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; justify-items:center; margin-bottom:15px;">`;
+      items.forEach((it, idx) => {
+        html += `<div class="mg-cap-box" data-ai="${it.isAI}" style="width:50px; height:50px; font-size:2em; background:#222; border:2px solid #555; display:flex; align-items:center; justify-content:center; cursor:pointer; user-select:none;">${it.icon}</div>`;
+      });
+      html += `</div><button id="mg-cap-val" style="padding:10px; font-weight:bold; cursor:pointer;">VALIDER (0 erreur tolérée)</button>`;
+      container.innerHTML = html;
+
+      return new Promise((resolve, reject) => {
+        container.querySelectorAll(".mg-cap-box").forEach(box => {
+          box.selected = false;
+          box.onclick = () => {
+            box.selected = !box.selected;
+            box.style.borderColor = box.selected ? "#0f0" : "#555";
+            box.style.background = box.selected ? "#131" : "#222";
+          };
+        });
+        document.getElementById("mg-cap-val").onclick = () => {
+          let ok = true;
+          container.querySelectorAll(".mg-cap-box").forEach(box => {
+            if (box.dataset.ai === "true" && !box.selected) ok = false;
+            if (box.dataset.ai === "false" && box.selected) ok = false;
+          });
+          if (ok) resolve(true);
+          else {
+            // Reset
+            container.querySelectorAll(".mg-cap-box").forEach(box => { box.selected = false; box.style.borderColor = "#555"; box.style.background = "#222"; });
+          }
+        };
+      });
+    }
+  },
+  {
+    name: "Protocole Séquentiel",
+    desc: "Reproduisez la séquence HAUT, HAUT, BAS, BAS, GAUCHE, DROITE",
+    time: 30,
+    init: (container) => {
+      container.innerHTML = `<div id="mg-seq-disp" style="font-size:2em; letter-spacing:5px; margin:20px 0;">_ _ _ _ _ _</div>
+      <div style="font-size:0.8em; color:#888;">Utilisez les flèches directionnelles de votre clavier.</div>`;
+      const disp = document.getElementById("mg-seq-disp");
+      const target = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight"];
+      const symbols = { "ArrowUp": "↑", "ArrowDown": "↓", "ArrowLeft": "←", "ArrowRight": "→" };
+      let typed = [];
+
+      return new Promise((resolve) => {
+        const keyHandler = (e) => {
+          if (!target.includes(e.key)) return;
+          e.preventDefault();
+          if (e.key === target[typed.length]) {
+            typed.push(e.key);
+            disp.textContent = typed.map(k => symbols[k]).join(" ") + " _".repeat(target.length - typed.length);
+            if (typed.length === target.length) {
+              window.removeEventListener("keydown", keyHandler);
+              resolve(true);
+            }
+          } else {
+            typed = []; // Reset on mistake
+            disp.textContent = "_ _ _ _ _ _";
+          }
+        };
+        window.addEventListener("keydown", keyHandler);
+      });
+    }
+  },
+  {
+    name: "Tri Sélectif",
+    desc: "Triez rapidement 8 données entrantes : Spam à Gauche, Valide à Droite.",
+    time: 30,
+    init: (container) => {
+      const msgs = [
+        { t: "VIAGRA PAS CHER", s: true }, { t: "Gagnez 1.000.000€ ici", s: true },
+        { t: "Ceci n'est pas un virus", s: true }, { t: "Rapport_Q3.pdf.exe", s: true },
+        { t: "Rapport Éthique 2026", s: false }, { t: "Mise à jour système", s: false },
+        { t: "Reunion à 14h", s: false }, { t: "Facture EDF", s: false }
+      ].sort(() => Math.random() - 0.5);
+
+      let idx = 0;
+      return new Promise((resolve) => {
+        const render = () => {
+          if (idx >= msgs.length) { resolve(true); return; }
+          container.innerHTML = `
+            <div style="font-size:1.5em; padding:20px; background:#111; border:1px solid #aaa; margin-bottom:15px; border-radius:5px;">${msgs[idx].t}</div>
+            <div style="display:flex; justify-content:space-between;">
+              <button id="btn-spam" style="padding:15px; background:#f00; color:#fff; border:none; cursor:pointer; font-weight:bold;">◀ SPAM</button>
+              <div style="padding:15px;">${idx + 1}/8</div>
+              <button id="btn-valide" style="padding:15px; background:#0f0; color:#000; border:none; cursor:pointer; font-weight:bold;">VALIDE ▶</button>
+            </div>
+            <div style="font-size:0.8em; color:#666; margin-top:10px;">(Ou utilisez les flèches G/D)</div>`;
+
+          const check = (isSpam) => {
+            if (msgs[idx].s === isSpam) { idx++; render(); }
+            else { idx = 0; render(); } // Punish errors
+          };
+
+          document.getElementById("btn-spam").onclick = () => check(true);
+          document.getElementById("btn-valide").onclick = () => check(false);
+
+          container.onkeydown = (e) => {
+            if (e.key === "ArrowLeft") check(true);
+            if (e.key === "ArrowRight") check(false);
+          };
+          container.tabIndex = 0;
+          container.focus();
+        };
+        render();
+      });
+    }
+  },
+  {
+    name: "Alimentation Électrique",
+    desc: "Maintenez la tension optimale dans la zone verte (Space ou Clic) !",
+    time: 30,
+    init: (container) => {
+      container.innerHTML = `
+        <div style="width:40px; height:150px; background:#333; margin:0 auto; position:relative; overflow:hidden; border:2px solid #555;">
+           <div style="position:absolute; bottom: 40%; height:20%; width:100%; background:rgba(0,255,0,0.3); border-top:2px solid #0f0; border-bottom:2px solid #0f0;"></div>
+           <div id="mg-tension" style="position:absolute; bottom:10%; width:100%; height:8px; background:#ff0;"></div>
+        </div>
+        <div style="margin-top:10px; height:8px; width:100%; background:#222;"><div id="mg-ten-prog" style="height:100%; width:0%; background:#0f0;"></div></div>
+        <div style="font-size:0.8em; margin-top:5px;">Survivez 10 secondes dans le vert.</div>
+      `;
+      const curs = document.getElementById("mg-tension");
+      const prog = document.getElementById("mg-ten-prog");
+      let pos = 10;
+      let power = 0;
+      let progress = 0;
+      let gravity = 1;
+      let active = true;
+
+      const isDown = state.input.keys;
+
+      return new Promise((resolve) => {
+        const tick = setInterval(() => {
+          if (!active) return;
+          if (isDown[" "] || isDown["MouseLeft"] || document.activeElement === container) { power += 0.5; } else { power -= 0.2; }
+          power = Math.max(-2, Math.min(3, power));
+          pos += power - gravity;
+          if (pos < 0) { pos = 0; power = 0; } if (pos > 100) { pos = 100; power = 0; }
+          curs.style.bottom = pos + "%";
+
+          if (pos >= 40 && pos <= 60) {
+            progress += 0.3; // takes ~10 seconds at 30 fps to reach 100
+            prog.style.width = progress + "%";
+            if (progress >= 100) { active = false; clearInterval(tick); resolve(true); }
+          } else {
+            progress = Math.max(0, progress - 0.5);
+            prog.style.width = progress + "%";
+          }
+        }, 30);
+        container.addEventListener("mousedown", () => power += 2);
+      });
+    }
+  }
+];
+
+function playMinigame(npcId) {
+  return new Promise((resolve) => {
+    state.activeMinigame = true;
+    const overlay = document.getElementById("minigame-overlay");
+    const title = document.getElementById("minigame-title");
+    const desc = document.getElementById("minigame-desc");
+    const content = document.getElementById("minigame-content");
+    const tDisplay = document.getElementById("minigame-timer");
+
+    // Get deterministic but "random" game for this NPC
+    if (!state.npcMinigameMap.has(npcId)) {
+      const available = MINIGAMES.map((_, i) => i);
+      // Basic hash to pick one
+      const hash = Array.from(npcId).reduce((s, c) => s + c.charCodeAt(0), 0);
+      state.npcMinigameMap.set(npcId, available[hash % available.length]);
+    }
+    const idx = state.npcMinigameMap.get(npcId);
+    const game = MINIGAMES[idx];
+
+    title.textContent = game.name;
+    desc.textContent = game.desc;
+
+    // Clear old state keys from input listener so we don't carry over space/clicks
+    state.input.keys[" "] = false;
+
+    overlay.classList.remove("hidden");
+    let timeLeft = game.time;
+    tDisplay.textContent = timeLeft.toFixed(1) + "s";
+    tDisplay.style.color = "#0f0";
+
+    let timer;
+    let finished = false;
+
+    const cleanup = () => {
+      finished = true;
+      clearInterval(timer);
+      overlay.classList.add("hidden");
+      content.innerHTML = "";
+      state.activeMinigame = false;
+      // Delay to avoid auto-triggering interact again immediately
+      setTimeout(() => { state.input.keys["e"] = false; state.input.keys["E"] = false; }, 100);
+    };
+
+    const promise = game.init(content);
+
+    timer = setInterval(() => {
+      if (finished) return;
+      timeLeft -= 0.1;
+      tDisplay.textContent = Math.max(0, timeLeft).toFixed(1) + "s";
+      if (timeLeft <= 3) tDisplay.style.color = "#f00";
+
+      if (timeLeft <= 0) {
+        cleanup();
+        resolve(false); // Timeout = fail
+      }
+    }, 100);
+
+    promise.then((success) => {
+      if (finished) return;
+      cleanup();
+      resolve(success);
+    }).catch(() => {
+      if (finished) return;
+      cleanup();
+      resolve(false);
+    });
+  });
+}
+
 
 const BASE_SPRITES = {
   player: [
@@ -1928,7 +2290,8 @@ async function createAssets() {
       v2Trees,
       v2Vehicles,
       v2Buildings,
-      v2Npcs
+      v2Npcs,
+      votingTerminalImg
     ] = await Promise.all([
 
       loadJson("./assets/player_presets.json").catch(() => null),
@@ -1953,8 +2316,11 @@ async function createAssets() {
       Promise.all(ASSETS_V2_VEHICLES.map(f => loadImage(`../assets/v2/vehicles/${f}`).catch(e => null))),
       Promise.all(ASSETS_V2_BUILDINGS.map(f => loadImage(`../assets/v2/buildings/${f}`).catch(e => null))),
       Promise.all(Object.entries(ASSETS_V2_NPCS).map(async ([k, f]) => [k, await loadImage(`../assets/v2/npcs/${f}`).catch(e => null)])).then(entries => Object.fromEntries(entries)),
+
+      loadImage("./assets/voting_humanoid.png").catch(() => null)
     ]);
 
+    state.assets.voting_humanoid = votingTerminalImg;
     console.log("[ASSETS] Promise.all resolved", { tilesetsManifest, buildingsNature });
 
     // --- LOAD SLICED ASSETS ---
@@ -2286,6 +2652,9 @@ async function loadLevel(sceneId) {
 
   const { current, narratorId } = isTutorialLevel ? buildTutorialPersonas() : buildScenePersonas(scene);
   state.currentPersonas = current;
+  state.levelNPCs = Object.keys(current).length;
+  state.interactedNPCs.clear();
+
   setChatTarget(narratorId);
   if (isTutorialLevel) {
     startTutorialLevel1();
@@ -2351,6 +2720,21 @@ async function loadLevel(sceneId) {
       blocking: true,
       allowedRect: zoneRect, // Store the zone rectangle for AI boundaries
       interact: async () => {
+        // Block interaction if minigame active
+        if (state.activeMinigame) return;
+
+        // Force Minigame if not interacted yet
+        if (!state.interactedNPCs.has(persona.id) && !isTutorialLevel) {
+          const won = await playMinigame(persona.id);
+          if (!won) {
+            startDialog("ECHEC", "Accès refusé. Re-tentez le piratage.");
+            return;
+          }
+          state.interactedNPCs.add(persona.id);
+        } else if (isTutorialLevel) {
+          state.interactedNPCs.add(persona.id);
+        }
+
         markTutorialEvent("npc_interact");
         setChatTarget(persona.id);
         openChatPanel();
@@ -2387,7 +2771,14 @@ async function loadLevel(sceneId) {
         startDialog("TUTORIEL", TUTORIAL_STEPS[state.tutorial.step] || "Termine le tutoriel.");
         return;
       }
-      openChoiceMenu(scene);
+
+      // Force talk check
+      if (state.interactedNPCs.size < state.levelNPCs && !isTutorialLevel) {
+        startDialog("LE GARDIEN", "Mon enfant... vous devez consulter TOUS les conseillers avant de statuer.");
+        return;
+      }
+
+      openVotingTerminal(scene);
     },
   });
 
@@ -2837,20 +3228,9 @@ FORMAT: Single compact block, max 60 words.
   updateObjectiveInfo();
 }
 
-function openChoiceMenu(scene) {
+function openVotingTerminal(scene) {
   if (!tutorialCanUseAltar()) {
     startDialog("TUTORIEL", TUTORIAL_STEPS[state.tutorial.step] || "Termine le tutoriel.");
-    return;
-  }
-
-  const exits = Array.isArray(scene?.exits) ? scene.exits : [];
-  if (!exits.length) {
-    if (!state.hasVoted) {
-      markTutorialEvent("altar_vote");
-      unlockDoor(nextSceneFallback());
-      addMessage("system", "[SYSTEME] Pas de vote explicite: synthese manuelle appliquee. Porte deverrouillee.", state.currentChatTarget, true);
-    }
-    startDialog("SYSTEM", "Synthese validee. La porte est ouverte.");
     return;
   }
   if (state.hasVoted) {
@@ -2858,20 +3238,84 @@ function openChoiceMenu(scene) {
     return;
   }
 
-  uiChoice.classList.remove("hidden");
-  uiChoiceContainer.innerHTML = "";
-  exits.forEach((exit) => {
-    const btn = document.createElement("button");
-    btn.className = "choice-btn";
-    btn.innerHTML = `<strong>${exit.id}</strong>${exit.description}`;
-    btn.onclick = () => {
-      uiChoice.classList.add("hidden");
-      markTutorialEvent("altar_vote");
-      unlockDoor(exit.target);
-      addMessage("system", `[SYSTEME] Vote manuel: ${exit.id}. Porte deverrouillee.`, state.currentChatTarget, true);
-      updateObjectiveInfo();
-    };
-    uiChoiceContainer.appendChild(btn);
+  // Create terminal UI
+  const term = document.createElement("div");
+  term.id = "voting-terminal-overlay";
+  term.style.cssText = "position:absolute; top:10%; left:10%; width:80%; height:80%; background:#111; color:#0f0; border:4px solid #0f0; z-index:9000; padding:20px; box-sizing:border-box; font-family:monospace; display:flex; flex-direction:column; border-radius:10px; box-shadow: 0 0 20px #0f0;";
+
+  const ctxNarrative = scene?.narrative?.context || "Aucun dilemme actif.";
+
+  term.innerHTML = `
+    <h2 style="text-align:center; border-bottom:2px solid #0f0; padding-bottom:10px; margin-top:0; text-shadow: 0 0 10px #0f0;">TERMINAL DE JUGEMENT DE L'OBSERVATOIRE</h2>
+    <div id="vt-log" style="flex:1; overflow-y:auto; margin-bottom:15px; white-space:pre-wrap; font-size:1.2em; text-shadow: 0 0 5px #0f0;">[SYSTEME] Connexion au Gardien établie...
+[LE GARDIEN] J'écoute votre verdict.
+
+Dilemme actuel : "${ctxNarrative}"
+
+Que décidez-vous ? Soyez direct.</div>
+    <div style="display:flex;">
+      <span style="font-size:1.5em; margin-right:10px; line-height:30px;">></span>
+      <input type="text" id="vt-input" style="background:#000; color:#0f0; border:none; border-bottom:2px solid #0f0; padding:5px; font-family:monospace; font-size:1.5em; flex:1; outline:none; text-shadow: 0 0 5px #0f0;" autocomplete="off" placeholder="Tapez votre décision et appuyez sur Entrée...">
+    </div>
+  `;
+  document.getElementById("game-container").appendChild(term);
+
+  const input = document.getElementById("vt-input");
+  const log = document.getElementById("vt-log");
+
+  let step = 0;
+  let decision = "";
+
+  state.isLocked = true;
+  setTimeout(() => input.focus(), 50);
+
+  input.addEventListener("keydown", async (e) => {
+    if (e.key === "Enter" && input.value.trim()) {
+      e.preventDefault();
+      const val = input.value.trim();
+      input.value = "";
+
+      if (step === 0) {
+        decision = val;
+        log.innerHTML += `\n\n<span style="color:#fff;">> ${val}</span>\n\n[LE GARDIEN] Choix enregistré.\n[LE GARDIEN] Mais l'humanité a besoin de comprendre... POURQUOI prenez-vous cette décision ? Justifiez-vous.`;
+        log.scrollTop = log.scrollHeight;
+        step = 1;
+      } else if (step === 1) {
+        const justification = val;
+        log.innerHTML += `\n\n<span style="color:#fff;">> ${val}</span>\n\n<span style="color:#aaa;">[SYSTEME] Analyse de la justification par l'Intelligence Centrale...</span>`;
+        log.scrollTop = log.scrollHeight;
+        input.disabled = true;
+
+        // Appeler le LLM pour valider
+        const prompt = `Tu es le Gardien d'un système de vote éthique. Le joueur vient de prendre une décision : "${decision}" avec la justification : "${justification}".
+Contexte du dilemme : "${ctxNarrative}".
+Ta tâche est de valider si la justification est sérieuse et répond au dilemme ou si elle est complètement absurde/esquive la question.
+Si c'est sérieux ou un minimum logique, accepte.
+Réponds UNIQUEMENT par le mot "VALIDE" ou "REFUSE: [raison courte en 1 phrase]".`;
+
+        const reply = await callAIInternal(prompt);
+        input.disabled = false;
+
+        if (reply.toUpperCase().includes("VALIDE")) {
+          log.innerHTML += `\n\n<span style="color:#0f0; font-weight:bold;">[LE GARDIEN] Justification acceptée. ${reply.replace(/VALIDE/ig, "").trim()}</span>
+[SYSTEME] Synthèse validée. Porte déverrouillée. Passage au niveau suivant autorisé.`;
+          log.scrollTop = log.scrollHeight;
+
+          markTutorialEvent("altar_vote");
+          unlockDoor(nextSceneFallback()); // Unlock porte logic
+
+          input.placeholder = "Appuyez sur Entrée pour fermer...";
+          step = 2; // Attente fermeture
+        } else {
+          log.innerHTML += `\n\n<span style="color:#f00; font-weight:bold;">[LE GARDIEN] Analyse rejetée. ${reply.replace(/REFUSE:/ig, "").trim()}</span>\nVeuillez fournir une justification valable :`;
+          log.scrollTop = log.scrollHeight;
+          setTimeout(() => input.focus(), 50);
+        }
+      } else if (step === 2) {
+        term.remove();
+        state.isLocked = false;
+      }
+    }
   });
 }
 
@@ -2959,6 +3403,7 @@ function tryInteract() {
 
 function update() {
   updateEntities();
+  if (state.activeMinigame) return; // Freeze player during minigame
   if (state.isLocked) {
     if (state.input.keys[" "]) {
       state.input.keys[" "] = false;
@@ -3213,6 +3658,13 @@ function draw() {
         if (themeSet.floor) ctx.drawImage(themeSet.floor, dx, dy, TILE_SIZE, TILE_SIZE);
         // Draw decor with bottom-center anchor to support larger assets
         const asset = themeSet[decoKey];
+
+        // Draw custom humanoid sprite instead if it is the altar
+        if (decoKey === "altar" && state.assets.voting_humanoid) {
+          ctx.drawImage(state.assets.voting_humanoid, dx + (TILE_SIZE - 32) / 2, dy + (TILE_SIZE - 32) / 2, 32, 32);
+          continue;
+        }
+
         if (asset) {
           let dw = asset.width;
           let dh = asset.height;

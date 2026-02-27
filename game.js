@@ -671,26 +671,424 @@ function generateWorld(scene) {
 
 function getAdjacentInteractable() {
   const p = state.player;
-  const front = p.dir === "up"
-    ? { x: p.x, y: p.y - 1 }
-    : p.dir === "down"
-      ? { x: p.x, y: p.y + 1 }
-      : p.dir === "left"
-        ? { x: p.x - 1, y: p.y }
-        : { x: p.x + 1, y: p.y };
-  const neighbors = [
-    front,
-    { x: p.x, y: p.y - 1 },
-    { x: p.x, y: p.y + 1 },
-    { x: p.x - 1, y: p.y },
-    { x: p.x + 1, y: p.y },
-    { x: p.x - 1, y: p.y - 1 },
-    { x: p.x + 1, y: p.y - 1 },
-    { x: p.x - 1, y: p.y + 1 },
-    { x: p.x + 1, y: p.y + 1 },
-  ];
-  return state.entities.find((e) => !e.removed && typeof e.interact === "function"
-    && neighbors.some((n) => Math.abs(n.x - e.x) <= 1 && Math.abs(n.y - e.y) <= 1));
+  const pTileX = Math.round(p.pixelX / TILE_SIZE);
+  const pTileY = Math.round(p.pixelY / TILE_SIZE);
+  // Check if player is directly adjacent (distance <= 1)
+  return state.entities.find((e) => {
+    if (e.removed || typeof e.interact !== "function") return false;
+    const eTileX = Math.round((e.pixelX ?? (e.x * TILE_SIZE)) / TILE_SIZE);
+    const eTileY = Math.round((e.pixelY ?? (e.y * TILE_SIZE)) / TILE_SIZE);
+    return Math.abs(eTileX - pTileX) <= 1 && Math.abs(eTileY - pTileY) <= 1;
+  });
+}
+
+// Mini-game state
+const minigameState = {
+  active: false,
+  type: 0,
+  progress: 0,
+  target: 0,
+  speed: 4,
+  timer: 0,
+  lives: 3,
+  score: 0,
+  sequence: [],
+  playerSeq: [],
+  keys: {},
+  onComplete: null
+};
+
+// 8 Mini-Game Types
+const MINIGAMES = [
+  {
+    name: "Timing (Barre)",
+    desc: "Appuie sur [ESPACE] dans la zone verte.",
+    init: (state) => {
+      state.progress = 0; state.speed = 3 + Math.random() * 3; state.dir = 1;
+      state.target = 70 + Math.random() * 60; // Zone start
+      state.width = 60; // Zone width
+    },
+    update: (state, keys) => {
+      state.progress += state.dir * state.speed;
+      if (state.progress > 200 || state.progress < 0) state.dir *= -1;
+      if (keys[" "]) {
+        keys[" "] = false;
+        if (state.progress >= state.target && state.progress <= state.target + state.width) return true;
+        else state.speed = Math.max(2, state.speed - 0.5); // Penalty
+      }
+      return false;
+    },
+    draw: (ctx, state, cx, cy) => {
+      ctx.fillStyle = "#333"; ctx.fillRect(cx - 100, cy + 5, 200, 20);
+      ctx.fillStyle = "#4caf50"; ctx.fillRect(cx - 100 + state.target, cy + 5, state.width, 20);
+      ctx.fillStyle = "#ffeb3b"; ctx.fillRect(cx - 100 + state.progress - 2, cy + 3, 4, 24);
+    }
+  },
+  {
+    name: "Spam (Mash)",
+    desc: "Martèle [ESPACE] pour remplir la jauge !",
+    init: (state) => { state.progress = 0; },
+    update: (state, keys) => {
+      if (state.progress > 0) state.progress -= 0.5; // Drain
+      if (keys[" "]) { keys[" "] = false; state.progress += 8; }
+      return state.progress >= 100;
+    },
+    draw: (ctx, state, cx, cy) => {
+      ctx.fillStyle = "#333"; ctx.fillRect(cx - 50, cy + 5, 100, 20);
+      ctx.fillStyle = "#f44336"; ctx.fillRect(cx - 50, cy + 5, state.progress, 20);
+    }
+  },
+  {
+    name: "Hold (Maintien)",
+    desc: "Maintiens [ESPACE] pour stabiliser l'onde.",
+    init: (state) => { state.progress = 50; state.target = 0; }, // Progress = position, Target = time held
+    update: (state, keys) => {
+      state.progress += (Math.random() - 0.5) * 8; // Noise
+      if (keys[" "]) state.progress += (50 - state.progress) * 0.1; // Stabilize towards center
+      else state.progress += (state.progress > 50 ? 2 : -2); // Drift
+
+      state.progress = Math.max(0, Math.min(100, state.progress));
+
+      if (state.progress > 40 && state.progress < 60) state.target += 1;
+      else state.target = Math.max(0, state.target - 2);
+
+      return state.target > 60; // Hold for 1 second approx
+    },
+    draw: (ctx, state, cx, cy) => {
+      ctx.fillStyle = "#333"; ctx.fillRect(cx - 50, cy + 5, 100, 20);
+      ctx.fillStyle = "#4caf50"; ctx.fillRect(cx - 10, cy + 5, 20, 20); // Safe zone
+      ctx.fillStyle = "#fff"; ctx.fillRect(cx - 50 + state.progress - 2, cy + 3, 4, 24); // Cursor
+      ctx.fillStyle = "#2196f3"; ctx.fillRect(cx - 50 + 50 - 2, cy + 30, (state.target / 60) * 100, 5); // Time bar
+    }
+  },
+  {
+    name: "Sequence (Simon)",
+    desc: "Mémorise et répète (Haut, Bas, Gauche, Droite)",
+    init: (state) => {
+      const dirs = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
+      state.sequence = Array.from({ length: 4 }, () => dirs[Math.floor(Math.random() * 4)]);
+      state.playerSeq = [];
+      state.timer = 60; // Show time
+    },
+    update: (state, keys) => {
+      if (state.timer > 0) { state.timer--; return false; }
+
+      const input = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].find(k => keys[k]);
+      if (input) {
+        keys[input] = false;
+        if (input === state.sequence[state.playerSeq.length]) {
+          state.playerSeq.push(input);
+          if (state.playerSeq.length === state.sequence.length) return true;
+        } else {
+          state.playerSeq = []; // Mistake, start over
+          state.timer = 30; // Brief pause to show error
+        }
+      }
+      return false;
+    },
+    draw: (ctx, state, cx, cy) => {
+      const map = { ArrowUp: "▲", ArrowDown: "▼", ArrowLeft: "◄", ArrowRight: "►" };
+      ctx.fillStyle = "white"; ctx.font = "20px Arial";
+      if (state.timer > 0 && state.playerSeq.length === 0) {
+        ctx.fillText(state.sequence.map(k => map[k]).join(" "), cx, cy + 20);
+      } else if (state.timer > 0) {
+        ctx.fillStyle = "red"; ctx.fillText("ERREUR", cx, cy + 20);
+      } else {
+        const display = state.sequence.map((k, i) => i < state.playerSeq.length ? map[k] : "_").join(" ");
+        ctx.fillText(display, cx, cy + 20);
+      }
+    }
+  },
+  {
+    name: "Catch (Attrape)",
+    desc: "Attrape la cible avec [GAUCHE]/[DROITE] !",
+    init: (state) => { state.progress = 50; state.target = Math.random() * 80 + 10; state.speed = 1; },
+    update: (state, keys) => {
+      // Target moves erratically
+      state.target += (Math.random() - 0.5) * 6;
+      state.target = Math.max(10, Math.min(90, state.target));
+
+      if (keys["ArrowLeft"] || keys["a"]) state.progress -= 3;
+      if (keys["ArrowRight"] || keys["d"]) state.progress += 3;
+      state.progress = Math.max(0, Math.min(100, state.progress));
+
+      if (Math.abs(state.progress - state.target) < 10) state.timer++;
+      else state.timer = 0;
+
+      return state.timer > 30;
+    },
+    draw: (ctx, state, cx, cy) => {
+      ctx.fillStyle = "#333"; ctx.fillRect(cx - 50, cy + 5, 100, 20);
+      ctx.fillStyle = "#ffeb3b"; ctx.fillRect(cx - 50 + state.target - 5, cy + 5, 10, 20); // Target
+      ctx.fillStyle = "#2196f3"; ctx.fillRect(cx - 50 + state.progress - 5, cy + 10, 10, 10); // Player
+    }
+  },
+  {
+    name: "Dodge (Esquive)",
+    desc: "Evite le mur rouge avec [HAUT]/[BAS] ! (Survis 3s)",
+    init: (state) => { state.progress = 50; state.target = 50; state.timer = 0; },
+    update: (state, keys) => {
+      // Wall moves towards you
+      state.target -= 2;
+      let gapPos = state.speed; // We reuse speed for gap position
+
+      if (state.target < 0) {
+        state.target = 100; // Reset wall
+        state.speed = Math.random() * 80 + 10; // New gap position
+      }
+
+      if (keys["ArrowUp"] || keys["w"]) state.progress -= 3;
+      if (keys["ArrowDown"] || keys["s"]) state.progress += 3;
+      state.progress = Math.max(0, Math.min(100, state.progress));
+
+      if (state.target < 10 && state.target > 0) {
+        if (Math.abs(state.progress - state.speed) > 15) state.timer = 0; // Hit wall, reset timer
+      }
+
+      state.timer++;
+      return state.timer > 180; // Survived
+    },
+    draw: (ctx, state, cx, cy) => {
+      ctx.fillStyle = "#333"; ctx.fillRect(cx - 50, cy - 20, 100, 40); // Arena
+      ctx.fillStyle = "#2196f3"; ctx.beginPath(); ctx.arc(cx - 40, cy - 20 + state.progress * 0.4, 5, 0, Math.PI * 2); ctx.fill(); // Player
+
+      ctx.fillStyle = "red";
+      ctx.fillRect(cx - 50 + state.target, cy - 20, 5, state.speed * 0.4 - 10); // Top wall
+      ctx.fillRect(cx - 50 + state.target, cy - 20 + state.speed * 0.4 + 10, 5, 40); // Bottom wall
+
+      ctx.fillStyle = "white"; ctx.fillRect(cx - 50, cy + 25, (state.timer / 180) * 100, 4); // Time
+    }
+  },
+  {
+    name: "Stop (Reflexe)",
+    desc: "Appuie sur [ESPACE] dès que le rond devient VERT.",
+    init: (state) => { state.timer = 60 + Math.random() * 120; state.target = 0; },
+    update: (state, keys) => {
+      state.timer--;
+      if (state.timer <= 0) state.target = 1; // Green
+
+      if (keys[" "]) {
+        keys[" "] = false;
+        if (state.target === 1) return true; // Success
+        else { state.timer = 60 + Math.random() * 120; } // Early punish
+      }
+      return false;
+    },
+    draw: (ctx, state, cx, cy) => {
+      ctx.fillStyle = state.target === 1 ? "#4caf50" : "#f44336";
+      ctx.beginPath(); ctx.arc(cx, cy + 15, 15, 0, Math.PI * 2); ctx.fill();
+    }
+  },
+  {
+    name: "Balance (Equilibre)",
+    desc: "Maintiens la barre au centre avec [GAUCHE]/[DROITE]",
+    init: (state) => { state.progress = 50; state.speed = (Math.random() < 0.5 ? -1 : 1); state.timer = 0; },
+    update: (state, keys) => {
+      state.speed += (Math.random() - 0.5) * 0.5; // Wind
+      state.progress += state.speed;
+
+      if (keys["ArrowLeft"] || keys["a"]) state.progress -= 2;
+      if (keys["ArrowRight"] || keys["d"]) state.progress += 2;
+
+      if (state.progress < 10 || state.progress > 90) { state.progress = 50; state.timer = 0; state.speed = 0; } // Fall off
+
+      state.timer++;
+      return state.timer > 120;
+    },
+    draw: (ctx, state, cx, cy) => {
+      ctx.fillStyle = "#333"; ctx.fillRect(cx - 50, cy + 5, 100, 5); // Pivot
+      ctx.fillStyle = "#ffeb3b"; ctx.fillRect(cx - 50 + state.progress - 5, cy, 10, 15); // Player
+      ctx.fillStyle = "#fff"; ctx.fillRect(cx - 50, cy + 25, (state.timer / 120) * 100, 4); // Progress
+    }
+  },
+  {
+    name: "Combat (Baston)",
+    desc: "BATS ton adversaire ! DÉPLACEMENT: Gauche/Droite, ATTAQUE: Espace",
+    init: (state) => {
+      state.p_hp = 100; state.x = 20; state.isAttacking = 0;
+      state.e_hp = 100; state.ex = 80; state.eAtk = 0; state.eTimer = 0;
+    },
+    update: (state, keys) => {
+      if (state.p_hp <= 0) return false; // Perdu, mais on continue jusqu'à l'abandon ? Non, on reset ?
+
+      // Mouvement joueur
+      if (keys["ArrowLeft"] || keys["a"]) state.x = Math.max(0, state.x - 2);
+      if (keys["ArrowRight"] || keys["d"]) state.x = Math.min(state.ex - 15, state.x + 2);
+
+      // Attaque joueur
+      if (state.isAttacking > 0) state.isAttacking--;
+      if (keys[" "] && state.isAttacking === 0) {
+        keys[" "] = false;
+        state.isAttacking = 15;
+        if (Math.abs(state.x - state.ex) < 30) state.e_hp -= 15;
+      }
+
+      // IA Ennemi
+      if (state.eAtk > 0) state.eAtk--;
+      if (state.x < state.ex - 20) state.ex -= 1.5;
+      else if (state.eAtk === 0 && Math.random() < 0.05) {
+        state.eAtk = 20; // Ennemi attaque
+        if (Math.abs(state.x - state.ex) < 30) state.p_hp -= 10;
+      }
+
+      return state.e_hp <= 0; // Gagné
+    },
+    draw: (ctx, state, cx, cy) => {
+      // Arène
+      ctx.fillStyle = "#222"; ctx.fillRect(cx - 70, cy + 10, 140, 5);
+
+      // HPs
+      ctx.fillStyle = "red"; ctx.fillRect(cx - 70, cy - 30, state.p_hp * 0.5, 5);
+      ctx.fillStyle = "blue"; ctx.fillRect(cx + 20, cy - 30, state.e_hp * 0.5, 5);
+
+      // Joueur (Rouge)
+      ctx.fillStyle = state.isAttacking > 0 ? "yellow" : "red";
+      ctx.fillRect(cx - 70 + state.x, cy - 10, 15, 20);
+      if (state.isAttacking > 5) {
+        ctx.fillStyle = "white"; ctx.fillRect(cx - 70 + state.x + 15, cy - 5, 15, 5); // Punch
+      }
+
+      // Ennemi (Bleu)
+      ctx.fillStyle = state.eAtk > 0 ? "cyan" : "blue";
+      ctx.fillRect(cx - 70 + state.ex, cy - 10, 15, 20);
+      if (state.eAtk > 5) {
+        ctx.fillStyle = "white"; ctx.fillRect(cx - 70 + state.ex - 15, cy - 5, 15, 5); // Punch
+      }
+    }
+  },
+  {
+    name: "Plateforme (Saut)",
+    desc: "Saute par-dessus les trous avec [ESPACE].",
+    init: (state) => {
+      state.y = 0; state.vy = 0; state.x = 20; state.timer = 0;
+      state.holes = [{ x: 100, w: 30 }, { x: 200, w: 40 }, { x: 350, w: 30 }];
+      state.dist = 0;
+    },
+    update: (state, keys) => {
+      // Gravité
+      state.vy += 1;
+      state.y += state.vy;
+      if (state.y > 0) { state.y = 0; state.vy = 0; }
+
+      // Saut
+      if (keys[" "] && state.y === 0) {
+        keys[" "] = false;
+        state.vy = -12;
+      }
+
+      // Avancer
+      state.dist += 3;
+
+      // Trous
+      let inHole = false;
+      for (let h of state.holes) {
+        if (state.dist + state.x > h.x && state.dist + state.x < h.x + h.w) inHole = true;
+      }
+
+      if (inHole && state.y === 0) {
+        // Tombe
+        state.y = 50;
+        state.dist -= 50; // Recule un peu (pénalité)
+      }
+
+      return state.dist > 450; // Arrivé au bout
+    },
+    draw: (ctx, state, cx, cy) => {
+      ctx.fillStyle = "#333"; ctx.fillRect(cx - 100, cy + 20, 200, 10); // Sol de base
+
+      ctx.fillStyle = "#000"; // Dessiner les trous
+      for (let h of state.holes) {
+        let hx = cx - 100 + h.x - state.dist;
+        if (hx > cx - 100 && hx < cx + 100) {
+          ctx.fillRect(hx, cy + 20, h.w, 10);
+        }
+      }
+
+      // Joueur
+      ctx.fillStyle = "#0f0";
+      ctx.fillRect(cx - 100 + state.x, cy + 5 + state.y, 15, 15);
+
+      // Arrivée
+      let finishX = cx - 100 + 450 - state.dist;
+      if (finishX < cx + 100) {
+        ctx.fillStyle = "white";
+        ctx.fillRect(finishX, cy - 10, 10, 40);
+      }
+    }
+  },
+  {
+    name: "Precision (Sniper)",
+    desc: "Vise les 3 cibles mouvantes et tire avec [ESPACE] !",
+    init: (state) => {
+      state.x = 50; state.y = 50; // Cursor
+      state.cx = 70; state.cy = 30; // Target
+      state.score = 0; state.tdx = 2; state.tdy = 2;
+    },
+    update: (state, keys) => {
+      // Mouvement du curseur
+      if (keys["ArrowLeft"] || keys["a"]) state.x = Math.max(0, state.x - 3);
+      if (keys["ArrowRight"] || keys["d"]) state.x = Math.min(100, state.x + 3);
+      if (keys["ArrowUp"] || keys["w"]) state.y = Math.max(0, state.y - 3);
+      if (keys["ArrowDown"] || keys["s"]) state.y = Math.min(100, state.y + 3);
+
+      // Mouvement cible
+      state.cx += state.tdx; state.cy += state.tdy;
+      if (state.cx < 10 || state.cx > 90) state.tdx *= -1;
+      if (state.cy < 10 || state.cy > 90) state.tdy *= -1;
+
+      // Tir
+      if (keys[" "]) {
+        keys[" "] = false;
+        let dist = Math.hypot(state.x - state.cx, state.y - state.cy);
+        if (dist < 15) {
+          state.score++;
+          state.cx = Math.random() * 80 + 10;
+          state.cy = Math.random() * 80 + 10;
+          state.tdx = (Math.random() < 0.5 ? 1 : -1) * (2 + state.score); // s'accélère
+          state.tdy = (Math.random() < 0.5 ? 1 : -1) * (2 + state.score);
+        }
+      }
+      return state.score >= 3;
+    },
+    draw: (ctx, state, cx, cy) => {
+      ctx.fillStyle = "#222"; ctx.fillRect(cx - 50, cy - 50, 100, 100); // Area
+
+      // Cible
+      ctx.fillStyle = "red";
+      ctx.beginPath(); ctx.arc(cx - 50 + state.cx, cy - 50 + state.cy, 12, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = "white";
+      ctx.beginPath(); ctx.arc(cx - 50 + state.cx, cy - 50 + state.cy, 6, 0, Math.PI * 2); ctx.fill();
+
+      // Curseur joueur (Croix)
+      let px = cx - 50 + state.x; let py = cy - 50 + state.y;
+      ctx.strokeStyle = "#0f0"; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(px - 10, py); ctx.lineTo(px + 10, py); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(px, py - 10); ctx.lineTo(px, py + 10); ctx.stroke();
+
+      // Score
+      ctx.fillStyle = "yellow"; ctx.fillText(state.score + "/3", cx + 60, cy);
+    }
+  }
+];
+
+function startNpcChat(personaId) {
+  markTutorialEvent("npc_interact");
+  setChatTarget(personaId);
+  openChatPanel();
+  if (uiChatInput) uiChatInput.focus();
+  checkAutoGreeting(personaId);
+}
+
+function startMiniGame(onSuccess) {
+  state.isLocked = true;
+  minigameState.active = true;
+  minigameState.type = Math.floor(Math.random() * MINIGAMES.length);
+  minigameState.onComplete = () => {
+    state.isLocked = false;
+    minigameState.active = false;
+    if (onSuccess) onSuccess();
+  };
+  MINIGAMES[minigameState.type].init(minigameState);
 }
 
 function interactionLabel(entity) {
@@ -2111,11 +2509,15 @@ async function loadLevel(sceneId) {
       blocking: true,
       allowedRect: zoneRect, // Store the zone rectangle for AI boundaries
       interact: async () => {
-        markTutorialEvent("npc_interact");
-        setChatTarget(persona.id);
-        openChatPanel();
-        if (uiChatInput) uiChatInput.focus();
-        await checkAutoGreeting(persona.id);
+        if (!state.meta.minigamesPlayed) state.meta.minigamesPlayed = {};
+        if (state.meta.minigamesPlayed[persona.id]) {
+          startNpcChat(persona.id);
+        } else {
+          startMiniGame(() => {
+            state.meta.minigamesPlayed[persona.id] = true;
+            startNpcChat(persona.id);
+          });
+        }
       },
     });
   });
@@ -2147,7 +2549,7 @@ async function loadLevel(sceneId) {
         startDialog("TUTORIEL", TUTORIAL_STEPS[state.tutorial.step] || "Termine le tutoriel.");
         return;
       }
-      openChoiceMenu(scene);
+      openVotingTerminal(scene);
     },
   });
 
@@ -2211,26 +2613,7 @@ async function loadLevel(sceneId) {
     });
   });
 
-  const propRng = createSeededRandom(hashStringSeed(`${targetId}|props|${state.currentTheme}`));
-  const propCount = isTutorialLevel ? 52 : 40;
-  for (let i = 0; i < propCount; i += 1) {
-    const x = randomInt(propRng, 1, state.world.w - 2);
-    const y = randomInt(propRng, 1, state.world.h - 2);
-    if (!isTileWalkable(x, y)) continue;
-    if (Math.abs(x - state.player.x) < 6 && Math.abs(y - state.player.y) < 5) continue;
-    const nearCoreInteractable = state.entities.some((e) => Math.abs(e.x - x) + Math.abs(e.y - y) <= 1);
-    if (nearCoreInteractable) continue;
-    const roll = propRng();
-    const asset = roll < 0.5 ? "alt" : roll < 0.82 ? "computer" : "liquid";
-    state.entities.push({
-      type: "prop",
-      x,
-      y,
-      asset,
-      blocking: false,
-      interact: null,
-    });
-  }
+  // Removed fake props loop to avoid confusion with real interactable objects
 
   const narrativeText = `${safeText(scene?.narrative?.visual_cues)} ${safeText(scene?.narrative?.context)}`.trim();
   if (!isTutorialLevel && narrativeText && ensureSession(narratorId).length === 0) {
@@ -2600,20 +2983,9 @@ FORMAT: Single compact block, max 60 words.
   updateObjectiveInfo();
 }
 
-function openChoiceMenu(scene) {
+function openVotingTerminal(scene) {
   if (!tutorialCanUseAltar()) {
     startDialog("TUTORIEL", TUTORIAL_STEPS[state.tutorial.step] || "Termine le tutoriel.");
-    return;
-  }
-
-  const exits = Array.isArray(scene?.exits) ? scene.exits : [];
-  if (!exits.length) {
-    if (!state.hasVoted) {
-      markTutorialEvent("altar_vote");
-      unlockDoor(nextSceneFallback());
-      addMessage("system", "[SYSTEME] Pas de vote explicite: synthese manuelle appliquee. Porte deverrouillee.", state.currentChatTarget, true);
-    }
-    startDialog("SYSTEM", "Synthese validee. La porte est ouverte.");
     return;
   }
   if (state.hasVoted) {
@@ -2621,20 +2993,84 @@ function openChoiceMenu(scene) {
     return;
   }
 
-  uiChoice.classList.remove("hidden");
-  uiChoiceContainer.innerHTML = "";
-  exits.forEach((exit) => {
-    const btn = document.createElement("button");
-    btn.className = "choice-btn";
-    btn.innerHTML = `<strong>${exit.id}</strong>${exit.description}`;
-    btn.onclick = () => {
-      uiChoice.classList.add("hidden");
-      markTutorialEvent("altar_vote");
-      unlockDoor(exit.target);
-      addMessage("system", `[SYSTEME] Vote manuel: ${exit.id}. Porte deverrouillee.`, state.currentChatTarget, true);
-      updateObjectiveInfo();
-    };
-    uiChoiceContainer.appendChild(btn);
+  // Create terminal UI
+  const term = document.createElement("div");
+  term.id = "voting-terminal-overlay";
+  term.style.cssText = "position:absolute; top:10%; left:10%; width:80%; height:80%; background:#111; color:#0f0; border:4px solid #0f0; z-index:9000; padding:20px; box-sizing:border-box; font-family:monospace; display:flex; flex-direction:column; border-radius:10px; box-shadow: 0 0 20px #0f0;";
+
+  const ctxNarrative = scene?.narrative?.context || "Aucun dilemme actif.";
+
+  term.innerHTML = `
+    <h2 style="text-align:center; border-bottom:2px solid #0f0; padding-bottom:10px; margin-top:0; text-shadow: 0 0 10px #0f0;">TERMINAL DE JUGEMENT DE L'OBSERVATOIRE</h2>
+    <div id="vt-log" style="flex:1; overflow-y:auto; margin-bottom:15px; white-space:pre-wrap; font-size:1.2em; text-shadow: 0 0 5px #0f0;">[SYSTEME] Connexion au Gardien établie...
+[LE GARDIEN] J'écoute votre verdict.
+
+Dilemme actuel : "${ctxNarrative}"
+
+Que décidez-vous ? Soyez direct.</div>
+    <div style="display:flex;">
+      <span style="font-size:1.5em; margin-right:10px; line-height:30px;">></span>
+      <input type="text" id="vt-input" style="background:#000; color:#0f0; border:none; border-bottom:2px solid #0f0; padding:5px; font-family:monospace; font-size:1.5em; flex:1; outline:none; text-shadow: 0 0 5px #0f0;" autocomplete="off" placeholder="Tapez votre décision et appuyez sur Entrée...">
+    </div>
+  `;
+  document.getElementById("game-container").appendChild(term);
+
+  const input = document.getElementById("vt-input");
+  const log = document.getElementById("vt-log");
+
+  let step = 0;
+  let decision = "";
+
+  state.isLocked = true;
+  setTimeout(() => input.focus(), 50);
+
+  input.addEventListener("keydown", async (e) => {
+    if (e.key === "Enter" && input.value.trim()) {
+      e.preventDefault();
+      const val = input.value.trim();
+      input.value = "";
+
+      if (step === 0) {
+        decision = val;
+        log.innerHTML += `\n\n<span style="color:#fff;">> ${val}</span>\n\n[LE GARDIEN] Choix enregistré.\n[LE GARDIEN] Mais l'humanité a besoin de comprendre... POURQUOI prenez-vous cette décision ? Justifiez-vous.`;
+        log.scrollTop = log.scrollHeight;
+        step = 1;
+      } else if (step === 1) {
+        const justification = val;
+        log.innerHTML += `\n\n<span style="color:#fff;">> ${val}</span>\n\n<span style="color:#aaa;">[SYSTEME] Analyse de la justification par l'Intelligence Centrale...</span>`;
+        log.scrollTop = log.scrollHeight;
+        input.disabled = true;
+
+        // Appeler le LLM pour valider
+        const prompt = `Tu es le Gardien d'un système de vote éthique. Le joueur vient de prendre une décision : "${decision}" avec la justification : "${justification}".
+Contexte du dilemme : "${ctxNarrative}".
+Ta tâche est de valider si la justification est sérieuse et répond au dilemme ou si elle est complètement absurde/esquive la question.
+Si c'est sérieux ou un minimum logique, accepte.
+Réponds UNIQUEMENT par le mot "VALIDE" ou "REFUSE: [raison courte en 1 phrase]".`;
+
+        const reply = await callAIInternal(prompt);
+        input.disabled = false;
+
+        if (reply.toUpperCase().includes("VALIDE") || reply.toUpperCase().includes("ACCEPTE")) {
+          log.innerHTML += `\n\n<span style="color:#0f0; font-weight:bold;">[LE GARDIEN] Justification acceptée. ${reply.replace(/VALIDE/ig, "").replace(/ACCEPTE/ig, "").trim()}</span>
+[SYSTEME] Synthèse validée. Porte déverrouillée. Passage au niveau suivant autorisé.`;
+          log.scrollTop = log.scrollHeight;
+
+          markTutorialEvent("altar_vote");
+          unlockDoor(nextSceneFallback()); // Unlock porte logic
+
+          input.placeholder = "Appuyez sur Entrée pour fermer...";
+          step = 2; // Attente fermeture
+        } else {
+          log.innerHTML += `\n\n<span style="color:#f00; font-weight:bold;">[LE GARDIEN] Analyse rejetée. ${reply.replace(/REFUSE:/ig, "").trim()}</span>\nVeuillez fournir une justification valable :`;
+          log.scrollTop = log.scrollHeight;
+          setTimeout(() => input.focus(), 50);
+        }
+      } else if (step === 2) {
+        term.remove();
+        state.isLocked = false;
+      }
+    }
   });
 }
 
@@ -2722,13 +3158,26 @@ function tryInteract() {
 
 function update() {
   updateEntities();
-  if (state.isLocked) {
+  if (state.isLocked && !minigameState.active) {
     if (state.input.keys[" "]) {
       state.input.keys[" "] = false;
       closeDialog();
     }
     return;
   }
+
+  if (minigameState.active) {
+    const game = MINIGAMES[minigameState.type];
+    const won = game.update(minigameState, state.input.keys);
+    // Auto-clear key presses for the minigame frame
+    // (Note: some minigames handle their own key clearing to avoid double triggers)
+
+    if (won) {
+      if (minigameState.onComplete) minigameState.onComplete();
+    }
+    return;
+  }
+
   if (state.isChatting) return;
 
   const p = state.player;
@@ -3112,23 +3561,52 @@ function draw() {
   drawMinimap();
 
   const target = getAdjacentInteractable();
-  if (target && !state.isLocked && !state.isChatting) {
+  if (target && !state.isLocked && !state.isChatting && !minigameState.active) {
     uiPrompt.textContent = interactionLabel(target);
     uiPrompt.classList.remove("hidden");
     // Position bubble directly over the entity
     const px = Math.floor((target.pixelX !== undefined ? target.pixelX : (target.x * TILE_SIZE)) - camX + (TILE_SIZE / 2));
     const py = Math.floor((target.pixelY !== undefined ? target.pixelY : (target.y * TILE_SIZE)) - camY - 20); // 20px above object
 
-    // Convert to screen space based on canvas scaling
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = rect.width / canvas.width;
-    const scaleY = rect.height / canvas.height;
+    // Convert to canvas screen proportion (0 to 1) 
+    const propX = px / canvas.width;
+    const propY = py / canvas.height;
 
-    uiPrompt.style.left = `${rect.left + px * scaleX}px`;
-    uiPrompt.style.transform = `translateX(-50%)`;
-    uiPrompt.style.top = `${rect.top + py * scaleY}px`;
+    uiPrompt.style.left = `${propX * 100}%`;
+    uiPrompt.style.top = `${propY * 100}%`;
   } else {
     uiPrompt.classList.add("hidden");
+  }
+
+  // Draw QTE Minigame
+  if (minigameState.active) {
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2;
+    const w = minigameState.width;
+    const h = 20;
+
+    // Background panel
+    ctx.fillStyle = "rgba(0,0,0,0.85)";
+    ctx.fillRect(cx - w / 2 - 20, cy - 40, w + 40, 80);
+
+    ctx.fillStyle = "white";
+    ctx.font = "14px Segoe UI";
+    ctx.textAlign = "center";
+    ctx.fillText("Approche toi et SPACE !", cx, cy - 15);
+
+    // Track
+    ctx.fillStyle = "#333";
+    ctx.fillRect(cx - w / 2, cy + 5, w, h);
+
+    // Success zone
+    ctx.fillStyle = "#4caf50";
+    ctx.fillRect(cx - w / 2 + minigameState.zoneStart, cy + 5, minigameState.zoneWidth, h);
+
+    // Cursor
+    ctx.fillStyle = "#ffeb3b";
+    ctx.fillRect(cx - w / 2 + minigameState.progress - 2, cy + 3, 4, h + 4);
+
+    ctx.textAlign = "left"; // Reset
   }
 }
 
