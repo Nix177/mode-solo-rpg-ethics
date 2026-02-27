@@ -3578,35 +3578,30 @@ function draw() {
     uiPrompt.classList.add("hidden");
   }
 
-  // Draw QTE Minigame
+  // Draw dynamic Minigames
   if (minigameState.active) {
     const cx = canvas.width / 2;
     const cy = canvas.height / 2;
-    const w = minigameState.width;
-    const h = 20;
+    const game = MINIGAMES[minigameState.type];
 
-    // Background panel
+    // Background panel to dim everything
     ctx.fillStyle = "rgba(0,0,0,0.85)";
-    ctx.fillRect(cx - w / 2 - 20, cy - 40, w + 40, 80);
+    ctx.fillRect(cx - 200, cy - 100, 400, 200);
 
+    // Title and description
     ctx.fillStyle = "white";
-    ctx.font = "14px Segoe UI";
+    ctx.font = "18px Segoe UI";
     ctx.textAlign = "center";
-    ctx.fillText("Approche toi et SPACE !", cx, cy - 15);
+    ctx.fillText(game.name, cx, cy - 60);
 
-    // Track
-    ctx.fillStyle = "#333";
-    ctx.fillRect(cx - w / 2, cy + 5, w, h);
+    ctx.fillStyle = "#ccc";
+    ctx.font = "14px Segoe UI";
+    ctx.fillText(game.desc, cx, cy - 35);
 
-    // Success zone
-    ctx.fillStyle = "#4caf50";
-    ctx.fillRect(cx - w / 2 + minigameState.zoneStart, cy + 5, minigameState.zoneWidth, h);
+    // Draw the individual minigame content
+    game.draw(ctx, minigameState, cx, cy);
 
-    // Cursor
-    ctx.fillStyle = "#ffeb3b";
-    ctx.fillRect(cx - w / 2 + minigameState.progress - 2, cy + 3, 4, h + 4);
-
-    ctx.textAlign = "left"; // Reset
+    ctx.textAlign = "left"; // Reset default
   }
 }
 
