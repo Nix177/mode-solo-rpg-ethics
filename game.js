@@ -27,6 +27,50 @@ const SFX = {
   mg_tick: "mg_tick.mp3"
 };
 
+const MUSIC_DIR = "./assets/music/";
+const MUSIC_TRACKS = [
+  "contemplation.mp3",
+  "cosmic.mp3",
+  "drift.mp3",
+  "grove.mp3",
+  "L10_Action.mp3", "L10_Sad.mp3", "L10_T1.mp3", "L10_T2.mp3", "L10_T3.mp3",
+  "L1_Action.mp3", "L1_Sad.mp3", "L1_T1.mp3", "L1_T2.mp3", "L1_T3.mp3",
+  "L2_Action.mp3", "L2_Main.mp3", "L2_Sad.mp3", "L2_T1.mp3", "L2_T2.mp3", "L2_T3.mp3",
+  "L3_Action.mp3", "L3_Main.mp3", "L3_Sad.mp3", "L3_T1.mp3", "L3_T2.mp3", "L3_T3.mp3",
+  "L4_Action.mp3", "L4_Sad.mp3", "L4_T1.mp3", "L4_T2.mp3", "L4_T3.mp3",
+  "L5_Action.mp3", "L5_Main.mp3", "L5_Sad.mp3", "L5_T1.mp3", "L5_T2.mp3", "L5_T3.mp3",
+  "L6_Action.mp3", "L6_Sad.mp3", "L6_T1.mp3", "L6_T2.mp3", "L6_T3.mp3",
+  "L7_Action.mp3", "L7_Sad.mp3", "L7_T1.mp3", "L7_T2.mp3", "L7_T3.mp3",
+  "L8_Action.mp3", "L8_Main.mp3", "L8_Sad.mp3", "L8_T1.mp3", "L8_T2.mp3", "L8_T3.mp3",
+  "L9_Action.mp3", "L9_Main.mp3", "L9_Sad.mp3", "L9_T1.mp3", "L9_T2.mp3", "L9_T3.mp3",
+  "resolution.mp3",
+  "sunlight.mp3",
+  "tension.mp3",
+  "thought.mp3",
+  "uplifting.mp3",
+  "Thème Bureaucratie (Zone Civique & Conseil).mp3",
+  "Thème Espace (Station Orbitale).mp3",
+  "Thème Laboratoire (Installations Technologiques).mp3",
+  "Thème Nature (La Forêt Vivrière).mp3",
+  "Thème Urbain (Cité & Ports Logistiques).mp3",
+  "Thème d'Investissement  Dialogue Profond (Le Poète  Réflexion).mp3",
+  "Thème de Tension (Situation de Crise  Anomalie).mp3",
+  "Thème des Mini-jeux (Piratage  Surcharge).mp3",
+  "Situation de Choix Éthique (L'Autel).mp3",
+  "thème principal menu.mp3"
+];
+
+const TUTORIAL_STEPS = [
+  "Utilise ZQSD ou les Flèches pour te déplacer.",
+  "Approche un conseiller et appuie sur [E] pour discuter.",
+  "Réduis le chat avec '-' puis rouvre-le.",
+  "Envoie un message dans le chat pour argumenter.",
+  "Utilise le terminal jaune [E] pour débloquer la zone.",
+  "Récupère un module de données lumineux [E].",
+  "Rends-toi à l'autel (rouge) pour exprimer un vote. L'humanité a besoin de tes synthèses !",
+  "Franchis la porte ouverte pour quitter le tutoriel."
+];
+
 // --- LOCALIZATION ---
 const LANG = {
   fr: {
@@ -318,16 +362,6 @@ const BASE_SPRITES = {
   ]
 };
 
-const TUTORIAL_STEPS = [
-  "Deplace-toi (WASD ou fleches) sur au moins 4 cases.",
-  "Mets-toi face a un conseiller et appuie sur E pour lancer l'echange.",
-  "Reduis la fenetre de chat avec '-' puis rouvre-la via l'icone avatar.",
-  "Envoie un message dans le chat (Enter ou bouton Envoyer).",
-  "Va au terminal et appuie sur E pour lire le contexte de scene.",
-  "Explore la zone et examine au moins 1 module avec E.",
-  "Va a l'autel et valide un vote pour deverrouiller la decision.",
-  "Rejoins la porte au nord et appuie sur E pour passer au niveau suivant.",
-];
 
 function generateSprite(key, colorMap, flip = false) {
   const data = BASE_SPRITES[key] || BASE_SPRITES.player;
@@ -2288,13 +2322,13 @@ async function createAssets() {
       loadJson("./assets/player_presets.json").catch(() => null),
       loadJson("./assets/npcs.json").catch(() => null),
       loadJson("./assets/tilesets_manifest.json").catch(() => null),
-      loadImage("./assets/player_presets.png"),
-      loadImage("./assets/npcs.png"),
-      loadImage("./assets/tilesets_nature.png"),
-      loadImage("./assets/tilesets_urbain.png"),
-      loadImage("./assets/tilesets_laboratoire.png"),
-      loadImage("./assets/tilesets_espace.png"),
-      loadImage("./assets/tilesets_bureaucratie.png"),
+      loadImage("./assets/player_presets.png").catch(() => null),
+      loadImage("./assets/npcs.png").catch(() => null),
+      loadImage("./assets/tilesets_nature.png").catch(() => null),
+      loadImage("./assets/tilesets_urbain.png").catch(() => null),
+      loadImage("./assets/tilesets_laboratoire.png").catch(() => null),
+      loadImage("./assets/tilesets_espace.png").catch(() => null),
+      loadImage("./assets/tilesets_bureaucratie.png").catch(() => null),
       loadImage("./assets/buildings_nature.png").catch(() => null),
       loadImage("./assets/buildings_urban.png").catch(() => null),
       loadImage("./assets/buildings_lab.png").catch(() => null),
@@ -2352,66 +2386,36 @@ async function createAssets() {
   }
 }
 
+function spawnAmbientNPCs(zoneName) {
+  // Spawn 1 ambient non-interactable NPC per level zone based on current theme
+  const zoneTheme = state.world.zoneNames?.[0] || state.currentTheme;
+  const set = state.assets.themeTiles?.[zoneTheme] || state.assets;
+
+  if (set.npc_1) {
+    const rx = randomInt(createSeededRandom(Date.now()), 2, state.world.w - 3);
+    const ry = randomInt(createSeededRandom(Date.now() + 1), 2, state.world.h - 3);
+    const npcEnt = {
+      type: "npc",
+      x: rx,
+      y: ry,
+      dir: "down",
+      asset: "npc_1", // Use the ambient theme sprite
+      isAmbient: true,
+      removed: false,
+      blocking: true, // They block movement but aren't interactable
+      interact: () => {
+        addMessage("system", "[SYSTEME] Cet individu semble occupé...", state.currentChatTarget, true);
+      }
+    };
+    state.entities.push(npcEnt);
+  }
+}
+
 function showPlayerSelection() {
   return new Promise((resolve) => {
-    const overlay = document.getElementById("player-selection-overlay");
-    const grid = document.getElementById("presets-grid");
-    const startBtn = document.getElementById("start-game-btn");
-
-    if (!overlay || !grid || !startBtn) {
-      resolve();
-      return;
-    }
-
-    overlay.classList.remove("hidden");
-    grid.innerHTML = "";
-
-    const presets = state.assets.playerManifest?.presets || Array.from({ length: 10 }, (_, i) => ({ id: i, label: `Preset ${i + 1}` }));
-    let selectedIdx = null;
-
-    presets.forEach((preset, i) => {
-      const card = document.createElement("div");
-      card.className = "preset-card";
-      card.dataset.index = i;
-
-      const canvasPreview = document.createElement("canvas");
-      canvasPreview.className = "preset-preview-canvas";
-      canvasPreview.width = SHEET_TILE;
-      canvasPreview.height = SHEET_TILE;
-      const pctx = canvasPreview.getContext("2d");
-      pctx.imageSmoothingEnabled = false;
-
-      // Draw down frame (first frame) of preset
-      if (state.assets.player_sheet) {
-        pctx.drawImage(
-          state.assets.player_sheet,
-          i * 3 * SHEET_TILE, 0, SHEET_TILE, SHEET_TILE,
-          0, 0, SHEET_TILE, SHEET_TILE,
-        );
-      }
-
-      const label = document.createElement("div");
-      label.className = "preset-label";
-      label.textContent = preset.label || `Preset ${i + 1}`;
-
-      card.appendChild(canvasPreview);
-      card.appendChild(label);
-
-      card.onclick = () => {
-        document.querySelectorAll(".preset-card").forEach((c) => c.classList.remove("selected"));
-        card.classList.add("selected");
-        selectedIdx = i;
-        startBtn.disabled = false;
-      };
-
-      grid.appendChild(card);
-    });
-
-    startBtn.onclick = () => {
-      state.assets.playerPresetIndex = selectedIdx;
-      overlay.classList.add("hidden");
-      resolve();
-    };
+    // Overriding the selection modal in RPG mode since there's no pixel picking here.
+    state.assets.playerPresetIndex = 0;
+    resolve();
   });
 }
 
@@ -3207,7 +3211,7 @@ Dilemme actuel : "${ctxNarrative}"
 Que décidez-vous ? Soyez direct.</div>
     <div style="display:flex;">
       <span style="font-size:1.5em; margin-right:10px; line-height:30px;">></span>
-      <input type="text" id="vt-input" style="background:#000; color:#0f0; border:none; border-bottom:2px solid #0f0; padding:5px; font-family:monospace; font-size:1.5em; flex:1; outline:none; text-shadow: 0 0 5px #0f0;" autocomplete="off" placeholder="Tapez votre décision et appuyez sur Entrée...">
+      <input type="text" id="vt-input" style="background:#000; color:#0f0; border:none; border-bottom:2px solid #0f0; padding:5px; font-family:monospace; font-size:1.5em; flex:1; outline:none; text-shadow: 0 0 5px #0f0;" autocomplete="off" placeholder="Tapez votre décision et appuyez sur Entrée (Échap pour fermer)...">
     </div>
   `;
   document.getElementById("game-container").appendChild(term);
@@ -3222,6 +3226,11 @@ Que décidez-vous ? Soyez direct.</div>
   setTimeout(() => input.focus(), 50);
 
   input.addEventListener("keydown", async (e) => {
+    if (e.key === "Escape") {
+      term.remove();
+      state.isLocked = false;
+      return;
+    }
     if (e.key === "Enter" && input.value.trim()) {
       e.preventDefault();
       const val = input.value.trim();
@@ -3273,12 +3282,14 @@ Réponds UNIQUEMENT par le mot "VALIDE" ou "REFUSE: [raison courte en 1 phrase]"
 
 function setupInput() {
   window.addEventListener("keydown", (ev) => {
+    if (document.activeElement && (document.activeElement.tagName === "INPUT" || document.activeElement.tagName === "TEXTAREA")) return;
     if (document.activeElement === uiChatInput) return;
     state.input.keys[ev.key] = true;
     state.input.keys[ev.code] = true;
     if (ev.code === "Space" || ev.code === "KeyE") ev.preventDefault();
   });
   window.addEventListener("keyup", (ev) => {
+    if (document.activeElement && (document.activeElement.tagName === "INPUT" || document.activeElement.tagName === "TEXTAREA")) return;
     if (document.activeElement === uiChatInput) return;
     state.input.keys[ev.key] = false;
     state.input.keys[ev.code] = false;
@@ -3803,6 +3814,79 @@ function draw() {
   }
 }
 
+function initAudioUI() {
+  const btnPrev = document.getElementById("btn-audio-prev");
+  const btnPlay = document.getElementById("btn-audio-play");
+  const btnNext = document.getElementById("btn-audio-next");
+  const btnMute = document.getElementById("btn-audio-mute");
+  const volRange = document.getElementById("audio-volume");
+
+  if (!btnPlay) return;
+
+  state.audio.trackIndex = MUSIC_TRACKS.indexOf("thème principal menu.mp3");
+  if (state.audio.trackIndex === -1) state.audio.trackIndex = 0;
+
+  const updatePlayBtn = () => {
+    if (btnPlay) btnPlay.textContent = (state.audio.music && !state.audio.music.paused) ? "⏸" : "▶";
+  };
+
+  const playMusic = () => {
+    if (state.audio.muted) return;
+    if (state.audio.music) {
+      state.audio.music.pause();
+    }
+    const track = MUSIC_TRACKS[state.audio.trackIndex];
+    state.audio.music = new Audio(MUSIC_DIR + track);
+    state.audio.music.loop = true;
+    state.audio.music.volume = volRange ? parseFloat(volRange.value) : 0.5;
+    state.audio.currentTrack = track;
+    state.audio.music.play().then(updatePlayBtn).catch(e => console.warn("[AUDIO] Auto-play prevented", e));
+  };
+
+  btnPlay.addEventListener("click", () => {
+    if (!state.audio.music) { playMusic(); return; }
+    if (state.audio.music.paused) state.audio.music.play().then(updatePlayBtn);
+    else { state.audio.music.pause(); updatePlayBtn(); }
+  });
+
+  btnNext.addEventListener("click", () => {
+    state.audio.trackIndex = (state.audio.trackIndex + 1) % MUSIC_TRACKS.length;
+    playMusic();
+  });
+
+  btnPrev.addEventListener("click", () => {
+    state.audio.trackIndex = (state.audio.trackIndex - 1 + MUSIC_TRACKS.length) % MUSIC_TRACKS.length;
+    playMusic();
+  });
+
+  if (btnMute) {
+    btnMute.addEventListener("click", () => {
+      state.audio.muted = !state.audio.muted;
+      btnMute.textContent = state.audio.muted ? "🔇" : "🔊";
+      if (state.audio.muted && state.audio.music) {
+        state.audio.music.pause();
+        updatePlayBtn();
+      } else if (!state.audio.muted && state.audio.music) {
+        state.audio.music.play().then(updatePlayBtn);
+      }
+    });
+  }
+
+  if (volRange) {
+    volRange.addEventListener("input", (e) => {
+      if (state.audio.music) state.audio.music.volume = parseFloat(e.target.value);
+    });
+  }
+
+  const startAudioOnInteract = () => {
+    if (!state.audio.music && !state.audio.muted) playMusic();
+    document.removeEventListener("click", startAudioOnInteract);
+    document.removeEventListener("keydown", startAudioOnInteract);
+  };
+  document.addEventListener("click", startAudioOnInteract);
+  document.addEventListener("keydown", startAudioOnInteract);
+}
+
 function loop() {
   update();
   draw();
@@ -3814,6 +3898,7 @@ async function init() {
   ensureObjectiveUI();
   ensureTutorialUI();
   setupInput();
+  initAudioUI();
   if (typeof collapseChatPanel === 'function') collapseChatPanel();
 
   // Load Language
@@ -3823,11 +3908,12 @@ async function init() {
   // Apply language
   if (typeof window.changeLanguage === 'function') window.changeLanguage(state.language);
 
-
   await createAssets();
 
   if (state.assets.useExternal) {
+    console.log("DEBUG: Before showPlayerSelection");
     await showPlayerSelection();
+    console.log("DEBUG: After showPlayerSelection");
   }
 
   for (let i = 0; i < 60; i += 1) {
@@ -3849,6 +3935,8 @@ async function init() {
 
     const savedScene = loadSavedGame();
     await loadLevel(savedScene || state.scenario.start || "level_1");
+    // Add ambient NPCs after level load
+    spawnAmbientNPCs();
     loop();
   } catch (e) {
     console.error("Init error:", e);
@@ -3870,8 +3958,7 @@ window.changeLanguage = (lang) => {
 
   // Refresh Tutorial if active
   if (state.tutorial.active) {
-    const stepText = [getText("tutorial_move"), getText("tutorial_interact"), getText("tutorial_chat")];
-    if (uiTutorialText) uiTutorialText.textContent = stepText[state.tutorial.step] || "...";
+    if (uiTutorialText) uiTutorialText.textContent = TUTORIAL_STEPS[state.tutorial.step] || "...";
   }
 
   // Refresh Intro if visible
