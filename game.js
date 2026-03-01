@@ -284,15 +284,38 @@ const BASE_SPRITES = {
     "113311331111", "113311331111", "111111111111", "222222222222",
   ],
   computer: [
-    "222222222222", "211111111112", "213333333312", "213333333312",
-    "213333333312", "211111111112", "222222222222", "211333311112",
-    "211333311112", "211111111112", "222222222222", "222222222222",
+    "222222222222",
+    "224444444422",
+    "243333333342",
+    "243666666342",
+    "243611116342",
+    "243666666342",
+    "243333333342",
+    "224444444422",
+    "222222222222",
+    "211111111112",
+    "222222222222",
+    "222222222222",
   ],
   door: [
     "222222222222", "211111111112", "211111111112", "211333333312",
     "211333333312", "211111111112", "211111221112", "211111111112",
     "211111111112", "211111111112", "211111111112", "211111111112",
   ],
+  altar: [
+    "  44444444  ",
+    " 4333333334 ",
+    " 4366666634 ",
+    " 4361111634 ",
+    " 4366666634 ",
+    " 4333333334 ",
+    "  44444444  ",
+    "   222222   ",
+    "   222222   ",
+    "  22222222  ",
+    " 2222222222 ",
+    "222222222222",
+  ]
 };
 
 const TUTORIAL_STEPS = [
@@ -1129,6 +1152,72 @@ const MINIGAMES = [
       // Score
       ctx.fillStyle = "yellow"; ctx.fillText(state.score + "/3", cx + 60, cy);
     }
+  },
+  {
+    name: "Direction (DDR)",
+    desc: "Appuie sur les directions qui apparaissent !",
+    init: (state) => {
+      const keys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
+      state.target = keys[Math.floor(Math.random() * 4)];
+      state.score = 0;
+      state.timer = 60;
+    },
+    update: (state, keys) => {
+      state.timer--;
+      const dirs = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
+      for (const k of dirs) {
+        if (keys[k]) {
+          keys[k] = false;
+          if (k === state.target) {
+            state.score++;
+            state.target = dirs[Math.floor(Math.random() * dirs.length)];
+            state.timer = 60; // Reset timer for next
+          } else {
+            state.timer = Math.max(0, state.timer - 20); // Penalty
+          }
+        }
+      }
+      if (state.timer <= 0) { state.score = 0; state.timer = 60; }
+      return state.score >= 5;
+    },
+    draw: (ctx, state, cx, cy) => {
+      const map = { ArrowUp: "▲", ArrowDown: "▼", ArrowLeft: "◄", ArrowRight: "►" };
+      ctx.fillStyle = "#2196f3";
+      ctx.font = "bold 40px Arial";
+      ctx.fillText(map[state.target], cx, cy + 20);
+      ctx.fillStyle = "white";
+      ctx.font = "14px Arial";
+      ctx.fillText(`Score: ${state.score}/5 | Temps: ${Math.ceil(state.timer / 6)}`, cx, cy + 50);
+    }
+  },
+  {
+    name: "Math (Calcul)",
+    desc: "Resous le calcul: A + B = ?",
+    init: (state) => {
+      state.a = randomInt(() => Math.random(), 1, 9);
+      state.b = randomInt(() => Math.random(), 1, 9);
+      state.ans = state.a + state.b;
+      state.options = [state.ans, state.ans + 1, state.ans - 1].sort(() => Math.random() - 0.5);
+      state.selected = 0;
+    },
+    update: (state, keys) => {
+      if (keys["ArrowLeft"] || keys["a"]) { keys["ArrowLeft"] = false; keys["a"] = false; state.selected = (state.selected + 2) % 3; }
+      if (keys["ArrowRight"] || keys["d"]) { keys["ArrowRight"] = false; keys["d"] = false; state.selected = (state.selected + 1) % 3; }
+      if (keys[" "]) {
+        keys[" "] = false;
+        return state.options[state.selected] === state.ans;
+      }
+      return false;
+    },
+    draw: (ctx, state, cx, cy) => {
+      ctx.fillStyle = "white";
+      ctx.font = "24px Arial";
+      ctx.fillText(`${state.a} + ${state.b} = ?`, cx, cy - 10);
+      state.options.forEach((opt, idx) => {
+        ctx.fillStyle = state.selected === idx ? "#4caf50" : "#aaa";
+        ctx.fillText(opt, cx - 60 + idx * 60, cy + 30);
+      });
+    }
   }
 ];
 
@@ -1140,11 +1229,11 @@ function startNpcChat(personaId) {
   checkAutoGreeting(personaId);
 }
 
-function startMiniGame(onSuccess) {
+function startMiniGame(type, onSuccess) {
   playSound("mg_start");
   state.isLocked = true;
   minigameState.active = true;
-  minigameState.type = Math.floor(Math.random() * MINIGAMES.length);
+  minigameState.type = (type !== undefined ? type : Math.floor(Math.random() * MINIGAMES.length)) % MINIGAMES.length;
   minigameState.onComplete = () => {
     playSound("mg_win");
     state.isLocked = false;
@@ -1194,10 +1283,6 @@ function collapseChatPanel() {
   markTutorialEvent("chat_collapse");
 }
 
-function parseLevelNumber(sceneId) {
-  const m = String(sceneId || "").match(/level_(\d+)/i);
-  return m ? Number(m[1]) : NaN;
-}
 
 function nextSceneFallback(fromSceneId = state.currentSceneId) {
   const n = parseLevelNumber(fromSceneId);
@@ -1378,11 +1463,21 @@ function ensureChatUI() {
 
 function ensureObjectiveUI() {
   uiObjective = document.getElementById("objective-info");
-  if (uiObjective) return;
-  const box = document.createElement("div");
-  box.id = "objective-info";
-  document.getElementById("ui-layer").appendChild(box);
-  uiObjective = box;
+  if (!uiObjective) {
+    const box = document.createElement("div");
+    box.id = "objective-info";
+    document.getElementById("ui-layer").appendChild(box);
+    uiObjective = box;
+  }
+
+  // Ensure Quest Tracker UI
+  let tracker = document.getElementById("quest-tracker");
+  if (!tracker) {
+    tracker = document.createElement("div");
+    tracker.id = "quest-tracker";
+    tracker.style.cssText = "position:absolute; top:50px; right:10px; background:rgba(0,0,0,0.7); color:#fff; padding:10px; border:1px solid #0f0; border-radius:4px; font-family:monospace; min-width:150px; pointer-events:none;";
+    document.getElementById("ui-layer").appendChild(tracker);
+  }
 }
 
 function ensureTutorialUI() {
@@ -1571,18 +1666,35 @@ function tryUseFastTrackCommand(inputText) {
 function updateObjectiveInfo() {
   if (!uiObjective) return;
   const p = state.sceneProgress;
+  const npcs = state.entities.filter(e => e.type === "npc" && !e.removed);
+  const talkedTotal = npcs.filter(e => e.talkedTo).length;
+  const targetTotal = npcs.length;
+
   const lockText = state.hasVoted ? "PORTE: OUVERTE" : "PORTE: VERROUILLEE";
-  const turnText = `Debat ${p.userTurns}/${p.forceDecisionTurns}`;
-  const insightText = `Indices ${p.insightsCollected}/${p.insightsRequired}`;
-  const toolText = `Modules: ${state.meta.modules.minimap ? "Minimap" : "-"} | /trancher: ${state.meta.fastTrackCharges}`;
+  const turns = `Debat ${p.userTurns}/${p.forceDecisionTurns}`;
+  const quest = `Conseillers: ${talkedTotal}/${targetTotal}`;
   const tutorialLabel = safeText(TUTORIAL_STEPS[state.tutorial.step]);
   const tutorialShort = tutorialLabel.length > 56 ? `${tutorialLabel.slice(0, 56)}...` : tutorialLabel;
   const targetText = isTutorialActive()
     ? `Tutoriel ${state.tutorial.step + 1}/${TUTORIAL_STEPS.length}: ${tutorialShort}`
     : state.hasVoted
       ? "Passe au nord"
-      : "Vote a l'autel ou tranche dans le chat";
-  uiObjective.textContent = `${turnText} | ${insightText} | ${toolText} | ${lockText} | ${targetText}`;
+      : talkedTotal < targetTotal ? `Parle à tous (${talkedTotal}/${targetTotal})` : "Vote a l'autel ou tranche dans le chat";
+
+  uiObjective.textContent = `${turns} | ${quest} | ${lockText} | ${targetText}`;
+
+  // Update Quest Tracker
+  const tracker = document.getElementById("quest-tracker");
+  if (tracker) {
+    let html = "<b>CONSEILLERS:</b><br>";
+    npcs.forEach(npc => {
+      const persona = state.currentPersonas[npc.personaId] || state.personas[npc.personaId];
+      const name = persona?.name || npc.personaId;
+      const check = npc.talkedTo ? "✅" : "❌";
+      html += `${check} ${name}<br>`;
+    });
+    tracker.innerHTML = html;
+  }
 }
 
 function setChatTarget(personaId) {
@@ -2571,16 +2683,28 @@ async function loadLevel(sceneId) {
       personaId: persona.id,
       asset: personaAssetKey(persona),
       blocking: true,
-      allowedRect: zoneRect, // Store the zone rectangle for AI boundaries
+      minigameType: idx % MINIGAMES.length,
+      talkedTo: false,
+      allowedRect: zoneRect,
       interact: async () => {
         markTutorialEvent("npc_interact");
-        if (!state.meta.minigamesPlayed) state.meta.minigamesPlayed = {};
-        if (state.meta.minigamesPlayed[persona.id]) {
+        const self = state.entities.find(e => e.personaId === persona.id);
+        if (self.talkedTo) {
           startNpcChat(persona.id);
         } else {
-          startMiniGame(() => {
-            state.meta.minigamesPlayed[persona.id] = true;
+          startMiniGame(self.minigameType, () => {
+            self.talkedTo = true;
             startNpcChat(persona.id);
+
+            // Chaining: find next NPC not talked to
+            const others = state.entities.filter(e => e.type === "npc" && !e.talkedTo && e.personaId !== persona.id);
+            if (others.length > 0) {
+              const nextPersona = state.currentPersonas[others[0].personaId] || state.personas[others[0].personaId];
+              addMessage("system", `[INFO] Dialogue termine avec ${persona.name}. Tu devrais maintenant aller voir ${nextPersona.name || nextPersona.id}.`, persona.id, true);
+            } else {
+              addMessage("system", `[INFO] Tous les conseillers entendus. Le Gardien t'attend a l'autel pour ton verdict final.`, persona.id, true);
+            }
+            updateObjectiveInfo();
           });
         }
       },
@@ -3052,6 +3176,13 @@ FORMAT: Single compact block, max 60 words.
 function openVotingTerminal(scene) {
   if (!tutorialCanUseAltar()) {
     startDialog("TUTORIEL", TUTORIAL_STEPS[state.tutorial.step] || "Termine le tutoriel.");
+    return;
+  }
+  const npcs = state.entities.filter(e => e.type === "npc" && !e.removed);
+  const untalked = npcs.filter(e => !e.talkedTo);
+  if (untalked.length > 0) {
+    const list = untalked.map(e => (state.currentPersonas[e.personaId]?.name || e.personaId)).join(", ");
+    startDialog("LE GARDIEN", `Verdict IMPOSSIBLE. Tu n'as pas encore consulte tous les sages. Manquants: ${list}`);
     return;
   }
   if (state.hasVoted) {

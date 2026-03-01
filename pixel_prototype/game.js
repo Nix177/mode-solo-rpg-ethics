@@ -1330,10 +1330,6 @@ function collapseChatPanel() {
   markTutorialEvent("chat_collapse");
 }
 
-function parseLevelNumber(sceneId) {
-  const m = String(sceneId || "").match(/level_(\d+)/i);
-  return m ? Number(m[1]) : NaN;
-}
 
 function nextSceneFallback(fromSceneId = state.currentSceneId) {
   const n = parseLevelNumber(fromSceneId);
@@ -1702,6 +1698,12 @@ function tryUseFastTrackCommand(inputText) {
   );
   updateObjectiveInfo();
   return true;
+}
+
+function parseLevelNumber(sceneId) {
+  if (!sceneId) return 1;
+  const m = String(sceneId).match(/\d+/);
+  return m ? parseInt(m[0], 10) : 1;
 }
 
 function updateObjectiveInfo() {

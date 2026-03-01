@@ -4,60 +4,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L'Observatoire RPG</title>
-    <link rel="stylesheet" href="style.css?v=20260212v2">
+    <title>L'Observatoire des Possibles (Narratif)</title>
+    <style>
+        /* --- RÉGLAGES GLOBAUX & POLICES --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: #050505;
+            color: #e0e0e0;
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        #game-container {
+            position: relative;
+            flex: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+            transition: background-image 1s ease;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        #game-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 2px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .chat-box {
+            width: 100%;
+            max-width: 900px;
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            z-index: 2;
+            mask-image: linear-gradient(to bottom, transparent 0%, black 5%);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            scrollbar-width: thin;
+            scrollbar-color: #333 transparent;
+        }
+
+        .input-area {
+            width: 100%;
+            background: rgba(15, 15, 15, 0.95);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            box-sizing: border-box;
+            z-index: 10;
+        }
+
+        .input-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1.1em;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        button#send-btn {
+            background: #ff8800;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
 </head>
 
 <body>
     <div id="game-container">
-        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <div class="chat-box">
+            <div id="chat-messages" class="chat-messages"></div>
+        </div>
 
-        <!-- UI Layer -->
-        <div id="ui-layer">
-            <div id="level-info">Level: <span id="level-id">1</span>
-                <!-- Language Selector -->
-                <select id="language-select" onchange="window.changeLanguage(this.value)"
-                    style="margin-left: 10px; background: rgba(0,0,0,0.8); color: white; border: 1px solid #555; padding: 2px; border-radius: 4px; font-size: 12px; pointer-events: auto;">
-                    <option value="fr">FR</option>
-                    <option value="en">EN</option>
-                    <option value="de">DE</option>
-                </select>
-            </div>
-
-
-            <!-- Dialog Box (Hidden by default) -->
-            <div id="dialog-box" class="hidden">
-                <div id="dialog-name">Name</div>
-                <div id="dialog-text">...</div>
-                <div id="dialog-hint">[SPACE] to continue</div>
-            </div>
-
-            <!-- Choice Overlay (Hidden by default) -->
-            <div id="choice-overlay" class="hidden">
-                <h2>MAKE YOUR CHOICE</h2>
-                <div id="choice-container">
-                    <!-- Buttons injected via JS -->
-                </div>
-            </div>
-
-            <!-- Interaction Prompt -->
-            <div id="interaction-prompt" class="hidden">
-                [E] Interagir
-            </div>
-
-            <!-- Player Selection Overlay -->
-            <div id="player-selection-overlay" class="hidden">
-                <div class="selection-modal">
-                    <h2>CHOISISSEZ VOTRE MEDIATEUR</h2>
-                    <div id="presets-grid">
-                        <!-- Filled by JS -->
-                    </div>
-                    <button id="start-game-btn" disabled>COMMENCER LA SIMULATION</button>
-                </div>
+        <div class="input-area">
+            <div class="input-wrapper">
+                <input type="text" id="user-input" placeholder="Décrivez votre position ou posez une question...">
+                <button id="send-btn">Envoyer</button>
             </div>
         </div>
     </div>
-    <script type="module" src="game.js?v=20260212v2"></script>
+
+    <script type="module" src="js/engine.js?v=20260301"></script>
 </body>
 
 </html>
