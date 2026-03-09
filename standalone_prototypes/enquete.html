@@ -1,0 +1,335 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prototype - Enquete de terrain</title>
+  <style>
+    :root {
+      --panel: rgba(8, 14, 24, 0.9);
+      --line: rgba(255,255,255,0.12);
+      --text: #eff6ff;
+      --muted: #9eb2c6;
+      --accent: #7dd3fc;
+      --good: #6ee7b7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      color: var(--text);
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(34,197,94,0.18), transparent 22%),
+        radial-gradient(circle at bottom right, rgba(14,165,233,0.18), transparent 24%),
+        linear-gradient(180deg, #071019, #102033);
+    }
+    .shell {
+      width: min(1200px, 100%);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 18px;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    #game {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      min-height: 540px;
+      background:
+        linear-gradient(90deg, rgba(34,197,94,0.12), transparent 30%),
+        linear-gradient(180deg, rgba(14,165,233,0.14), transparent 30%),
+        #101c2a;
+      overflow: hidden;
+    }
+    .zone {
+      position: absolute;
+      border: 2px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+    }
+    .label {
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .forest { left: 18px; top: 18px; width: 290px; height: 220px; background: linear-gradient(135deg, rgba(34,197,94,0.22), rgba(22,101,52,0.36)); }
+    .village { left: 340px; top: 22px; width: 260px; height: 190px; background: linear-gradient(135deg, rgba(251,191,36,0.18), rgba(120,53,15,0.28)); }
+    .port { left: 28px; bottom: 24px; width: 340px; height: 200px; background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(30,64,175,0.3)); }
+    .lab { right: 22px; top: 34px; width: 280px; height: 360px; background: linear-gradient(135deg, rgba(125,211,252,0.18), rgba(8,47,73,0.32)); }
+    .dock, .hut, .tree, .panelBox, .truck, .antenna {
+      position: absolute;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.15);
+    }
+    .tree { width: 26px; height: 26px; border-radius: 50%; background: rgba(34,197,94,0.5); box-shadow: 0 0 0 8px rgba(20,83,45,0.45); }
+    .hut { width: 52px; height: 36px; background: rgba(146,64,14,0.62); }
+    .dock { width: 90px; height: 18px; background: rgba(191,219,254,0.26); }
+    .panelBox { width: 58px; height: 42px; background: rgba(103,232,249,0.22); }
+    .truck { width: 64px; height: 34px; background: rgba(148,163,184,0.55); }
+    .antenna { width: 18px; height: 88px; background: rgba(148,163,184,0.45); }
+    .hotspot {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fff 0%, var(--accent) 38%, rgba(125,211,252,0.1) 70%);
+      box-shadow: 0 0 0 12px rgba(125,211,252,0.12);
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+    #player {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, #fde68a, #f97316);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+      z-index: 5;
+    }
+    #prompt, #intro, #result {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(7, 12, 20, 0.92);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+    }
+    #prompt {
+      bottom: 18px;
+      padding: 10px 14px;
+      font-size: 14px;
+      display: none;
+    }
+    #intro, #result {
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(82%, 540px);
+      padding: 20px;
+      z-index: 20;
+    }
+    #result { display: none; }
+    .sidebar {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+    .sidebar h1 { font-size: 22px; margin: 0; }
+    .sidebar p { margin: 0; color: var(--muted); line-height: 1.45; }
+    .fact {
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 12px;
+      background: rgba(255,255,255,0.03);
+    }
+    .fact strong { display: block; margin-bottom: 6px; }
+    .done { border-color: rgba(110,231,183,0.35); background: rgba(110,231,183,0.08); }
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #07111a;
+      background: linear-gradient(135deg, var(--good), #93c5fd);
+    }
+    .legend { font-size: 13px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <section class="panel">
+      <div id="game">
+        <div class="zone forest"><div class="label">Forest shrine</div></div>
+        <div class="zone village"><div class="label">Hill village</div></div>
+        <div class="zone port"><div class="label">Supply port</div></div>
+        <div class="zone lab"><div class="label">Control center</div></div>
+
+        <div class="tree" style="left:64px; top:76px"></div>
+        <div class="tree" style="left:128px; top:136px"></div>
+        <div class="tree" style="left:214px; top:98px"></div>
+        <div class="hut" style="left:404px; top:82px"></div>
+        <div class="hut" style="left:500px; top:122px"></div>
+        <div class="dock" style="left:104px; bottom:96px"></div>
+        <div class="dock" style="left:212px; bottom:58px"></div>
+        <div class="truck" style="left:74px; bottom:58px"></div>
+        <div class="panelBox" style="right:88px; top:120px"></div>
+        <div class="panelBox" style="right:152px; top:214px"></div>
+        <div class="antenna" style="right:58px; top:76px"></div>
+
+        <div class="hotspot" data-id="forest" style="left:188px; top:176px"></div>
+        <div class="hotspot" data-id="village" style="left:470px; top:170px"></div>
+        <div class="hotspot" data-id="port" style="left:298px; bottom:124px"></div>
+        <div class="hotspot" data-id="lab" style="right:132px; top:308px"></div>
+
+        <div id="player"></div>
+        <div id="prompt"></div>
+        <div id="intro">
+          <h2>Prototype 1: Enquete de terrain</h2>
+          <p>Observe au moins trois faits avant de conclure. Ici, le dilemme est simple: faut-il autoriser une grande tour eolienne pres d'une zone sacree pour eviter des coupures d'energie ?</p>
+          <p class="legend">Controles: WASD / fleches, E pour observer, R pour recommencer.</p>
+        </div>
+        <div id="result"></div>
+      </div>
+    </section>
+
+    <aside class="panel sidebar">
+      <div>
+        <h1>Indices observes</h1>
+        <p>Ce prototype montre comment rendre un scenario lisible par l'exploration. Chaque point d'observation incarne une consequence concrete.</p>
+      </div>
+      <div id="facts"></div>
+      <div class="legend">But: ne pas demander au joueur de choisir a l'aveugle. D'abord il voit les tensions dans l'espace.</div>
+      <button onclick="location.reload()">Restart</button>
+    </aside>
+  </div>
+
+  <script>
+    const game = document.getElementById('game');
+    const player = document.getElementById('player');
+    const promptEl = document.getElementById('prompt');
+    const resultEl = document.getElementById('result');
+    const factsEl = document.getElementById('facts');
+    const introEl = document.getElementById('intro');
+    const hotspots = [...document.querySelectorAll('.hotspot')];
+    const keys = new Set();
+
+    const observations = {
+      forest: {
+        title: 'Forest shrine',
+        body: 'Les gardiens expliquent que la colline est un lieu de memoire. Construire ici pourrait briser un rituel ancien.',
+        bias: 'Valeur mise en avant: heritage et respect culturel.'
+      },
+      village: {
+        title: 'Hill village',
+        body: 'Le village vit des coupures chaque semaine. Les enfants finissent leurs devoirs a la bougie quand le reseau lache.',
+        bias: 'Valeur mise en avant: securite et egalite d acces.'
+      },
+      port: {
+        title: 'Supply port',
+        body: 'Le port importe du carburant cher et polluant. Une energie locale reduirait la dependance exterieure.',
+        bias: 'Valeur mise en avant: autonomie et impact long terme.'
+      },
+      lab: {
+        title: 'Control center',
+        body: 'Les techniciens admettent qu une autre implantation est possible, mais elle couterait plus cher et prendrait six mois de plus.',
+        bias: 'Valeur mise en avant: pragmatisme contre precaution.'
+      }
+    };
+
+    const state = {
+      x: 70,
+      y: 420,
+      speed: 2.6,
+      seen: new Set(),
+      near: null,
+      finished: false
+    };
+
+    function renderFacts() {
+      factsEl.innerHTML = '';
+      Object.entries(observations).forEach(([id, data]) => {
+        const card = document.createElement('div');
+        card.className = 'fact' + (state.seen.has(id) ? ' done' : '');
+        card.innerHTML = '<strong>' + data.title + '</strong><div>' + (state.seen.has(id) ? data.body + '<br><br>' + data.bias : 'Pas encore observe.') + '</div>';
+        factsEl.appendChild(card);
+      });
+    }
+
+    function clamp() {
+      const maxX = game.clientWidth - 28;
+      const maxY = game.clientHeight - 28;
+      state.x = Math.max(0, Math.min(maxX, state.x));
+      state.y = Math.max(0, Math.min(maxY, state.y));
+    }
+
+    function distanceTo(el) {
+      const a = el.getBoundingClientRect();
+      const g = game.getBoundingClientRect();
+      const hx = a.left - g.left + a.width / 2;
+      const hy = a.top - g.top + a.height / 2;
+      const px = state.x + 14;
+      const py = state.y + 14;
+      return Math.hypot(hx - px, hy - py);
+    }
+
+    function showSummary() {
+      if (state.finished || state.seen.size < 3) return;
+      state.finished = true;
+      resultEl.style.display = 'block';
+      resultEl.innerHTML = `
+        <h2>Synthese debloquee</h2>
+        <p>Tu as maintenant assez d'elements pour voter plus tard. Ce systeme peut etre reutilise sur chaque niveau: le joueur parcourt le monde, voit les effets concrets du dilemme, puis seulement ensuite tranche.</p>
+        <p><strong>Lecture morale:</strong> ici, aucun camp n'est absurde. On oppose heritage, besoin immediat d'energie, autonomie locale et prudence technique.</p>
+        <button onclick="location.reload()">Recommencer</button>
+      `;
+    }
+
+    function updatePrompt() {
+      state.near = null;
+      for (const hotspot of hotspots) {
+        if (distanceTo(hotspot) < 42) {
+          state.near = hotspot.dataset.id;
+          break;
+        }
+      }
+      if (state.near) {
+        const info = observations[state.near];
+        promptEl.style.display = 'block';
+        promptEl.textContent = 'Press E - Observe: ' + info.title;
+      } else {
+        promptEl.style.display = 'none';
+      }
+    }
+
+    function inspect() {
+      if (!state.near) return;
+      state.seen.add(state.near);
+      const info = observations[state.near];
+      promptEl.textContent = info.title + ' noted';
+      renderFacts();
+      showSummary();
+    }
+
+    function tick() {
+      if (keys.has('arrowup') || keys.has('w')) state.y -= state.speed;
+      if (keys.has('arrowdown') || keys.has('s')) state.y += state.speed;
+      if (keys.has('arrowleft') || keys.has('a')) state.x -= state.speed;
+      if (keys.has('arrowright') || keys.has('d')) state.x += state.speed;
+      clamp();
+      player.style.left = state.x + 'px';
+      player.style.top = state.y + 'px';
+      updatePrompt();
+      requestAnimationFrame(tick);
+    }
+
+    document.addEventListener('keydown', (event) => {
+      keys.add(event.key.toLowerCase());
+      if (event.key.toLowerCase() === 'e') inspect();
+      if (event.key.toLowerCase() === 'r') location.reload();
+      introEl.style.display = 'none';
+    });
+    document.addEventListener('keyup', (event) => keys.delete(event.key.toLowerCase()));
+
+    renderFacts();
+    tick();
+  </script>
+</body>
+</html>

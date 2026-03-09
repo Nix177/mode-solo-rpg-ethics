@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Standalone Gameplay Prototypes</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101722;
+      --panel: rgba(15, 24, 38, 0.86);
+      --line: rgba(255,255,255,0.14);
+      --text: #eef5ff;
+      --muted: #9fb0c9;
+      --accent: #6ee7b7;
+      --accent2: #fbbf24;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(110,231,183,0.16), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(251,191,36,0.16), transparent 28%),
+        linear-gradient(180deg, #0d1420, #121d2c 58%, #0a1018);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+    .wrap {
+      width: min(1100px, 100%);
+      display: grid;
+      gap: 18px;
+    }
+    .hero, .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: 0 22px 60px rgba(0,0,0,0.28);
+      backdrop-filter: blur(10px);
+    }
+    .hero { padding: 24px; }
+    h1, h2, p { margin: 0; }
+    .hero p { color: var(--muted); margin-top: 10px; max-width: 760px; line-height: 1.5; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      padding: 20px;
+      display: grid;
+      gap: 14px;
+    }
+    .tag {
+      display: inline-flex;
+      width: fit-content;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.08);
+      color: var(--accent);
+    }
+    .card p { color: var(--muted); line-height: 1.45; }
+    a {
+      display: inline-block;
+      width: fit-content;
+      text-decoration: none;
+      color: #07111a;
+      background: linear-gradient(135deg, var(--accent), #9ee2ff);
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-weight: 700;
+    }
+    .tips {
+      padding: 18px 20px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    code {
+      color: var(--accent2);
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <h1>Standalone gameplay prototypes</h1>
+      <p>Trois demos HTML simples pour tester des boucles de gameplay reutilisables dans ton RPG ethique. Elles sont autonomes: aucun asset, aucune dependance, juste un navigateur.</p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <span class="tag">1. Enquete de terrain</span>
+        <h2>Observer avant de juger</h2>
+        <p>Explore plusieurs zones, trouve des faits contradictoires, puis debloque une synthese morale. Cela montre comment transformer le scenario en espace a lire avec ses jambes.</p>
+        <a href="enquete.html">Ouvrir enquete.html</a>
+      </article>
+
+      <article class="card">
+        <span class="tag">2. Gestion de crise</span>
+        <h2>Prioriser sous pression</h2>
+        <p>Trois systemes se degradent en meme temps. Tu ne peux pas tout gerer parfaitement, donc la pression du dilemme devient physique et non seulement textuelle.</p>
+        <a href="crise.html">Ouvrir crise.html</a>
+      </article>
+
+      <article class="card">
+        <span class="tag">3. Influence des factions</span>
+        <h2>Agir et voir les camps reagir</h2>
+        <p>Chaque faction occupe l'espace, te demande des actions differentes et ouvre ou ferme des routes selon la confiance accordee. C'est la base RPG la plus re-jouable.</p>
+        <a href="factions.html">Ouvrir factions.html</a>
+      </article>
+    </section>
+
+    <section class="hero tips">
+      <p>Controles communs: <code>WASD</code> ou <code>fleches</code> pour se deplacer, <code>E</code> pour interagir, <code>R</code> pour recommencer. Ces fichiers sont concus pour s'ouvrir directement.</p>
+    </section>
+  </main>
+</body>
+</html>

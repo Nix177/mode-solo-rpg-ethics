@@ -1,4 +1,4 @@
-﻿import { API_BASE } from "./assets/config.js";
+import { API_BASE } from "./assets/config.js";
 
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
@@ -9,10 +9,18 @@ const VIEW_W = Math.floor(canvas.width / TILE_SIZE);
 const VIEW_H = Math.floor(canvas.height / TILE_SIZE);
 const WORLD_DEFAULT_W = 56;
 const WORLD_DEFAULT_H = 42;
-const MOVE_SPEED = 4;
+const MOVE_SPEED = 3;
 const CURRENT_MODEL = "gpt-4o-mini";
 const INSIGHTS_REQUIRED = 2;
 const FORCE_DECISION_TURNS = 7;
+const MINIGAME_INTRO_FRAMES = 105;
+const MINIGAME_DEFAULT_MAX_FRAMES = 2400;
+const AMBIENT_NPCS_PER_ZONE = 2;
+const AMBIENT_NPC_ARCHETYPES = ["A-1", "B-2", "C-3"];
+const LEVEL_TEST_ID = "level_0";
+const LEVEL0_TERMINAL_MINIGAME = 12; // Math puzzle
+const LEVEL0_MINIGAME_POOL = [12, 9, 8]; // puzzle, platform, combat
+const DISABLED_MINIGAME_IDS = new Set([1]); // remove space-mash minigame from gameplay
 const DEFAULT_TILE_ORDER = ["floor", "wall", "doorClosed", "doorOpen", "terminal", "altFloor", "liquidOrHazard", "panel"];
 const AUDIO_DIR = "./assets/audio/";
 const SFX = {
@@ -48,26 +56,42 @@ const MUSIC_TRACKS = [
   "tension.mp3",
   "thought.mp3",
   "uplifting.mp3",
-  "Thème Bureaucratie (Zone Civique & Conseil).mp3",
-  "Thème Espace (Station Orbitale).mp3",
-  "Thème Laboratoire (Installations Technologiques).mp3",
-  "Thème Nature (La Forêt Vivrière).mp3",
-  "Thème Urbain (Cité & Ports Logistiques).mp3",
-  "Thème d'Investissement  Dialogue Profond (Le Poète  Réflexion).mp3",
-  "Thème de Tension (Situation de Crise  Anomalie).mp3",
-  "Thème des Mini-jeux (Piratage  Surcharge).mp3",
-  "Situation de Choix Éthique (L'Autel).mp3",
-  "thème principal menu.mp3"
+  "Th�me Bureaucratie (Zone Civique & Conseil).mp3",
+  "Th�me Espace (Station Orbitale).mp3",
+  "Th�me Laboratoire (Installations Technologiques).mp3",
+  "Th�me Nature (La For�t Vivri�re).mp3",
+  "Th�me Urbain (Cit� & Ports Logistiques).mp3",
+  "Th�me d'Investissement  Dialogue Profond (Le Po�te  R�flexion).mp3",
+  "Th�me de Tension (Situation de Crise  Anomalie).mp3",
+  "Th�me des Mini-jeux (Piratage  Surcharge).mp3",
+  "Situation de Choix �thique (L'Autel).mp3",
+  "th�me principal menu.mp3"
+];
+const MUSIC_GENERIC_FALLBACKS = ["contemplation.mp3", "thought.mp3", "tension.mp3", "uplifting.mp3", "resolution.mp3"];
+const HYBRID_SPACE_BUILDINGS = [
+  "building_space_observatory_01.png",
+  "building_space_observatory_02.png",
+  "building_space_gate_large.png",
+  "building_space_blast_door_large_01.png",
+  "building_space_solar_angled.png",
+];
+const HYBRID_MIXED_PROPS = [
+  "vehicle_rustic_wagon_0_01.png",
+  "vehicle_rustic_cart_9_01.png",
+  "vehicle_scifi_heavy_15_01.png",
+  "vehicle_urban_buggy_24_01.png",
+  "vehicle_urban_transport_32_01.png",
+  "prop_wind_turbine_40_01.png",
 ];
 
 const TUTORIAL_STEPS = [
-  "Utilise ZQSD ou les Flèches pour te déplacer.",
+  "Utilise ZQSD ou les Fl�ches pour te d�placer.",
   "Approche un conseiller et appuie sur [E] pour discuter.",
-  "Réduis le chat avec '-' puis rouvre-le.",
+  "R�duis le chat avec '-' puis rouvre-le.",
   "Envoie un message dans le chat pour argumenter.",
-  "Utilise le terminal jaune [E] pour débloquer la zone.",
-  "Récupère un module de données lumineux [E].",
-  "Rends-toi à l'autel (rouge) pour exprimer un vote. L'humanité a besoin de tes synthèses !",
+  "Utilise le terminal jaune [E] pour d�bloquer la zone.",
+  "R�cup�re un module de donn�es lumineux [E].",
+  "Rends-toi � l'autel (rouge) pour exprimer un vote. L'humanit� a besoin de tes synth�ses !",
   "Franchis la porte ouverte pour quitter le tutoriel."
 ];
 
@@ -75,25 +99,25 @@ const TUTORIAL_STEPS = [
 const LANG = {
   fr: {
     start_game: "COMMENCER LA SIMULATION",
-    select_mediator: "CHOISISSEZ VOTRE MÉDIATEUR",
+    select_mediator: "CHOISISSEZ VOTRE M�DIATEUR",
     level: "Niveau",
     objective: "Objectif",
     interact_prompt: "[E] Interagir",
     prompt_talk: "[E] Parler",
     prompt_enter: "[E] Franchir",
     prompt_vote: "[E] Voter",
-    prompt_loot: "[E] Récupérer",
+    prompt_loot: "[E] R�cup�rer",
     prompt_read: "[E] Lire",
-    tutorial_move: "Utilisez ZQSD ou les Flèches pour bouger.",
+    tutorial_move: "Utilisez ZQSD ou les Fl�ches pour bouger.",
     tutorial_interact: "Approchez un personnage et appuyez sur E pour discuter.",
-    tutorial_chat: "Répondez aux questions pour gagner des points.",
+    tutorial_chat: "R�pondez aux questions pour gagner des points.",
     tutorial_skip: "Passer le tutoriel",
     intro_title: "INTRO NIVEAU",
     intro_continue: "[ESPACE] pour continuer",
     choice_title: "FAITES VOTRE CHOIX",
     choice_waiting: "En attente...",
     game_over: "FIN DE LA SIMULATION",
-    thanks: "Merci d'avoir joué.",
+    thanks: "Merci d'avoir jou�.",
   },
   en: {
     start_game: "START SIMULATION",
@@ -119,25 +143,25 @@ const LANG = {
   },
   de: {
     start_game: "SIMULATION STARTEN",
-    select_mediator: "WÄHLEN SIE IHREN VERMITTLER",
+    select_mediator: "W�HLEN SIE IHREN VERMITTLER",
     level: "Ebene",
     objective: "Ziel",
     interact_prompt: "[E] Interagieren",
     prompt_talk: "[E] Reden",
     prompt_enter: "[E] Eintreten",
     prompt_vote: "[E] Abstimmen",
-    prompt_loot: "[E] Plündern",
+    prompt_loot: "[E] Pl�ndern",
     prompt_read: "[E] Lesen",
     tutorial_move: "Benutzen Sie WASD oder Pfeile zum Bewegen.",
-    tutorial_interact: "Gehen Sie zu einem Charakter und drücken Sie E.",
+    tutorial_interact: "Gehen Sie zu einem Charakter und dr�cken Sie E.",
     tutorial_chat: "Beantworten Sie Fragen, um Punkte zu sammeln.",
-    tutorial_skip: "Tutorial überspringen",
-    intro_title: "LEVEL EINFÜHRUNG",
+    tutorial_skip: "Tutorial �berspringen",
+    intro_title: "LEVEL EINF�HRUNG",
     intro_continue: "[LEERTASTE] zum Fortfahren",
     choice_title: "TREFFEN SIE IHRE WAHL",
     choice_waiting: "Warten...",
     game_over: "SIMULATION BEENDET",
-    thanks: "Danke fürs Spielen.",
+    thanks: "Danke f�rs Spielen.",
   }
 };
 
@@ -163,24 +187,47 @@ function playLevelMusic(levelId) {
   if (state.audio.muted) return;
 
   const levelNum = parseLevelNumber(levelId);
-  const trackNum = Math.floor(Math.random() * 3) + 1; // Random track 1, 2 or 3 for the level
-  const file = `L${levelNum}_T${trackNum}.mp3`;
+  const trackNum = Math.floor(Math.random() * 3) + 1;
+  const canonicalLevel = (Number.isFinite(levelNum) && levelNum >= 1 && levelNum <= 10)
+    ? levelNum
+    : ((((Number.isFinite(levelNum) ? levelNum : 1) - 1) % 10 + 10) % 10) + 1;
+  const preferred = "L" + canonicalLevel + "_T" + trackNum + ".mp3";
+  const fallbackLevel = "L1_T" + trackNum + ".mp3";
+  const genericTrack = MUSIC_GENERIC_FALLBACKS[Math.floor(Math.random() * MUSIC_GENERIC_FALLBACKS.length)];
+  const candidates = [
+    { src: AUDIO_DIR + preferred, key: preferred },
+    { src: AUDIO_DIR + fallbackLevel, key: fallbackLevel },
+    { src: MUSIC_DIR + genericTrack, key: genericTrack },
+  ];
 
-  if (state.audio.currentTrack === file) return;
+  if (state.audio.currentTrack === preferred) return;
 
   if (state.audio.music) {
     state.audio.music.pause();
     state.audio.music = null;
   }
 
-  state.audio.music = new Audio(`${AUDIO_DIR}${file}`);
-  state.audio.music.loop = true;
-  state.audio.music.volume = 0.5;
-  state.audio.currentTrack = file;
+  const tryCandidate = (idx) => {
+    if (idx >= candidates.length) {
+      console.warn("[AUDIO] No music candidate playable for", levelId);
+      return;
+    }
+    const candidate = candidates[idx];
+    const audio = new Audio(candidate.src);
+    audio.loop = true;
+    audio.volume = 0.5;
+    audio.onerror = () => {
+      if (state.audio.music === audio) state.audio.music = null;
+      tryCandidate(idx + 1);
+    };
+    state.audio.music = audio;
+    state.audio.currentTrack = candidate.key;
+    audio.play().catch(e => {
+      console.warn("[AUDIO] Music play blocked until interaction:", e.message);
+    });
+  };
 
-  state.audio.music.play().catch(e => {
-    console.warn("[AUDIO] Music play blocked until interaction:", e.message);
-  });
+  tryCandidate(0);
 }
 
 function parseLevelNumber(sceneId) {
@@ -242,6 +289,7 @@ const state = {
     deco: [],
     themes: [],
     zoneNames: [],
+    zones: [],
   },
   camera: {
     x: 0,
@@ -267,6 +315,8 @@ const state = {
     forceDecisionTurns: FORCE_DECISION_TURNS,
     loopBreakerIndex: 0,
     lastPlayerInput: "",
+    miniGamesWon: {},
+    terminalPuzzleSolved: false,
   },
   tutorial: {
     active: false,
@@ -668,6 +718,113 @@ function applyZonesToThemeMap(themeMap, zones, width, height) {
   });
 }
 
+function buildZoneVisualProfile(zoneTheme, sceneText = "") {
+  const text = normalizeText(sceneText);
+  const maritime = /(port|quai|dock|harbor|ocean|mer|bateau)/.test(text);
+  const wilderness = /(foret|forest|village|sacre|sacree|nature)/.test(text);
+
+  const defaults = {
+    obstacleDensity: 0.12,
+    decoDensity: 0.28,
+    randomDecoChance: 0.55,
+    wallChance: 0.34,
+    computerChance: 0.23,
+    buildingChance: 0.23,
+    vehicleChance: 0.20,
+    groundChance: 0.72,
+    variants: ["detail", "detail", "detail", "liquid"],
+    intents: ["flora", "prop", "ground"],
+  };
+
+  if (zoneTheme === "nature") {
+    return {
+      ...defaults,
+      obstacleDensity: 0.08,
+      decoDensity: wilderness ? 0.42 : 0.36,
+      randomDecoChance: 0.72,
+      wallChance: 0.22,
+      computerChance: 0.12,
+      buildingChance: 0.30,
+      vehicleChance: 0.14,
+      groundChance: 0.84,
+      variants: ["flora", "flora", "flora", "ground", "liquid"],
+      intents: ["tree", "bush", "ground"],
+    };
+  }
+  if (zoneTheme === "urbain") {
+    return {
+      ...defaults,
+      obstacleDensity: 0.16,
+      decoDensity: maritime ? 0.35 : 0.30,
+      randomDecoChance: 0.66,
+      wallChance: 0.30,
+      computerChance: 0.14,
+      buildingChance: 0.28,
+      vehicleChance: 0.28,
+      groundChance: 0.64,
+      variants: ["crate", "metal", "ground", "detail", "detail"],
+      intents: maritime ? ["container", "ground", "street"] : ["street", "ground", "ground"],
+    };
+  }
+  if (zoneTheme === "laboratoire") {
+    return {
+      ...defaults,
+      obstacleDensity: 0.14,
+      decoDensity: 0.31,
+      randomDecoChance: 0.70,
+      wallChance: 0.26,
+      computerChance: 0.36,
+      buildingChance: 0.20,
+      vehicleChance: 0.18,
+      groundChance: 0.58,
+      variants: ["console", "console", "canister", "metal", "liquid"],
+      intents: ["terminal", "cable", "ground"],
+    };
+  }
+  if (zoneTheme === "espace") {
+    return {
+      ...defaults,
+      obstacleDensity: 0.14,
+      decoDensity: 0.29,
+      randomDecoChance: 0.73,
+      wallChance: 0.20,
+      computerChance: 0.24,
+      buildingChance: 0.34,
+      vehicleChance: 0.16,
+      groundChance: 0.60,
+      variants: ["antenna", "panel", "panel", "metal", "detail"],
+      intents: ["satellite", "airlock", "ground"],
+    };
+  }
+  if (zoneTheme === "bureaucratie") {
+    return {
+      ...defaults,
+      obstacleDensity: 0.10,
+      decoDensity: 0.27,
+      randomDecoChance: 0.58,
+      wallChance: 0.30,
+      computerChance: 0.18,
+      buildingChance: 0.32,
+      vehicleChance: 0.12,
+      groundChance: 0.67,
+      variants: ["banner", "desk", "detail", "ground"],
+      intents: ["banner", "street", "ground"],
+    };
+  }
+
+  return defaults;
+}
+
+function makeRandomDeco(theme, seed, variant, intent = "") {
+  return {
+    type: "random",
+    theme,
+    seed,
+    variant: safeText(variant) || "detail",
+    intent: safeText(intent) || "ground",
+  };
+}
+
 function generateWorld(scene) {
   const w = WORLD_DEFAULT_W;
   const h = WORLD_DEFAULT_H;
@@ -678,6 +835,7 @@ function generateWorld(scene) {
   const zones = buildZonePlan(scene, theme);
   applyZonesToThemeMap(themes, zones, w, h);
   const rng = createSeededRandom(hashStringSeed(`${safeText(scene?.id)}|${theme}`));
+  const sceneText = scenarioNarrativeText(scene);
 
   // Draw outer walls
   for (let x = 0; x < w; x += 1) {
@@ -729,7 +887,7 @@ function generateWorld(scene) {
   clearRectInMatrix(tiles, spawnX - 6, spawnY - 5, 13, 10, 0);
   clearRectInMatrix(tiles, doorX - 2, doorY, 5, spawnY - doorY + 2, 0);
 
-  // Add thematic obstacles inside zones
+  // Add thematic obstacles and richer decor inside zones
   zones.forEach((zone) => {
     const x0 = Math.floor(zone.rect[0] * w) + 1;
     const y0 = Math.floor(zone.rect[1] * h) + 1;
@@ -739,48 +897,87 @@ function generateWorld(scene) {
     const zoneH = y1 - y0;
     if (zoneW <= 0 || zoneH <= 0) return;
 
-    // Add thematic obstacles inside zones
-    const obstacleCount = Math.floor(zoneW * zoneH * 0.15);
+    const profile = buildZoneVisualProfile(zone.theme, sceneText);
+
+    const nearbyDecoCount = (tx, ty, radius = 2, matcher = null) => {
+      let count = 0;
+      for (let yy = Math.max(y0, ty - radius); yy <= Math.min(y1, ty + radius); yy += 1) {
+        for (let xx = Math.max(x0, tx - radius); xx <= Math.min(x1, tx + radius); xx += 1) {
+          if (xx === tx && yy === ty) continue;
+          const v = deco[yy]?.[xx];
+          if (!v) continue;
+          if (!matcher || matcher(v)) count += 1;
+        }
+      }
+      return count;
+    };
+
+    const obstacleCount = Math.floor(zoneW * zoneH * profile.obstacleDensity);
     for (let i = 0; i < obstacleCount; i += 1) {
       const ox = randomInt(rng, x0, x1);
       const oy = randomInt(rng, y0, y1);
       if (Math.abs(ox - spawnX) < 6 && Math.abs(oy - spawnY) < 5) continue;
       if (Math.abs(ox - doorX) < 3 && oy <= spawnY && oy >= doorY - 1) continue;
+      if (tiles[oy][ox] === 1 || deco[oy][ox]) continue;
 
       const r = rng();
-      if (r < 0.3) {
-        tiles[oy][ox] = 1; // Standard wall/obstacle
-      } else if (r < 0.5) {
-        deco[oy][ox] = "computer";
-        tiles[oy][ox] = 1; // Prop blocks movement
-      } else if (r < 0.7) {
-        deco[oy][ox] = "building";
-        tiles[oy][ox] = 1; // Building blocks movement
+      let obstacleKind = "wall";
+      if (r < profile.wallChance) obstacleKind = "wall";
+      else if (r < profile.wallChance + profile.computerChance) obstacleKind = "computer";
+      else if (r < profile.wallChance + profile.computerChance + profile.buildingChance) obstacleKind = "building";
+      else obstacleKind = "vehicle";
+
+      if (obstacleKind === "vehicle" && nearbyDecoCount(ox, oy, 3, (v) => v === "vehicle") >= 1) continue;
+      if (obstacleKind === "building" && nearbyDecoCount(ox, oy, 3, (v) => v === "building") >= 1) continue;
+      if (obstacleKind !== "wall" && nearbyDecoCount(ox, oy, 2) >= 4) continue;
+
+      if (obstacleKind === "wall") {
+        tiles[oy][ox] = 1;
       } else {
-        deco[oy][ox] = "vehicle";
-        tiles[oy][ox] = 1; // Vehicle blocks movement
+        deco[oy][ox] = obstacleKind;
+        tiles[oy][ox] = 1;
       }
     }
 
-    // Add decorative patches
-    const decoCount = Math.floor(zoneW * zoneH * 0.25);
+    const decoCount = Math.floor(zoneW * zoneH * profile.decoDensity);
     for (let i = 0; i < decoCount; i += 1) {
       const dx = randomInt(rng, x0, x1);
       const dy = randomInt(rng, y0, y1);
       if (tiles[dy][dx] === 1 || deco[dy][dx]) continue;
       if (Math.abs(dx - spawnX) < 5 && Math.abs(dy - spawnY) < 4) continue;
-      deco[dy][dx] = rng() < 0.7 ? "alt" : "liquid";
+      if (nearbyDecoCount(dx, dy, 2) >= 5) continue;
+
+      if (rng() < profile.randomDecoChance) {
+        const variant = profile.variants[Math.floor(rng() * profile.variants.length)] || "detail";
+        const intent = profile.intents[Math.floor(rng() * profile.intents.length)] || "ground";
+        deco[dy][dx] = makeRandomDeco(zone.theme, rng(), variant, intent);
+      } else {
+        deco[dy][dx] = rng() < profile.groundChance ? "alt" : "liquid";
+      }
     }
   });
 
   // Add scattered decoration outside zones
-  const scatterCount = 120;
+  const scatterCount = 150;
   for (let i = 0; i < scatterCount; i += 1) {
     const x = randomInt(rng, 2, w - 3);
     const y = randomInt(rng, 2, h - 3);
     if (tiles[y][x] === 1 || deco[y][x]) continue;
     if (Math.abs(x - spawnX) < 5 && Math.abs(y - spawnY) < 4) continue;
-    deco[y][x] = rng() < 0.8 ? "alt" : "liquid";
+    let localDense = 0;
+    for (let yy = Math.max(2, y - 2); yy <= Math.min(h - 3, y + 2); yy += 1) {
+      for (let xx = Math.max(2, x - 2); xx <= Math.min(w - 3, x + 2); xx += 1) {
+        if (xx === x && yy === y) continue;
+        if (deco[yy]?.[xx]) localDense += 1;
+      }
+    }
+    if (localDense >= 6) continue;
+    const cellTheme = themes[y]?.[x] || theme;
+    if (rng() < 0.52) {
+      deco[y][x] = makeRandomDeco(cellTheme, rng(), "detail", "ground");
+    } else {
+      deco[y][x] = rng() < 0.75 ? "alt" : "liquid";
+    }
   }
 
   return { w, h, tiles, deco, themes, zoneNames: zones.map((z) => z.name), zones, spawnX, spawnY, doorX, doorY };
@@ -813,7 +1010,16 @@ const minigameState = {
   sequence: [],
   playerSeq: [],
   keys: {},
-  onComplete: null
+  onComplete: null,
+  onFail: null,
+  frameCount: 0,
+  maxFrames: 0,
+  phase: "intro",
+  introFrames: 0,
+  contextTitle: "",
+  contextHint: "",
+  resumeLabel: "",
+  allowSkipIntro: true,
 };
 
 // 8 Mini-Game Types
@@ -844,7 +1050,7 @@ const MINIGAMES = [
   },
   {
     name: "Spam (Mash)",
-    desc: "Martèle [ESPACE] pour remplir la jauge !",
+    desc: "Mart�le [ESPACE] pour remplir la jauge !",
     init: (state) => { state.progress = 0; },
     update: (state, keys) => {
       if (state.progress > 0) state.progress -= 0.5; // Drain
@@ -881,7 +1087,7 @@ const MINIGAMES = [
   },
   {
     name: "Sequence (Simon)",
-    desc: "Mémorise et répète (Haut, Bas, Gauche, Droite)",
+    desc: "M�morise et r�p�te (Haut, Bas, Gauche, Droite)",
     init: (state) => {
       const dirs = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
       state.sequence = Array.from({ length: 4 }, () => dirs[Math.floor(Math.random() * 4)]);
@@ -905,7 +1111,7 @@ const MINIGAMES = [
       return false;
     },
     draw: (ctx, state, cx, cy) => {
-      const map = { ArrowUp: "▲", ArrowDown: "▼", ArrowLeft: "◄", ArrowRight: "►" };
+      const map = { ArrowUp: "?", ArrowDown: "?", ArrowLeft: "?", ArrowRight: "?" };
       ctx.fillStyle = "white"; ctx.font = "20px Arial";
       if (state.timer > 0 && state.playerSeq.length === 0) {
         ctx.fillText(state.sequence.map(k => map[k]).join(" "), cx, cy + 20);
@@ -979,7 +1185,7 @@ const MINIGAMES = [
   },
   {
     name: "Stop (Reflexe)",
-    desc: "Appuie sur [ESPACE] dès que le rond devient VERT.",
+    desc: "Appuie sur [ESPACE] d�s que le rond devient VERT.",
     init: (state) => { state.timer = 60 + Math.random() * 120; state.target = 0; },
     update: (state, keys) => {
       state.timer--;
@@ -1020,117 +1226,236 @@ const MINIGAMES = [
     }
   },
   {
-    name: "Combat (Baston)",
-    desc: "BATS ton adversaire ! DÉPLACEMENT: Gauche/Droite, ATTAQUE: Espace",
+    name: "Combat (Duel tactique)",
+    desc: "GAUCHE/DROITE: bouger | BAS: garde | ESPACE: frapper au bon timing",
     init: (state) => {
-      state.p_hp = 100; state.x = 20; state.isAttacking = 0;
-      state.e_hp = 100; state.ex = 80; state.eAtk = 0; state.eTimer = 0;
+      state.p_hp = 120;
+      state.e_hp = 120;
+      state.x = 16;
+      state.ex = 84;
+      state.guard = 0;
+      state.attackWindup = 0;
+      state.attackCooldown = 0;
+      state.enemyIntent = "advance";
+      state.enemyIntentTimer = 0;
+      state.enemyAttackTimer = 0;
+      state.enemyHitDone = false;
+      state.enemyDecisionCooldown = 28;
+      state.hitFlash = 0;
+      state.timer = 0;
     },
     update: (state, keys) => {
-      if (state.p_hp <= 0) return false; // Perdu, mais on continue jusqu'à l'abandon ? Non, on reset ?
+      state.timer += 1;
+      if (state.hitFlash > 0) state.hitFlash -= 1;
 
-      // Mouvement joueur
-      if (keys["ArrowLeft"] || keys["a"]) state.x = Math.max(0, state.x - 2);
-      if (keys["ArrowRight"] || keys["d"]) state.x = Math.min(state.ex - 15, state.x + 2);
+      const left = keys["ArrowLeft"] || keys["a"];
+      const right = keys["ArrowRight"] || keys["d"];
+      const guarding = keys["ArrowDown"] || keys["s"];
+      if (left) state.x = Math.max(0, state.x - 1.45);
+      if (right) state.x = Math.min(90, state.x + 1.45);
+      state.guard = guarding ? Math.min(16, state.guard + 2) : Math.max(0, state.guard - 1);
 
-      // Attaque joueur
-      if (state.isAttacking > 0) state.isAttacking--;
-      if (keys[" "] && state.isAttacking === 0) {
+      if (state.attackCooldown > 0) state.attackCooldown -= 1;
+      if (state.attackWindup > 0) {
+        state.attackWindup -= 1;
+        if (state.attackWindup === 4 && Math.abs(state.x - state.ex) < 22) {
+          state.e_hp = Math.max(0, state.e_hp - 16);
+          state.hitFlash = 8;
+        }
+      }
+      if (keys[" "] && state.attackCooldown === 0 && state.attackWindup === 0) {
         keys[" "] = false;
-        state.isAttacking = 15;
-        if (Math.abs(state.x - state.ex) < 30) state.e_hp -= 15;
+        state.attackWindup = 14;
+        state.attackCooldown = 24;
       }
 
-      // IA Ennemi
-      if (state.eAtk > 0) state.eAtk--;
-      if (state.x < state.ex - 20) state.ex -= 1.5;
-      else if (state.eAtk === 0 && Math.random() < 0.05) {
-        state.eAtk = 20; // Ennemi attaque
-        if (Math.abs(state.x - state.ex) < 30) state.p_hp -= 10;
-      }
+      const dist = state.ex - state.x;
 
-      return state.e_hp <= 0; // Gagné
-    },
-    draw: (ctx, state, cx, cy) => {
-      // Arène
-      ctx.fillStyle = "#222"; ctx.fillRect(cx - 70, cy + 10, 140, 5);
+      if (state.enemyIntentTimer > 0) {
+        state.enemyIntentTimer -= 1;
+        if (state.enemyIntentTimer === 0) {
+          state.enemyAttackTimer = state.enemyIntent === "dash" ? 20 : 14;
+          state.enemyHitDone = false;
+        }
+      } else if (state.enemyAttackTimer > 0) {
+        state.enemyAttackTimer -= 1;
+        if (state.enemyIntent === "dash") state.ex = Math.max(state.x + 8, state.ex - 1.25);
+        if (!state.enemyHitDone && state.enemyAttackTimer <= 8 && Math.abs(state.ex - state.x) < 24) {
+          const base = state.enemyIntent === "dash" ? 14 : 10;
+          const mitigated = state.guard > 2 ? Math.floor(base * 0.45) : base;
+          state.p_hp = Math.max(0, state.p_hp - mitigated);
+          state.enemyHitDone = true;
+          state.hitFlash = 8;
+        }
+        if (state.enemyAttackTimer === 0) {
+          state.enemyDecisionCooldown = 28;
+          state.enemyIntent = "advance";
+        }
+      } else {
+        if (dist > 26) {
+          state.ex -= 1.0;
+        } else if (dist < 12) {
+          state.ex += 0.45;
+        }
+        state.ex = Math.max(state.x + 8, Math.min(96, state.ex));
 
-      // HPs
-      ctx.fillStyle = "red"; ctx.fillRect(cx - 70, cy - 30, state.p_hp * 0.5, 5);
-      ctx.fillStyle = "blue"; ctx.fillRect(cx + 20, cy - 30, state.e_hp * 0.5, 5);
-
-      // Joueur (Rouge)
-      ctx.fillStyle = state.isAttacking > 0 ? "yellow" : "red";
-      ctx.fillRect(cx - 70 + state.x, cy - 10, 15, 20);
-      if (state.isAttacking > 5) {
-        ctx.fillStyle = "white"; ctx.fillRect(cx - 70 + state.x + 15, cy - 5, 15, 5); // Punch
-      }
-
-      // Ennemi (Bleu)
-      ctx.fillStyle = state.eAtk > 0 ? "cyan" : "blue";
-      ctx.fillRect(cx - 70 + state.ex, cy - 10, 15, 20);
-      if (state.eAtk > 5) {
-        ctx.fillStyle = "white"; ctx.fillRect(cx - 70 + state.ex - 15, cy - 5, 15, 5); // Punch
-      }
-    }
-  },
-  {
-    name: "Plateforme (Saut)",
-    desc: "Saute par-dessus les trous avec [ESPACE].",
-    init: (state) => {
-      state.y = 0; state.vy = 0; state.x = 20; state.timer = 0;
-      state.holes = [{ x: 100, w: 30 }, { x: 200, w: 40 }, { x: 350, w: 30 }];
-      state.dist = 0;
-    },
-    update: (state, keys) => {
-      // Gravité
-      state.vy += 1;
-      state.y += state.vy;
-      if (state.y > 0) { state.y = 0; state.vy = 0; }
-
-      // Saut
-      if (keys[" "] && state.y === 0) {
-        keys[" "] = false;
-        state.vy = -12;
-      }
-
-      // Avancer
-      state.dist += 3;
-
-      // Trous
-      let inHole = false;
-      for (let h of state.holes) {
-        if (state.dist + state.x > h.x && state.dist + state.x < h.x + h.w) inHole = true;
-      }
-
-      if (inHole && state.y === 0) {
-        // Tombe
-        state.y = 50;
-        state.dist -= 50; // Recule un peu (pénalité)
-      }
-
-      return state.dist > 450; // Arrivé au bout
-    },
-    draw: (ctx, state, cx, cy) => {
-      ctx.fillStyle = "#333"; ctx.fillRect(cx - 100, cy + 20, 200, 10); // Sol de base
-
-      ctx.fillStyle = "#000"; // Dessiner les trous
-      for (let h of state.holes) {
-        let hx = cx - 100 + h.x - state.dist;
-        if (hx > cx - 100 && hx < cx + 100) {
-          ctx.fillRect(hx, cy + 20, h.w, 10);
+        state.enemyDecisionCooldown -= 1;
+        if (state.enemyDecisionCooldown <= 0 && dist < 34) {
+          state.enemyIntent = Math.random() < 0.35 ? "dash" : "jab";
+          state.enemyIntentTimer = state.enemyIntent === "dash" ? 30 : 24;
+          state.enemyDecisionCooldown = 30;
         }
       }
 
-      // Joueur
-      ctx.fillStyle = "#0f0";
-      ctx.fillRect(cx - 100 + state.x, cy + 5 + state.y, 15, 15);
+      return state.e_hp <= 0;
+    },
+    draw: (ctx, state, cx, cy) => {
+      ctx.fillStyle = "#141a24";
+      ctx.fillRect(cx - 155, cy - 18, 310, 82);
+      ctx.fillStyle = "#28384d";
+      ctx.fillRect(cx - 155, cy + 52, 310, 8);
 
-      // Arrivée
-      let finishX = cx - 100 + 450 - state.dist;
-      if (finishX < cx + 100) {
-        ctx.fillStyle = "white";
-        ctx.fillRect(finishX, cy - 10, 10, 40);
+      ctx.fillStyle = "#991f2e";
+      ctx.fillRect(cx - 148, cy - 56, Math.max(0, state.p_hp) * 1.1, 8);
+      ctx.fillStyle = "#2f82d6";
+      ctx.fillRect(cx + 16, cy - 56, Math.max(0, state.e_hp) * 1.1, 8);
+
+      const playerX = cx - 140 + state.x * 2.5;
+      const enemyX = cx - 140 + state.ex * 2.5;
+
+      ctx.fillStyle = state.guard > 2 ? "#ffd166" : "#ff6b6b";
+      ctx.fillRect(playerX, cy + 12, 18, 28);
+      if (state.attackWindup > 2) {
+        ctx.fillStyle = "#fff1a8";
+        ctx.fillRect(playerX + 16, cy + 18, 14, 6);
+      }
+
+      if (state.enemyIntentTimer > 0) {
+        ctx.fillStyle = "#f59e0b";
+      } else if (state.enemyAttackTimer > 0) {
+        ctx.fillStyle = "#67e8f9";
+      } else {
+        ctx.fillStyle = "#5fa8ff";
+      }
+      ctx.fillRect(enemyX, cy + 12, 18, 28);
+      if (state.enemyAttackTimer > 4) {
+        ctx.fillStyle = "#dff6ff";
+        ctx.fillRect(enemyX - 12, cy + 18, 12, 6);
+      }
+
+      if (state.hitFlash > 0) {
+        ctx.strokeStyle = "rgba(255,255,255,0.8)";
+        ctx.strokeRect(cx - 155.5, cy - 18.5, 311, 83);
+      }
+
+      ctx.fillStyle = "#c6def5";
+      ctx.font = "12px Segoe UI";
+      const intentLabel = state.enemyIntentTimer > 0 ? `Adversaire prepare: ${state.enemyIntent}` : "";
+      if (intentLabel) ctx.fillText(intentLabel, cx - 72, cy + 74);
+    }
+  },
+  {
+    name: "Plateforme (Parcours)",
+    desc: "ESPACE: sauter | Traverse le secteur sans tomber dans les zones a risque.",
+    init: (state) => {
+      state.y = 0;
+      state.vy = 0;
+      state.runnerX = 26;
+      state.playerW = 14;
+      state.distance = 0;
+      state.speed = 2.1;
+      state.goal = 760;
+      state.failFlash = 0;
+
+      state.obstacles = [];
+      let cursor = 120;
+      while (cursor < state.goal - 80) {
+        if (Math.random() < 0.55) {
+          const w = 26 + Math.floor(Math.random() * 18);
+          state.obstacles.push({ x: cursor, w, type: "gap" });
+          cursor += 80 + Math.floor(Math.random() * 40);
+        } else {
+          const w = 18 + Math.floor(Math.random() * 12);
+          state.obstacles.push({ x: cursor, w, type: "crate" });
+          cursor += 70 + Math.floor(Math.random() * 36);
+        }
+      }
+    },
+    update: (state, keys) => {
+      state.speed = Math.min(2.8, state.speed + 0.0008);
+      if (state.failFlash > 0) state.failFlash -= 1;
+
+      state.vy += 0.82;
+      state.y += state.vy;
+      if (state.y > 0) { state.y = 0; state.vy = 0; }
+
+      if (keys[" "] && state.y === 0) {
+        keys[" "] = false;
+        state.vy = -9.8;
+      }
+
+      state.distance += state.speed;
+      const front = state.distance + state.runnerX + state.playerW;
+      const back = state.distance + state.runnerX;
+
+      for (const obs of state.obstacles) {
+        const overlaps = front > obs.x && back < obs.x + obs.w;
+        if (!overlaps) continue;
+
+        if (obs.type === "gap" && state.y === 0) {
+          state.distance = Math.max(0, state.distance - 42);
+          state.failFlash = 24;
+          break;
+        }
+        if (obs.type === "crate" && state.y > -6) {
+          state.distance = Math.max(0, state.distance - 34);
+          state.y = -4;
+          state.vy = -3;
+          state.failFlash = 24;
+          break;
+        }
+      }
+
+      return state.distance >= state.goal;
+    },
+    draw: (ctx, state, cx, cy) => {
+      ctx.fillStyle = "#10202a";
+      ctx.fillRect(cx - 170, cy - 30, 340, 110);
+      ctx.fillStyle = "#244458";
+      ctx.fillRect(cx - 170, cy + 54, 340, 10);
+
+      for (const obs of state.obstacles) {
+        const ox = cx - 170 + obs.x - state.distance;
+        if (ox < cx - 180 || ox > cx + 180) continue;
+        if (obs.type === "gap") {
+          ctx.fillStyle = "#04070b";
+          ctx.fillRect(ox, cy + 54, obs.w, 10);
+          ctx.strokeStyle = "#58a6c9";
+          ctx.strokeRect(ox, cy + 54.5, obs.w, 9);
+        } else {
+          ctx.fillStyle = "#b08968";
+          ctx.fillRect(ox, cy + 36, obs.w, 18);
+        }
+      }
+
+      const px = cx - 170 + state.runnerX;
+      const py = cy + 38 + state.y;
+      ctx.fillStyle = "#75f79c";
+      ctx.fillRect(px, py, state.playerW, 16);
+
+      const finishX = cx - 170 + state.goal - state.distance;
+      ctx.fillStyle = "#ffffff";
+      if (finishX < cx + 180) ctx.fillRect(finishX, cy + 20, 6, 34);
+
+      ctx.fillStyle = "#d7e7f6";
+      ctx.fillRect(cx - 170, cy + 76, 340, 6);
+      ctx.fillStyle = "#52d3a5";
+      ctx.fillRect(cx - 170, cy + 76, Math.max(0, Math.min(340, (state.distance / state.goal) * 340)), 6);
+
+      if (state.failFlash > 0) {
+        ctx.fillStyle = "#ffd166";
+        ctx.font = "12px Segoe UI";
+        ctx.fillText("Observe les obstacles et garde ton rythme", cx - 92, cy - 8);
       }
     }
   },
@@ -1162,7 +1487,7 @@ const MINIGAMES = [
           state.score++;
           state.cx = Math.random() * 80 + 10;
           state.cy = Math.random() * 80 + 10;
-          state.tdx = (Math.random() < 0.5 ? 1 : -1) * (2 + state.score); // s'accélère
+          state.tdx = (Math.random() < 0.5 ? 1 : -1) * (2 + state.score); // s'acc�l�re
           state.tdy = (Math.random() < 0.5 ? 1 : -1) * (2 + state.score);
         }
       }
@@ -1215,7 +1540,7 @@ const MINIGAMES = [
       return state.score >= 5;
     },
     draw: (ctx, state, cx, cy) => {
-      const map = { ArrowUp: "▲", ArrowDown: "▼", ArrowLeft: "◄", ArrowRight: "►" };
+      const map = { ArrowUp: "?", ArrowDown: "?", ArrowLeft: "?", ArrowRight: "?" };
       ctx.fillStyle = "#2196f3";
       ctx.font = "bold 40px Arial";
       ctx.fillText(map[state.target], cx, cy + 20);
@@ -1225,32 +1550,114 @@ const MINIGAMES = [
     }
   },
   {
-    name: "Math (Calcul)",
-    desc: "Resous le calcul: A + B = ?",
+    name: "Math (Terminal multi-etapes)",
+    desc: "GAUCHE/DROITE: choisir | ESPACE: valider | Reussis 3 etapes",
     init: (state) => {
-      state.a = randomInt(() => Math.random(), 1, 9);
-      state.b = randomInt(() => Math.random(), 1, 9);
-      state.ans = state.a + state.b;
-      state.options = [state.ans, state.ans + 1, state.ans - 1].sort(() => Math.random() - 0.5);
+      const buildRound = () => {
+        const mode = Math.floor(Math.random() * 3);
+        if (mode === 0) {
+          const a = randomInt(() => Math.random(), 2, 9);
+          const b = randomInt(() => Math.random(), 1, 9);
+          return { expr: String(a) + " + " + String(b), ans: a + b };
+        }
+        if (mode === 1) {
+          const a = randomInt(() => Math.random(), 5, 12);
+          const b = randomInt(() => Math.random(), 1, 6);
+          return { expr: String(a) + " - " + String(b), ans: a - b };
+        }
+        const a = randomInt(() => Math.random(), 2, 6);
+        const b = randomInt(() => Math.random(), 2, 5);
+        return { expr: String(a) + " x " + String(b), ans: a * b };
+      };
+
+      state.rounds = Array.from({ length: 3 }, () => buildRound());
+      state.round = 0;
+      state.score = 0;
+      state.strikes = 0;
       state.selected = 0;
+      state.flash = 0;
+
+      const fillOptions = () => {
+        const current = state.rounds[state.round];
+        const wrong1 = current.ans + (Math.random() < 0.5 ? -1 : 1) * randomInt(() => Math.random(), 1, 3);
+        const wrong2 = current.ans + (Math.random() < 0.5 ? -1 : 1) * randomInt(() => Math.random(), 2, 5);
+        const wrong3 = current.ans + (Math.random() < 0.5 ? -1 : 1) * randomInt(() => Math.random(), 3, 6);
+        state.options = [current.ans, wrong1, wrong2, wrong3]
+          .map((v) => Math.max(0, v))
+          .filter((v, i, arr) => arr.indexOf(v) === i);
+        while (state.options.length < 4) state.options.push(current.ans + state.options.length + 2);
+        state.options = state.options.sort(() => Math.random() - 0.5);
+        state.selected = 0;
+      };
+
+      state.prepareRound = fillOptions;
+      state.prepareRound();
     },
     update: (state, keys) => {
-      if (keys["ArrowLeft"] || keys["a"]) { keys["ArrowLeft"] = false; keys["a"] = false; state.selected = (state.selected + 2) % 3; }
-      if (keys["ArrowRight"] || keys["d"]) { keys["ArrowRight"] = false; keys["d"] = false; state.selected = (state.selected + 1) % 3; }
+      if (state.flash > 0) state.flash -= 1;
+
+      if (keys["ArrowLeft"] || keys["a"]) {
+        keys["ArrowLeft"] = false;
+        keys["a"] = false;
+        state.selected = (state.selected + state.options.length - 1) % state.options.length;
+      }
+      if (keys["ArrowRight"] || keys["d"]) {
+        keys["ArrowRight"] = false;
+        keys["d"] = false;
+        state.selected = (state.selected + 1) % state.options.length;
+      }
+
       if (keys[" "]) {
         keys[" "] = false;
-        return state.options[state.selected] === state.ans;
+        const current = state.rounds[state.round];
+        const chosen = state.options[state.selected];
+
+        if (chosen === current.ans) {
+          state.score += 1;
+          state.round += 1;
+          state.flash = 12;
+          if (state.round >= state.rounds.length) return true;
+          state.prepareRound();
+        } else {
+          state.strikes += 1;
+          state.flash = 12;
+          if (state.strikes >= 2) {
+            state.strikes = 0;
+            state.round = Math.max(0, state.round - 1);
+          }
+          state.prepareRound();
+        }
       }
       return false;
     },
     draw: (ctx, state, cx, cy) => {
-      ctx.fillStyle = "white";
-      ctx.font = "24px Arial";
-      ctx.fillText(`${state.a} + ${state.b} = ?`, cx, cy - 10);
+      const current = state.rounds[state.round] || state.rounds[state.rounds.length - 1];
+      ctx.fillStyle = "#15283b";
+      ctx.fillRect(cx - 155, cy - 38, 310, 118);
+      ctx.strokeStyle = state.flash > 0 ? "#7fe6c0" : "#3f6688";
+      ctx.strokeRect(cx - 154.5, cy - 37.5, 309, 117);
+
+      ctx.fillStyle = "#d8ecff";
+      ctx.font = "15px Segoe UI";
+      ctx.fillText("Etape " + String(Math.min(state.round + 1, 3)) + " / 3", cx, cy - 16);
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 26px Segoe UI";
+      ctx.fillText(String(current.expr) + " = ?", cx, cy + 14);
+
       state.options.forEach((opt, idx) => {
-        ctx.fillStyle = state.selected === idx ? "#4caf50" : "#aaa";
-        ctx.fillText(opt, cx - 60 + idx * 60, cy + 30);
+        const bx = cx - 132 + idx * 66;
+        const by = cy + 30;
+        ctx.fillStyle = state.selected === idx ? "#4caf50" : "#2d4d66";
+        ctx.fillRect(bx, by, 56, 28);
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 16px Segoe UI";
+        ctx.fillText(String(opt), bx + 28, by + 19);
       });
+
+      ctx.fillStyle = "#f6d365";
+      ctx.font = "13px Segoe UI";
+      ctx.fillText("Erreurs: " + String(state.strikes) + "/2", cx - 98, cy + 74);
+      ctx.fillText("Validation: " + String(state.score) + "/3", cx + 70, cy + 74);
     }
   }
 ];
@@ -1263,18 +1670,109 @@ function startNpcChat(personaId) {
   checkAutoGreeting(personaId);
 }
 
-function startMiniGame(type, onSuccess) {
+function buildMiniGameBrief(type, options = {}) {
+  const sceneText = normalizeText((safeText(state.levelData?.theme) + " " + safeText(state.levelData?.narrative?.context)).trim());
+  const personaName = safeText(options.personaName) || "Conseiller";
+  const zoneName = safeText(options.zoneName) || "secteur";
+  const gameName = MINIGAMES[type]?.name || "Epreuve";
+
+  let contextTitle = gameName;
+  let contextHint = "Observe bien les consignes, puis agis calmement.";
+
+  if (type === 8) {
+    contextTitle = /justice|securite|police|crise/.test(sceneText) ? "Intervention de crise" : "Simulation de duel";
+    contextHint = "Lis les controles, garde tes distances et frappe au bon moment.";
+  } else if (type === 9) {
+    contextTitle = /nature|foret|village|mine/.test(sceneText) ? "Traversee du terrain" : "Parcours de mobilite";
+    contextHint = "Observe les obstacles avant de sauter. Le rythme est plus important que la vitesse.";
+  } else if (type === 12) {
+    contextTitle = /lab|tech|ia|data|terminal/.test(sceneText) ? "Calibration du terminal" : "Verification logique";
+    contextHint = "Choisis calmement la bonne reponse pour valider le module.";
+  } else if (type === 3 || type === 11) {
+    contextTitle = "Synchronisation tactique";
+    contextHint = "Mets le focus sur les signaux visuels et reponds sans te precipiter.";
+  }
+
+  const resumeLabel = personaName + " - " + zoneName;
+  return { contextTitle, contextHint, resumeLabel };
+}
+
+function resetMiniGameSession() {
+  minigameState.active = false;
+  minigameState.onComplete = null;
+  minigameState.onFail = null;
+  minigameState.frameCount = 0;
+  minigameState.maxFrames = 0;
+  minigameState.phase = "intro";
+  minigameState.introFrames = 0;
+  minigameState.contextTitle = "";
+  minigameState.contextHint = "";
+  minigameState.resumeLabel = "";
+}
+
+function minigameLoseCondition() {
+  // Combat arcade loss: player HP reached zero.
+  if (minigameState.type === 8 && Number.isFinite(minigameState.p_hp)) {
+    return minigameState.p_hp <= 0;
+  }
+  return false;
+}
+
+function failMiniGame(reason = "failed") {
+  if (!minigameState.active) return;
+  playSound("mg_lose");
+  const onFail = minigameState.onFail;
+  resetMiniGameSession();
+  state.isLocked = false;
+  if (typeof onFail === "function") {
+    onFail(reason);
+    return;
+  }
+  addMessage(
+    "system",
+    "[SYSTEME] Mini-jeu non valide. Reessaie en reparlant au personnage ou au terminal.",
+    state.currentChatTarget,
+    true,
+  );
+}
+
+function startMiniGame(type, onSuccess, onFail = null, options = {}) {
   playSound("mg_start");
   state.isLocked = true;
   minigameState.active = true;
-  minigameState.type = (type !== undefined ? type : Math.floor(Math.random() * MINIGAMES.length)) % MINIGAMES.length;
+  const enabledIds = MINIGAMES
+    .map((_, i) => i)
+    .filter((i) => !DISABLED_MINIGAME_IDS.has(i));
+  const randomType = enabledIds.length ? enabledIds[Math.floor(Math.random() * enabledIds.length)] : 0;
+  minigameState.type = (type !== undefined ? type : randomType) % MINIGAMES.length;
+  if (DISABLED_MINIGAME_IDS.has(minigameState.type)) minigameState.type = randomType;
+  minigameState.frameCount = 0;
+  minigameState.maxFrames = Number.isFinite(options.maxFrames) ? options.maxFrames : MINIGAME_DEFAULT_MAX_FRAMES;
+  minigameState.onFail = onFail;
+  minigameState.phase = "intro";
+  minigameState.introFrames = Number.isFinite(options.introFrames) ? options.introFrames : MINIGAME_INTRO_FRAMES;
+  minigameState.allowSkipIntro = options.allowSkipIntro !== false;
+
+  const brief = buildMiniGameBrief(minigameState.type, options);
+  minigameState.contextTitle = brief.contextTitle;
+  minigameState.contextHint = brief.contextHint;
+  minigameState.resumeLabel = brief.resumeLabel;
+
+  if (!state.sceneProgress.miniGamesWon) state.sceneProgress.miniGamesWon = {};
   minigameState.onComplete = () => {
     playSound("mg_win");
     state.isLocked = false;
-    minigameState.active = false;
+    const wonType = minigameState.type;
+    resetMiniGameSession();
+    state.sceneProgress.miniGamesWon[wonType] = true;
     if (onSuccess) onSuccess();
   };
+
   MINIGAMES[minigameState.type].init(minigameState);
+
+  // Prevent the intro screen from being skipped instantly by key carry-over.
+  state.input.keys[" "] = false;
+  state.input.keys.Space = false;
 }
 
 function interactionLabel(entity) {
@@ -1674,8 +2172,17 @@ function tryUseFastTrackCommand(inputText) {
   const isFastTrack = normalized === "trancher" || normalized.startsWith("trancher ");
   if (!isFastTrack) return false;
 
-  if (isTutorialActive() && !tutorialCanUseAltar()) {
-    addMessage("system", "[SYSTEME] Tutoriel: valide d'abord le vote a l'autel.", state.currentChatTarget, true);
+  if (isTutorialActive()) {
+    addMessage("system", "[SYSTEME] Tutoriel: commande /trancher desactivee jusqu'a la fin du niveau.", state.currentChatTarget, true);
+    return true;
+  }
+  if (!allDebateNpcsTalked()) {
+    const missing = listUntalkedDebateNpcNames().join(", ");
+    addMessage("system", `[SYSTEME] /trancher bloque: consulte d'abord tous les conseillers (${missing}).`, state.currentChatTarget, true);
+    return true;
+  }
+  if (sceneNeedsTerminalPuzzle() && !state.sceneProgress.terminalPuzzleSolved) {
+    addMessage("system", "[SYSTEME] /trancher bloque: puzzle du terminal non resolu sur le level 0.", state.currentChatTarget, true);
     return true;
   }
   if (state.meta.fastTrackCharges <= 0) {
@@ -1696,41 +2203,42 @@ function tryUseFastTrackCommand(inputText) {
   updateObjectiveInfo();
   return true;
 }
-
 function updateObjectiveInfo() {
   if (!uiObjective) return;
   const p = state.sceneProgress;
-  const npcs = state.entities.filter(e => e.type === "npc" && !e.removed);
-  const talkedTotal = npcs.filter(e => e.talkedTo).length;
+  const npcs = getDebateNpcs();
+  const talkedTotal = npcs.filter((e) => e.talkedTo).length;
   const targetTotal = npcs.length;
 
   const lockText = state.hasVoted ? "PORTE: OUVERTE" : "PORTE: VERROUILLEE";
-  const turns = `Debat ${p.userTurns}/${p.forceDecisionTurns}`;
-  const quest = `Conseillers: ${talkedTotal}/${targetTotal}`;
+  const turns = "Debat " + p.userTurns + "/" + p.forceDecisionTurns;
+  const quest = "Conseillers: " + talkedTotal + "/" + targetTotal;
   const tutorialLabel = safeText(TUTORIAL_STEPS[state.tutorial.step]);
-  const tutorialShort = tutorialLabel.length > 56 ? `${tutorialLabel.slice(0, 56)}...` : tutorialLabel;
+  const tutorialShort = tutorialLabel.length > 56 ? tutorialLabel.slice(0, 56) + "..." : tutorialLabel;
   const targetText = isTutorialActive()
-    ? `Tutoriel ${state.tutorial.step + 1}/${TUTORIAL_STEPS.length}: ${tutorialShort}`
+    ? "Tutoriel " + (state.tutorial.step + 1) + "/" + TUTORIAL_STEPS.length + ": " + tutorialShort
     : state.hasVoted
       ? "Passe au nord"
-      : talkedTotal < targetTotal ? `Parle à tous (${talkedTotal}/${targetTotal})` : "Vote a l'autel ou tranche dans le chat";
+      : sceneNeedsTerminalPuzzle() && !state.sceneProgress.terminalPuzzleSolved
+        ? "Level 0: resols le puzzle du terminal avant le vote"
+        : talkedTotal < targetTotal
+          ? "Parle a tous (" + talkedTotal + "/" + targetTotal + ")"
+          : "Vote a l'autel ou tranche dans le chat";
 
-  uiObjective.textContent = `${turns} | ${quest} | ${lockText} | ${targetText}`;
+  uiObjective.textContent = turns + " | " + quest + " | " + lockText + " | " + targetText;
 
-  // Update Quest Tracker
   const tracker = document.getElementById("quest-tracker");
   if (tracker) {
     let html = "<b>CONSEILLERS:</b><br>";
-    npcs.forEach(npc => {
+    npcs.forEach((npc) => {
       const persona = state.currentPersonas[npc.personaId] || state.personas[npc.personaId];
       const name = persona?.name || npc.personaId;
-      const check = npc.talkedTo ? "✅" : "❌";
-      html += `${check} ${name}<br>`;
+      const check = npc.talkedTo ? "[OK]" : "[ ]";
+      html += check + " " + name + "<br>";
     });
     tracker.innerHTML = html;
   }
 }
-
 function setChatTarget(personaId) {
   state.currentChatTarget = personaId;
   const persona = state.currentPersonas[personaId] || state.personas[personaId];
@@ -2241,7 +2749,7 @@ function createProceduralAssets() {
 function mergeHighFiAssets(assetsHash) {
   const sheets = state.assets.sheets || {};
 
-  // Helper: extract a 32×32 sprite from a sheet image
+  // Helper: extract a 32�32 sprite from a sheet image
   const extractSprite = (sheet, index) => {
     if (!sheet) return null;
     const c = document.createElement("canvas");
@@ -2376,6 +2884,20 @@ async function createAssets() {
       waterSheet: decoWater
     };
 
+    const [hybridSpaceBuildings, hybridMixedProps] = await Promise.all([
+      Promise.all(HYBRID_SPACE_BUILDINGS.map((name) =>
+        loadImage("./assets/buildings_space/" + name).catch(() => null)
+      )),
+      Promise.all(HYBRID_MIXED_PROPS.map((name) =>
+        loadImage("./assets/vehicles_mixed/" + name).catch(() => null)
+      )),
+    ]);
+
+    state.assets.hybrid = {
+      spaceBuildings: hybridSpaceBuildings.filter(Boolean),
+      mixedProps: hybridMixedProps.filter(Boolean),
+    };
+
     rebuildThemeTiles();
     mergeHighFiAssets();
     applyThemeAssets("nature");
@@ -2383,32 +2905,63 @@ async function createAssets() {
   } catch (err) {
     console.warn("[ASSETS] External assets unavailable, using procedural fallback:", err.message || err);
     createProceduralAssets();
+    if (!state.assets.npc_ambient) state.assets.npc_ambient = generateSprite("npc", { "1": "#37474f", "2": "#607d8b", "3": "#b0bec5", "4": "#1f2a30" });
   }
 }
 
-function spawnAmbientNPCs(zoneName) {
-  // Spawn 1 ambient non-interactable NPC per level zone based on current theme
-  const zoneTheme = state.world.zoneNames?.[0] || state.currentTheme;
-  const set = state.assets.themeTiles?.[zoneTheme] || state.assets;
+function spawnAmbientNPCs() {
+  state.entities = state.entities.filter((e) => !e.isAmbient);
 
-  if (set.npc_1) {
-    const rx = randomInt(createSeededRandom(Date.now()), 2, state.world.w - 3);
-    const ry = randomInt(createSeededRandom(Date.now() + 1), 2, state.world.h - 3);
-    const npcEnt = {
-      type: "npc",
-      x: rx,
-      y: ry,
-      dir: "down",
-      asset: "npc_1", // Use the ambient theme sprite
-      isAmbient: true,
-      removed: false,
-      blocking: true, // They block movement but aren't interactable
-      interact: () => {
-        addMessage("system", "[SYSTEME] Cet individu semble occupé...", state.currentChatTarget, true);
+  const zones = Array.isArray(state.world.zones) && state.world.zones.length
+    ? state.world.zones
+    : [{ name: "Couloir", theme: state.currentTheme, rect: [0.1, 0.1, 0.9, 0.9] }];
+
+  const rng = createSeededRandom(hashStringSeed(safeText(state.currentSceneId) + "|ambient"));
+
+  zones.forEach((zone, zoneIndex) => {
+    const x0 = Math.max(2, Math.floor(zone.rect[0] * state.world.w) + 1);
+    const y0 = Math.max(2, Math.floor(zone.rect[1] * state.world.h) + 1);
+    const x1 = Math.min(state.world.w - 3, Math.floor(zone.rect[2] * state.world.w) - 1);
+    const y1 = Math.min(state.world.h - 3, Math.floor(zone.rect[3] * state.world.h) - 1);
+    if (x1 <= x0 || y1 <= y0) return;
+
+    const area = (x1 - x0 + 1) * (y1 - y0 + 1);
+    const crowdFactor = area > 110 ? 2 : 1;
+    const count = Math.max(1, Math.min(AMBIENT_NPCS_PER_ZONE, crowdFactor));
+
+    for (let i = 0; i < count; i += 1) {
+      let placed = null;
+      for (let attempt = 0; attempt < 28; attempt += 1) {
+        const rx = randomInt(rng, x0, x1);
+        const ry = randomInt(rng, y0, y1);
+        if (!worldInBounds(rx, ry)) continue;
+        if (state.world.tiles[ry]?.[rx] === 1) continue;
+        if (Math.abs(rx - state.player.x) < 3 && Math.abs(ry - state.player.y) < 2) continue;
+        if (state.entities.some((e) => !e.removed && e.x === rx && e.y === ry)) continue;
+        placed = { x: rx, y: ry };
+        break;
       }
-    };
-    state.entities.push(npcEnt);
-  }
+      if (!placed) continue;
+
+      const archetype = AMBIENT_NPC_ARCHETYPES[(zoneIndex + i) % AMBIENT_NPC_ARCHETYPES.length];
+      const dirs = ["down", "left", "right", "up"];
+      state.entities.push({
+        type: "npc",
+        x: placed.x,
+        y: placed.y,
+        pixelX: placed.x * TILE_SIZE,
+        pixelY: placed.y * TILE_SIZE,
+        dir: dirs[Math.floor(rng() * dirs.length)],
+        asset: archetype,
+        personaId: archetype,
+        isAmbient: true,
+        nonRequired: true,
+        blocking: false,
+        allowedRect: zone.rect,
+        ai: { nextMove: Date.now() + 400 + Math.floor(rng() * 2500), state: "idle" },
+      });
+    }
+  });
 }
 
 function showPlayerSelection() {
@@ -2489,12 +3042,41 @@ function resolveExitById(exitId) {
   return exits.find((e) => normalizeText(e.id).toUpperCase() === normalized) || exits[0];
 }
 
+function getDebateNpcs() {
+  return state.entities.filter((e) => e.type === "npc" && !e.removed && !e.nonRequired);
+}
+
+function getUntalkedDebateNpcs() {
+  return getDebateNpcs().filter((e) => !e.talkedTo);
+}
+
+function allDebateNpcsTalked() {
+  if (isTutorialActive()) return true;
+  const npcs = getDebateNpcs();
+  return npcs.length > 0 && npcs.every((e) => !!e.talkedTo);
+}
+
+function listUntalkedDebateNpcNames() {
+  return getUntalkedDebateNpcs().map((e) => state.currentPersonas[e.personaId]?.name || e.personaId);
+}
+
+function sceneNeedsTerminalPuzzle() {
+  return state.currentSceneId === LEVEL_TEST_ID;
+}
+
+function hasMinimalJustification(text) {
+  const cleaned = safeText(text).replace(/\s+/g, " ").trim();
+  if (!cleaned) return false;
+  const words = cleaned.split(" ").filter(Boolean);
+  return cleaned.length >= 24 && words.length >= 5;
+}
+
 function chooseExitHeuristically(text) {
   const exits = Array.isArray(state.levelData?.exits) ? state.levelData.exits : [];
   if (!exits.length) return null;
-  const source = `${safeText(text)} ${state.globalHistory
+  const source = safeText(text) + " " + state.globalHistory
     .filter((h) => h.sceneId === state.currentSceneId && h.role === "user")
-    .map((h) => h.content).join(" ")}`;
+    .map((h) => h.content).join(" ");
   const sourceNorm = normalizeText(source);
   const explicit = exits.find((e) => sourceNorm.includes(normalizeText(e.id)));
   if (explicit) return explicit.id;
@@ -2502,7 +3084,7 @@ function chooseExitHeuristically(text) {
   let best = exits[0];
   let bestScore = -1;
   for (const e of exits) {
-    const score = overlapScore(source, `${safeText(e.id)} ${safeText(e.description)}`);
+    const score = overlapScore(source, safeText(e.id) + " " + safeText(e.description));
     if (score > bestScore) {
       bestScore = score;
       best = e;
@@ -2511,33 +3093,89 @@ function chooseExitHeuristically(text) {
   return best?.id || exits[0].id;
 }
 
-function maybeUnlockDoorByProgress(reason = "AUTO") {
-  if (state.hasVoted) return false;
-  if (isTutorialActive() && !tutorialCanUseAltar()) return false;
-  const p = state.sceneProgress;
-  const enoughInsights = p.insightsCollected >= p.insightsRequired;
-  const enoughTurns = p.userTurns >= 4;
+function getContextualMinigamePoolFromText(rawText) {
+  const text = normalizeText(rawText);
+  if (!text) return [];
 
-  if (enoughInsights && enoughTurns) {
-    const exitId = chooseExitHeuristically(p.lastPlayerInput);
-    const targetExit = resolveExitById(exitId);
-    unlockDoor(targetExit?.target || nextSceneFallback());
-    const label = targetExit?.id || "AUTO";
-    addMessage("system", `[SYSTEME] Synthese ${reason}: ${label}. Porte deverrouillee.`, state.currentChatTarget, true);
-    return true;
+  if (/(securite|justice|police|arme|weapon|prison|frontiere|conflit|crise)/.test(text)) {
+    return [8, 5, 0];
   }
-
-  if (p.userTurns >= p.forceDecisionTurns) {
-    const exitId = chooseExitHeuristically(p.lastPlayerInput);
-    const targetExit = resolveExitById(exitId);
-    unlockDoor(targetExit?.target || nextSceneFallback());
-    const label = targetExit?.id || "AUTO";
-    addMessage("system", `[SYSTEME] Limite de debat atteinte. Decision appliquee: ${label}. Porte deverrouillee.`, state.currentChatTarget, true);
-    return true;
+  if (/(nature|foret|climat|eolien|water|tourism|weather|vivant|ecolog)/.test(text)) {
+    return [9, 7, 4];
   }
-  return false;
+  if (/(ia|ai|robot|digital|data|genet|lab|automation|algorith|reseau|virtual)/.test(text)) {
+    return [12, 3, 11];
+  }
+  if (/(education|langue|vote|societ|travail|econom|culture|egalit)/.test(text)) {
+    return [2, 6, 3];
+  }
+  return [];
 }
 
+function getSceneMinigamePool(sceneId) {
+  const sanitizePool = (pool) => {
+    const cleaned = (Array.isArray(pool) ? pool : [])
+      .filter((id, i, arr) => Number.isFinite(id) && id >= 0 && id < MINIGAMES.length && !DISABLED_MINIGAME_IDS.has(id) && arr.indexOf(id) === i);
+    return cleaned.length ? cleaned : [12, 9, 8];
+  };
+
+  if (sceneId === LEVEL_TEST_ID) return sanitizePool([...LEVEL0_MINIGAME_POOL]);
+
+  const scene = state.scenario?.scenes?.[sceneId];
+  const sceneText = [
+    safeText(scene?.theme),
+    safeText(scene?.narrative?.context),
+    safeText(scene?.narrative?.dilemma),
+    safeText(scene?.narrative?.question),
+    safeText(scene?.narrative?.visual_cues),
+  ].join(" ");
+
+  const contextual = getContextualMinigamePoolFromText(sceneText);
+  if (contextual.length) return sanitizePool(contextual);
+
+  const total = MINIGAMES.length;
+  const parsed = parseLevelNumber(sceneId);
+  const levelNum = Number.isFinite(parsed) ? parsed : 1;
+  const base = ((Math.max(1, levelNum) - 1) * 2) % total;
+  return sanitizePool([base % total, (base + 4) % total, (base + 8) % total]);
+}
+
+function pickNpcMinigame(sceneId, zoneTheme, idx, fallbackPool = null) {
+  const zoneMap = {
+    nature: [9, 7, 4],
+    urbain: [8, 0, 5],
+    laboratoire: [12, 3, 11],
+    espace: [10, 3, 9],
+    bureaucratie: [2, 6, 3],
+  };
+  const sanitizePool = (pool) => {
+    const cleaned = (Array.isArray(pool) ? pool : [])
+      .filter((id, i, arr) => Number.isFinite(id) && id >= 0 && id < MINIGAMES.length && !DISABLED_MINIGAME_IDS.has(id) && arr.indexOf(id) === i);
+    return cleaned.length ? cleaned : [12, 9, 8];
+  };
+  const scenePool = sanitizePool(Array.isArray(fallbackPool) && fallbackPool.length ? fallbackPool : getSceneMinigamePool(sceneId));
+  const zonePool = sanitizePool(zoneMap[zoneTheme] || []);
+  const combined = sanitizePool([...zonePool, ...scenePool]);
+  return combined[idx % combined.length];
+}
+
+function maybeUnlockDoorByProgress(reason = "AUTO") {
+  if (state.hasVoted) return false;
+  if (isTutorialActive()) return false;
+  if (!allDebateNpcsTalked()) return false;
+  if (sceneNeedsTerminalPuzzle() && !state.sceneProgress.terminalPuzzleSolved) return false;
+
+  const p = state.sceneProgress;
+  if (p.userTurns < p.forceDecisionTurns) return false;
+  if (!hasMinimalJustification(p.lastPlayerInput)) return false;
+
+  const exitId = chooseExitHeuristically(p.lastPlayerInput);
+  const targetExit = resolveExitById(exitId);
+  unlockDoor(targetExit?.target || nextSceneFallback());
+  const label = targetExit?.id || "AUTO";
+  addMessage("system", "[SYSTEME] Limite de debat atteinte. Decision appliquee: " + label + ". Porte deverrouillee.", state.currentChatTarget, true);
+  return true;
+}
 function getLastAssistantMessage(personaId) {
   const history = ensureSession(personaId).filter((m) => m.role === "assistant");
   return history.length ? history[history.length - 1].content : "";
@@ -2601,6 +3239,7 @@ async function loadLevel(sceneId) {
   state.world.deco = world.deco;
   state.world.themes = world.themes;
   state.world.zoneNames = world.zoneNames || [];
+  state.world.zones = world.zones || [];
   state.camera.x = 0;
   state.camera.y = 0;
 
@@ -2611,6 +3250,8 @@ async function loadLevel(sceneId) {
   state.sceneProgress.insightsCollected = 0;
   state.sceneProgress.loopBreakerIndex = 0;
   state.sceneProgress.lastPlayerInput = "";
+  state.sceneProgress.miniGamesWon = {};
+  state.sceneProgress.terminalPuzzleSolved = false;
   state.player.x = world.spawnX;
   state.player.y = world.spawnY;
   state.player.pixelX = world.spawnX * TILE_SIZE;
@@ -2656,6 +3297,7 @@ async function loadLevel(sceneId) {
 
   const personaList = Object.values(current);
   const worldZones = world.zones || [];
+  const minigamePool = getSceneMinigamePool(targetId);
 
   personaList.forEach((persona, idx) => {
     let nx, ny;
@@ -2676,7 +3318,11 @@ async function loadLevel(sceneId) {
     }
 
     const pos = placeIfWalkable(nx, ny, world.spawnX, world.spawnY - 2);
-    const zoneRect = worldZones.length > 0 ? worldZones[idx % worldZones.length].rect : null;
+    const zoneInfo = worldZones.length > 0 ? worldZones[idx % worldZones.length] : null;
+    const zoneRect = zoneInfo?.rect || null;
+    const zoneName = zoneInfo?.name || "Secteur central";
+    const zoneTheme = zoneInfo?.theme || inferThemeFromScene(scene);
+    const npcMiniGame = pickNpcMinigame(targetId, zoneTheme, idx, minigamePool);
 
     state.entities.push({
       type: "npc",
@@ -2687,34 +3333,32 @@ async function loadLevel(sceneId) {
       personaId: persona.id,
       asset: personaAssetKey(persona),
       blocking: true,
-      minigameType: idx % MINIGAMES.length,
+      minigameType: npcMiniGame,
       talkedTo: false,
+      zoneName,
+      zoneTheme,
       allowedRect: zoneRect,
       interact: async () => {
         markTutorialEvent("npc_interact");
-        const self = state.entities.find(e => e.personaId === persona.id);
-        if (self.talkedTo) {
-          startNpcChat(persona.id);
-        } else {
-          startMiniGame(self.minigameType, () => {
-            self.talkedTo = true;
-            startNpcChat(persona.id);
+        const self = state.entities.find((e) => e.personaId === persona.id);
+        if (!self) return;
 
-            // Chaining: find next NPC not talked to
-            const others = state.entities.filter(e => e.type === "npc" && !e.talkedTo && e.personaId !== persona.id);
-            if (others.length > 0) {
-              const nextPersona = state.currentPersonas[others[0].personaId] || state.personas[others[0].personaId];
-              addMessage("system", `[INFO] Dialogue termine avec ${persona.name}. Tu devrais maintenant aller voir ${nextPersona.name || nextPersona.id}.`, persona.id, true);
-            } else {
-              addMessage("system", `[INFO] Tous les conseillers entendus. Le Gardien t'attend a l'autel pour ton verdict final.`, persona.id, true);
-            }
-            updateObjectiveInfo();
-          });
+        if (!self.talkedTo) {
+          self.talkedTo = true;
+          const others = getDebateNpcs().filter((e) => !e.talkedTo && e.personaId !== persona.id);
+          if (others.length > 0) {
+            const nextPersona = state.currentPersonas[others[0].personaId] || state.personas[others[0].personaId];
+            addMessage("system", "[INFO] Premier contact etabli avec " + persona.name + ". Va aussi voir " + (nextPersona.name || nextPersona.id) + ".", persona.id, true);
+          } else {
+            addMessage("system", "[INFO] Tous les conseillers ont ete consultes. Le Gardien t'attend a l'autel.", persona.id, true);
+          }
+          updateObjectiveInfo();
         }
+
+        startNpcChat(persona.id);
       },
     });
   });
-
 
   const computerPos = placeIfWalkable(world.spawnX - 4, world.spawnY - 1, world.spawnX - 3, world.spawnY);
   state.entities.push({
@@ -2725,7 +3369,21 @@ async function loadLevel(sceneId) {
     blocking: true,
     interact: () => {
       markTutorialEvent("terminal_use");
-      const c = `${safeText(scene?.narrative?.visual_cues)} ${safeText(scene?.narrative?.context)}`.trim();
+      const c = (safeText(scene?.narrative?.visual_cues) + " " + safeText(scene?.narrative?.context)).trim();
+      if (sceneNeedsTerminalPuzzle() && !state.sceneProgress.terminalPuzzleSolved) {
+        startDialog("TERMINAL", "Authentification requise: complete le puzzle pour deverrouiller le module de vote.");
+        startMiniGame(LEVEL0_TERMINAL_MINIGAME, () => {
+          state.sceneProgress.terminalPuzzleSolved = true;
+          addMessage("system", "[SYSTEME] Puzzle terminal valide. Tu peux maintenant finaliser ton vote.", state.currentChatTarget, true);
+          updateObjectiveInfo();
+        }, null, {
+          personaName: "Terminal central",
+          zoneName: "Annexe technique",
+          introFrames: 130,
+          maxFrames: 3000,
+        });
+        return;
+      }
       startDialog("TERMINAL", c || "Aucune donnee narrative.");
     },
   });
@@ -2805,6 +3463,8 @@ async function loadLevel(sceneId) {
       },
     });
   });
+
+  spawnAmbientNPCs();
 
   // Removed fake props loop to avoid confusion with real interactable objects
 
@@ -2961,10 +3621,114 @@ async function callBot(systemPrompt, targetId, isIntro = false) {
   }
 }
 
-async function checkDecisionMade(lastUserAction, theme, turnCount) {
-  if (turnCount < 3) {
-    return { status: "DEBATING" };
+function deriveValueTags(text) {
+  const norm = normalizeText(text);
+  const values = [];
+  if (/(justice|egalite|equite|droits?)/.test(norm)) values.push("Justice");
+  if (/(securite|proteger|protection|risque|danger)/.test(norm)) values.push("Securite");
+  if (/(liberte|autonomie|choix|individu)/.test(norm)) values.push("Liberte");
+  if (/(empath|compassion|souffrance|dignite)/.test(norm)) values.push("Empathie");
+  if (/(nature|climat|planete|vivant|ecosysteme)/.test(norm)) values.push("Respect du vivant");
+  if (/(responsab|consequ|futur|durable)/.test(norm)) values.push("Responsabilite");
+  if (!values.length) values.push("Responsabilite");
+  return values.slice(0, 3);
+}
+
+function buildFallbackVoteSummary(decision, justification, sceneText, decisionId) {
+  const values = deriveValueTags(decision + " " + justification);
+  return {
+    values,
+    shortTerm: "Ta decision peut soulager une partie des personnes concernees tout de suite.",
+    longTerm: "Sur le long terme, il faudra verifier les effets secondaires et ajuster la regle.",
+    blindSpot: "Le camp le moins entendu risque de se sentir exclu du resultat.",
+    question: "Si tu devais expliquer ce choix a une classe plus jeune, que dirais-tu ?",
+    decisionId: decisionId || "AUTO",
+    sceneText: safeText(sceneText),
+  };
+}
+
+async function generateVoteSummary(decision, justification, sceneText, decisionId) {
+  const fallback = buildFallbackVoteSummary(decision, justification, sceneText, decisionId);
+  try {
+    const prompt = [
+      "Tu es un coach philo pour enfants (8 a 11 HarmoS).",
+      "Produis une synthese courte, neutre et non-jugeante apres un vote ethique.",
+      "Contexte: " + safeText(sceneText),
+      "Decision: " + safeText(decision),
+      "Justification: " + safeText(justification),
+      "Reponds UNIQUEMENT en JSON valide:",
+      "{\"values\":[\"...\",\"...\"],\"shortTerm\":\"...\",\"longTerm\":\"...\",\"blindSpot\":\"...\",\"question\":\"...\"}",
+      "Contraintes: francais simple, phrases courtes, pas de note morale, pas de bonne/mauvaise reponse."
+    ].join("\n");
+    const raw = await callAIInternal(prompt);
+    const parsed = JSON.parse(raw);
+    const values = Array.isArray(parsed.values) ? parsed.values.map((v) => safeText(v)).filter(Boolean).slice(0, 3) : fallback.values;
+    return {
+      values: values.length ? values : fallback.values,
+      shortTerm: safeText(parsed.shortTerm) || fallback.shortTerm,
+      longTerm: safeText(parsed.longTerm) || fallback.longTerm,
+      blindSpot: safeText(parsed.blindSpot) || fallback.blindSpot,
+      question: safeText(parsed.question) || fallback.question,
+      decisionId: decisionId || "AUTO",
+      sceneText: safeText(sceneText),
+    };
+  } catch (_e) {
+    return fallback;
   }
+}
+
+function showVoteSummaryOverlay(summary, title = "SYNTHESE DE TON CHOIX") {
+  return new Promise((resolve) => {
+    const overlay = document.createElement("div");
+    overlay.id = "vote-summary-overlay";
+    overlay.style.cssText = "position:absolute; inset:0; background:rgba(4,8,14,0.93); z-index:9100; display:flex; align-items:center; justify-content:center; padding:18px; box-sizing:border-box;";
+    const values = (summary.values || []).map((v) => `<li>${safeText(v)}</li>`).join("") || "<li>Responsabilite</li>";
+    overlay.innerHTML = `
+      <div style="max-width:760px; width:100%; background:#0f1a29; border:1px solid #3d5f82; border-radius:12px; padding:18px; color:#e8f4ff; box-shadow:0 10px 32px rgba(0,0,0,0.45);">
+        <h2 style="margin:0 0 10px 0; color:#7fe6c0;">${safeText(title)}</h2>
+        <p style="margin:0 0 8px 0; color:#9ec3e6;"><b>Valeurs mobilisees</b></p>
+        <ul style="margin-top:0; margin-bottom:12px;">${values}</ul>
+        <p style="margin:6px 0;"><b>Court terme:</b> ${safeText(summary.shortTerm)}</p>
+        <p style="margin:6px 0;"><b>Long terme:</b> ${safeText(summary.longTerm)}</p>
+        <p style="margin:6px 0;"><b>Angle oublie possible:</b> ${safeText(summary.blindSpot)}</p>
+        <p style="margin:10px 0 16px 0;"><b>Question bonus:</b> ${safeText(summary.question)}</p>
+        <div style="display:flex; justify-content:flex-end;">
+          <button id="vote-summary-close" style="background:#2f8cb8; border:1px solid #4ea8d2; color:#fff; padding:8px 14px; border-radius:8px; cursor:pointer;">Continuer</button>
+        </div>
+      </div>
+    `;
+    const root = document.getElementById("game-container") || document.body;
+    root.appendChild(overlay);
+    state.isLocked = true;
+    const btn = document.getElementById("vote-summary-close");
+    const close = () => {
+      overlay.remove();
+      state.isLocked = false;
+      resolve();
+    };
+    if (btn) btn.addEventListener("click", close);
+    else close();
+  });
+}
+
+function applyDecisionAndUnlock(decisionText, justificationText) {
+  const exits = Array.isArray(state.levelData?.exits) ? state.levelData.exits : [];
+  const merged = (safeText(decisionText) + " " + safeText(justificationText)).trim();
+  let decisionId = "AUTO";
+  let target = nextSceneFallback();
+  if (exits.length) {
+    const inferred = chooseExitHeuristically(merged);
+    const exit = exits.find((e) => e.id === inferred) || exits[0];
+    decisionId = exit?.id || "AUTO";
+    target = exit?.target || target;
+  }
+  state.choiceHistory.push({ level: state.currentSceneId, decision: decisionId });
+  unlockDoor(target);
+  return { decisionId, target };
+}
+
+async function checkDecisionMade(lastUserAction, theme, turnCount) {
+  if (turnCount < 3) return { status: "DEBATING" };
 
   const lowerInput = safeText(lastUserAction).toLowerCase();
   const keywords = [
@@ -2974,14 +3738,24 @@ async function checkDecisionMade(lastUserAction, theme, turnCount) {
   ];
   const hasKeyword = keywords.some((k) => lowerInput.includes(k));
 
-  if (isTutorialActive() && !tutorialCanUseAltar()) {
+  if (isTutorialActive()) {
     if (hasKeyword || turnCount >= state.sceneProgress.forceDecisionTurns - 1) {
-      return {
-        status: "TUTORIAL_BLOCK",
-        reply: "Tutoriel actif: valide d'abord un vote a l'autel pour tester la fonction de decision.",
-      };
+      return { status: "TUTORIAL_BLOCK", reply: "Tutoriel actif: valide ton vote uniquement a l'autel." };
     }
     return { status: "DEBATING" };
+  }
+
+  if (!allDebateNpcsTalked() && (hasKeyword || turnCount >= state.sceneProgress.forceDecisionTurns)) {
+    const missing = listUntalkedDebateNpcNames().join(", ");
+    return { status: "TALK_REQUIRED", reply: "Tu dois encore consulter: " + missing + "." };
+  }
+
+  if (sceneNeedsTerminalPuzzle() && !state.sceneProgress.terminalPuzzleSolved && (hasKeyword || turnCount >= state.sceneProgress.forceDecisionTurns)) {
+    return { status: "TASK_REQUIRED", reply: "Level 0: termine d'abord le puzzle du terminal." };
+  }
+
+  if (hasKeyword && !hasMinimalJustification(lastUserAction)) {
+    return { status: "NEED_JUSTIFICATION", reply: "Explique ton choix en une phrase complete (au moins 5 mots)." };
   }
 
   const scene = state.levelData || {};
@@ -2995,26 +3769,11 @@ async function checkDecisionMade(lastUserAction, theme, turnCount) {
 
   if (!exits.length) {
     if (hasKeyword || turnCount >= state.sceneProgress.forceDecisionTurns) {
-      return { status: "DECIDED", exitId: null };
+      return hasMinimalJustification(lastUserAction)
+        ? { status: "DECIDED", exitId: null }
+        : { status: "NEED_JUSTIFICATION", reply: "Ajoute une justification plus precise avant de valider." };
     }
-    try {
-      const res = await callAIInternal(`
-Analyze if the player has clearly made a final decision or is using an "ESQUIVE" (DODGE) strategy.
-DODGE examples: refuses to choose, proposes a third way, asks a meta-question, tries to run away.
-
-Theme: "${safeText(theme)}"
-Player input: "${safeText(lastUserAction)}"
-Transcript:
-${transcript}
-
-Reply ONLY JSON:
-{"status":"DEBATING"} OR {"status":"DECIDED"} OR {"status":"DODGE", "reply": "Narrator comment on the dodge"}
-`);
-      const parsed = JSON.parse(res);
-      return parsed;
-    } catch (_e) {
-      return { status: turnCount >= state.sceneProgress.forceDecisionTurns ? "DECIDED" : "DEBATING" };
-    }
+    return { status: "DEBATING" };
   }
 
   if (hasKeyword) {
@@ -3022,24 +3781,21 @@ Reply ONLY JSON:
   }
 
   if (turnCount >= state.sceneProgress.forceDecisionTurns) {
-    return { status: "DECIDED", exitId: inferredExitId || exits[0].id };
+    return hasMinimalJustification(lastUserAction)
+      ? { status: "DECIDED", exitId: inferredExitId || exits[0].id }
+      : { status: "NEED_JUSTIFICATION", reply: "Avant de trancher, formule une justification complete." };
   }
 
-  const exitPrompt = `POSSIBLE EXITS:\n${exits.map((e) => `- ID: "${e.id}" -> ${e.description}`).join("\n")}`;
-
   try {
-    const res = await callAIInternal(`
-ANALYZE PLAYER INPUT. Theme: "${safeText(theme)}"
-PLAYER INPUT: "${safeText(lastUserAction)}"
-
-${exitPrompt}
-
-Has the player made a choice?
-Or are they using an "ESQUIVE" (DODGE) strategy (refusal, creative alternative)?
-
-Reply ONLY JSON:
-{"status":"DECIDED","exitId":"ID"} OR {"status":"DODGE", "reply": "Narrator comment"} OR {"status":"DEBATING"}
-`);
+    const exitPrompt = "POSSIBLE EXITS:\n" + exits.map((e) => `- ID: "${e.id}" -> ${e.description}`).join("\n");
+    const res = await callAIInternal([
+      "ANALYZE PLAYER INPUT.",
+      "Theme: \"" + safeText(theme) + "\"",
+      "PLAYER INPUT: \"" + safeText(lastUserAction) + "\"",
+      exitPrompt,
+      "Reply ONLY JSON:",
+      "{\"status\":\"DECIDED\",\"exitId\":\"ID\"} OR {\"status\":\"DODGE\",\"reply\":\"...\"} OR {\"status\":\"DEBATING\"}"
+    ].join("\n"));
     const parsed = JSON.parse(res);
     if (parsed.status === "DECIDED") {
       const resolved = resolveExitById(parsed.exitId);
@@ -3050,7 +3806,6 @@ Reply ONLY JSON:
     return { status: "DEBATING" };
   }
 }
-
 function unlockDoor(targetSceneId) {
   state.hasVoted = true;
   state.pendingDoorTarget = targetSceneId || nextSceneFallback();
@@ -3120,22 +3875,32 @@ async function sendPlayerAction(text) {
   const decisionCheck = await checkDecisionMade(text, state.levelData?.theme, turnCount);
 
   if (decisionCheck.status === "DECIDED") {
-    let target = null;
-    const exits = Array.isArray(state.levelData?.exits) ? state.levelData.exits : [];
-    if (exits.length) {
-      const exit = exits.find((e) => e.id === decisionCheck.exitId) || exits[0];
-      target = exit?.target || null;
-      state.choiceHistory.push({ level: state.currentSceneId, decision: exit?.id || "AUTO" });
-      addMessage("system", `[SYSTEME] Choix enregistre: ${exit?.id || "AUTO"}. Porte deverrouillee.`, state.currentChatTarget, true);
-    } else {
-      target = nextSceneFallback();
-      state.choiceHistory.push({ level: state.currentSceneId, decision: "AUTO" });
-      addMessage("system", "[SYSTEME] Decision enregistree. Porte deverrouillee.", state.currentChatTarget, true);
+    if (!allDebateNpcsTalked()) {
+      const missing = listUntalkedDebateNpcNames().join(", ");
+      addMessage("system", "[SYSTEME] Decision bloquee: consulte encore " + missing + ".", state.currentChatTarget, true);
+      return;
     }
-    unlockDoor(target);
+    if (sceneNeedsTerminalPuzzle() && !state.sceneProgress.terminalPuzzleSolved) {
+      addMessage("system", "[SYSTEME] Decision bloquee: puzzle terminal requis sur le level 0.", state.currentChatTarget, true);
+      return;
+    }
+    if (!hasMinimalJustification(text)) {
+      addMessage("system", "[SYSTEME] Donne une justification complete (au moins 5 mots) avant validation.", state.currentChatTarget, true);
+      return;
+    }
+
+    const applied = applyDecisionAndUnlock(text, text);
+    addMessage("system", "[SYSTEME] Choix enregistre: " + applied.decisionId + ". Porte deverrouillee.", state.currentChatTarget, true);
+    const sceneText = safeText(state.levelData?.narrative?.context || state.levelData?.theme || "");
+    const summary = await generateVoteSummary(text, text, sceneText, applied.decisionId);
+    await showVoteSummaryOverlay(summary);
     return;
   }
 
+  if (decisionCheck.status === "TALK_REQUIRED" || decisionCheck.status === "TASK_REQUIRED" || decisionCheck.status === "NEED_JUSTIFICATION") {
+    if (decisionCheck.reply) addMessage("system", decisionCheck.reply, state.currentChatTarget, true);
+    return;
+  }
   if (decisionCheck.status === "DODGE") {
     if (decisionCheck.reply) addMessage("system", decisionCheck.reply, state.currentChatTarget, true);
     const p = activePersonas[state.currentChatTarget];
@@ -3182,102 +3947,115 @@ function openVotingTerminal(scene) {
     startDialog("TUTORIEL", TUTORIAL_STEPS[state.tutorial.step] || "Termine le tutoriel.");
     return;
   }
-  const npcs = state.entities.filter(e => e.type === "npc" && !e.removed);
-  const untalked = npcs.filter(e => !e.talkedTo);
-  if (untalked.length > 0) {
-    const list = untalked.map(e => (state.currentPersonas[e.personaId]?.name || e.personaId)).join(", ");
-    startDialog("LE GARDIEN", `Verdict IMPOSSIBLE. Tu n'as pas encore consulte tous les sages. Manquants: ${list}`);
-    return;
-  }
+
   if (state.hasVoted) {
     startDialog("SYSTEM", "Vote deja enregistre.");
     return;
   }
 
-  // Create terminal UI
-  const term = document.createElement("div");
-  term.id = "voting-terminal-overlay";
-  term.style.cssText = "position:absolute; top:10%; left:10%; width:80%; height:80%; background:#111; color:#0f0; border:4px solid #0f0; z-index:9000; padding:20px; box-sizing:border-box; font-family:monospace; display:flex; flex-direction:column; border-radius:10px; box-shadow: 0 0 20px #0f0;";
-
-  const ctxNarrative = scene?.narrative?.context || "Aucun dilemme actif.";
-
-  term.innerHTML = `
-    <h2 style="text-align:center; border-bottom:2px solid #0f0; padding-bottom:10px; margin-top:0; text-shadow: 0 0 10px #0f0;">TERMINAL DE JUGEMENT DE L'OBSERVATOIRE</h2>
-    <div id="vt-log" style="flex:1; overflow-y:auto; margin-bottom:15px; white-space:pre-wrap; font-size:1.2em; text-shadow: 0 0 5px #0f0;">[SYSTEME] Connexion au Gardien établie...
-[LE GARDIEN] J'écoute votre verdict.
-
-Dilemme actuel : "${ctxNarrative}"
-
-Que décidez-vous ? Soyez direct.</div>
-    <div style="display:flex;">
-      <span style="font-size:1.5em; margin-right:10px; line-height:30px;">></span>
-      <input type="text" id="vt-input" style="background:#000; color:#0f0; border:none; border-bottom:2px solid #0f0; padding:5px; font-family:monospace; font-size:1.5em; flex:1; outline:none; text-shadow: 0 0 5px #0f0;" autocomplete="off" placeholder="Tapez votre décision et appuyez sur Entrée (Échap pour fermer)...">
-    </div>
-  `;
-  document.getElementById("game-container").appendChild(term);
-
-  const input = document.getElementById("vt-input");
-  const log = document.getElementById("vt-log");
-
-  let step = 0;
-  let decision = "";
-
-  state.isLocked = true;
-  setTimeout(() => input.focus(), 50);
-
-  input.addEventListener("keydown", async (e) => {
-    if (e.key === "Escape") {
-      term.remove();
-      state.isLocked = false;
+  if (!isTutorialActive()) {
+    const missing = listUntalkedDebateNpcNames();
+    if (missing.length > 0) {
+      startDialog("LE GARDIEN", "Verdict impossible. Tu dois encore consulter: " + missing.join(", "));
       return;
     }
-    if (e.key === "Enter" && input.value.trim()) {
-      e.preventDefault();
-      const val = input.value.trim();
-      input.value = "";
+  }
 
-      if (step === 0) {
-        decision = val;
-        log.innerHTML += `\n\n<span style="color:#fff;">> ${val}</span>\n\n[LE GARDIEN] Choix enregistré.\n[LE GARDIEN] Mais l'humanité a besoin de comprendre... POURQUOI prenez-vous cette décision ? Justifiez-vous.`;
-        log.scrollTop = log.scrollHeight;
-        step = 1;
-      } else if (step === 1) {
-        const justification = val;
-        log.innerHTML += `\n\n<span style="color:#fff;">> ${val}</span>\n\n<span style="color:#aaa;">[SYSTEME] Analyse de la justification par l'Intelligence Centrale...</span>`;
-        log.scrollTop = log.scrollHeight;
-        input.disabled = true;
+  if (sceneNeedsTerminalPuzzle() && !state.sceneProgress.terminalPuzzleSolved) {
+    startDialog("LE GARDIEN", "Level 0: termine d'abord le puzzle du terminal.");
+    return;
+  }
 
-        // Appeler le LLM pour valider
-        const prompt = `Tu es le Gardien d'un système de vote éthique. Le joueur vient de prendre une décision : "${decision}" avec la justification : "${justification}".
-Contexte du dilemme : "${ctxNarrative}".
-Ta tâche est de valider si la justification est sérieuse et répond au dilemme ou si elle est complètement absurde/esquive la question.
-Si c'est sérieux ou un minimum logique, accepte.
-Réponds UNIQUEMENT par le mot "VALIDE" ou "REFUSE: [raison courte en 1 phrase]".`;
+  const existing = document.getElementById("voting-terminal-overlay");
+  if (existing) existing.remove();
 
-        const reply = await callAIInternal(prompt);
-        input.disabled = false;
+  const overlay = document.createElement("div");
+  overlay.id = "voting-terminal-overlay";
+  overlay.style.cssText = "position:absolute; inset:0; background:rgba(5,10,16,0.94); z-index:9000; display:flex; align-items:center; justify-content:center; padding:18px; box-sizing:border-box;";
 
-        if (reply.toUpperCase().includes("VALIDE") || reply.toUpperCase().includes("ACCEPTE")) {
-          log.innerHTML += `\n\n<span style="color:#0f0; font-weight:bold;">[LE GARDIEN] Justification acceptée. ${reply.replace(/VALIDE/ig, "").replace(/ACCEPTE/ig, "").trim()}</span>
-[SYSTEME] Synthèse validée. Porte déverrouillée. Passage au niveau suivant autorisé.`;
-          log.scrollTop = log.scrollHeight;
+  const ctxNarrative = safeText(scene?.narrative?.context || scene?.theme || "Aucun dilemme actif.");
+  overlay.innerHTML = '<div style="width:min(900px,96%); max-height:92%; overflow:auto; background:#101824; border:1px solid #3d5f82; border-radius:12px; padding:16px; color:#e8f4ff;">' +
+      '<h2 style="margin:0 0 10px 0; color:#7fe6c0;">TERMINAL DE VOTE ETHIQUE</h2>' +
+      '<p style="margin:0 0 12px 0; color:#9ec3e6;"><b>Dilemme:</b> ' + safeText(ctxNarrative) + '</p>' +
+      '<label for="vt-decision" style="display:block; margin:8px 0 6px 0;">1) Ta decision finale</label>' +
+      '<textarea id="vt-decision" rows="3" style="width:100%; background:#0a121d; color:#d9eeff; border:1px solid #355372; border-radius:8px; padding:8px; resize:vertical;" placeholder="Ex: Je choisis de ..."></textarea>' +
+      '<label for="vt-justification" style="display:block; margin:12px 0 6px 0;">2) Pourquoi ? (au moins 5 mots)</label>' +
+      '<textarea id="vt-justification" rows="4" style="width:100%; background:#0a121d; color:#d9eeff; border:1px solid #355372; border-radius:8px; padding:8px; resize:vertical;" placeholder="Explique ton raisonnement et les consequences que tu assumes."></textarea>' +
+      '<div id="vt-status" style="min-height:20px; margin-top:10px; color:#ffd27d;"></div>' +
+      '<div style="display:flex; justify-content:flex-end; gap:8px; margin-top:12px;">' +
+        '<button id="vt-cancel" style="background:#27384b; border:1px solid #456179; color:#e8f4ff; padding:8px 12px; border-radius:8px; cursor:pointer;">Fermer</button>' +
+        '<button id="vt-validate" style="background:#2f8cb8; border:1px solid #4ea8d2; color:#fff; padding:8px 12px; border-radius:8px; cursor:pointer;">Valider le vote</button>' +
+      '</div>' +
+    '</div>';
 
-          markTutorialEvent("altar_vote");
-          unlockDoor(nextSceneFallback()); // Unlock porte logic
+  const root = document.getElementById("game-container") || document.body;
+  root.appendChild(overlay);
+  state.isLocked = true;
 
-          input.placeholder = "Appuyez sur Entrée pour fermer...";
-          step = 2; // Attente fermeture
-        } else {
-          log.innerHTML += `\n\n<span style="color:#f00; font-weight:bold;">[LE GARDIEN] Analyse rejetée. ${reply.replace(/REFUSE:/ig, "").trim()}</span>\nVeuillez fournir une justification valable :`;
-          log.scrollTop = log.scrollHeight;
-          setTimeout(() => input.focus(), 50);
-        }
-      } else if (step === 2) {
-        term.remove();
-        state.isLocked = false;
+  const decisionEl = document.getElementById("vt-decision");
+  const justifEl = document.getElementById("vt-justification");
+  const statusEl = document.getElementById("vt-status");
+  const cancelEl = document.getElementById("vt-cancel");
+  const validateEl = document.getElementById("vt-validate");
+
+  const closeOverlay = () => {
+    overlay.remove();
+    state.isLocked = false;
+  };
+
+  if (cancelEl) cancelEl.addEventListener("click", closeOverlay);
+  if (decisionEl) setTimeout(() => decisionEl.focus(), 60);
+
+  if (validateEl) {
+    validateEl.addEventListener("click", async () => {
+      const decision = safeText(decisionEl?.value);
+      const justification = safeText(justifEl?.value);
+      if (!decision) {
+        if (statusEl) statusEl.textContent = "Ecris d'abord ta decision.";
+        return;
       }
-    }
-  });
+      if (!hasMinimalJustification(justification)) {
+        if (statusEl) statusEl.textContent = "Justification trop courte: ecris au moins 5 mots.";
+        return;
+      }
+
+      validateEl.disabled = true;
+      if (statusEl) statusEl.textContent = "Analyse en cours...";
+
+      let accepted = true;
+      let reason = "";
+      try {
+        const prompt = [
+          "Tu es le Gardien d'un vote ethique scolaire.",
+          "Contexte: " + ctxNarrative,
+          "Decision: " + decision,
+          "Justification: " + justification,
+          "Accepte si la justification repond au dilemme, meme si elle est imparfaite.",
+          "Refuse seulement si hors-sujet total.",
+          "Reponds uniquement: VALIDE ou REFUSE: raison courte.",
+        ].join("\n");
+        const reply = safeText(await callAIInternal(prompt)).toUpperCase();
+        accepted = reply.includes("VALIDE") || reply.includes("ACCEPTE");
+        reason = reply;
+      } catch (_e) {
+        accepted = hasMinimalJustification(justification);
+      }
+
+      if (!accepted) {
+        if (statusEl) statusEl.textContent = "Vote refuse: " + safeText(reason).replace(/^REFUSE:?\s*/i, "");
+        validateEl.disabled = false;
+        return;
+      }
+
+      markTutorialEvent("altar_vote");
+      const applied = applyDecisionAndUnlock(decision, justification);
+      addMessage("system", "[SYSTEME] Choix enregistre: " + applied.decisionId + ". Porte deverrouillee.", state.currentChatTarget, true);
+
+      const summary = await generateVoteSummary(decision, justification, ctxNarrative, applied.decisionId);
+      closeOverlay();
+      await showVoteSummaryOverlay(summary);
+    });
+  }
 }
 
 function setupInput() {
@@ -3375,13 +4153,40 @@ function update() {
   }
 
   if (minigameState.active) {
+    minigameState.frameCount += 1;
+
+    // Intro phase: pause action briefly so the player can read context + controls.
+    if (minigameState.phase === "intro") {
+      if (minigameState.allowSkipIntro && (state.input.keys[" "] || state.input.keys.Space)) {
+        state.input.keys[" "] = false;
+        state.input.keys.Space = false;
+        minigameState.introFrames = 0;
+      }
+      minigameState.introFrames = Math.max(0, minigameState.introFrames - 1);
+      if (minigameState.introFrames <= 0) {
+        minigameState.phase = "play";
+      }
+      return;
+    }
+
     const game = MINIGAMES[minigameState.type];
-    const won = game.update(minigameState, state.input.keys);
-    // Auto-clear key presses for the minigame frame
-    // (Note: some minigames handle their own key clearing to avoid double triggers)
+    let won = false;
+    try {
+      won = game.update(minigameState, state.input.keys);
+    } catch (_e) {
+      failMiniGame("exception");
+      return;
+    }
 
     if (won) {
       if (minigameState.onComplete) minigameState.onComplete();
+      return;
+    }
+
+    const lost = minigameLoseCondition();
+    const timedOut = minigameState.maxFrames > 0 && minigameState.frameCount >= minigameState.maxFrames;
+    if (lost || timedOut) {
+      failMiniGame(lost ? "defeat" : "timeout");
     }
     return;
   }
@@ -3486,11 +4291,27 @@ function drawNpcEntity(entity, camX, camY) {
   const bob = Math.sin(Date.now() * 0.005) * 2;
   const dx = (entity.pixelX ?? entity.x * TILE_SIZE) - camX;
   const dy = (entity.pixelY ?? entity.y * TILE_SIZE) - camY + bob;
+
+  if (entity.isAmbient) {
+    if (!state.assets.npc_ambient) {
+      state.assets.npc_ambient = generateSprite("npc", { "1": "#37474f", "2": "#607d8b", "3": "#b0bec5", "4": "#1f2a30" });
+    }
+    const ambient = state.assets.npc_ambient;
+    if (ambient) {
+      ctx.save();
+      ctx.globalAlpha = 0.72;
+      ctx.drawImage(ambient, dx + 3, dy + 3, TILE_SIZE - 6, TILE_SIZE - 6);
+      ctx.restore();
+      return;
+    }
+  }
+
   if (!state.assets.useExternal || !state.assets.npc_sheet) {
     const fallback = state.assets[entity.asset];
     if (fallback) ctx.drawImage(fallback, dx, dy, TILE_SIZE, TILE_SIZE);
     return;
   }
+
   const idx = npcSheetIndex(entity);
   const sx = idx * 3 * SHEET_TILE;
   const sy = 0;
@@ -3593,84 +4414,119 @@ function drawMinimap() {
   ctx.fillText("MINIMAP", ox + 6, oy + 12);
 }
 
-function drawPublicDeco(ctx, theme, seed, dx, dy) {
+function drawPublicDeco(ctx, theme, decoSpec, dx, dy) {
   const assets = state.assets.publicDecorations;
   if (!assets) return;
+
+  const deco = (decoSpec && typeof decoSpec === "object") ? decoSpec : {
+    seed: Number.isFinite(decoSpec) ? decoSpec : Math.random(),
+    variant: "detail",
+    intent: "ground",
+  };
+
+  const seed = Number.isFinite(deco.seed) ? deco.seed : Math.random();
+  const variant = normalizeText(safeText(deco.variant) || "detail");
+  const intent = normalizeText(safeText(deco.intent) || "ground");
   const t = TILE_SIZE;
-  let img = assets.natureSheet;
-  let sx = 0, sy = 0, sw = 16, sh = 16;
 
-  if (theme === "nature" || theme === "espace") {
-    img = assets.natureSheet;
-    // tileset_16x16_final_1.png
-    const picks = [
-      [16, 160, 16, 16], // bush
-      [80, 80, 16, 16], // rock
-      [112, 48, 16, 32], // pine tree
-      [160, 48, 16, 32], // pine tree
-      [80, 48, 16, 16], // stump
-    ];
-    const idx = Math.floor(seed * picks.length) % picks.length;
-    [sx, sy, sw, sh] = picks[idx];
-  } else if (theme === "laboratoire") {
-    // tileset_waterworld.png for sci-fi/lab
-    img = assets.waterSheet;
-    const picks = [
-      [128, 160, 16, 32], // strange tree
-      [112, 64, 16, 16], // tech glowing block
-      [128, 48, 16, 16], // puddle
-      [144, 176, 16, 16], // ground foliage
-    ];
-    const idx = Math.floor(seed * picks.length) % picks.length;
-    [sx, sy, sw, sh] = picks[idx];
-  } else if (theme === "bureaucratie") {
-    // tilesetformattedupdate1.png
-    img = assets.bureaucracySheet;
-    const picks = [
-      [16, 32, 16, 32], // chair front
-      [80, 32, 32, 32], // round table
-      [64, 64, 32, 32], // armor statue
-      [64, 112, 32, 48], // bookshelf
-      [112, 144, 32, 32] // dark desk
-    ];
-    const idx = Math.floor(seed * picks.length) % picks.length;
-    [sx, sy, sw, sh] = picks[idx];
-  } else {
-    // urban
-    img = assets.natureSheet;
-    const picks = [
-      [112, 16, 16, 16], // barrel
-      [128, 16, 16, 16], // chest
-      [160, 16, 16, 16], // fountain
-      [80, 96, 16, 16], // rocks
-      [80, 48, 16, 16] // stump
-    ];
-    const idx = Math.floor(seed * picks.length) % picks.length;
-    [sx, sy, sw, sh] = picks[idx];
-  }
-
-  // Custom cropping: draw carefully into center of 40x40 tile
-  if (img) {
-    // Calculate aspect-ratio preserving scaling
-    let renderW = sw;
-    let renderH = sh;
-
-    // if width or height is larger than TILE_SIZE, scale down
-    if (renderW > t || renderH > t) {
-      const ratio = Math.min(t / renderW, t / renderH);
-      renderW = Math.floor(renderW * ratio);
-      renderH = Math.floor(renderH * ratio);
-    } else {
-      // If smaller, double the size for pixel art scale (max bounds TILE_SIZE)
-      renderW = Math.min(sw * 2, t);
-      renderH = Math.min(sh * 2, t);
-    }
-
+  const hybrid = state.assets.hybrid || { spaceBuildings: [], mixedProps: [] };
+  const drawHybridImage = (img) => {
+    if (!img) return false;
+    const ratio = Math.min(t / img.width, t / img.height);
+    const renderW = Math.max(14, Math.floor(img.width * ratio));
+    const renderH = Math.max(14, Math.floor(img.height * ratio));
     const offsetX = dx + Math.floor((t - renderW) / 2);
     const offsetY = dy + Math.floor((t - renderH) / 2);
+    ctx.drawImage(img, offsetX, offsetY, renderW, renderH);
+    return true;
+  };
 
-    ctx.drawImage(img, sx, sy, sw, sh, offsetX, offsetY, renderW, renderH);
+  if ((theme === "espace" || intent.includes("airlock") || intent.includes("satellite")) && hybrid.spaceBuildings.length && seed > 0.44) {
+    const idx = Math.floor(seed * hybrid.spaceBuildings.length) % hybrid.spaceBuildings.length;
+    if (drawHybridImage(hybrid.spaceBuildings[idx])) return;
   }
+
+  if ((intent.includes("vehicle") || intent.includes("container") || (theme === "urbain" && intent.includes("street"))) && hybrid.mixedProps.length && seed < 0.34) {
+    const idx = Math.floor(seed * 997) % hybrid.mixedProps.length;
+    if (drawHybridImage(hybrid.mixedProps[idx])) return;
+  }
+
+  const selectPool = (sheet, pools, fallbackKey = "detail") => {
+    if (!sheet) return null;
+    let pool = pools[variant] || pools[intent] || pools[fallbackKey] || pools.detail;
+    if (!pool || !pool.length) return null;
+    return { sheet, pick: pool[Math.floor(seed * pool.length) % pool.length] };
+  };
+
+  const naturePools = {
+    detail: [[16, 160, 16, 16], [80, 80, 16, 16], [80, 48, 16, 16], [112, 16, 16, 16], [128, 16, 16, 16], [160, 16, 16, 16]],
+    flora: [[112, 48, 16, 32], [160, 48, 16, 32], [144, 48, 16, 32], [96, 48, 16, 32]],
+    tree: [[112, 48, 16, 32], [160, 48, 16, 32], [144, 48, 16, 32]],
+    bush: [[16, 160, 16, 16], [80, 80, 16, 16], [80, 48, 16, 16]],
+    ground: [[112, 16, 16, 16], [128, 16, 16, 16], [160, 16, 16, 16]],
+    liquid: [[32, 176, 16, 16], [48, 176, 16, 16], [64, 176, 16, 16]],
+  };
+
+  const labPools = {
+    detail: [[112, 64, 16, 16], [128, 48, 16, 16], [144, 176, 16, 16], [160, 176, 16, 16]],
+    console: [[128, 160, 16, 32], [160, 160, 16, 32], [96, 160, 16, 32]],
+    terminal: [[128, 160, 16, 32], [96, 160, 16, 32]],
+    canister: [[144, 176, 16, 16], [160, 176, 16, 16]],
+    metal: [[112, 64, 16, 16], [128, 48, 16, 16]],
+    cable: [[80, 176, 16, 16], [96, 176, 16, 16]],
+    liquid: [[32, 176, 16, 16], [48, 176, 16, 16]],
+  };
+
+  const bureaucracyPools = {
+    detail: [[16, 32, 16, 32], [80, 32, 32, 32], [64, 64, 32, 32], [112, 144, 32, 32]],
+    banner: [[64, 112, 32, 48], [96, 112, 32, 48]],
+    desk: [[80, 32, 32, 32], [64, 64, 32, 32]],
+    street: [[112, 144, 32, 32], [144, 144, 32, 32]],
+    crate: [[96, 96, 32, 32], [128, 96, 32, 32]],
+    ground: [[112, 144, 32, 32], [144, 144, 32, 32]],
+  };
+
+  let selected = null;
+  if (theme === "nature") {
+    selected = selectPool(assets.natureSheet, naturePools);
+  } else if (theme === "laboratoire") {
+    selected = selectPool(assets.waterSheet || assets.natureSheet, labPools);
+  } else if (theme === "bureaucratie") {
+    selected = selectPool(assets.bureaucracySheet, bureaucracyPools);
+  } else if (theme === "espace") {
+    selected = selectPool(assets.natureSheet, {
+      ...naturePools,
+      detail: [[160, 16, 16, 16], [128, 16, 16, 16], [80, 96, 16, 16], [112, 16, 16, 16]],
+      panel: [[112, 16, 16, 16], [128, 16, 16, 16]],
+      antenna: [[112, 48, 16, 32], [144, 48, 16, 32]],
+      metal: [[160, 16, 16, 16], [80, 96, 16, 16]],
+    });
+  } else {
+    selected = selectPool(assets.natureSheet, {
+      ...naturePools,
+      vehicle: [[80, 96, 16, 16], [128, 16, 16, 16]],
+      crate: [[80, 80, 16, 16], [16, 160, 16, 16]],
+      metal: [[160, 16, 16, 16], [112, 16, 16, 16]],
+    });
+  }
+
+  if (!selected) return;
+  const [sx, sy, sw, sh] = selected.pick;
+
+  let renderW = sw;
+  let renderH = sh;
+  if (renderW > t || renderH > t) {
+    const ratio = Math.min(t / renderW, t / renderH);
+    renderW = Math.floor(renderW * ratio);
+    renderH = Math.floor(renderH * ratio);
+  } else {
+    renderW = Math.min(sw * 2, t);
+    renderH = Math.min(sh * 2, t);
+  }
+
+  const offsetX = dx + Math.floor((t - renderW) / 2);
+  const offsetY = dy + Math.floor((t - renderH) / 2);
+  ctx.drawImage(selected.sheet, sx, sy, sw, sh, offsetX, offsetY, renderW, renderH);
 }
 
 function draw() {
@@ -3705,7 +4561,7 @@ function draw() {
 
       if (decoKey?.type === "random") {
         if (themeSet.floor) ctx.drawImage(themeSet.floor, dx, dy, TILE_SIZE, TILE_SIZE);
-        drawPublicDeco(ctx, cellTheme, decoKey.seed, dx, dy);
+        drawPublicDeco(ctx, cellTheme, decoKey, dx, dy);
       } else if (decoKey && themeSet[decoKey]) {
         // Draw floor underneath decor
         if (themeSet.floor) ctx.drawImage(themeSet.floor, dx, dy, TILE_SIZE, TILE_SIZE);
@@ -3734,6 +4590,18 @@ function draw() {
 
     if (e.type === "npc") {
       drawNpcEntity(e, camX, camY);
+      if (!e.isAmbient) {
+        ctx.fillStyle = "#7fe6c0";
+        ctx.beginPath();
+        ctx.moveTo(ex + 20, ey - 6);
+        ctx.lineTo(ex + 26, ey + 2);
+        ctx.lineTo(ex + 14, ey + 2);
+        ctx.closePath();
+        ctx.fill();
+      } else {
+        ctx.fillStyle = "rgba(173, 188, 201, 0.65)";
+        ctx.fillRect(ex + 17, ey - 2, 6, 3);
+      }
     } else {
       const asset = state.assets[e.asset];
       if (asset) {
@@ -3794,21 +4662,52 @@ function draw() {
     const game = MINIGAMES[minigameState.type];
 
     // Background panel to dim everything
-    ctx.fillStyle = "rgba(0,0,0,0.85)";
-    ctx.fillRect(cx - 200, cy - 100, 400, 200);
+    ctx.fillStyle = "rgba(0,0,0,0.86)";
+    ctx.fillRect(cx - 230, cy - 130, 460, 260);
 
-    // Title and description
-    ctx.fillStyle = "white";
-    ctx.font = "18px Segoe UI";
     ctx.textAlign = "center";
-    ctx.fillText(game.name, cx, cy - 60);
 
-    ctx.fillStyle = "#ccc";
-    ctx.font = "14px Segoe UI";
-    ctx.fillText(game.desc, cx, cy - 35);
+    if (minigameState.phase === "intro") {
+      const countdown = Math.max(1, Math.ceil(minigameState.introFrames / 60));
+      ctx.strokeStyle = "rgba(126, 213, 255, 0.6)";
+      ctx.strokeRect(cx - 220.5, cy - 120.5, 441, 241);
 
-    // Draw the individual minigame content
-    game.draw(ctx, minigameState, cx, cy);
+      ctx.fillStyle = "#9ad8ff";
+      ctx.font = "bold 15px Segoe UI";
+      ctx.fillText("PREPARATION", cx, cy - 86);
+
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 22px Segoe UI";
+      ctx.fillText(minigameState.contextTitle || game.name, cx, cy - 58);
+
+      ctx.fillStyle = "#c9def0";
+      ctx.font = "14px Segoe UI";
+      ctx.fillText(game.desc, cx, cy - 28);
+      ctx.fillText(minigameState.contextHint || "Observe les consignes puis lance l'epreuve.", cx, cy - 6);
+      if (minigameState.resumeLabel) {
+        ctx.fillStyle = "#8db6d6";
+        ctx.fillText(minigameState.resumeLabel, cx, cy + 18);
+      }
+
+      ctx.fillStyle = "#7fe6c0";
+      ctx.font = "bold 26px Segoe UI";
+      ctx.fillText(String(countdown), cx, cy + 56);
+
+      ctx.fillStyle = "#d7f5ff";
+      ctx.font = "13px Segoe UI";
+      ctx.fillText("Attends un instant pour lire ou appuie sur [ESPACE] pour commencer", cx, cy + 88);
+    } else {
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "18px Segoe UI";
+      ctx.fillText(game.name, cx, cy - 82);
+
+      ctx.fillStyle = "#ccc";
+      ctx.font = "14px Segoe UI";
+      ctx.fillText(game.desc, cx, cy - 58);
+
+      // Draw the individual minigame content
+      game.draw(ctx, minigameState, cx, cy);
+    }
 
     ctx.textAlign = "left"; // Reset default
   }
@@ -3823,11 +4722,14 @@ function initAudioUI() {
 
   if (!btnPlay) return;
 
-  state.audio.trackIndex = MUSIC_TRACKS.indexOf("thème principal menu.mp3");
+  state.audio.trackIndex = MUSIC_TRACKS.findIndex((t) => normalizeText(t).includes("menu"));
   if (state.audio.trackIndex === -1) state.audio.trackIndex = 0;
 
+  if (btnPrev) btnPrev.textContent = "PREV";
+  if (btnNext) btnNext.textContent = "NEXT";
+
   const updatePlayBtn = () => {
-    if (btnPlay) btnPlay.textContent = (state.audio.music && !state.audio.music.paused) ? "⏸" : "▶";
+    if (btnPlay) btnPlay.textContent = (state.audio.music && !state.audio.music.paused) ? "PAUSE" : "PLAY";
   };
 
   const playMusic = () => {
@@ -3843,26 +4745,33 @@ function initAudioUI() {
     state.audio.music.play().then(updatePlayBtn).catch(e => console.warn("[AUDIO] Auto-play prevented", e));
   };
 
+  if (btnMute) btnMute.textContent = state.audio.muted ? "UNMUTE" : "MUTE";
+  updatePlayBtn();
+
   btnPlay.addEventListener("click", () => {
     if (!state.audio.music) { playMusic(); return; }
     if (state.audio.music.paused) state.audio.music.play().then(updatePlayBtn);
     else { state.audio.music.pause(); updatePlayBtn(); }
   });
 
-  btnNext.addEventListener("click", () => {
-    state.audio.trackIndex = (state.audio.trackIndex + 1) % MUSIC_TRACKS.length;
-    playMusic();
-  });
+  if (btnNext) {
+    btnNext.addEventListener("click", () => {
+      state.audio.trackIndex = (state.audio.trackIndex + 1) % MUSIC_TRACKS.length;
+      playMusic();
+    });
+  }
 
-  btnPrev.addEventListener("click", () => {
-    state.audio.trackIndex = (state.audio.trackIndex - 1 + MUSIC_TRACKS.length) % MUSIC_TRACKS.length;
-    playMusic();
-  });
+  if (btnPrev) {
+    btnPrev.addEventListener("click", () => {
+      state.audio.trackIndex = (state.audio.trackIndex - 1 + MUSIC_TRACKS.length) % MUSIC_TRACKS.length;
+      playMusic();
+    });
+  }
 
   if (btnMute) {
     btnMute.addEventListener("click", () => {
       state.audio.muted = !state.audio.muted;
-      btnMute.textContent = state.audio.muted ? "🔇" : "🔊";
+      btnMute.textContent = state.audio.muted ? "UNMUTE" : "MUTE";
       if (state.audio.muted && state.audio.music) {
         state.audio.music.pause();
         updatePlayBtn();
@@ -3934,9 +4843,12 @@ async function init() {
     Object.keys(state.personas).forEach((id) => ensureSession(id));
 
     const savedScene = loadSavedGame();
-    await loadLevel(savedScene || state.scenario.start || "level_1");
-    // Add ambient NPCs after level load
-    spawnAmbientNPCs();
+    const params = new URLSearchParams(window.location.search);
+    const forcedSceneRaw = safeText(params.get("scene"));
+    const forcedScene = forcedSceneRaw ? resolveSceneId(forcedSceneRaw) : null;
+    const resumedScene = savedScene ? resolveSceneId(savedScene) : null;
+    const bootScene = forcedScene || resumedScene || state.scenario.start || "level_1";
+    await loadLevel(bootScene);
     loop();
   } catch (e) {
     console.error("Init error:", e);
@@ -3947,6 +4859,7 @@ async function init() {
 
 window.sendPlayerAction = sendPlayerAction;
 window.sendUserMessage = sendPlayerAction;
+window.loadScene = loadLevel;
 
 // --- LANGUAGE ---
 window.changeLanguage = (lang) => {

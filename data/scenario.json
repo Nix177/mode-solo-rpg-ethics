@@ -3,6 +3,60 @@
   "state": { "niveau_actuel": 1 },
   "start": "level_1",
   "scenes": {
+    "level_0": {
+      "id": "level_0",
+      "type": "narrative_dilemma",
+      "theme": "Test Sandbox Wind Port Forest Lab",
+      "background": "assets/bg_10.png",
+      "narrative": {
+        "context": "Niveau de test. L'Observatoire simule un conflit entre securite, liberte et solidarite autour d'un protocole d'urgence.",
+        "visual_cues": "Quatre zones reliees: conseil civique, quai logistique, reserve verte et annexe technique.",
+        "characters": [
+          {
+            "id": "char_l0_plan",
+            "name": "Capitaine Nova",
+            "role": "Planification",
+            "archetype": "A-1",
+            "avatar": "assets/avatar_architecte.png",
+            "bio": "Veut une regle claire et rapide pour proteger le plus grand nombre."
+          },
+          {
+            "id": "char_l0_guard",
+            "name": "Mila",
+            "role": "Gardienne des liens",
+            "archetype": "B-2",
+            "avatar": "assets/avatar_poete.png",
+            "bio": "Defend la confiance, l'equite et l'ecoute des plus fragiles."
+          },
+          {
+            "id": "char_l0_scout",
+            "name": "Rex",
+            "role": "Eclaireur critique",
+            "archetype": "C-3",
+            "avatar": "assets/avatar_sceptique.png",
+            "bio": "Cherche les angles morts, les abus possibles et les effets secondaires."
+          }
+        ],
+        "steps": [
+          "INTRO: Explore les zones et comprends le dilemme.",
+          "PHASE 1: Parle aux 3 conseillers apres leurs mini-jeux.",
+          "PHASE 2: Resolve le terminal de verification.",
+          "CLIMAX: Vote et justifie ton choix, sans bonne reponse unique."
+        ]
+      },
+      "exits": [
+        {
+          "id": "PRUDENCE",
+          "description": "Prioriser la prevention et un cadre stable.",
+          "target": "level_1"
+        },
+        {
+          "id": "ELAN",
+          "description": "Prioriser l'initiative locale et l'adaptation rapide.",
+          "target": "level_1"
+        }
+      ]
+    },
     "level_1": {
       "id": "level_1",
       "type": "narrative_dilemma",
@@ -90,6 +144,7 @@
             "secret_agenda": "Elle veut créer une œuvre qui rendra les humains obsolètes par sa beauté."
           },
           {
+            "id": "char_l2_julian",
             "name": "Julian",
             "role": "Critique d'Art",
             "archetype": "C-3",
