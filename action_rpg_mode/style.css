@@ -328,6 +328,12 @@ button:hover {
   padding: 10px;
 }
 
+#music-now-playing {
+  margin: 8px 0 2px;
+  font-size: 12px;
+  color: #9fe9ff;
+}
+
 #vote-actions,
 #pause-actions,
 #merchant-actions {

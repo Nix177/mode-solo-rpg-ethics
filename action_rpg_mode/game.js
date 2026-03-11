@@ -254,6 +254,18 @@ const AUDIO_PATHS = {
 };
 
 
+const MUSIC_PLAYLIST_PATHS = [
+  "../assets/music/contemplation.mp3",
+  "../assets/music/cosmic.mp3",
+  "../assets/music/drift.mp3",
+  "../assets/music/grove.mp3",
+  "../assets/music/resolution.mp3",
+  "../assets/music/sunlight.mp3",
+  "../assets/music/tension.mp3",
+  "../assets/music/thought.mp3",
+  "../assets/music/uplifting.mp3"
+];
+
 const SFX_COOLDOWNS = {
   hitEnemy: 0.065,
   hitPlayer: 0.13,
@@ -297,6 +309,9 @@ const DOM = {
   voteSubmit: document.getElementById("vote-submit"),
   pausePanel: document.getElementById("pause-panel"),
   toggleAudio: document.getElementById("toggle-audio"),
+  musicPrev: document.getElementById("music-prev"),
+  musicNext: document.getElementById("music-next"),
+  musicNowPlaying: document.getElementById("music-now-playing"),
   merchantPanel: document.getElementById("merchant-panel"),
   merchantClose: document.getElementById("merchant-close"),
   buyPotion: document.getElementById("buy-potion"),
@@ -318,6 +333,8 @@ const state = {
   paused: false,
   overlay: null,
   audioEnabled: true,
+  musicEnabled: true,
+  musicStarted: false,
   player: null,
   world: null,
   currentScene: null,
@@ -333,6 +350,8 @@ const state = {
     images: {},
     audio: {},
     bgm: null,
+    musicPlaylist: [],
+    musicIndex: -1,
     sfxLastPlayed: {}
   },
   quest: {
@@ -454,6 +473,135 @@ function playSfx(key, volume = 0.5) {
     return;
   }
   playTone(key);
+}
+
+function shuffleMusicPlaylist() {
+  const list = [...MUSIC_PLAYLIST_PATHS];
+  for (let i = list.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [list[i], list[j]] = [list[j], list[i]];
+  }
+  return list;
+}
+
+function formatTrackName(path) {
+  return String(path || "")
+    .split("/")
+    .pop()
+    .replace(/\.mp3$/i, "")
+    .replace(/[_-]+/g, " ")
+    .trim();
+}
+
+function updateMusicUi() {
+  if (DOM.toggleAudio) {
+    DOM.toggleAudio.textContent = `Musique: ${state.musicEnabled ? "Pause" : "Lecture"}`;
+  }
+  if (DOM.musicNowPlaying) {
+    const playlist = state.assets.musicPlaylist || [];
+    const currentPath = playlist[state.assets.musicIndex] || "";
+    DOM.musicNowPlaying.textContent = currentPath
+      ? `Lecture: ${formatTrackName(currentPath)}`
+      : "Lecture: aucune piste";
+  }
+}
+
+function ensureMusicPlaylist() {
+  if (state.assets.musicPlaylist && state.assets.musicPlaylist.length) return;
+  state.assets.musicPlaylist = shuffleMusicPlaylist();
+  state.assets.musicIndex = 0;
+}
+
+function stopCurrentMusic() {
+  const bgm = state.assets.bgm;
+  if (!bgm) return;
+  bgm.pause();
+  bgm.currentTime = 0;
+}
+
+function loadMusicTrack(index, autoplay = true) {
+  ensureMusicPlaylist();
+  const playlist = state.assets.musicPlaylist;
+  if (!playlist.length) return;
+
+  const normalized = ((index % playlist.length) + playlist.length) % playlist.length;
+  state.assets.musicIndex = normalized;
+  const path = playlist[normalized];
+
+  if (state.assets.bgm) {
+    state.assets.bgm.pause();
+    state.assets.bgm.src = "";
+  }
+
+  const bgm = new Audio(path);
+  bgm.preload = "auto";
+  bgm.volume = 0.42;
+  bgm.addEventListener("ended", () => {
+    if (state.musicEnabled) {
+      playNextMusic(true);
+    }
+  });
+  state.assets.bgm = bgm;
+  updateMusicUi();
+
+  if (autoplay && state.musicEnabled) {
+    bgm.play().then(() => {
+      state.musicStarted = true;
+    }).catch(() => {});
+  }
+}
+
+function ensureMusicPlayback() {
+  if (!state.musicEnabled) {
+    updateMusicUi();
+    return;
+  }
+
+  ensureMusicPlaylist();
+  if (!state.assets.bgm) {
+    loadMusicTrack(state.assets.musicIndex >= 0 ? state.assets.musicIndex : 0, true);
+    return;
+  }
+
+  state.assets.bgm.play().then(() => {
+    state.musicStarted = true;
+  }).catch(() => {});
+  updateMusicUi();
+}
+
+function playNextMusic(reshuffleAtEnd = false) {
+  ensureMusicPlaylist();
+  if (reshuffleAtEnd && state.assets.musicIndex >= state.assets.musicPlaylist.length - 1) {
+    state.assets.musicPlaylist = shuffleMusicPlaylist();
+    state.assets.musicIndex = -1;
+  }
+  loadMusicTrack(state.assets.musicIndex + 1, true);
+}
+
+function playPreviousMusic() {
+  ensureMusicPlaylist();
+  loadMusicTrack(state.assets.musicIndex - 1, true);
+}
+
+function toggleMusicPlayback() {
+  state.musicEnabled = !state.musicEnabled;
+  if (state.musicEnabled) {
+    ensureMusicPlayback();
+  } else if (state.assets.bgm) {
+    state.assets.bgm.pause();
+  }
+  updateMusicUi();
+}
+
+function primeMusicAutoplay() {
+  const unlock = () => {
+    ensureMusicPlayback();
+    window.removeEventListener("pointerdown", unlock);
+    window.removeEventListener("keydown", unlock);
+  };
+  window.addEventListener("pointerdown", unlock, { once: true });
+  window.addEventListener("keydown", unlock, { once: true });
+  ensureMusicPlayback();
 }
 
 
@@ -2471,6 +2619,7 @@ function setupEvents() {
 
   DOM.startBtn.addEventListener("click", () => {
     if (!state.selectedClassId || !state.selectedHeroId) return;
+    ensureMusicPlayback();
     playSfx("uiClick", 0.4);
     startGameAtScene("level_1");
   });
@@ -2490,8 +2639,17 @@ function setupEvents() {
   DOM.buyArmor.addEventListener("click", buyArmor);
 
   DOM.toggleAudio.addEventListener("click", () => {
-    state.audioEnabled = !state.audioEnabled;
-    DOM.toggleAudio.textContent = `Musique: ${state.audioEnabled ? "ON" : "OFF"}`;
+    toggleMusicPlayback();
+    playSfx("uiClick", 0.4);
+  });
+
+  DOM.musicPrev.addEventListener("click", () => {
+    playPreviousMusic();
+    playSfx("uiClick", 0.4);
+  });
+
+  DOM.musicNext.addEventListener("click", () => {
+    playNextMusic(false);
     playSfx("uiClick", 0.4);
   });
 
@@ -2505,6 +2663,10 @@ async function init() {
   createClassSelectionUI();
   await preloadAssets();
   await loadScenarioData();
+  ensureMusicPlaylist();
+  loadMusicTrack(Math.floor(Math.random() * state.assets.musicPlaylist.length), false);
+  primeMusicAutoplay();
+  updateMusicUi();
   addNotification("Choisis ton personnage puis ta classe pour commencer.", 4.4, "#67f0c8");
   requestAnimationFrame(tick);
 }
