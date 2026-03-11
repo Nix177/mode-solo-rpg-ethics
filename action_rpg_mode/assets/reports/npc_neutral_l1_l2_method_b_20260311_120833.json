@@ -1,0 +1,33 @@
+{
+  "timestamp": "20260311_120833",
+  "method": "B",
+  "levels": [
+    "level_1",
+    "level_2"
+  ],
+  "count": 4,
+  "backup_dir": "D:\\mode solo rpg\\mode-solo-rpg-ethics\\action_rpg_mode\\assets\\backup_assets\\npc_neutral_l1_l2_originals_20260311_120833",
+  "clean_dir": "D:\\mode solo rpg\\mode-solo-rpg-ethics\\action_rpg_mode\\assets\\spritesheets_cleaned\\npc_neutral_l1_l2_method_b_20260311_120833",
+  "rows": [
+    {
+      "file": "level_2/npc_neutral_l02_a_walk.png",
+      "fg_ratio": 1.0,
+      "border_fg_ratio": 1.0
+    },
+    {
+      "file": "level_2/npc_neutral_l02_b_walk.png",
+      "fg_ratio": 0.958427734375,
+      "border_fg_ratio": 0.546484375
+    },
+    {
+      "file": "level_1/npc_neutral_l01_a_walk.png",
+      "fg_ratio": 0.92065673828125,
+      "border_fg_ratio": 0.495703125
+    },
+    {
+      "file": "level_1/npc_neutral_l01_b_walk.png",
+      "fg_ratio": 0.25555908203125,
+      "border_fg_ratio": 0.0
+    }
+  ]
+}

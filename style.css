@@ -549,3 +549,340 @@ canvas {
     color: #000 !important;
 }
 
+
+/* ===== Phase A Responsive + Menus Overrides ===== */
+:root {
+    --hud-bg: rgba(8, 16, 26, 0.86);
+    --hud-border: #35506d;
+}
+
+body {
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+#game-container {
+    width: min(96vw, calc(96vh * 4 / 3));
+    height: min(96vh, calc(96vw * 3 / 4));
+    max-width: 1900px;
+    max-height: 1200px;
+    border-width: 2px;
+}
+
+#level-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    top: 8px;
+    left: 8px;
+    font-size: clamp(14px, 1.8vw, 32px);
+    padding: 6px 10px;
+    border: 1px solid var(--hud-border);
+    border-radius: 8px;
+    background: var(--hud-bg);
+    color: #d6e7f8;
+}
+
+#pause-hint {
+    font-size: clamp(11px, 1.1vw, 18px);
+    color: #8cb7da;
+}
+
+#top-settings {
+    display: none !important;
+}
+
+.pause-panel #top-settings {
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+}
+
+.pause-panel #top-settings select {
+    background: #162233;
+    color: #e6f3ff;
+    border: 1px solid #3e5c78;
+    border-radius: 8px;
+    padding: 6px 8px;
+}
+
+.pause-panel #audio-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.pause-panel #audio-volume {
+    width: min(240px, 60vw);
+}
+
+#objective-info {
+    top: 8px;
+    right: 8px;
+    max-width: min(48vw, 920px);
+    font-size: clamp(11px, 1.1vw, 18px);
+}
+
+#quest-tracker {
+    position: absolute;
+    top: 56px;
+    right: 8px;
+    max-width: min(38vw, 520px);
+    min-width: min(200px, 38vw);
+    max-height: min(34vh, 320px);
+    overflow: auto;
+    font-size: clamp(11px, 1vw, 16px);
+    line-height: 1.3;
+    background: rgba(6, 12, 20, 0.72) !important;
+    border: 1px solid #4fae78 !important;
+    border-radius: 8px;
+}
+
+#tutorial-box {
+    top: 56px;
+    left: 8px;
+    width: min(36vw, 460px);
+    max-height: 26vh;
+}
+
+#chat-container {
+    width: min(38vw, 520px);
+    height: min(34vh, 340px);
+    right: 8px;
+    bottom: 8px;
+}
+
+#chat-minimized {
+    top: auto;
+    bottom: 8px;
+    right: calc(min(38vw, 520px) + 16px);
+    left: auto;
+}
+
+#dialog-box {
+    width: min(96%, 1400px);
+    height: min(28vh, 280px);
+    left: 50%;
+    bottom: 10px;
+}
+
+#audio-controls button,
+#pause-audio-controls button,
+#pause-menu button,
+#start-menu-overlay button {
+    background: #1c2735;
+    color: #e7f2ff;
+    border: 1px solid #3f5873;
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+#pause-overlay,
+#start-menu-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 9500;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(4, 10, 16, 0.9);
+    pointer-events: auto;
+}
+
+#pause-overlay.active,
+#start-menu-overlay.active {
+    display: flex;
+}
+
+.pause-panel,
+.start-panel {
+    width: min(92vw, 760px);
+    max-height: 90vh;
+    overflow: auto;
+    background: #0f1b2a;
+    border: 1px solid #3f5f82;
+    border-radius: 12px;
+    padding: 16px;
+    color: #e8f4ff;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+}
+
+.pause-panel h2,
+.start-panel h2 {
+    margin: 0 0 12px 0;
+    color: #80e8c1;
+}
+
+.pause-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.pause-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.pause-row label {
+    color: #9bc2e6;
+    font-size: 13px;
+}
+
+.pause-actions,
+.start-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+#pause-audio-controls {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#start-menu-sub {
+    color: #9bc2e6;
+    margin-bottom: 10px;
+}
+
+.npc-nameplate {
+    pointer-events: none;
+}
+
+@media (max-width: 900px) {
+    #game-container {
+        width: 100vw;
+        height: 100vh;
+        border: none;
+    }
+
+    #objective-info {
+        max-width: 74vw;
+    }
+
+    #quest-tracker {
+        max-width: 74vw;
+        top: 84px;
+        max-height: 28vh;
+    }
+
+    #tutorial-box {
+        width: 72vw;
+        max-height: 24vh;
+        top: 84px;
+    }
+
+    #chat-container {
+        left: 8px;
+        right: 8px;
+        width: auto;
+        height: min(34vh, 300px);
+    }
+
+    #chat-minimized {
+        right: 12px;
+        bottom: calc(min(34vh, 300px) + 14px);
+    }
+
+    #dialog-box {
+        width: calc(100% - 16px);
+        height: min(34vh, 240px);
+    }
+}
+
+
+
+
+/* --- RPG extension overrides --- */
+#rpg-hud {
+    position: absolute;
+    left: 10px;
+    top: 78px;
+    max-width: 430px;
+    background: rgba(7, 16, 26, 0.88);
+    border: 1px solid #2f5677;
+    border-radius: 8px;
+    padding: 6px 10px;
+    color: #d8e9f7;
+    font-size: 12px;
+    line-height: 1.32;
+    pointer-events: none;
+}
+
+#rpg-hud b {
+    color: #9ae6c9;
+}
+
+.class-select-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 2px;
+}
+
+.class-select-btn {
+    background: #162436;
+    border: 1px solid #35506d;
+    border-radius: 9px;
+    color: #d8e4f1;
+    cursor: pointer;
+    padding: 8px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+}
+
+.class-select-btn img {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid #476785;
+}
+
+.class-select-btn small {
+    font-size: 10px;
+    color: #91b2cd;
+}
+
+.class-select-btn.selected {
+    border-color: #62f4c8;
+    box-shadow: 0 0 12px rgba(98, 244, 200, 0.28);
+    background: #1f3750;
+}
+
+#chat-minimized {
+    top: auto !important;
+    left: 12px !important;
+    bottom: 12px !important;
+    width: 64px !important;
+    height: 64px !important;
+    border-width: 2px !important;
+    border-color: #62f4c8 !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+    z-index: 1100;
+}
+
+#chat-minimized::after {
+    content: "Guide";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -18px;
+    font-size: 11px;
+    color: #bfe6d7;
+    text-shadow: 0 1px 0 #000;
+}

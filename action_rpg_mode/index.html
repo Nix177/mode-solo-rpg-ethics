@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Observatoire - Action RPG Mode</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+</head>
+<body>
+  <div id="app">
+    <div id="hud">
+      <div class="hud-row">
+        <span id="hud-scene">Niveau: -</span>
+        <span id="hud-class">Classe: -</span>
+        <span id="hud-hero">Heros: -</span>
+        <span id="hud-level">Lvl: 1</span>
+        <span id="hud-hp">HP: 0/0</span>
+        <span id="hud-xp">XP: 0/0</span>
+        <span id="hud-gold">Or: 0</span>
+      </div>
+      <div id="hud-bars">
+        <div class="stat-row">
+          <span class="stat-label">Vie</span>
+          <div class="stat-bar"><div id="bar-hp-fill" class="stat-fill hp"></div></div>
+          <span id="bar-hp-text" class="stat-text">0/0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Stamina</span>
+          <div class="stat-bar"><div id="bar-stamina-fill" class="stat-fill stamina"></div></div>
+          <span id="bar-stamina-text" class="stat-text">0/0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Mana</span>
+          <div class="stat-bar"><div id="bar-mana-fill" class="stat-fill mana"></div></div>
+          <span id="bar-mana-text" class="stat-text">0/0</span>
+        </div>
+      </div>
+      <div class="hud-row">
+        <span id="hud-objective">Objectif: -</span>
+        <span id="hud-skills">SHIFT courir | SPACE attaque | F skill1 | R skill2 | 1 potion | E interagir | P pause</span>
+      </div>
+    </div>
+
+    <canvas id="gameCanvas" width="1280" height="720"></canvas>
+
+    <div id="minimap-wrap">
+      <canvas id="miniMap" width="220" height="140"></canvas>
+    </div>
+
+    <div id="chat-panel" class="hidden">
+      <div id="chat-head">
+        <span id="chat-npc-name">Conseiller</span>
+        <button id="chat-close" type="button">x</button>
+      </div>
+      <div id="chat-log"></div>
+      <div id="chat-input-row">
+        <input id="chat-input" type="text" placeholder="Ecris un message">
+        <button id="chat-send" type="button">Envoyer</button>
+      </div>
+    </div>
+
+    <div id="merchant-panel" class="hidden">
+      <div id="merchant-card">
+        <h2>Marchand de terrain</h2>
+        <p id="merchant-desc">Equipe ton heros pour survivre aux zones de conflit.</p>
+        <div id="merchant-actions">
+          <button id="buy-potion" type="button">Potion (25 or)</button>
+          <button id="buy-weapon" type="button">Arme +1 (80 or)</button>
+          <button id="buy-armor" type="button">Armure +1 (70 or)</button>
+        </div>
+        <button id="merchant-close" type="button">Fermer</button>
+      </div>
+    </div>
+
+    <div id="vote-panel" class="hidden">
+      <div id="vote-card">
+        <h2>Decision finale</h2>
+        <p id="vote-dilemma">-</p>
+        <div id="vote-options"></div>
+        <textarea id="vote-justification" placeholder="Justifie ta decision (20+ caracteres)"></textarea>
+        <div id="vote-actions">
+          <button id="vote-cancel" type="button">Annuler</button>
+          <button id="vote-submit" type="button">Valider</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="class-panel">
+      <div id="class-card">
+        <h1>Action RPG Mode</h1>
+        <p>90% action aventure, 10% dilemme et debat.</p>
+        <h3>Choisis ton personnage</h3>
+        <div id="avatar-grid"></div>
+        <h3>Choisis ta classe</h3>
+        <div id="class-grid"></div>
+        <button id="start-btn" type="button" disabled>Demarrer</button>
+      </div>
+    </div>
+
+    <div id="pause-panel" class="hidden">
+      <div id="pause-card">
+        <h2>Pause</h2>
+        <p>Appuie sur P pour reprendre.</p>
+        <div id="pause-actions">
+          <button id="toggle-audio" type="button">Musique: ON</button>
+        </div>
+      </div>
+    </div>
+
+    <button id="guide-button" type="button" aria-label="Ouvrir le guide">
+      <img src="../assets/avatar_architecte.png" alt="Guide">
+    </button>
+
+    <div id="guide-panel" class="hidden">
+      <div id="guide-card">
+        <div id="guide-head">
+          <strong>Iris Kade - Guide de simulation</strong>
+          <button id="guide-close" type="button">x</button>
+        </div>
+        <p id="guide-text">Explore la carte, combats pour stabiliser les zones, puis parle aux 3 conseillers avant de voter.</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./game.js?v=20260311_1245"></script>
+</body>
+</html>
+
+

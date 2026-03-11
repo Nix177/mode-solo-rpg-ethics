@@ -1,0 +1,5 @@
+﻿Downloaded by Codex on 2026-03-09
+- Roguelike Characters pack (CC0): https://opengameart.org/content/roguelike-characters-pack
+- Slash Effect Collection: https://opengameart.org/content/slash-effect-collection
+- Weapon Slash Classic: https://opengameart.org/content/weapon-slash
+Project-local class portraits reused from existing assets/.

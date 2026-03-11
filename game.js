@@ -32,7 +32,12 @@ const SFX = {
   mg_start: "mg_start.mp3",
   mg_win: "mg_win.mp3",
   mg_lose: "mg_lose.mp3",
-  mg_tick: "mg_tick.mp3"
+  mg_tick: "mg_tick.mp3",
+  combat_swing: "sfx_combat_swing.mp3",
+  combat_hit: "sfx_combat_hit.mp3",
+  enemy_down: "sfx_enemy_down.mp3",
+  player_hurt: "sfx_player_hurt.mp3",
+  item_use: "sfx_item_use.mp3"
 };
 
 const MUSIC_DIR = "./assets/music/";
@@ -1243,6 +1248,7 @@ const MINIGAMES = [
       state.enemyDecisionCooldown = 28;
       state.hitFlash = 0;
       state.timer = 0;
+      state.enemyDownSfxDone = false;
     },
     update: (state, keys) => {
       state.timer += 1;
@@ -1261,10 +1267,12 @@ const MINIGAMES = [
         if (state.attackWindup === 4 && Math.abs(state.x - state.ex) < 22) {
           state.e_hp = Math.max(0, state.e_hp - 16);
           state.hitFlash = 8;
+          playSound("combat_hit");
         }
       }
       if (keys[" "] && state.attackCooldown === 0 && state.attackWindup === 0) {
         keys[" "] = false;
+        playSound("combat_swing");
         state.attackWindup = 14;
         state.attackCooldown = 24;
       }
@@ -1286,6 +1294,7 @@ const MINIGAMES = [
           state.p_hp = Math.max(0, state.p_hp - mitigated);
           state.enemyHitDone = true;
           state.hitFlash = 8;
+          playSound("player_hurt");
         }
         if (state.enemyAttackTimer === 0) {
           state.enemyDecisionCooldown = 28;
@@ -1307,6 +1316,10 @@ const MINIGAMES = [
         }
       }
 
+      if (state.e_hp <= 0 && !state.enemyDownSfxDone) {
+        state.enemyDownSfxDone = true;
+        playSound("enemy_down");
+      }
       return state.e_hp <= 0;
     },
     draw: (ctx, state, cx, cy) => {
@@ -3449,6 +3462,7 @@ async function loadLevel(sceneId) {
         const self = state.entities.find((e) => e.type === "insight" && e.x === pos.x && e.y === pos.y && !e.removed);
         if (!self) return;
         self.removed = true;
+        playSound("item_use");
         markTutorialEvent("insight_use");
         state.sceneProgress.insightsCollected += 1;
         const rewardText = grantInsightReward();
@@ -4328,6 +4342,41 @@ function drawNpcEntity(entity, camX, camY) {
   );
 }
 
+function drawClassEquipmentOverlay(drawX, drawY, bob = 0) {
+  const classId = state.rpg?.classId || "warrior";
+  const x = drawX;
+  const y = drawY + bob;
+
+  ctx.save();
+  if (classId === "warrior") {
+    ctx.fillStyle = "#d9e0e6";
+    ctx.fillRect(x + 30, y + 1, 3, 7);
+    ctx.fillStyle = "#617585";
+    ctx.fillRect(x + 6, y + 12, 6, 8);
+  } else if (classId === "mage") {
+    ctx.strokeStyle = "#9fd6ff";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(x + 29, y + 8);
+    ctx.lineTo(x + 33, y + 22);
+    ctx.stroke();
+    ctx.fillStyle = "rgba(173, 232, 244, 0.9)";
+    ctx.beginPath();
+    ctx.arc(x + 28, y + 7, 3, 0, Math.PI * 2);
+    ctx.fill();
+  } else {
+    ctx.strokeStyle = "#f6d365";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(x + 7, y + 11);
+    ctx.quadraticCurveTo(x + 11, y + 2, x + 16, y + 11);
+    ctx.stroke();
+    ctx.fillStyle = "#d2a54c";
+    ctx.fillRect(x + 24, y + 15, 3, 7);
+  }
+  ctx.restore();
+}
+
 function drawPlayer(camX, camY) {
   const p = state.player;
   const drawX = p.pixelX - camX;
@@ -4360,6 +4409,8 @@ function drawPlayer(camX, camY) {
     const pAsset = state.assets[`player_${p.dir}`] || state.assets.player_down;
     if (pAsset) ctx.drawImage(pAsset, drawX, drawY + bob, TILE_SIZE, TILE_SIZE);
   }
+
+  drawClassEquipmentOverlay(drawX, drawY, bob);
 }
 
 function drawMinimap() {

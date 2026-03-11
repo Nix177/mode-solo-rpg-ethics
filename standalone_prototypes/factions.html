@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prototype - Influence des factions</title>
+  <style>
+    :root {
+      --panel: rgba(9, 14, 24, 0.9);
+      --line: rgba(255,255,255,0.12);
+      --text: #eef5ff;
+      --muted: #aab9cc;
+      --admin: #93c5fd;
+      --workers: #fbbf24;
+      --civic: #6ee7b7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      color: var(--text);
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(147,197,253,0.15), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(110,231,183,0.15), transparent 24%),
+        linear-gradient(180deg, #09111a, #0f1a2a);
+    }
+    .shell {
+      width: min(1200px, 100%);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 18px;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    #game {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      min-height: 540px;
+      background:
+        linear-gradient(180deg, rgba(15, 23, 42, 0.8), rgba(17,24,39,0.92)),
+        #111827;
+      overflow: hidden;
+    }
+    .district {
+      position: absolute;
+      border: 2px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+    }
+    .admin { left: 28px; top: 42px; width: 260px; height: 180px; background: rgba(147,197,253,0.16); }
+    .workers { left: 54px; bottom: 46px; width: 330px; height: 180px; background: rgba(251,191,36,0.15); }
+    .civic { right: 34px; top: 72px; width: 300px; height: 280px; background: rgba(110,231,183,0.14); }
+    .center { left: 370px; top: 204px; width: 180px; height: 120px; background: rgba(255,255,255,0.05); }
+    .districtTitle {
+      position: absolute;
+      top: 12px;
+      left: 14px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.78);
+    }
+    .terminal, .crate, .witness, .gate {
+      position: absolute;
+      border-radius: 12px;
+    }
+    .terminal { width: 54px; height: 54px; background: rgba(147,197,253,0.42); }
+    .crate { width: 44px; height: 44px; background: rgba(251,191,36,0.62); }
+    .witness { width: 34px; height: 34px; border-radius: 50%; background: rgba(110,231,183,0.74); }
+    .gate {
+      width: 20px;
+      height: 90px;
+      background: rgba(248,113,113,0.7);
+      box-shadow: 0 0 0 8px rgba(248,113,113,0.16);
+    }
+    #player {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, #fde68a, #fb7185);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+      z-index: 5;
+    }
+    #intro, #prompt, #result {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(7,12,20,0.94);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+      z-index: 20;
+    }
+    #intro, #result {
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(84%, 560px);
+      padding: 20px;
+    }
+    #prompt {
+      bottom: 18px;
+      padding: 10px 14px;
+      display: none;
+    }
+    #result { display: none; }
+    .sidebar {
+      padding: 18px;
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+    .rep {
+      display: grid;
+      gap: 8px;
+    }
+    .bar {
+      height: 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+    .fill { height: 100%; width: 50%; }
+    .muted { color: var(--muted); line-height: 1.45; }
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #07111a;
+      background: linear-gradient(135deg, #6ee7b7, #93c5fd);
+    }
+    .taskDone { opacity: 0.35; filter: saturate(0.3); }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <section class="panel">
+      <div id="game">
+        <div class="district admin"><div class="districtTitle">Administration</div></div>
+        <div class="district workers"><div class="districtTitle">Workers depot</div></div>
+        <div class="district civic"><div class="districtTitle">Citizen collective</div></div>
+        <div class="district center"><div class="districtTitle">Central plaza</div></div>
+
+        <div class="terminal task" data-task="admin" style="left:88px; top:122px"></div>
+        <div class="crate task" data-task="workers" style="left:176px; bottom:118px"></div>
+        <div class="witness task" data-task="civic" style="right:144px; top:228px"></div>
+
+        <div class="gate" id="northGate" style="left:560px; top:48px"></div>
+        <div class="gate" id="eastGate" style="right:24px; bottom:84px"></div>
+
+        <div id="player"></div>
+        <div id="prompt"></div>
+        <div id="intro">
+          <h2>Prototype 3: Influence des factions</h2>
+          <p>Chaque camp agit dans le monde. Aider un camp augmente sa confiance, mais les autres s'en mefient un peu plus. Les routes changent selon cette reputation.</p>
+          <p class="muted">Approche une demande et appuie sur <strong>E</strong>. Ce prototype est simplifie, mais montre deja une boucle RPG durable.</p>
+        </div>
+        <div id="result"></div>
+      </div>
+    </section>
+
+    <aside class="panel sidebar">
+      <div>
+        <h2>Reputation</h2>
+        <div class="muted">Le joueur n'est plus simple lecteur: il prend place dans le conflit. Cette logique peut suivre tous les niveaux avec des factions differentes.</div>
+      </div>
+      <div class="rep">
+        <strong>Administration</strong>
+        <div class="bar"><div class="fill" id="adminFill" style="background: var(--admin)"></div></div>
+      </div>
+      <div class="rep">
+        <strong>Workers</strong>
+        <div class="bar"><div class="fill" id="workersFill" style="background: var(--workers)"></div></div>
+      </div>
+      <div class="rep">
+        <strong>Citizens</strong>
+        <div class="bar"><div class="fill" id="civicFill" style="background: var(--civic)"></div></div>
+      </div>
+      <div class="muted">Exemples de declinaison: journalistes / Etat / familles, scientifiques / industriels / habitants, ecole / parents / enfants.</div>
+      <button onclick="location.reload()">Restart</button>
+    </aside>
+  </div>
+
+  <script>
+    const game = document.getElementById('game');
+    const player = document.getElementById('player');
+    const introEl = document.getElementById('intro');
+    const promptEl = document.getElementById('prompt');
+    const resultEl = document.getElementById('result');
+    const tasks = [...document.querySelectorAll('.task')];
+    const keys = new Set();
+    const fills = {
+      admin: document.getElementById('adminFill'),
+      workers: document.getElementById('workersFill'),
+      civic: document.getElementById('civicFill')
+    };
+    const gates = {
+      north: document.getElementById('northGate'),
+      east: document.getElementById('eastGate')
+    };
+    const textByTask = {
+      admin: 'E - Reconnect city camera loop',
+      workers: 'E - Deliver repair crate to depot crew',
+      civic: 'E - Escort witness statement to safe group'
+    };
+    const state = {
+      x: 420,
+      y: 260,
+      speed: 2.5,
+      rep: { admin: 50, workers: 50, civic: 50 },
+      near: null,
+      completed: new Set(),
+      finished: false
+    };
+
+    function clamp() {
+      state.x = Math.max(0, Math.min(game.clientWidth - 28, state.x));
+      state.y = Math.max(0, Math.min(game.clientHeight - 28, state.y));
+    }
+
+    function dist(el) {
+      const a = el.getBoundingClientRect();
+      const g = game.getBoundingClientRect();
+      const ex = a.left - g.left + a.width / 2;
+      const ey = a.top - g.top + a.height / 2;
+      return Math.hypot(ex - (state.x + 14), ey - (state.y + 14));
+    }
+
+    function updateBars() {
+      Object.entries(state.rep).forEach(([key, value]) => {
+        fills[key].style.width = Math.max(0, Math.min(100, value)) + '%';
+      });
+      const northOpen = state.rep.admin >= 60 || state.rep.civic >= 60;
+      const eastOpen = state.rep.workers >= 60 || state.rep.civic >= 60;
+      gates.north.style.background = northOpen ? 'rgba(110,231,183,0.75)' : 'rgba(248,113,113,0.7)';
+      gates.east.style.background = eastOpen ? 'rgba(110,231,183,0.75)' : 'rgba(248,113,113,0.7)';
+    }
+
+    function updateNear() {
+      state.near = null;
+      for (const task of tasks) {
+        if (!state.completed.has(task.dataset.task) && dist(task) < 56) {
+          state.near = task.dataset.task;
+          break;
+        }
+      }
+      if (state.near) {
+        promptEl.style.display = 'block';
+        promptEl.textContent = textByTask[state.near];
+      } else {
+        promptEl.style.display = 'none';
+      }
+    }
+
+    function adjustReputation(target) {
+      if (target === 'admin') {
+        state.rep.admin += 18; state.rep.workers -= 7; state.rep.civic -= 4;
+      }
+      if (target === 'workers') {
+        state.rep.workers += 18; state.rep.admin -= 6; state.rep.civic -= 5;
+      }
+      if (target === 'civic') {
+        state.rep.civic += 18; state.rep.admin -= 5; state.rep.workers -= 5;
+      }
+      Object.keys(state.rep).forEach((key) => {
+        state.rep[key] = Math.max(5, Math.min(95, state.rep[key]));
+      });
+      updateBars();
+    }
+
+    function completeTask() {
+      if (!state.near) return;
+      state.completed.add(state.near);
+      document.querySelector('[data-task="' + state.near + '"]').classList.add('taskDone');
+      adjustReputation(state.near);
+      promptEl.textContent = 'Action complete';
+      if (state.completed.size === tasks.length && !state.finished) {
+        state.finished = true;
+        resultEl.style.display = 'block';
+        const top = Object.entries(state.rep).sort((a, b) => b[1] - a[1])[0][0];
+        resultEl.innerHTML = `
+          <h2>Faction loop complete</h2>
+          <p>La faction la plus en confiance est <strong>${top}</strong>. Dans un vrai niveau, cela pourrait changer qui t'aide en combat, quel raccourci s'ouvre, quel temoignage tu obtiens ou quel boss social tu affrontes.</p>
+          <p>Ce systeme est durable car il relie exploration, action, relations et debat final dans une meme boucle.</p>
+          <button onclick="location.reload()">Recommencer</button>
+        `;
+      }
+    }
+
+    function tick() {
+      if (keys.has('arrowup') || keys.has('w')) state.y -= state.speed;
+      if (keys.has('arrowdown') || keys.has('s')) state.y += state.speed;
+      if (keys.has('arrowleft') || keys.has('a')) state.x -= state.speed;
+      if (keys.has('arrowright') || keys.has('d')) state.x += state.speed;
+      clamp();
+      player.style.left = state.x + 'px';
+      player.style.top = state.y + 'px';
+      updateNear();
+      requestAnimationFrame(tick);
+    }
+
+    document.addEventListener('keydown', (event) => {
+      const key = event.key.toLowerCase();
+      keys.add(key);
+      if (key === 'e') completeTask();
+      if (key === 'r') location.reload();
+      introEl.style.display = 'none';
+    });
+    document.addEventListener('keyup', (event) => keys.delete(event.key.toLowerCase()));
+
+    updateBars();
+    tick();
+  </script>
+</body>
+</html>

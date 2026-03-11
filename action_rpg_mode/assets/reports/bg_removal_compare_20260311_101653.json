@@ -1,0 +1,457 @@
+{
+  "timestamp": "20260311_101653",
+  "source_root": "D:\\mode solo rpg\\mode-solo-rpg-ethics\\action_rpg_mode\\assets\\spritesheets",
+  "compare_root": "D:\\mode solo rpg\\mode-solo-rpg-ethics\\action_rpg_mode\\assets\\bg_removal_compare\\run_20260311_101653",
+  "cleaned_root": "D:\\mode solo rpg\\mode-solo-rpg-ethics\\action_rpg_mode\\assets\\spritesheets_cleaned\\run_20260311_101653_method_b",
+  "sample_votes": {
+    "A": 0,
+    "B": 7
+  },
+  "chosen_method": "B",
+  "sample_results": [
+    {
+      "file": "player/warrior/walk.png",
+      "method_a": {
+        "relpath": "player/warrior/walk.png",
+        "method": "A",
+        "fg_ratio": 0.92958984375,
+        "border_fg_ratio": 0.021875,
+        "components": 7
+      },
+      "method_b": {
+        "relpath": "player/warrior/walk.png",
+        "method": "B",
+        "fg_ratio": 0.243642578125,
+        "border_fg_ratio": 0.0,
+        "components": 40
+      },
+      "picked": "B",
+      "preview": "D:\\mode solo rpg\\mode-solo-rpg-ethics\\action_rpg_mode\\assets\\bg_removal_compare\\run_20260311_101653\\preview\\player\\warrior\\walk.preview.png"
+    },
+    {
+      "file": "player/mage/attack_basic.png",
+      "method_a": {
+        "relpath": "player/mage/attack_basic.png",
+        "method": "A",
+        "fg_ratio": 0.932392578125,
+        "border_fg_ratio": 0.001953125,
+        "components": 1
+      },
+      "method_b": {
+        "relpath": "player/mage/attack_basic.png",
+        "method": "B",
+        "fg_ratio": 0.22897216796875,
+        "border_fg_ratio": 0.0,
+        "components": 35
+      },
+      "picked": "B",
+      "preview": "D:\\mode solo rpg\\mode-solo-rpg-ethics\\action_rpg_mode\\assets\\bg_removal_compare\\run_20260311_101653\\preview\\player\\mage\\attack_basic.preview.png"
+    },
+    {
+      "file": "player/hunter/skill_2.png",
+      "method_a": {
+        "relpath": "player/hunter/skill_2.png",
+        "method": "A",
+        "fg_ratio": 0.83917724609375,
+        "border_fg_ratio": 0.002734375,
+        "components": 171
+      },
+      "method_b": {
+        "relpath": "player/hunter/skill_2.png",
+        "method": "B",
+        "fg_ratio": 0.2485009765625,
+        "border_fg_ratio": 0.0,
+        "components": 30
+      },
+      "picked": "B",
+      "preview": "D:\\mode solo rpg\\mode-solo-rpg-ethics\\action_rpg_mode\\assets\\bg_removal_compare\\run_20260311_101653\\preview\\player\\hunter\\skill_2.preview.png"
+    },
+    {
+      "file": "enemies/raider/attack.png",
+      "method_a": {
+        "relpath": "enemies/raider/attack.png",
+        "method": "A",
+        "fg_ratio": 0.56666015625,
+        "border_fg_ratio": 0.0,
+        "components": 72
+      },
+      "method_b": {
+        "relpath": "enemies/raider/attack.png",
+        "method": "B",
+        "fg_ratio": 0.33510009765625,
+        "border_fg_ratio": 0.0,
+        "components": 45
+      },
+      "picked": "B",
+      "preview": "D:\\mode solo rpg\\mode-solo-rpg-ethics\\action_rpg_mode\\assets\\bg_removal_compare\\run_20260311_101653\\preview\\enemies\\raider\\attack.preview.png"
+    },
+    {
+      "file": "enemies/drone/walk.png",
+      "method_a": {
+        "relpath": "enemies/drone/walk.png",
+        "method": "A",
+        "fg_ratio": 0.902216796875,
+        "border_fg_ratio": 0.0,
+        "components": 1
+      },
+      "method_b": {
+        "relpath": "enemies/drone/walk.png",
+        "method": "B",
+        "fg_ratio": 0.17907470703125,
+        "border_fg_ratio": 0.000390625,
+        "components": 182
+      },
+      "picked": "B",
+      "preview": "D:\\mode solo rpg\\mode-solo-rpg-ethics\\action_rpg_mode\\assets\\bg_removal_compare\\run_20260311_101653\\preview\\enemies\\drone\\walk.preview.png"
+    },
+    {
+      "file": "enemies/juggernaut/death.png",
+      "method_a": {
+        "relpath": "enemies/juggernaut/death.png",
+        "method": "A",
+        "fg_ratio": 0.90465576171875,
+        "border_fg_ratio": 0.000390625,
+        "components": 1
+      },
+      "method_b": {
+        "relpath": "enemies/juggernaut/death.png",
+        "method": "B",
+        "fg_ratio": 0.263291015625,
+        "border_fg_ratio": 0.0,
+        "components": 26
+      },
+      "picked": "B",
+      "preview": "D:\\mode solo rpg\\mode-solo-rpg-ethics\\action_rpg_mode\\assets\\bg_removal_compare\\run_20260311_101653\\preview\\enemies\\juggernaut\\death.preview.png"
+    },
+    {
+      "file": "enemies/stalker/idle.png",
+      "method_a": {
+        "relpath": "enemies/stalker/idle.png",
+        "method": "A",
+        "fg_ratio": 0.2921728515625,
+        "border_fg_ratio": 0.018359375,
+        "components": 605
+      },
+      "method_b": {
+        "relpath": "enemies/stalker/idle.png",
+        "method": "B",
+        "fg_ratio": 0.16603515625,
+        "border_fg_ratio": 0.0,
+        "components": 56
+      },
+      "picked": "B",
+      "preview": "D:\\mode solo rpg\\mode-solo-rpg-ethics\\action_rpg_mode\\assets\\bg_removal_compare\\run_20260311_101653\\preview\\enemies\\stalker\\idle.preview.png"
+    }
+  ],
+  "batch_count": 44,
+  "batch_metrics": [
+    {
+      "relpath": "enemies/drone/attack.png",
+      "method": "B",
+      "fg_ratio": 0.470224609375,
+      "border_fg_ratio": 0.233984375,
+      "components": 598
+    },
+    {
+      "relpath": "enemies/drone/death.png",
+      "method": "B",
+      "fg_ratio": 0.945244140625,
+      "border_fg_ratio": 0.499609375,
+      "components": 3
+    },
+    {
+      "relpath": "enemies/drone/hurt.png",
+      "method": "B",
+      "fg_ratio": 0.87989501953125,
+      "border_fg_ratio": 0.499609375,
+      "components": 37
+    },
+    {
+      "relpath": "enemies/drone/idle.png",
+      "method": "B",
+      "fg_ratio": 0.16871826171875,
+      "border_fg_ratio": 0.0,
+      "components": 24
+    },
+    {
+      "relpath": "enemies/drone/walk.png",
+      "method": "B",
+      "fg_ratio": 0.17907470703125,
+      "border_fg_ratio": 0.000390625,
+      "components": 182
+    },
+    {
+      "relpath": "enemies/juggernaut/attack.png",
+      "method": "B",
+      "fg_ratio": 0.30062744140625,
+      "border_fg_ratio": 0.003125,
+      "components": 59
+    },
+    {
+      "relpath": "enemies/juggernaut/death.png",
+      "method": "B",
+      "fg_ratio": 0.263291015625,
+      "border_fg_ratio": 0.0,
+      "components": 26
+    },
+    {
+      "relpath": "enemies/juggernaut/hurt.png",
+      "method": "B",
+      "fg_ratio": 0.27710205078125,
+      "border_fg_ratio": 0.00546875,
+      "components": 47
+    },
+    {
+      "relpath": "enemies/juggernaut/idle.png",
+      "method": "B",
+      "fg_ratio": 0.2758935546875,
+      "border_fg_ratio": 0.000390625,
+      "components": 34
+    },
+    {
+      "relpath": "enemies/juggernaut/walk.png",
+      "method": "B",
+      "fg_ratio": 0.2765234375,
+      "border_fg_ratio": 0.002734375,
+      "components": 53
+    },
+    {
+      "relpath": "enemies/raider/attack.png",
+      "method": "B",
+      "fg_ratio": 0.33510009765625,
+      "border_fg_ratio": 0.0,
+      "components": 45
+    },
+    {
+      "relpath": "enemies/raider/death.png",
+      "method": "B",
+      "fg_ratio": 0.2934375,
+      "border_fg_ratio": 0.0,
+      "components": 45
+    },
+    {
+      "relpath": "enemies/raider/hurt.png",
+      "method": "B",
+      "fg_ratio": 0.3103173828125,
+      "border_fg_ratio": 0.0,
+      "components": 36
+    },
+    {
+      "relpath": "enemies/raider/idle.png",
+      "method": "B",
+      "fg_ratio": 0.31708740234375,
+      "border_fg_ratio": 0.0,
+      "components": 36
+    },
+    {
+      "relpath": "enemies/raider/walk.png",
+      "method": "B",
+      "fg_ratio": 0.30892578125,
+      "border_fg_ratio": 0.0,
+      "components": 36
+    },
+    {
+      "relpath": "enemies/stalker/attack.png",
+      "method": "B",
+      "fg_ratio": 0.17989990234375,
+      "border_fg_ratio": 0.000390625,
+      "components": 47
+    },
+    {
+      "relpath": "enemies/stalker/death.png",
+      "method": "B",
+      "fg_ratio": 0.109052734375,
+      "border_fg_ratio": 0.0,
+      "components": 67
+    },
+    {
+      "relpath": "enemies/stalker/hurt.png",
+      "method": "B",
+      "fg_ratio": 0.1659033203125,
+      "border_fg_ratio": 0.0,
+      "components": 51
+    },
+    {
+      "relpath": "enemies/stalker/idle.png",
+      "method": "B",
+      "fg_ratio": 0.16603515625,
+      "border_fg_ratio": 0.0,
+      "components": 56
+    },
+    {
+      "relpath": "enemies/stalker/walk.png",
+      "method": "B",
+      "fg_ratio": 0.167841796875,
+      "border_fg_ratio": 0.000390625,
+      "components": 47
+    },
+    {
+      "relpath": "player/hunter/attack_basic.png",
+      "method": "B",
+      "fg_ratio": 0.2535302734375,
+      "border_fg_ratio": 0.0,
+      "components": 25
+    },
+    {
+      "relpath": "player/hunter/death.png",
+      "method": "B",
+      "fg_ratio": 0.2444091796875,
+      "border_fg_ratio": 0.0,
+      "components": 24
+    },
+    {
+      "relpath": "player/hunter/hurt.png",
+      "method": "B",
+      "fg_ratio": 0.2501220703125,
+      "border_fg_ratio": 0.0,
+      "components": 26
+    },
+    {
+      "relpath": "player/hunter/idle.png",
+      "method": "B",
+      "fg_ratio": 0.25178466796875,
+      "border_fg_ratio": 0.0,
+      "components": 24
+    },
+    {
+      "relpath": "player/hunter/run.png",
+      "method": "B",
+      "fg_ratio": 0.2537890625,
+      "border_fg_ratio": 0.0,
+      "components": 25
+    },
+    {
+      "relpath": "player/hunter/skill_1.png",
+      "method": "B",
+      "fg_ratio": 0.253388671875,
+      "border_fg_ratio": 0.0,
+      "components": 24
+    },
+    {
+      "relpath": "player/hunter/skill_2.png",
+      "method": "B",
+      "fg_ratio": 0.2485009765625,
+      "border_fg_ratio": 0.0,
+      "components": 30
+    },
+    {
+      "relpath": "player/hunter/walk.png",
+      "method": "B",
+      "fg_ratio": 0.25275146484375,
+      "border_fg_ratio": 0.0,
+      "components": 24
+    },
+    {
+      "relpath": "player/mage/attack_basic.png",
+      "method": "B",
+      "fg_ratio": 0.22897216796875,
+      "border_fg_ratio": 0.0,
+      "components": 35
+    },
+    {
+      "relpath": "player/mage/death.png",
+      "method": "B",
+      "fg_ratio": 0.19536376953125,
+      "border_fg_ratio": 0.0,
+      "components": 24
+    },
+    {
+      "relpath": "player/mage/hurt.png",
+      "method": "B",
+      "fg_ratio": 0.2244384765625,
+      "border_fg_ratio": 0.0,
+      "components": 24
+    },
+    {
+      "relpath": "player/mage/idle.png",
+      "method": "B",
+      "fg_ratio": 0.2297119140625,
+      "border_fg_ratio": 0.0,
+      "components": 24
+    },
+    {
+      "relpath": "player/mage/run.png",
+      "method": "B",
+      "fg_ratio": 0.2419140625,
+      "border_fg_ratio": 0.0,
+      "components": 24
+    },
+    {
+      "relpath": "player/mage/skill_1.png",
+      "method": "B",
+      "fg_ratio": 0.2398828125,
+      "border_fg_ratio": 0.00546875,
+      "components": 290
+    },
+    {
+      "relpath": "player/mage/skill_2.png",
+      "method": "B",
+      "fg_ratio": 0.29385986328125,
+      "border_fg_ratio": 0.0,
+      "components": 65
+    },
+    {
+      "relpath": "player/mage/walk.png",
+      "method": "B",
+      "fg_ratio": 0.2316259765625,
+      "border_fg_ratio": 0.0,
+      "components": 24
+    },
+    {
+      "relpath": "player/warrior/attack_basic.png",
+      "method": "B",
+      "fg_ratio": 0.25373779296875,
+      "border_fg_ratio": 0.0,
+      "components": 39
+    },
+    {
+      "relpath": "player/warrior/death.png",
+      "method": "B",
+      "fg_ratio": 0.2401025390625,
+      "border_fg_ratio": 0.0,
+      "components": 43
+    },
+    {
+      "relpath": "player/warrior/hurt.png",
+      "method": "B",
+      "fg_ratio": 0.241787109375,
+      "border_fg_ratio": 0.0,
+      "components": 38
+    },
+    {
+      "relpath": "player/warrior/idle.png",
+      "method": "B",
+      "fg_ratio": 0.24414306640625,
+      "border_fg_ratio": 0.0,
+      "components": 38
+    },
+    {
+      "relpath": "player/warrior/run.png",
+      "method": "B",
+      "fg_ratio": 0.2406982421875,
+      "border_fg_ratio": 0.0,
+      "components": 38
+    },
+    {
+      "relpath": "player/warrior/skill_1.png",
+      "method": "B",
+      "fg_ratio": 0.24337646484375,
+      "border_fg_ratio": 0.0,
+      "components": 52
+    },
+    {
+      "relpath": "player/warrior/skill_2.png",
+      "method": "B",
+      "fg_ratio": 0.2443896484375,
+      "border_fg_ratio": 0.0,
+      "components": 177
+    },
+    {
+      "relpath": "player/warrior/walk.png",
+      "method": "B",
+      "fg_ratio": 0.243642578125,
+      "border_fg_ratio": 0.0,
+      "components": 40
+    }
+  ]
+}
