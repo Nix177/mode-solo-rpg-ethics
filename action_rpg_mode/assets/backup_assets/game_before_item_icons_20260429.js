@@ -700,11 +700,10 @@ const LOCAL_SPRITE_PATHS = {
     stalker: "./assets/sprites/enemies/enemy_stalker.png"
   },
   item: {
-    healthPotion: "./assets/items_generated/health_potion.png",
-    manaPotion: "./assets/items_generated/mana_potion.png",
+    healthPotion: "./assets/items/health_potion.svg",
+    manaPotion: "./assets/items/mana_potion.svg",
     gold: "./assets/items/gold.svg",
-    xp: "./assets/items_generated/xp_orb.png",
-    rareOrb: "./assets/items_generated/rare_orb.png"
+    xp: "./assets/items/xp_orb.svg"
   }
 };
 
@@ -1005,11 +1004,10 @@ const SLOT_STAT_FOCUS = {
   legs: ["defense", "maxStamina"], cape: ["maxMana", "defense"], necklace: ["maxMana", "attack"]
 };
 const ITEM_ICON_PATHS = {
-  healthPotion: "./assets/items_generated/health_potion.png",
-  manaPotion: "./assets/items_generated/mana_potion.png",
+  healthPotion: "./assets/items/health_potion.svg",
+  manaPotion: "./assets/items/mana_potion.svg",
   gold: "./assets/items/gold.svg",
-  xp: "./assets/items_generated/xp_orb.png",
-  rareOrb: "./assets/items_generated/rare_orb.png"
+  xp: "./assets/items/xp_orb.svg"
 };
 
 const TALENT_DEFS = {
@@ -3087,7 +3085,7 @@ function chooseWeightedRarity() {
 }
 
 function getEquipmentIconPath(classId, slot) {
-  return `./assets/items_generated/${classId || "warrior"}_${slot || "weapon"}.png`;
+  return `./assets/items/${classId || "warrior"}_${slot || "weapon"}.svg`;
 }
 
 function getItemIconPath(item) {
@@ -5339,20 +5337,7 @@ function drawLoot(camX, camY) {
     const spritePath = loot.kind === "equipment" && loot.item ? getItemIconPath(loot.item) : (LOCAL_SPRITE_PATHS.item[loot.kind] || ITEM_ICON_PATHS[loot.kind]);
     const sprite = spritePath ? state.assets.images[spritePath] : null;
     if (sprite) {
-      const rarity = loot.kind === "equipment" && loot.item ? (RARITIES[loot.item.rarity] || RARITIES.common) : null;
-      const size = loot.kind === "equipment" ? 34 : (loot.kind === "xp" ? 24 : 28);
-      if (rarity) {
-        ctx.save();
-        ctx.shadowColor = rarity.color;
-        ctx.shadowBlur = 12;
-        ctx.strokeStyle = rarity.color;
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        if (typeof ctx.roundRect === "function") ctx.roundRect(x - size / 2 - 4, y - size / 2 - 4, size + 8, size + 8, 8);
-        else ctx.rect(x - size / 2 - 4, y - size / 2 - 4, size + 8, size + 8);
-        ctx.stroke();
-        ctx.restore();
-      }
+      const size = 22;
       ctx.drawImage(sprite, x - size / 2, y - size / 2, size, size);
       continue;
     }
