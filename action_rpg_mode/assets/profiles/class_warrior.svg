@@ -1,0 +1,26 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="class_warrior.svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#172033"/>
+      <stop offset="0.55" stop-color="#243049"/>
+      <stop offset="1" stop-color="#0b1220"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="50%" cy="35%" r="60%">
+      <stop offset="0" stop-color="#5db8ff" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#5db8ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4"/></filter>
+  </defs>
+  <rect x="10" y="10" width="236" height="236" rx="34" fill="url(#bg)"/>
+  <rect x="18" y="18" width="220" height="220" rx="28" fill="url(#halo)"/>
+  <path d="M38 200 C78 176 178 176 218 200 L218 224 L38 224 Z" fill="#111827" opacity="0.72"/>
+  <ellipse cx="128" cy="204" rx="70" ry="14" fill="#020617" opacity="0.65"/>
+  <path d="M78 184 L96 110 L160 110 L178 184 Q128 210 78 184Z" fill="#5db8ff" stroke="#dbeafe" stroke-width="5" stroke-linejoin="round"/>
+  <circle cx="128" cy="74" r="33" fill="#f2bf8d" stroke="#111827" stroke-width="6"/>
+  <path d="M94 70 C98 29 160 27 168 70 C150 58 120 56 94 70Z" fill="#1f2937"/>
+  <path d="M108 80 Q128 92 148 80" fill="none" stroke="#6b3f1d" stroke-width="4" stroke-linecap="round" opacity="0.45"/>
+  <path d="M182 64 L132 142 M82 124 Q72 154 96 176 Q122 154 110 124 Z" fill="none" stroke="#f8fafc" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M182 64 L132 142 M82 124 Q72 154 96 176 Q122 154 110 124 Z" fill="none" stroke="#5db8ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="10" y="10" width="236" height="236" rx="34" fill="none" stroke="#5db8ff" stroke-width="5" opacity="0.9"/>
+  <text x="128" y="235" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="#eef6ff" font-weight="700">Guerrier</text>
+</svg>

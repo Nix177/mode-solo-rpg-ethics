@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Observatoire - Action RPG Mode</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+</head>
+<body>
+  <div id="app">
+    <div id="hud">
+      <div class="hud-row">
+        <span id="hud-scene">Niveau: -</span>
+        <span id="hud-class">Classe: -</span>
+        <span id="hud-hero">Héros: -</span>
+        <span id="hud-level">Lvl: 1</span>
+        <span id="hud-hp">HP: 0/0</span>
+        <span id="hud-xp">XP: 0/0</span>
+        <span id="hud-gold">Or: 0</span>
+      </div>
+      <div id="hud-bars">
+        <div class="stat-row">
+          <span class="stat-label">Vie</span>
+          <div class="stat-bar"><div id="bar-hp-fill" class="stat-fill hp"></div></div>
+          <span id="bar-hp-text" class="stat-text">0/0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Stamina</span>
+          <div class="stat-bar"><div id="bar-stamina-fill" class="stat-fill stamina"></div></div>
+          <span id="bar-stamina-text" class="stat-text">0/0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Mana</span>
+          <div class="stat-bar"><div id="bar-mana-fill" class="stat-fill mana"></div></div>
+          <span id="bar-mana-text" class="stat-text">0/0</span>
+        </div>
+        <div class="stat-row xp-row">
+          <span class="stat-label">XP</span>
+          <div class="stat-bar"><div id="bar-xp-fill" class="stat-fill xp"></div></div>
+          <span id="bar-xp-text" class="stat-text">0/0</span>
+        </div>
+      </div>
+      <div class="hud-row">
+        <span id="hud-objective">Objectif: -</span>
+        <span id="hud-skills">SHIFT courir | SPACE attaque | J journal | G grimoire | I inventaire | E interagir | P pause</span>
+      </div>
+    </div>
+
+    <canvas id="gameCanvas" width="1280" height="720"></canvas>
+
+    <div id="hotbar" aria-label="Barre d acces rapide"></div>
+
+    <div id="minimap-wrap">
+      <canvas id="miniMap" width="220" height="140"></canvas>
+    </div>
+
+    <div id="chat-panel" class="hidden">
+      <div id="chat-head">
+        <div>
+          <span id="chat-npc-name">Conseiller</span>
+          <small id="chat-context">Dialogue de faction</small>
+        </div>
+        <button id="chat-close" type="button">x</button>
+      </div>
+      <div id="chat-choices" aria-label="Questions rapides"></div>
+      <div id="chat-log"></div>
+      <div id="chat-input-row">
+        <input id="chat-input" type="text" placeholder="Pose une question libre au persona...">
+        <button id="chat-send" type="button">Envoyer</button>
+      </div>
+    </div>
+
+    <div id="merchant-panel" class="hidden">
+      <div id="merchant-card">
+        <h2>Marchand de terrain</h2>
+        <p id="merchant-desc">Ravitaille ton heros avant de repartir en zone dangereuse.</p>
+        <div id="merchant-actions">
+          <button id="buy-potion" type="button">Potion soin (25 or)</button>
+          <button id="buy-mana-potion" type="button">Potion mana (25 or)</button>
+        </div>
+        <button id="merchant-close" type="button">Fermer</button>
+      </div>
+    </div>
+
+
+
+    <div id="inventory-panel" class="hidden">
+      <div id="inventory-card">
+        <div id="inventory-head">
+          <h2>Inventaire</h2>
+          <button id="inventory-close" type="button">x</button>
+        </div>
+        <div id="inventory-body">
+          <div id="inventory-left">
+            <div id="inventory-player-preview"></div>
+            <div id="inventory-stats"></div>
+            <div id="equipment-slots">
+              <button class="equipment-slot" data-slot="necklace" type="button"><span>Collier</span><strong>Vide</strong></button>
+              <button class="equipment-slot" data-slot="cape" type="button"><span>Cape</span><strong>Vide</strong></button>
+              <button class="equipment-slot" data-slot="chest" type="button"><span>Torse</span><strong>Vide</strong></button>
+              <button class="equipment-slot" data-slot="legs" type="button"><span>Jambes</span><strong>Vide</strong></button>
+              <button class="equipment-slot" data-slot="gloves" type="button"><span>Gants</span><strong>Vide</strong></button>
+              <button class="equipment-slot" data-slot="weapon" type="button"><span>Arme</span><strong>Vide</strong></button>
+            </div>
+          </div>
+          <div id="inventory-main">
+            <div id="inventory-grid"></div>
+            <div id="inventory-trash" aria-label="Jeter un objet">Glisse ici pour jeter</div>
+          </div>
+        </div>
+        <div id="item-tooltip">Survole un objet pour voir ses statistiques. Glisse l'objet vers le bon slot pour l'équiper.</div>
+        <p id="inventory-details">Clique sur une potion pour l'utiliser. Glisse l'équipement vers son slot.</p>
+      </div>
+    </div>
+
+
+    <div id="grimoire-panel" class="hidden">
+      <div id="grimoire-card">
+        <div id="grimoire-head">
+          <h2>Grimoire</h2>
+          <button id="grimoire-close" type="button">x</button>
+        </div>
+        <p id="grimoire-help">Glisse une compétence débloquée ou une potion vers la barre rapide en bas de l'écran.</p>
+        <section id="skill-book">
+          <h3>Compétences débloquées</h3>
+          <div id="skill-grid"></div>
+        </section>
+        <section id="talent-panel-inline">
+          <div id="talent-head"><h3>Arbre de talents</h3><span id="talent-points">0 point</span></div>
+          <div id="talent-grid"></div>
+        </section>
+      </div>
+    </div>
+
+    <div id="quest-panel" class="hidden">
+      <div id="quest-card">
+        <div id="quest-head">
+          <div>
+            <h2>Journal de quêtes</h2>
+            <p id="quest-lore">Comprends les factions avant le conseil final.</p>
+          </div>
+          <button id="quest-close" type="button">x</button>
+        </div>
+        <ul id="quest-list"></ul>
+        <p class="quest-help">Raccourci: J. Les objectifs secondaires donnent or, XP et équipement, mais ne dictent jamais ton vote.</p>
+      </div>
+    </div>
+
+    <div id="vote-panel" class="hidden">
+      <div id="vote-card">
+        <h2>Conseil du village</h2>
+        <p id="vote-dilemma">-</p>
+        <div id="vote-options"></div>
+        <textarea id="vote-justification" placeholder="Justifie ton avis: quelle valeur veux-tu proteger en premier ?"></textarea>
+        <div id="vote-actions">
+          <button id="vote-cancel" type="button">Annuler</button>
+          <button id="vote-submit" type="button">Valider</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="class-panel">
+      <div id="class-card">
+        <h1>Action RPG Mode</h1>
+        <p>Choisis une classe pour partir explorer le dilemme.</p>
+        <h3>Choisis ta classe</h3>
+        <div id="class-grid"></div>
+        <button id="start-btn" type="button" disabled>Démarrer</button>
+      </div>
+    </div>
+
+
+
+    <div id="tutorial-panel" class="hidden">
+      <div id="tutorial-card">
+        <button id="tutorial-skip" type="button">Passer</button>
+        <div id="tutorial-progress">1/7</div>
+        <h2 id="tutorial-title">Tutoriel</h2>
+        <p id="tutorial-body">Lis l’action puis appuie sur la touche demandée.</p>
+        <div id="tutorial-action">Appuie sur une touche</div>
+      </div>
+    </div>
+
+    <div id="pause-panel" class="hidden">
+      <div id="pause-card">
+        <h2>Pause</h2>
+        <p>Appuie sur P pour reprendre.</p>
+        <p id="music-now-playing">Musique: chargement...</p>
+        <div id="pause-sliders">
+          <label>Musique <input id="music-volume" type="range" min="0" max="100" value="42"></label>
+          <label>Bruitages <input id="sfx-volume" type="range" min="0" max="100" value="65"></label>
+        </div>
+        <div id="pause-actions">
+          <button id="music-prev" type="button">Précédente</button>
+          <button id="toggle-audio" type="button">Musique: Pause</button>
+          <button id="music-next" type="button">Suivante</button>
+          <button id="change-character" type="button">Changer de classe</button>
+        </div>
+      </div>
+    </div>
+
+    <button id="guide-button" type="button" aria-label="Ouvrir le guide">
+      <img src="../assets/avatar_architecte.png" alt="Guide">
+    </button>
+
+    <div id="guide-panel" class="hidden">
+      <div id="guide-card">
+        <div id="guide-head">
+          <strong>Iris Kade - Guide de simulation</strong>
+          <button id="guide-close" type="button">x</button>
+        </div>
+        <p id="guide-text">Explore la carte, combats pour stabiliser les zones, puis parle aux 3 conseillers avant de voter.</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./game.js?v=20260429_village_zones1"></script>
+</body>
+</html>
