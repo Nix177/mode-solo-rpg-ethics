@@ -2,7 +2,7 @@
 const TILE_SIZE = 48;
 const DEFAULT_WORLD_TILES = { w: 92, h: 58 };
 const MAX_ENEMIES = 120;
-const ASSET_VERSION = "20260429_region_tiles_ui1";
+const ASSET_VERSION = "20260429_chief_quests2";
 
 const RESOURCE_RULES = {
   runStaminaPerSecond: 24,
@@ -1169,7 +1169,6 @@ const state = {
     sfxLastPlayed: {}
   },
   selectedInventoryIndex: null,
-  ui: { questTrackerMinimized: false },
   quest: {
     talked: new Set(),
     seals: new Set(),
@@ -1754,252 +1753,6 @@ function buildVillageTileLayout(world) {
   paintTileBlock(world, 69, 18, 8, 4, "floor", VILLAGE_TILE_PATHS.flowers);
 }
 
-
-const MINE_LAYOUT_TILES = {
-  floor: [
-    "./assets/region_assets/tiles/mine/00_rocky_floor_a.png",
-    "./assets/region_assets/tiles/mine/01_dark_gravel_floor.png",
-    "./assets/region_assets/tiles/mine/02_cracked_stone_floor.png",
-    "./assets/region_assets/tiles/mine/03_pebble_stone_floor.png",
-    "./assets/region_assets/tiles/mine/54_mixed_mine_floor_a.png",
-    "./assets/region_assets/tiles/mine/55_mixed_mine_floor_b.png"
-  ],
-  dirt: [
-    "./assets/region_assets/tiles/mine/34_dirt_stone_transition.png",
-    "./assets/region_assets/tiles/mine/36_gravel_stone_path.png",
-    "./assets/region_assets/tiles/mine/37_light_stone_floor.png"
-  ],
-  wall: [
-    "./assets/region_assets/tiles/mine/04_cave_wall_top_a.png",
-    "./assets/region_assets/tiles/mine/05_cave_wall_top_b.png",
-    "./assets/region_assets/tiles/mine/60_cracked_mine_wall_a.png",
-    "./assets/region_assets/tiles/mine/61_gravel_mine_wall_b.png",
-    "./assets/region_assets/tiles/mine/62_dark_mine_wall_c.png"
-  ],
-  railH: "./assets/region_assets/tiles/mine/13_rail_base_horizontal.png",
-  railV: "./assets/region_assets/tiles/mine/14_rail_base_vertical.png",
-  railCross: "./assets/region_assets/tiles/mine/17_rail_cross_base.png",
-  railBroken: "./assets/region_assets/tiles/mine/18_rail_horizontal_broken.png",
-  planks: "./assets/region_assets/tiles/mine/26_wood_plank_path_a.png",
-  lantern: "./assets/region_assets/tiles/mine/32_lantern_light_floor.png",
-  ore: [
-    "./assets/region_assets/tiles/mine/40_green_crystal_detail.png",
-    "./assets/region_assets/tiles/mine/41_purple_crystal_detail.png",
-    "./assets/region_assets/tiles/mine/44_white_ore_detail.png",
-    "./assets/region_assets/tiles/mine/45_gold_ore_detail.png",
-    "./assets/region_assets/tiles/mine/56_green_ore_floor.png",
-    "./assets/region_assets/tiles/mine/57_orange_ore_floor.png",
-    "./assets/region_assets/tiles/mine/59_blue_ore_floor.png"
-  ]
-};
-
-const PORT_LAYOUT_TILES = {
-  water: [
-    "./assets/region_assets/tiles/port/00_deep_water_dark_a.png",
-    "./assets/region_assets/tiles/port/01_deep_water_dark_b.png",
-    "./assets/region_assets/tiles/port/02_deep_water_dark_c.png",
-    "./assets/region_assets/tiles/port/03_deep_water_dark_d.png"
-  ],
-  shallow: [
-    "./assets/region_assets/tiles/port/05_shallow_water_a.png",
-    "./assets/region_assets/tiles/port/06_shallow_reef_water_a.png",
-    "./assets/region_assets/tiles/port/08_shallow_water_foam_a.png",
-    "./assets/region_assets/tiles/port/11_deep_to_shallow_water.png"
-  ],
-  sand: [
-    "./assets/region_assets/tiles/port/14_wet_sand_shore_a.png",
-    "./assets/region_assets/tiles/port/15_wet_sand_shore_b.png",
-    "./assets/region_assets/tiles/port/56_seaweed_on_sand.png",
-    "./assets/region_assets/tiles/port/57_shells_on_sand.png",
-    "./assets/region_assets/tiles/port/59_pebble_sand.png"
-  ],
-  stone: [
-    "./assets/region_assets/tiles/port/20_stone_quay_plain.png",
-    "./assets/region_assets/tiles/port/52_stone_quay_plain_b.png",
-    "./assets/region_assets/tiles/port/54_stone_quay_wood_edge.png"
-  ],
-  dockH: "./assets/region_assets/tiles/port/22_wooden_dock_planks_horizontal.png",
-  dockHAlt: "./assets/region_assets/tiles/port/24_weathered_dock_planks_horizontal.png",
-  dockV: "./assets/region_assets/tiles/port/25_vertical_wood_planks.png",
-  dockVAlt: "./assets/region_assets/tiles/port/30_vertical_wood_dock.png",
-  dockPostH: "./assets/region_assets/tiles/port/26_dock_with_round_posts_horizontal.png",
-  dockPostV: "./assets/region_assets/tiles/port/29_mooring_posts_vertical.png",
-  cargo: [
-    "./assets/region_assets/tiles/port/48_cargo_crate_floor.png",
-    "./assets/region_assets/tiles/port/49_fish_crate_market_floor.png",
-    "./assets/region_assets/tiles/port/50_barrels_and_cargo_crates.png",
-    "./assets/region_assets/tiles/port/55_worn_wood_plank_floor.png"
-  ]
-};
-
-const FOREST_LAYOUT_TILES = {
-  grass: [
-    "./assets/region_assets/tiles/forest/00_lush_grass_flowers_a.png",
-    "./assets/region_assets/tiles/forest/01_dark_lush_grass_flowers.png",
-    "./assets/region_assets/tiles/forest/02_mossy_grass_a.png",
-    "./assets/region_assets/tiles/forest/03_magical_glow_grass.png"
-  ],
-  flowers: [
-    "./assets/region_assets/tiles/forest/19_white_flowers_grass.png",
-    "./assets/region_assets/tiles/forest/20_pink_flowers_grass.png",
-    "./assets/region_assets/tiles/forest/21_blue_flowers_grass.png",
-    "./assets/region_assets/tiles/forest/23_mixed_flowers_grass.png",
-    "./assets/region_assets/tiles/forest/62_purple_magic_flowers.png"
-  ],
-  moss: [
-    "./assets/region_assets/tiles/forest/12_mossy_stone_plain.png",
-    "./assets/region_assets/tiles/forest/13_mossy_stone_variation.png",
-    "./assets/region_assets/tiles/forest/14_mossy_stone_rune.png",
-    "./assets/region_assets/tiles/forest/15_mossy_stone_cross.png"
-  ],
-  roots: [
-    "./assets/region_assets/tiles/forest/16_root_ground_a.png",
-    "./assets/region_assets/tiles/forest/17_leafy_root_ground.png",
-    "./assets/region_assets/tiles/forest/18_magical_root_ground.png",
-    "./assets/region_assets/tiles/forest/36_root_tangle_floor.png"
-  ],
-  pathH: "./assets/region_assets/tiles/forest/05_forest_path_horizontal.png",
-  pathHAlt: "./assets/region_assets/tiles/forest/10_path_horizontal_b.png",
-  pathV: "./assets/region_assets/tiles/forest/04_forest_path_vertical.png",
-  pathVAlt: "./assets/region_assets/tiles/forest/11_path_vertical_b.png",
-  pathT: "./assets/region_assets/tiles/forest/07_forest_path_t_junction.png",
-  pond: [
-    "./assets/region_assets/tiles/forest/40_forest_pond_a.png",
-    "./assets/region_assets/tiles/forest/41_glowing_forest_pond.png",
-    "./assets/region_assets/tiles/forest/42_magical_green_pool.png"
-  ],
-  glow: [
-    "./assets/region_assets/tiles/forest/56_blue_magic_flame.png",
-    "./assets/region_assets/tiles/forest/57_green_magic_symbol.png",
-    "./assets/region_assets/tiles/forest/58_golden_magic_spiral.png",
-    "./assets/region_assets/tiles/forest/63_cyan_portal_glow.png"
-  ]
-};
-
-function tileCenterX(tx) { return (tx + 0.5) * TILE_SIZE; }
-function tileCenterY(ty) { return (ty + 0.5) * TILE_SIZE; }
-
-function addTileObstacleRect(world, tx, ty, tw, th, kind = "tile-block") {
-  world.obstacles.push({ x: tx * TILE_SIZE, y: ty * TILE_SIZE, w: tw * TILE_SIZE, h: th * TILE_SIZE, kind, soft: false });
-}
-
-function paintRegionalStraightPath(world, tx, ty, length, orientation, width, tileType, visualA, visualB = null) {
-  const horizontal = orientation === "h";
-  const half = Math.floor(width / 2);
-  for (let i = 0; i < length; i += 1) {
-    for (let o = -half; o <= half; o += 1) {
-      const px = horizontal ? tx + i : tx + o;
-      const py = horizontal ? ty + o : ty + i;
-      const visual = (visualB && Math.abs(o) === half) ? visualB : visualA;
-      setTileVisual(world, px, py, tileType, chooseTileVisual(visual, world, px, py));
-    }
-  }
-}
-
-function placeRegionalProp(world, kind, tx, ty, w, h, options = {}) {
-  addPlacedProp(world, kind, tileCenterX(tx), tileCenterY(ty), w, h, options);
-}
-
-function buildMineTileLayout(world) {
-  paintTileBlock(world, 0, 0, world.tilesW, world.tilesH, "wall", MINE_LAYOUT_TILES.wall);
-  paintTileBlock(world, 4, 5, 58, 31, "floor", MINE_LAYOUT_TILES.floor);
-  paintTileBlock(world, 8, 11, 45, 17, "floorAlt", MINE_LAYOUT_TILES.dirt);
-  paintTileBlock(world, 18, 29, 24, 4, "floor", MINE_LAYOUT_TILES.floor);
-  paintTileBlock(world, 48, 7, 9, 7, "floorAlt", MINE_LAYOUT_TILES.ore);
-  paintTileBlock(world, 8, 28, 8, 5, "floorAlt", MINE_LAYOUT_TILES.ore);
-  paintTileBlock(world, 32, 8, 7, 4, "floorAlt", MINE_LAYOUT_TILES.ore);
-
-  addTileObstacleRect(world, 0, 0, world.tilesW, 4, "mine-wall");
-  addTileObstacleRect(world, 0, 37, world.tilesW, world.tilesH - 37, "mine-wall");
-  addTileObstacleRect(world, 0, 0, 3, world.tilesH, "mine-wall");
-  addTileObstacleRect(world, 63, 0, world.tilesW - 63, world.tilesH, "mine-wall");
-  addTileObstacleRect(world, 4, 4, 58, 1, "mine-wall");
-  addTileObstacleRect(world, 4, 36, 58, 1, "mine-wall");
-  addTileObstacleRect(world, 4, 5, 1, 31, "mine-wall");
-  addTileObstacleRect(world, 61, 5, 1, 31, "mine-wall");
-
-  paintRegionalStraightPath(world, 8, 22, 45, "h", 1, "path", MINE_LAYOUT_TILES.railH);
-  paintRegionalStraightPath(world, 39, 10, 21, "v", 1, "path", MINE_LAYOUT_TILES.railV);
-  paintRegionalStraightPath(world, 27, 14, 18, "h", 1, "path", MINE_LAYOUT_TILES.railH);
-  setTileVisual(world, 39, 22, "path", MINE_LAYOUT_TILES.railCross);
-  setTileVisual(world, 19, 22, "path", MINE_LAYOUT_TILES.railBroken);
-  paintRegionalStraightPath(world, 11, 24, 13, "h", 3, "path", MINE_LAYOUT_TILES.planks);
-  paintRegionalStraightPath(world, 50, 18, 9, "v", 2, "path", MINE_LAYOUT_TILES.planks);
-  [12, 24, 36, 50].forEach((tx) => setTileVisual(world, tx, 20, "floor", MINE_LAYOUT_TILES.lantern));
-}
-
-function buildPortTileLayout(world) {
-  paintTileBlock(world, 0, 0, world.tilesW, world.tilesH, "water", PORT_LAYOUT_TILES.water);
-  paintTileBlock(world, 0, 0, world.tilesW, 15, "floor", PORT_LAYOUT_TILES.sand);
-  paintTileBlock(world, 0, 15, world.tilesW, 7, "floor", PORT_LAYOUT_TILES.sand);
-  paintTileBlock(world, 12, 14, 44, 12, "floorAlt", PORT_LAYOUT_TILES.stone);
-  paintTileBlock(world, 18, 20, 32, 7, "floorAlt", PORT_LAYOUT_TILES.cargo);
-  paintTileBlock(world, 0, 22, world.tilesW, 3, "water", PORT_LAYOUT_TILES.shallow);
-  paintRegionalStraightPath(world, 30, 5, 26, "v", 5, "path", PORT_LAYOUT_TILES.dockV, PORT_LAYOUT_TILES.dockVAlt);
-  paintRegionalStraightPath(world, 19, 28, 31, "h", 5, "path", PORT_LAYOUT_TILES.dockH, PORT_LAYOUT_TILES.dockHAlt);
-  paintRegionalStraightPath(world, 16, 23, 18, "h", 3, "path", PORT_LAYOUT_TILES.dockH, PORT_LAYOUT_TILES.dockPostH);
-  paintRegionalStraightPath(world, 45, 20, 15, "v", 3, "path", PORT_LAYOUT_TILES.dockV, PORT_LAYOUT_TILES.dockPostV);
-
-  addWaterObstacle(world, 0, 25 * TILE_SIZE, 18 * TILE_SIZE, world.height - 25 * TILE_SIZE);
-  addWaterObstacle(world, 51 * TILE_SIZE, 25 * TILE_SIZE, world.width - 51 * TILE_SIZE, world.height - 25 * TILE_SIZE);
-  addWaterObstacle(world, 18 * TILE_SIZE, 34 * TILE_SIZE, 33 * TILE_SIZE, world.height - 34 * TILE_SIZE);
-}
-
-function buildForestTileLayout(world) {
-  paintTileBlock(world, 0, 0, world.tilesW, world.tilesH, "floor", FOREST_LAYOUT_TILES.grass);
-  paintTileBlock(world, 9, 6, 10, 8, "floor", FOREST_LAYOUT_TILES.flowers);
-  paintTileBlock(world, 43, 5, 16, 10, "floorAlt", FOREST_LAYOUT_TILES.roots);
-  paintTileBlock(world, 33, 16, 16, 11, "floorAlt", FOREST_LAYOUT_TILES.moss);
-  paintTileBlock(world, 48, 31, 11, 7, "water", FOREST_LAYOUT_TILES.pond);
-  addTileObstacleRect(world, 48, 31, 11, 7, "enchanted-water");
-
-  paintRegionalStraightPath(world, 5, 23, 45, "h", 3, "path", FOREST_LAYOUT_TILES.pathH, FOREST_LAYOUT_TILES.pathHAlt);
-  paintRegionalStraightPath(world, 35, 23, 18, "v", 3, "path", FOREST_LAYOUT_TILES.pathV, FOREST_LAYOUT_TILES.pathVAlt);
-  paintRegionalStraightPath(world, 20, 17, 18, "h", 2, "path", FOREST_LAYOUT_TILES.pathH);
-  [22, 34, 45].forEach((tx) => setTileVisual(world, tx, 23, "path", FOREST_LAYOUT_TILES.pathT));
-  paintTileBlock(world, 38, 18, 8, 6, "floorAlt", FOREST_LAYOUT_TILES.glow);
-}
-
-function addMineManualProps(world) {
-  placeRegionalProp(world, "mine_entrance", 58, 12, 190, 150, { footprint: { w: 118, h: 34, y: 50 } });
-  placeRegionalProp(world, "mine_workbench", 19, 12, 120, 82, { footprint: { w: 82, h: 24, y: 26 } });
-  placeRegionalProp(world, "mine_lift_platform", 50, 25, 132, 98, { footprint: { w: 96, h: 30, y: 30 } });
-  placeRegionalProp(world, "mine_rope_winch", 42, 12, 105, 88, { footprint: { w: 72, h: 24, y: 28 } });
-  [[13,15],[25,16],[35,26],[47,18],[54,28]].forEach(([tx, ty]) => placeRegionalProp(world, "mine_support_beam", tx, ty, 82, 118, { footprint: { w: 48, h: 24, y: 40 } }));
-  [[12,31],[32,9],[51,10],[55,19],[16,18],[45,30]].forEach(([tx, ty], i) => placeRegionalProp(world, i % 2 ? "mine_crystal_ore_node" : "mine_ore_pile", tx, ty, 78, 62, { footprint: { w: 48, h: 24, y: 16 } }));
-  [[22,22],[39,20],[50,23]].forEach(([tx, ty]) => placeRegionalProp(world, "mine_lantern_post", tx, ty, 54, 78, { collidable: false, occludesPlayer: false }));
-  placeRegionalProp(world, "mine_cart_prop", 27, 22, 86, 54, { footprint: { w: 66, h: 28, y: 10 }, occludesPlayer: false });
-  placeRegionalProp(world, "mine_pickaxe_rack", 15, 12, 70, 78, { footprint: { w: 42, h: 22, y: 24 }, occludesPlayer: false });
-  placeRegionalProp(world, "mine_supply_crates", 45, 28, 82, 62, { footprint: { w: 56, h: 24, y: 15 }, occludesPlayer: false });
-}
-
-function addPortManualProps(world) {
-  placeRegionalProp(world, "port_warehouse", 17, 12, 205, 154, { footprint: { w: 150, h: 48, y: 50 } });
-  placeRegionalProp(world, "port_harbor_office", 50, 13, 178, 140, { footprint: { w: 130, h: 42, y: 45 } });
-  placeRegionalProp(world, "port_lighthouse", 60, 8, 105, 185, { footprint: { w: 54, h: 30, y: 64 } });
-  placeRegionalProp(world, "port_fish_market_stall", 28, 18, 115, 88, { footprint: { w: 82, h: 26, y: 28 } });
-  placeRegionalProp(world, "port_boat_repair_shed", 41, 17, 130, 92, { footprint: { w: 92, h: 28, y: 30 } });
-  placeRegionalProp(world, "port_crane_hoist", 23, 27, 132, 138, { footprint: { w: 78, h: 30, y: 44 } });
-  [[32,28],[43,27],[47,22]].forEach(([tx, ty]) => placeRegionalProp(world, "port_mooring_posts", tx, ty, 54, 70, { collidable: false, occludesPlayer: false }));
-  [[25,21],[38,22],[48,20]].forEach(([tx, ty]) => placeRegionalProp(world, "port_cargo_stack", tx, ty, 78, 60, { footprint: { w: 54, h: 22, y: 15 }, occludesPlayer: false }));
-  placeRegionalProp(world, "port_fishing_nets", 34, 20, 84, 54, { collidable: false, occludesPlayer: false });
-  placeRegionalProp(world, "port_fishing_boat", 18, 34, 170, 118, { collidable: false, occludesPlayer: false });
-  placeRegionalProp(world, "port_rowboat", 52, 32, 124, 78, { collidable: false, occludesPlayer: false });
-}
-
-function addForestManualProps(world) {
-  placeRegionalProp(world, "forest_magical_shrine", 41, 16, 165, 142, { footprint: { w: 98, h: 30, y: 47 } });
-  placeRegionalProp(world, "forest_portal_stone_circle", 43, 24, 135, 108, { footprint: { w: 92, h: 26, y: 31 }, occludesPlayer: false });
-  placeRegionalProp(world, "forest_ancient_arch", 30, 21, 145, 142, { footprint: { w: 86, h: 24, y: 38 } });
-  [[11,9],[15,35],[55,11],[58,26],[21,8],[62,39],[8,31],[50,40],[26,36],[60,18]].forEach(([tx, ty], i) => {
-    const kind = i % 3 === 0 ? "forest_large_magical_tree" : (i % 3 === 1 ? "forest_twisted_glowing_tree" : "forest_enchanted_stump");
-    placeRegionalProp(world, kind, tx, ty, 102 + (i % 2) * 28, 136 + (i % 2) * 24, { footprint: { w: 58, h: 28, y: 44 } });
-  });
-  [[18,18],[25,15],[37,29],[53,24],[47,10]].forEach(([tx, ty], i) => placeRegionalProp(world, i % 2 ? "forest_glowing_crystal_cluster" : "forest_rune_stone_large", tx, ty, 78, 70, { footprint: { w: 48, h: 22, y: 18 }, occludesPlayer: false }));
-  [[14,22],[31,26],[39,14],[51,28],[44,35],[27,31],[20,28]].forEach(([tx, ty], i) => placeRegionalProp(world, ["forest_glowing_mushroom_cluster", "forest_lantern_plant", "forest_enchanted_bush", "forest_luminous_root_cluster"][i % 4], tx, ty, 54, 48, { collidable: false, occludesPlayer: false }));
-  placeRegionalProp(world, "forest_magical_pond", 53, 34, 170, 120, { collidable: false, occludesPlayer: false });
-}
-
 function rectsOverlap(x1, y1, w1, h1, x2, y2, w2, h2) {
   return x1 < x2 + w2 && x1 + w1 > x2 && y1 < y2 + h2 && y1 + h1 > y2;
 }
@@ -2410,27 +2163,54 @@ function decorateRegionWorld(world) {
     ];
   } else if (region.type === "mine") {
     world.spawn = { x: world.width * 0.14, y: world.height * 0.52 };
-    buildMineTileLayout(world);
-    addMineManualProps(world);
+    fillTiles(world, "wall");
+    paintRect(world, world.width * 0.07, world.height * 0.18, world.width * 0.80, world.height * 0.62, "floorAlt");
+    paintRoad(world, world.spawn, { x: world.width * 0.82, y: world.height * 0.36 }, 5);
+    paintRect(world, world.width * 0.22, world.height * 0.48, world.width * 0.36, TILE_SIZE * 3, "path");
+    addPlacedProp(world, "mine_entrance", world.width * 0.83, world.height * 0.33, 215, 175, { footprint: { w: 130, h: 38, y: 58 } });
+    addPlacedProp(world, "mine_workbench", world.width * 0.35, world.height * 0.27, 135, 92, { footprint: { w: 94, h: 26, y: 28 } });
+    addPlacedProp(world, "mine_lift_platform", world.width * 0.70, world.height * 0.63, 150, 112, { footprint: { w: 108, h: 36, y: 34 } });
+    addPlacedProp(world, "mine_rope_winch", world.width * 0.55, world.height * 0.30, 118, 100, { footprint: { w: 80, h: 28, y: 32 } });
     addFactionNpcForRegion(world, state.currentScene, region);
-    world.walkerZones = [{ x: world.width * 0.36, y: world.height * 0.47, r: 300, type: "mine" }];
+    scatterRegionProps(world, ["mine_cart_prop", "mine_rail_segment", "mine_pickaxe_rack", "mine_ore_pile", "mine_crystal_ore_node", "mine_support_beam", "mine_lantern_post", "mine_supply_crates"], 36, { x: world.width * 0.20, y: world.height * 0.20, w: world.width * 0.62, h: world.height * 0.56 }, { sizeMin: 44, sizeMax: 92, collidable: true, spawnSafeRadius: 170 });
+    world.walkerZones = [{ x: world.width * 0.36, y: world.height * 0.47, r: 310, type: "mine" }];
     world.enemyZones = [{ x: world.width * 0.66, y: world.height * 0.58 }, { x: world.width * 0.80, y: world.height * 0.28 }];
   } else if (region.type === "forest") {
     world.spawn = { x: world.width * 0.13, y: world.height * 0.50 };
-    buildForestTileLayout(world);
-    addForestManualProps(world);
+    fillTiles(world, "floor");
+    paintPatches(world, "floorAlt", 150, 3, 8);
+    paintRoad(world, world.spawn, { x: world.width * 0.84, y: world.height * 0.46 }, 4);
+    paintRoad(world, { x: world.width * 0.54, y: world.height * 0.46 }, { x: world.width * 0.52, y: world.height * 0.88 }, 3);
+    paintRect(world, world.width * 0.39, world.height * 0.30, world.width * 0.25, world.height * 0.24, "floorAlt");
+    addPlacedProp(world, "forest_magical_shrine", world.width * 0.54, world.height * 0.30, 175, 150, { footprint: { w: 105, h: 34, y: 50 } });
+    addPlacedProp(world, "forest_portal_stone_circle", world.width * 0.62, world.height * 0.52, 145, 118, { footprint: { w: 100, h: 28, y: 34 }, occludesPlayer: false });
+    addPlacedProp(world, "forest_ancient_arch", world.width * 0.45, world.height * 0.50, 150, 150, { footprint: { w: 96, h: 26, y: 40 } });
     addFactionNpcForRegion(world, state.currentScene, region);
-    world.walkerZones = [{ x: world.width * 0.54, y: world.height * 0.46, r: 360, type: "forest" }];
+    scatterRegionProps(world, ["forest_large_magical_tree", "forest_twisted_glowing_tree", "forest_fairy_mushroom_house", "forest_rune_stone_large", "forest_glowing_crystal_cluster", "forest_enchanted_stump", "forest_vine_monolith", "forest_luminous_flower_patch_large", "forest_magical_pond"], 44, { x: world.width * 0.14, y: world.height * 0.14, w: world.width * 0.72, h: world.height * 0.72 }, { sizeMin: 62, sizeMax: 142, collidable: true, spawnSafeRadius: 180 });
+    scatterRegionProps(world, ["forest_glowing_mushroom_cluster", "forest_lantern_plant", "forest_small_rune_stone", "forest_enchanted_bush", "forest_fairy_signpost", "forest_vine_log", "forest_crystal_plant", "forest_floating_candle_altar", "forest_spell_totem", "forest_magical_herb_patch", "forest_fae_mailbox", "forest_luminous_root_cluster"], 34, { x: world.width * 0.18, y: world.height * 0.20, w: world.width * 0.66, h: world.height * 0.64 }, { sizeMin: 36, sizeMax: 70, collidable: false, occludesPlayer: false, spawnSafeRadius: 160 });
+    world.walkerZones = [{ x: world.width * 0.54, y: world.height * 0.46, r: 380, type: "forest" }];
     world.enemyZones = [{ x: world.width * 0.76, y: world.height * 0.36 }, { x: world.width * 0.70, y: world.height * 0.76 }];
   } else if (region.type === "port") {
     world.spawn = { x: world.width * 0.50, y: world.height * 0.17 };
-    buildPortTileLayout(world);
-    addPortManualProps(world);
+    fillTiles(world, "floor");
+    paintRect(world, 0, world.height * 0.64, world.width, world.height * 0.36, "water");
+    paintRect(world, world.width * 0.25, world.height * 0.48, world.width * 0.50, world.height * 0.22, "path");
+    paintRect(world, world.width * 0.44, world.height * 0.32, world.width * 0.12, world.height * 0.40, "path");
+    addWaterObstacle(world, 0, world.height * 0.66, world.width * 0.41, world.height * 0.34);
+    addWaterObstacle(world, world.width * 0.59, world.height * 0.66, world.width * 0.41, world.height * 0.34);
+    addWaterObstacle(world, world.width * 0.41, world.height * 0.78, world.width * 0.18, world.height * 0.22);
+    addPlacedProp(world, "port_warehouse", world.width * 0.27, world.height * 0.34, 215, 165, { footprint: { w: 160, h: 52, y: 52 } });
+    addPlacedProp(world, "port_harbor_office", world.width * 0.72, world.height * 0.39, 190, 150, { footprint: { w: 138, h: 44, y: 48 } });
+    addPlacedProp(world, "port_lighthouse", world.width * 0.83, world.height * 0.22, 112, 195, { footprint: { w: 58, h: 34, y: 68 } });
+    addPlacedProp(world, "port_crane_hoist", world.width * 0.38, world.height * 0.57, 145, 150, { footprint: { w: 86, h: 32, y: 48 } });
+    addPlacedProp(world, "port_fishing_boat", world.width * 0.24, world.height * 0.80, 175, 125, { collidable: false, occludesPlayer: false });
+    addPlacedProp(world, "port_rowboat", world.width * 0.76, world.height * 0.78, 125, 82, { collidable: false, occludesPlayer: false });
+    addPlacedProp(world, "port_dock_section", world.width * 0.50, world.height * 0.70, 180, 92, { footprint: { w: 150, h: 38, y: 22 }, occludesPlayer: false });
     addFactionNpcForRegion(world, state.currentScene, region);
-    world.walkerZones = [{ x: world.width * 0.48, y: world.height * 0.45, r: 330, type: "port" }];
+    scatterRegionProps(world, ["port_fish_market_stall", "port_boat_repair_shed", "port_mooring_posts", "port_fishing_nets", "port_cargo_stack"], 26, { x: world.width * 0.15, y: world.height * 0.28, w: world.width * 0.70, h: world.height * 0.38 }, { sizeMin: 48, sizeMax: 90, collidable: true, spawnSafeRadius: 170 });
+    world.walkerZones = [{ x: world.width * 0.48, y: world.height * 0.45, r: 360, type: "port" }];
     world.enemyZones = [{ x: world.width * 0.22, y: world.height * 0.58 }, { x: world.width * 0.78, y: world.height * 0.58 }, { x: world.width * 0.50, y: world.height * 0.70 }];
   }
-
 
   createWalkers(world, region.walkers || 5);
   createEnemies(world, region.enemies || 6);
@@ -2605,17 +2385,11 @@ function renderQuestTracker() {
   }
   const tracked = quests.find((quest) => quest.id === state.quest.trackedQuestId) || quests.find((quest) => !questIsDone(quest)) || quests[quests.length - 1];
   state.quest.trackedQuestId = tracked.id;
-  const objectives = getQuestObjectives(tracked);
-  const activeObjective = objectives.find((objective) => !objective.done) || objectives[0] || { text: tracked.desc || tracked.title, done: questIsDone(tracked) };
+  const objectives = getQuestObjectives(tracked).slice(0, 4);
   const done = questIsDone(tracked);
   DOM.questTracker.classList.toggle("quest-tracker-done", done);
-  DOM.questTracker.classList.toggle("quest-tracker-minimized", !!state.ui.questTrackerMinimized);
   DOM.questTracker.classList.remove("hidden");
-  if (state.ui.questTrackerMinimized) {
-    DOM.questTracker.innerHTML = `<button class="quest-tracker-toggle" type="button" data-quest-tracker-toggle title="Afficher le suivi">+</button><strong>Quete</strong><p>${escapeHtml(activeObjective.text)}</p>`;
-    return;
-  }
-  DOM.questTracker.innerHTML = `<button class="quest-tracker-toggle" type="button" data-quest-tracker-toggle title="Minimiser le suivi">-</button><strong>${escapeHtml(tracked.title)}</strong><span>${done ? "terminee" : "en cours"}</span><p>${activeObjective.done ? "[x]" : "[ ]"} ${escapeHtml(activeObjective.text)}</p><small>J: journal detaille</small>`;
+  DOM.questTracker.innerHTML = `<strong>${escapeHtml(tracked.title)}</strong><span>${done ? "terminee" : "en cours"}</span><ul>${objectives.map((objective) => `<li class="${objective.done ? "done" : ""}">${objective.done ? "[x]" : "[ ]"} ${escapeHtml(objective.text)}</li>`).join("")}</ul><small>J: journal complet</small>`;
 }
 
 function requiredFactionTalkCount() {
@@ -3760,26 +3534,6 @@ function togglePause(force) {
     if (state.overlay === "pause") state.overlay = null;
     DOM.pausePanel.classList.add("hidden");
   }
-}
-
-
-function closeOverlayWithEscape() {
-  if (state.overlay === "classChange") {
-    DOM.classPanel.classList.add("hidden");
-    DOM.startBtn.textContent = "Demarrer";
-    state.paused = false;
-    state.overlay = null;
-    return true;
-  }
-  if (state.overlay === "pause" || state.paused) { togglePause(false); return true; }
-  if (state.overlay === "chat") { closeChat(); return true; }
-  if (state.overlay === "merchant") { closeMerchant(); return true; }
-  if (state.overlay === "inventory") { closeInventory(); return true; }
-  if (state.overlay === "grimoire") { closeGrimoire(); return true; }
-  if (state.overlay === "journal") { closeQuestJournal(); return true; }
-  if (state.overlay === "vote") { closeVotePanel(); return true; }
-  if (!DOM.guidePanel.classList.contains("hidden")) { DOM.guidePanel.classList.add("hidden"); return true; }
-  return false;
 }
 
 function openGuide() {
@@ -5886,11 +5640,6 @@ function processInputEvents(event, isDown) {
     return;
   }
 
-  if (event.code === "Escape") {
-    if (closeOverlayWithEscape()) event.preventDefault();
-    return;
-  }
-
   if (event.code === "KeyP") {
     if (state.overlay === "pause") togglePause(false);
     else if (!state.overlay) togglePause(true);
@@ -6044,11 +5793,6 @@ function setupEvents() {
     askGuidedNpcQuestion(button.dataset.choice);
   });
   DOM.questClose?.addEventListener("click", closeQuestJournal);
-  DOM.questTracker?.addEventListener("click", (event) => {
-    if (!event.target.closest("[data-quest-tracker-toggle]")) return;
-    state.ui.questTrackerMinimized = !state.ui.questTrackerMinimized;
-    renderQuestTracker();
-  });
 
   DOM.voteCancel.addEventListener("click", closeVotePanel);
   DOM.voteSubmit.addEventListener("click", submitVote);

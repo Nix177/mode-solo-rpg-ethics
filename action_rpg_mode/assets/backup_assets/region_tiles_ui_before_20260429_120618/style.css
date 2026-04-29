@@ -1038,18 +1038,17 @@ button:hover {
 
 #quest-tracker {
   position: absolute;
-  right: 12px;
-  top: 166px;
-  left: auto;
-  width: min(285px, calc(100vw - 36px));
+  left: 18px;
+  top: 118px;
+  width: min(330px, calc(100vw - 36px));
   z-index: 21;
-  padding: 9px 12px 10px;
+  padding: 11px 13px;
   border: 1px solid rgba(126, 82, 23, 0.62);
-  border-radius: 13px;
+  border-radius: 14px;
   background:
     radial-gradient(circle at 12% 0%, rgba(255, 239, 190, 0.42), transparent 32%),
-    linear-gradient(160deg, rgba(244, 213, 154, 0.94), rgba(150, 88, 34, 0.88));
-  box-shadow: 0 12px 24px rgba(19, 12, 4, 0.26), inset 0 0 0 1px rgba(255,255,255,0.22);
+    linear-gradient(160deg, rgba(244, 213, 154, 0.92), rgba(150, 88, 34, 0.86));
+  box-shadow: 0 16px 34px rgba(19, 12, 4, 0.32), inset 0 0 0 1px rgba(255,255,255,0.22);
   color: #321d0b;
   font-family: Georgia, "Times New Roman", serif;
 }
@@ -1057,59 +1056,41 @@ button:hover {
 #quest-tracker strong {
   display: block;
   color: #5b2d0a;
-  font-size: 14px;
-  padding-right: 54px;
+  font-size: 15px;
 }
 
 #quest-tracker span {
   position: absolute;
-  right: 38px;
+  right: 12px;
   top: 10px;
   color: #7c4a13;
-  font-size: 10px;
+  font-size: 11px;
   text-transform: uppercase;
 }
 
-#quest-tracker p {
-  margin: 6px 0 2px;
+#quest-tracker ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 4px;
+}
+
+#quest-tracker li {
+  margin: 4px 0;
   font-size: 12px;
   line-height: 1.25;
 }
 
+#quest-tracker li.done {
+  color: #256329;
+  text-decoration: line-through;
+}
+
 #quest-tracker small {
   color: #60401b;
-  font-size: 11px;
-}
-
-.quest-tracker-toggle {
-  position: absolute;
-  right: 8px;
-  top: 7px;
-  width: 24px;
-  height: 24px;
-  border: 1px solid rgba(91, 45, 10, 0.45);
-  border-radius: 8px;
-  background: rgba(255, 244, 205, 0.74);
-  color: #4b2608;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-#quest-tracker.quest-tracker-minimized {
-  width: min(220px, calc(100vw - 36px));
-  padding-right: 42px;
 }
 
 #quest-tracker.quest-tracker-done {
-  box-shadow: 0 12px 24px rgba(19, 12, 4, 0.26), inset 4px 0 0 #16a34a;
-}
-
-@media (max-width: 760px) {
-  #quest-tracker {
-    top: 104px;
-    right: 10px;
-    width: min(255px, calc(100vw - 20px));
-  }
+  box-shadow: 0 16px 34px rgba(19, 12, 4, 0.32), inset 4px 0 0 #16a34a;
 }
 
 .chat-choice.quest-action {
