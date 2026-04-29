@@ -801,18 +801,15 @@ button:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 28px;
-  height: 26px;
-  padding: 0 8px;
-  border: 1px solid rgba(255, 244, 180, 0.85);
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
   border-radius: 999px;
-  background: radial-gradient(circle at 35% 20%, #fff7a8, #facc15 45%, #d97706 100%);
+  background: #facc15;
   color: #172033;
-  font-weight: 1000;
-  font-size: 16px;
-  cursor: pointer;
-  box-shadow: 0 0 18px rgba(250, 204, 21, 0.75), 0 0 0 0 rgba(250, 204, 21, 0.6);
-  animation: talentPulse 1.05s ease-in-out infinite;
+  font-weight: 900;
+  box-shadow: 0 0 12px rgba(250, 204, 21, 0.5);
+  animation: talentPulse 1.35s ease-in-out infinite;
 }
 #hud-level.level-bump {
   animation: levelBump 0.75s cubic-bezier(0.2, 1.7, 0.2, 1);
@@ -841,8 +838,8 @@ button:hover {
   100% { transform: scale(1); }
 }
 @keyframes talentPulse {
-  0%, 100% { transform: scale(1); box-shadow: 0 0 16px rgba(250, 204, 21, 0.7), 0 0 0 0 rgba(250, 204, 21, 0.42); }
-  50% { transform: scale(1.28); box-shadow: 0 0 24px rgba(250, 204, 21, 0.95), 0 0 0 8px rgba(250, 204, 21, 0); }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
 }
 @keyframes levelPop {
   0% { opacity: 0; transform: translate(-50%, -35%) scale(0.8); }
@@ -1115,31 +1112,10 @@ button:hover {
   }
 }
 
-.quest-choice-area {
-  flex-basis: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
-  padding: 8px;
-  border: 1px solid rgba(250, 204, 21, 0.42);
-  border-radius: 12px;
-  background: linear-gradient(180deg, rgba(35, 24, 9, 0.72), rgba(85, 55, 15, 0.58));
-}
-.quest-choice-label {
-  flex-basis: 100%;
-  color: #fde68a;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
 .chat-choice.quest-action {
-  border-color: rgba(250, 204, 21, 0.95);
-  background: linear-gradient(180deg, #fff1a7, #f59e0b 58%, #92400e);
-  color: #201006;
-  font-weight: 1000;
-  box-shadow: 0 0 14px rgba(250, 204, 21, 0.24);
+  background: linear-gradient(180deg, #f6c760, #a96317);
+  color: #2b1806;
+  font-weight: 700;
 }
 
 .chat-choice:disabled {

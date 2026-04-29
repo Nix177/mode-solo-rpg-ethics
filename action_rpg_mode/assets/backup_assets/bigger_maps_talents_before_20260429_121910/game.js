@@ -2,7 +2,7 @@
 const TILE_SIZE = 48;
 const DEFAULT_WORLD_TILES = { w: 92, h: 58 };
 const MAX_ENEMIES = 120;
-const ASSET_VERSION = "20260429_bigger_maps_talents1";
+const ASSET_VERSION = "20260429_region_tiles_ui1";
 
 const RESOURCE_RULES = {
   runStaminaPerSecond: 24,
@@ -839,8 +839,8 @@ const LEVEL_REGION_CONFIGS = {
         shortLabel: "Village",
         biome: "coast",
         type: "village",
-        tilesW: 84,
-        tilesH: 53,
+        tilesW: 70,
+        tilesH: 44,
         color: "#eab308",
         intro: "Le village attend ton arbitrage. Les routes menent a la mine, au port et a la foret sacree.",
         master: {
@@ -863,8 +863,8 @@ const LEVEL_REGION_CONFIGS = {
         shortLabel: "Mine",
         biome: "forest",
         type: "mine",
-        tilesW: 80,
-        tilesH: 50,
+        tilesW: 66,
+        tilesH: 42,
         color: "#f97316",
         characterIndex: 0,
         questTitle: "Securiser la galerie du gisement",
@@ -889,8 +889,8 @@ const LEVEL_REGION_CONFIGS = {
         shortLabel: "Foret",
         biome: "forest",
         type: "forest",
-        tilesW: 82,
-        tilesH: 55,
+        tilesW: 68,
+        tilesH: 46,
         color: "#22c55e",
         characterIndex: 1,
         questTitle: "Proteger le sanctuaire ancien",
@@ -915,8 +915,8 @@ const LEVEL_REGION_CONFIGS = {
         shortLabel: "Port",
         biome: "coast",
         type: "port",
-        tilesW: 82,
-        tilesH: 53,
+        tilesW: 68,
+        tilesH: 44,
         color: "#38bdf8",
         characterIndex: 2,
         questTitle: "Inspecter le quai des eoliennes",
@@ -1169,7 +1169,7 @@ const state = {
     sfxLastPlayed: {}
   },
   selectedInventoryIndex: null,
-  ui: { questTrackerMinimized: false, talentTutorialShown: false },
+  ui: { questTrackerMinimized: false },
   quest: {
     talked: new Set(),
     seals: new Set(),
@@ -1901,39 +1901,31 @@ function placeRegionalProp(world, kind, tx, ty, w, h, options = {}) {
 }
 
 function buildMineTileLayout(world) {
-  const left = 4;
-  const top = 5;
-  const right = world.tilesW - 5;
-  const bottom = world.tilesH - 6;
-  const roomW = right - left;
-  const roomH = bottom - top;
   paintTileBlock(world, 0, 0, world.tilesW, world.tilesH, "wall", MINE_LAYOUT_TILES.wall);
-  paintTileBlock(world, left, top, roomW, roomH, "floor", MINE_LAYOUT_TILES.floor);
-  paintTileBlock(world, left + 5, top + 6, Math.floor(roomW * 0.72), Math.floor(roomH * 0.50), "floorAlt", MINE_LAYOUT_TILES.dirt);
-  paintTileBlock(world, left + 17, bottom - 8, Math.floor(roomW * 0.38), 4, "floor", MINE_LAYOUT_TILES.floor);
-  paintTileBlock(world, right - 13, top + 3, 9, 8, "floorAlt", MINE_LAYOUT_TILES.ore);
-  paintTileBlock(world, left + 4, bottom - 9, 9, 5, "floorAlt", MINE_LAYOUT_TILES.ore);
-  paintTileBlock(world, Math.floor(world.tilesW * 0.48), top + 3, 8, 4, "floorAlt", MINE_LAYOUT_TILES.ore);
+  paintTileBlock(world, 4, 5, 58, 31, "floor", MINE_LAYOUT_TILES.floor);
+  paintTileBlock(world, 8, 11, 45, 17, "floorAlt", MINE_LAYOUT_TILES.dirt);
+  paintTileBlock(world, 18, 29, 24, 4, "floor", MINE_LAYOUT_TILES.floor);
+  paintTileBlock(world, 48, 7, 9, 7, "floorAlt", MINE_LAYOUT_TILES.ore);
+  paintTileBlock(world, 8, 28, 8, 5, "floorAlt", MINE_LAYOUT_TILES.ore);
+  paintTileBlock(world, 32, 8, 7, 4, "floorAlt", MINE_LAYOUT_TILES.ore);
 
   addTileObstacleRect(world, 0, 0, world.tilesW, 4, "mine-wall");
-  addTileObstacleRect(world, 0, world.tilesH - 4, world.tilesW, 4, "mine-wall");
+  addTileObstacleRect(world, 0, 37, world.tilesW, world.tilesH - 37, "mine-wall");
   addTileObstacleRect(world, 0, 0, 3, world.tilesH, "mine-wall");
-  addTileObstacleRect(world, world.tilesW - 3, 0, 3, world.tilesH, "mine-wall");
-  addTileObstacleRect(world, left, top - 1, roomW, 1, "mine-wall");
-  addTileObstacleRect(world, left, bottom, roomW, 1, "mine-wall");
-  addTileObstacleRect(world, left, top, 1, roomH, "mine-wall");
-  addTileObstacleRect(world, right, top, 1, roomH, "mine-wall");
+  addTileObstacleRect(world, 63, 0, world.tilesW - 63, world.tilesH, "mine-wall");
+  addTileObstacleRect(world, 4, 4, 58, 1, "mine-wall");
+  addTileObstacleRect(world, 4, 36, 58, 1, "mine-wall");
+  addTileObstacleRect(world, 4, 5, 1, 31, "mine-wall");
+  addTileObstacleRect(world, 61, 5, 1, 31, "mine-wall");
 
-  const railY = top + Math.floor(roomH * 0.55);
-  const railX = left + Math.floor(roomW * 0.58);
-  paintRegionalStraightPath(world, left + 5, railY, roomW - 13, "h", 1, "path", MINE_LAYOUT_TILES.railH);
-  paintRegionalStraightPath(world, railX, top + 5, roomH - 12, "v", 1, "path", MINE_LAYOUT_TILES.railV);
-  paintRegionalStraightPath(world, left + 24, top + 9, 20, "h", 1, "path", MINE_LAYOUT_TILES.railH);
-  setTileVisual(world, railX, railY, "path", MINE_LAYOUT_TILES.railCross);
-  setTileVisual(world, left + 16, railY, "path", MINE_LAYOUT_TILES.railBroken);
-  paintRegionalStraightPath(world, left + 8, railY + 2, 16, "h", 3, "path", MINE_LAYOUT_TILES.planks);
-  paintRegionalStraightPath(world, right - 13, top + 13, 12, "v", 2, "path", MINE_LAYOUT_TILES.planks);
-  [left + 9, left + 22, railX, right - 12].forEach((tx) => setTileVisual(world, tx, railY - 2, "floor", MINE_LAYOUT_TILES.lantern));
+  paintRegionalStraightPath(world, 8, 22, 45, "h", 1, "path", MINE_LAYOUT_TILES.railH);
+  paintRegionalStraightPath(world, 39, 10, 21, "v", 1, "path", MINE_LAYOUT_TILES.railV);
+  paintRegionalStraightPath(world, 27, 14, 18, "h", 1, "path", MINE_LAYOUT_TILES.railH);
+  setTileVisual(world, 39, 22, "path", MINE_LAYOUT_TILES.railCross);
+  setTileVisual(world, 19, 22, "path", MINE_LAYOUT_TILES.railBroken);
+  paintRegionalStraightPath(world, 11, 24, 13, "h", 3, "path", MINE_LAYOUT_TILES.planks);
+  paintRegionalStraightPath(world, 50, 18, 9, "v", 2, "path", MINE_LAYOUT_TILES.planks);
+  [12, 24, 36, 50].forEach((tx) => setTileVisual(world, tx, 20, "floor", MINE_LAYOUT_TILES.lantern));
 }
 
 function buildPortTileLayout(world) {
@@ -2422,33 +2414,21 @@ function decorateRegionWorld(world) {
     addMineManualProps(world);
     addFactionNpcForRegion(world, state.currentScene, region);
     world.walkerZones = [{ x: world.width * 0.36, y: world.height * 0.47, r: 300, type: "mine" }];
-    world.enemyZones = [
-      { x: world.width * 0.62, y: world.height * 0.60, radiusMin: 70, radiusMax: 640 },
-      { x: world.width * 0.76, y: world.height * 0.32, radiusMin: 70, radiusMax: 560 },
-      { x: world.width * 0.42, y: world.height * 0.30, radiusMin: 90, radiusMax: 480 }
-    ];
+    world.enemyZones = [{ x: world.width * 0.66, y: world.height * 0.58 }, { x: world.width * 0.80, y: world.height * 0.28 }];
   } else if (region.type === "forest") {
     world.spawn = { x: world.width * 0.13, y: world.height * 0.50 };
     buildForestTileLayout(world);
     addForestManualProps(world);
     addFactionNpcForRegion(world, state.currentScene, region);
-    world.walkerZones = [{ x: world.width * 0.54, y: world.height * 0.46, r: 430, type: "forest" }];
-    world.enemyZones = [
-      { x: world.width * 0.72, y: world.height * 0.36, radiusMin: 90, radiusMax: 620 },
-      { x: world.width * 0.67, y: world.height * 0.73, radiusMin: 90, radiusMax: 600 },
-      { x: world.width * 0.43, y: world.height * 0.22, radiusMin: 100, radiusMax: 500 }
-    ];
+    world.walkerZones = [{ x: world.width * 0.54, y: world.height * 0.46, r: 360, type: "forest" }];
+    world.enemyZones = [{ x: world.width * 0.76, y: world.height * 0.36 }, { x: world.width * 0.70, y: world.height * 0.76 }];
   } else if (region.type === "port") {
     world.spawn = { x: world.width * 0.50, y: world.height * 0.17 };
     buildPortTileLayout(world);
     addPortManualProps(world);
     addFactionNpcForRegion(world, state.currentScene, region);
-    world.walkerZones = [{ x: world.width * 0.48, y: world.height * 0.45, r: 405, type: "port" }];
-    world.enemyZones = [
-      { x: world.width * 0.24, y: world.height * 0.55, radiusMin: 80, radiusMax: 520 },
-      { x: world.width * 0.74, y: world.height * 0.55, radiusMin: 80, radiusMax: 520 },
-      { x: world.width * 0.50, y: world.height * 0.68, radiusMin: 70, radiusMax: 460 }
-    ];
+    world.walkerZones = [{ x: world.width * 0.48, y: world.height * 0.45, r: 330, type: "port" }];
+    world.enemyZones = [{ x: world.width * 0.22, y: world.height * 0.58 }, { x: world.width * 0.78, y: world.height * 0.58 }, { x: world.width * 0.50, y: world.height * 0.70 }];
   }
 
 
@@ -2765,11 +2745,9 @@ function createEnemies(world, count, options = {}) {
     let placed = false;
     for (let tries = 0; tries < 36 && !placed; tries += 1) {
       const angle = Math.random() * Math.PI * 2;
-      const minRadius = zone.radiusMin ?? 80;
-      const maxRadius = zone.radiusMax ?? 560;
-      const radius = minRadius + Math.random() * Math.max(80, maxRadius - minRadius);
-      x = clamp(zone.x + Math.cos(angle) * radius, 210, world.width - 210);
-      y = clamp(zone.y + Math.sin(angle) * radius, 210, world.height - 210);
+      const radius = 170 + Math.random() * 360;
+      x = clamp(zone.x + Math.cos(angle) * radius, 160, world.width - 160);
+      y = clamp(zone.y + Math.sin(angle) * radius, 160, world.height - 160);
       const inSafe = safePoints.some((pt) => Math.hypot(x - pt.x, y - pt.y) < 280) || pointInEnemySafeZone(world, x, y, type.radius + 90);
       const blocked = world.obstacles.some((o) => circleRectIntersect(x, y, type.radius + 8, o));
       placed = !inSafe && !blocked;
@@ -3498,11 +3476,7 @@ function renderSkillBook() {
 
 function renderGrimoire() { renderSkillBook(); renderTalentTree(); renderHotbar(); }
 function openGrimoire() { if (!state.player) return; state.overlay = "grimoire"; renderGrimoire(); DOM.grimoirePanel?.classList.remove("hidden"); }
-function closeGrimoire() {
-  DOM.grimoirePanel?.classList.add("hidden");
-  if (state.overlay === "grimoire") state.overlay = null;
-  if (state.paused && state.mode === "running") state.paused = false;
-}
+function closeGrimoire() { DOM.grimoirePanel?.classList.add("hidden"); if (state.overlay === "grimoire") state.overlay = null; }
 
 function renderInventory() {
   if (!state.player || !DOM.inventoryGrid) return;
@@ -3681,7 +3655,7 @@ function updateHud() {
   DOM.hudScene.textContent = `Niveau: ${state.currentScene.id.replace("level_", "")}/50`;
   DOM.hudClass.textContent = `Classe: ${p.className}`;
   DOM.hudHero.textContent = `Héros: ${p.heroName}`;
-  DOM.hudLevel.innerHTML = `Lvl: <strong>${p.level}</strong>${(p.talentPoints || 0) > 0 ? `<button type="button" class="talent-plus" data-open-talents title="Points a depenser dans le grimoire">+${p.talentPoints}</button>` : ""}`;
+  DOM.hudLevel.innerHTML = `Lvl: <strong>${p.level}</strong>${(p.talentPoints || 0) > 0 ? `<span class="talent-plus" title="Points ? d?penser dans le grimoire">+${p.talentPoints}</span>` : ""}`;
   DOM.hudLevel.classList.toggle("has-talent", (p.talentPoints || 0) > 0);
   DOM.hudHp.textContent = `HP: ${Math.max(0, Math.round(p.hp))}/${Math.round(stats.maxHp)}`;
   DOM.hudXp.textContent = `XP: ${Math.round(p.xp)}/${Math.round(p.xpToNext)}`;
@@ -3704,16 +3678,6 @@ function showLevelUpAnimation(level) {
   pop.textContent = "NIVEAU " + level;
   root.appendChild(pop);
   window.setTimeout(() => pop.remove(), 1500);
-}
-
-function openTalentPointGuide() {
-  if (!state.player || state.ui.talentTutorialShown) return;
-  state.ui.talentTutorialShown = true;
-  state.paused = true;
-  state.overlay = "grimoire";
-  renderGrimoire();
-  DOM.grimoirePanel?.classList.remove("hidden");
-  addNotification("Nouveau point de talent: choisis une amelioration dans le grimoire. Le jeu est en pause pendant que tu testes.", 6, "#facc15");
 }
 
 function updateGuideText() {
@@ -3807,13 +3771,13 @@ function closeOverlayWithEscape() {
     state.overlay = null;
     return true;
   }
+  if (state.overlay === "pause" || state.paused) { togglePause(false); return true; }
   if (state.overlay === "chat") { closeChat(); return true; }
   if (state.overlay === "merchant") { closeMerchant(); return true; }
   if (state.overlay === "inventory") { closeInventory(); return true; }
   if (state.overlay === "grimoire") { closeGrimoire(); return true; }
   if (state.overlay === "journal") { closeQuestJournal(); return true; }
   if (state.overlay === "vote") { closeVotePanel(); return true; }
-  if (state.overlay === "pause" || state.paused) { togglePause(false); return true; }
   if (!DOM.guidePanel.classList.contains("hidden")) { DOM.guidePanel.classList.add("hidden"); return true; }
   return false;
 }
@@ -5546,24 +5510,15 @@ function renderChatChoices(npc) {
       questKinds.push(["optional", `Aide locale: ${region?.questOptional || "stabiliser la zone"}`]);
     }
   }
-  if (questKinds.length) {
-    const questArea = document.createElement("div");
-    questArea.className = "quest-choice-area";
-    const labelNode = document.createElement("span");
-    labelNode.className = "quest-choice-label";
-    labelNode.textContent = "Quetes disponibles";
-    questArea.appendChild(labelNode);
-    for (const [kind, label] of questKinds) {
-      const quest = getQuestRecordForNpc(npc, kind);
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "chat-choice quest-action";
-      button.dataset.quest = kind;
-      button.textContent = state.quest.acceptedQuests?.[quest?.id] ? `${label} [suivie]` : label;
-      button.disabled = !!state.quest.acceptedQuests?.[quest?.id] || (kind === "optional" && getRegionProgress(npc.regionId).optional);
-      questArea.appendChild(button);
-    }
-    DOM.chatChoices.appendChild(questArea);
+  for (const [kind, label] of questKinds) {
+    const quest = getQuestRecordForNpc(npc, kind);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "chat-choice quest-action";
+    button.dataset.quest = kind;
+    button.textContent = state.quest.acceptedQuests?.[quest?.id] ? `${label} [suivie]` : label;
+    button.disabled = !!state.quest.acceptedQuests?.[quest?.id] || (kind === "optional" && getRegionProgress(npc.regionId).optional);
+    DOM.chatChoices.appendChild(button);
   }
   const choices = [
     ["position", "Ton point de vue"],
@@ -6089,11 +6044,6 @@ function setupEvents() {
     askGuidedNpcQuestion(button.dataset.choice);
   });
   DOM.questClose?.addEventListener("click", closeQuestJournal);
-  DOM.hudLevel?.addEventListener("click", (event) => {
-    if (!event.target.closest("[data-open-talents]")) return;
-    if (state.overlay && state.overlay !== "grimoire") closeOverlayWithEscape();
-    openGrimoire();
-  });
   DOM.questTracker?.addEventListener("click", (event) => {
     if (!event.target.closest("[data-quest-tracker-toggle]")) return;
     state.ui.questTrackerMinimized = !state.ui.questTrackerMinimized;
