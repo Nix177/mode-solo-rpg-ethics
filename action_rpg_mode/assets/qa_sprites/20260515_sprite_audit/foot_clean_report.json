@@ -1,0 +1,637 @@
+{
+  "generated_at": "2026-05-15 14:42:42",
+  "stats": [
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down/01.png",
+      "removed": 1160
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down/02.png",
+      "removed": 956
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down/03.png",
+      "removed": 1658
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down/04.png",
+      "removed": 1018
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down/05.png",
+      "removed": 1026
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down/06.png",
+      "removed": 1035
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_right/01.png",
+      "removed": 774
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_right/02.png",
+      "removed": 347
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_right/03.png",
+      "removed": 531
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_right/04.png",
+      "removed": 406
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_right/05.png",
+      "removed": 813
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_right/06.png",
+      "removed": 608
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/right/01.png",
+      "removed": 939
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/right/02.png",
+      "removed": 1283
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/right/03.png",
+      "removed": 1599
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/right/04.png",
+      "removed": 1579
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/right/05.png",
+      "removed": 1267
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/right/06.png",
+      "removed": 1243
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_right/01.png",
+      "removed": 1465
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_right/02.png",
+      "removed": 1729
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_right/03.png",
+      "removed": 1101
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_right/04.png",
+      "removed": 1362
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_right/05.png",
+      "removed": 1440
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_right/06.png",
+      "removed": 1405
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up/01.png",
+      "removed": 1471
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up/02.png",
+      "removed": 948
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up/03.png",
+      "removed": 1438
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up/04.png",
+      "removed": 921
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up/05.png",
+      "removed": 960
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up/06.png",
+      "removed": 802
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_left/01.png",
+      "removed": 833
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_left/02.png",
+      "removed": 734
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_left/03.png",
+      "removed": 848
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_left/04.png",
+      "removed": 873
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_left/05.png",
+      "removed": 836
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_left/06.png",
+      "removed": 831
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/left/01.png",
+      "removed": 511
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/left/02.png",
+      "removed": 713
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/left/03.png",
+      "removed": 676
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/left/04.png",
+      "removed": 694
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/left/05.png",
+      "removed": 766
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/left/06.png",
+      "removed": 490
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_left/01.png",
+      "removed": 938
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_left/02.png",
+      "removed": 880
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_left/03.png",
+      "removed": 902
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_left/04.png",
+      "removed": 946
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_left/05.png",
+      "removed": 924
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_left/06.png",
+      "removed": 840
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down/01.png",
+      "removed": 649
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down/02.png",
+      "removed": 755
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down/03.png",
+      "removed": 661
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down/04.png",
+      "removed": 804
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down/05.png",
+      "removed": 779
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down/06.png",
+      "removed": 885
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_right/01.png",
+      "removed": 1076
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_right/02.png",
+      "removed": 1192
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_right/03.png",
+      "removed": 1228
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_right/04.png",
+      "removed": 1040
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_right/05.png",
+      "removed": 1134
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_right/06.png",
+      "removed": 1069
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/right/01.png",
+      "removed": 1006
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/right/02.png",
+      "removed": 1111
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/right/03.png",
+      "removed": 1136
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/right/04.png",
+      "removed": 1158
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/right/05.png",
+      "removed": 1294
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/right/06.png",
+      "removed": 1089
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_right/01.png",
+      "removed": 920
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_right/02.png",
+      "removed": 904
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_right/03.png",
+      "removed": 897
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_right/04.png",
+      "removed": 1011
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_right/05.png",
+      "removed": 941
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_right/06.png",
+      "removed": 926
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up/01.png",
+      "removed": 1217
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up/02.png",
+      "removed": 1199
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up/03.png",
+      "removed": 1230
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up/04.png",
+      "removed": 1092
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up/05.png",
+      "removed": 1126
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up/06.png",
+      "removed": 1263
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_left/01.png",
+      "removed": 1165
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_left/02.png",
+      "removed": 1121
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_left/03.png",
+      "removed": 1243
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_left/04.png",
+      "removed": 1259
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_left/05.png",
+      "removed": 1119
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_left/06.png",
+      "removed": 1086
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/left/01.png",
+      "removed": 1108
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/left/02.png",
+      "removed": 1107
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/left/03.png",
+      "removed": 1000
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/left/04.png",
+      "removed": 1024
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/left/05.png",
+      "removed": 1150
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/left/06.png",
+      "removed": 1115
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_left/01.png",
+      "removed": 1001
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_left/02.png",
+      "removed": 932
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_left/03.png",
+      "removed": 1031
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_left/04.png",
+      "removed": 885
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_left/05.png",
+      "removed": 1066
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_left/06.png",
+      "removed": 1000
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down/01.png",
+      "removed": 57
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down/02.png",
+      "removed": 13
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down/03.png",
+      "removed": 42
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down/04.png",
+      "removed": 4
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down/05.png",
+      "removed": 15
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down/06.png",
+      "removed": 10
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_right/01.png",
+      "removed": 8
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_right/02.png",
+      "removed": 7
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_right/03.png",
+      "removed": 10
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_right/04.png",
+      "removed": 8
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_right/05.png",
+      "removed": 16
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_right/06.png",
+      "removed": 10
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/right/01.png",
+      "removed": 7
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/right/02.png",
+      "removed": 23
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/right/03.png",
+      "removed": 6
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/right/04.png",
+      "removed": 10
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/right/05.png",
+      "removed": 19
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/right/06.png",
+      "removed": 7
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_right/01.png",
+      "removed": 144
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_right/02.png",
+      "removed": 145
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_right/03.png",
+      "removed": 132
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_right/04.png",
+      "removed": 3
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_right/05.png",
+      "removed": 8
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_right/06.png",
+      "removed": 16
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up/01.png",
+      "removed": 16
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up/02.png",
+      "removed": 6
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up/03.png",
+      "removed": 17
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up/04.png",
+      "removed": 14
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up/05.png",
+      "removed": 17
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up/06.png",
+      "removed": 8
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_left/01.png",
+      "removed": 73
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_left/02.png",
+      "removed": 11
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_left/03.png",
+      "removed": 22
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_left/04.png",
+      "removed": 78
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_left/05.png",
+      "removed": 57
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_left/06.png",
+      "removed": 52
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/left/01.png",
+      "removed": 15
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/left/02.png",
+      "removed": 81
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/left/03.png",
+      "removed": 12
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/left/04.png",
+      "removed": 62
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/left/05.png",
+      "removed": 68
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/left/06.png",
+      "removed": 49
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_left/01.png",
+      "removed": 111
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_left/02.png",
+      "removed": 148
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_left/03.png",
+      "removed": 136
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_left/04.png",
+      "removed": 76
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_left/05.png",
+      "removed": 139
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_left/06.png",
+      "removed": 133
+    },
+    {
+      "path": "assets/spritesheets/npc_neutral/generated/shaman_female_walk.png",
+      "removed": 19475
+    },
+    {
+      "path": "assets/spritesheets/npc_neutral/generated/shaman_male_walk.png",
+      "removed": 8066
+    },
+    {
+      "path": "assets/region_assets/npcs/main/marcus_vane.png",
+      "removed": 28
+    },
+    {
+      "path": "assets/region_assets/npcs/main/elara.png",
+      "removed": 1048
+    },
+    {
+      "path": "assets/region_assets/npcs/main/prefet_morel.png",
+      "removed": 464
+    },
+    {
+      "path": "assets/region_assets/npcs/main/maitre_village.png",
+      "removed": 32
+    },
+    {
+      "path": "assets/region_assets/npcs/main/forrest_chief_female.png",
+      "removed": 2513
+    },
+    {
+      "path": "assets/region_assets/npcs/main/mine_chief_male.png",
+      "removed": 174569
+    },
+    {
+      "path": "assets/region_assets/npcs/main/port_chief_female.png",
+      "removed": 97071
+    },
+    {
+      "path": "assets/region_assets/npcs/main/village_chief_male.png",
+      "removed": 174375
+    },
+    {
+      "path": "assets/region_assets/npcs/main/processed_idle/village_chief_male_transparent.png",
+      "removed": 392
+    },
+    {
+      "path": "assets/region_assets/npcs/main/processed_idle/mine_chief_male_transparent.png",
+      "removed": 29840
+    },
+    {
+      "path": "assets/region_assets/npcs/main/processed_idle/forrest_chief_female_transparent.png",
+      "removed": 302
+    },
+    {
+      "path": "assets/region_assets/npcs/main/processed_idle/port_chief_female_transparent.png",
+      "removed": 435
+    }
+  ]
+}

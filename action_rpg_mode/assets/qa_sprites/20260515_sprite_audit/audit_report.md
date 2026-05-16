@@ -1,0 +1,192 @@
+# Sprite Audit 20260515
+
+- Files analyzed: 162
+- Flagged files: 160
+
+## Direction Size Summary
+- warrior down: frames 6, w [120, 126], h [171, 173] -> ok
+- warrior down_right: frames 6, w [127, 144], h [172, 174] -> size_jitter
+- warrior right: frames 6, w [120, 132], h [148, 153] -> ok
+- warrior up_right: frames 6, w [139, 143], h [157, 158] -> ok
+- warrior up: frames 6, w [124, 126], h [166, 167] -> ok
+- warrior up_left: frames 6, w [107, 115], h [157, 158] -> ok
+- warrior left: frames 6, w [112, 115], h [131, 131] -> ok
+- warrior down_left: frames 6, w [122, 126], h [158, 161] -> ok
+- mage down: frames 6, w [115, 124], h [158, 159] -> ok
+- mage down_right: frames 6, w [115, 120], h [157, 158] -> ok
+- mage right: frames 6, w [113, 118], h [155, 157] -> ok
+- mage up_right: frames 6, w [111, 119], h [149, 153] -> ok
+- mage up: frames 6, w [115, 117], h [152, 153] -> ok
+- mage up_left: frames 6, w [117, 122], h [150, 154] -> ok
+- mage left: frames 6, w [112, 118], h [153, 154] -> ok
+- mage down_left: frames 6, w [115, 123], h [155, 157] -> ok
+- hunter down: frames 6, w [98, 101], h [172, 174] -> ok
+- hunter down_right: frames 6, w [104, 109], h [160, 162] -> ok
+- hunter right: frames 6, w [95, 100], h [150, 158] -> ok
+- hunter up_right: frames 6, w [113, 127], h [149, 154] -> ok
+- hunter up: frames 6, w [86, 89], h [164, 166] -> ok
+- hunter up_left: frames 6, w [98, 101], h [155, 161] -> ok
+- hunter left: frames 6, w [95, 99], h [154, 156] -> ok
+- hunter down_left: frames 6, w [101, 106], h [146, 149] -> ok
+
+## Flagged Files
+- `assets/sprite_frames/player/warrior/walk/down/01.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.3028; removed=3114
+- `assets/sprite_frames/player/warrior/walk/down/02.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2865; removed=3014
+- `assets/sprite_frames/player/warrior/walk/down/03.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.3034; removed=3280
+- `assets/sprite_frames/player/warrior/walk/down/04.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2985; removed=3063
+- `assets/sprite_frames/player/warrior/walk/down/05.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.3058; removed=3194
+- `assets/sprite_frames/player/warrior/walk/down/06.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.3047; removed=3149
+- `assets/sprite_frames/player/warrior/walk/down_right/01.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background, sprite_nearly_cropped; gray=0.2281; removed=2820
+- `assets/sprite_frames/player/warrior/walk/down_right/02.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background, sprite_nearly_cropped; gray=0.2073; removed=2545
+- `assets/sprite_frames/player/warrior/walk/down_right/03.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background, sprite_nearly_cropped; gray=0.2273; removed=2839
+- `assets/sprite_frames/player/warrior/walk/down_right/04.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background, sprite_nearly_cropped; gray=0.2066; removed=2588
+- `assets/sprite_frames/player/warrior/walk/down_right/05.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background, sprite_nearly_cropped; gray=0.2289; removed=2899
+- `assets/sprite_frames/player/warrior/walk/down_right/06.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background, sprite_nearly_cropped; gray=0.2328; removed=2873
+- `assets/sprite_frames/player/warrior/walk/right/01.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2926; removed=2356
+- `assets/sprite_frames/player/warrior/walk/right/02.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.3149; removed=2290
+- `assets/sprite_frames/player/warrior/walk/right/03.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.3328; removed=2619
+- `assets/sprite_frames/player/warrior/walk/right/04.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.3327; removed=2657
+- `assets/sprite_frames/player/warrior/walk/right/05.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.3202; removed=2304
+- `assets/sprite_frames/player/warrior/walk/right/06.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.3103; removed=2269
+- `assets/sprite_frames/player/warrior/walk/up_right/01.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2938; removed=3040
+- `assets/sprite_frames/player/warrior/walk/up_right/02.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.3051; removed=3149
+- `assets/sprite_frames/player/warrior/walk/up_right/03.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2724; removed=2796
+- `assets/sprite_frames/player/warrior/walk/up_right/04.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2871; removed=2932
+- `assets/sprite_frames/player/warrior/walk/up_right/05.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2867; removed=2961
+- `assets/sprite_frames/player/warrior/walk/up_right/06.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2828; removed=2870
+- `assets/sprite_frames/player/warrior/walk/up/01.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2678; removed=2921
+- `assets/sprite_frames/player/warrior/walk/up/02.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2548; removed=2668
+- `assets/sprite_frames/player/warrior/walk/up/03.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.256; removed=2722
+- `assets/sprite_frames/player/warrior/walk/up/04.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2612; removed=2817
+- `assets/sprite_frames/player/warrior/walk/up/05.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2707; removed=2822
+- `assets/sprite_frames/player/warrior/walk/up/06.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.256; removed=2580
+- `assets/sprite_frames/player/warrior/walk/up_left/01.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2774; removed=2450
+- `assets/sprite_frames/player/warrior/walk/up_left/02.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2697; removed=2405
+- `assets/sprite_frames/player/warrior/walk/up_left/03.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2819; removed=2588
+- `assets/sprite_frames/player/warrior/walk/up_left/04.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2774; removed=2564
+- `assets/sprite_frames/player/warrior/walk/up_left/05.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2819; removed=2533
+- `assets/sprite_frames/player/warrior/walk/up_left/06.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.273; removed=2365
+- `assets/sprite_frames/player/warrior/walk/left/01.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2309; removed=1804
+- `assets/sprite_frames/player/warrior/walk/left/02.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2462; removed=2065
+- `assets/sprite_frames/player/warrior/walk/left/03.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2413; removed=1974
+- `assets/sprite_frames/player/warrior/walk/left/04.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2462; removed=1947
+- `assets/sprite_frames/player/warrior/walk/left/05.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2531; removed=2066
+- `assets/sprite_frames/player/warrior/walk/left/06.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2288; removed=1840
+- `assets/sprite_frames/player/warrior/walk/down_left/01.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2687; removed=2212
+- `assets/sprite_frames/player/warrior/walk/down_left/02.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.265; removed=2159
+- `assets/sprite_frames/player/warrior/walk/down_left/03.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2727; removed=2186
+- `assets/sprite_frames/player/warrior/walk/down_left/04.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2654; removed=2168
+- `assets/sprite_frames/player/warrior/walk/down_left/05.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2829; removed=2008
+- `assets/sprite_frames/player/warrior/walk/down_left/06.png`: many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.2672; removed=2107
+- `assets/sprite_frames/player/mage/walk/down/01.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.11; removed=1113
+- `assets/sprite_frames/player/mage/walk/down/02.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1149; removed=1132
+- `assets/sprite_frames/player/mage/walk/down/03.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1224; removed=1185
+- `assets/sprite_frames/player/mage/walk/down/04.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1227; removed=1253
+- `assets/sprite_frames/player/mage/walk/down/05.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1204; removed=1210
+- `assets/sprite_frames/player/mage/walk/down/06.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1237; removed=1253
+- `assets/sprite_frames/player/mage/walk/down_right/01.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1361; removed=1420
+- `assets/sprite_frames/player/mage/walk/down_right/02.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1465; removed=1584
+- `assets/sprite_frames/player/mage/walk/down_right/03.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1464; removed=1585
+- `assets/sprite_frames/player/mage/walk/down_right/04.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1357; removed=1442
+- `assets/sprite_frames/player/mage/walk/down_right/05.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1438; removed=1500
+- `assets/sprite_frames/player/mage/walk/down_right/06.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1354; removed=1450
+- `assets/sprite_frames/player/mage/walk/right/01.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1278; removed=1419
+- `assets/sprite_frames/player/mage/walk/right/02.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1479; removed=1597
+- `assets/sprite_frames/player/mage/walk/right/03.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1469; removed=1675
+- `assets/sprite_frames/player/mage/walk/right/04.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1509; removed=1668
+- `assets/sprite_frames/player/mage/walk/right/05.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.153; removed=1750
+- `assets/sprite_frames/player/mage/walk/right/06.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1339; removed=1533
+- `assets/sprite_frames/player/mage/walk/up_right/01.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1176; removed=1258
+- `assets/sprite_frames/player/mage/walk/up_right/02.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1179; removed=1240
+- `assets/sprite_frames/player/mage/walk/up_right/03.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.119; removed=1267
+- `assets/sprite_frames/player/mage/walk/up_right/04.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1257; removed=1323
+- `assets/sprite_frames/player/mage/walk/up_right/05.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1205; removed=1263
+- `assets/sprite_frames/player/mage/walk/up_right/06.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1222; removed=1311
+- `assets/sprite_frames/player/mage/walk/up/01.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1386; removed=1501
+- `assets/sprite_frames/player/mage/walk/up/02.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1396; removed=1464
+- `assets/sprite_frames/player/mage/walk/up/03.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1417; removed=1568
+- `assets/sprite_frames/player/mage/walk/up/04.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1323; removed=1419
+- `assets/sprite_frames/player/mage/walk/up/05.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1269; removed=1406
+- `assets/sprite_frames/player/mage/walk/up/06.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1421; removed=1566
+- `assets/sprite_frames/player/mage/walk/up_left/01.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1345; removed=1477
+- `assets/sprite_frames/player/mage/walk/up_left/02.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1319; removed=1438
+- `assets/sprite_frames/player/mage/walk/up_left/03.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1422; removed=1596
+- `assets/sprite_frames/player/mage/walk/up_left/04.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1408; removed=1564
+- `assets/sprite_frames/player/mage/walk/up_left/05.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1324; removed=1461
+- `assets/sprite_frames/player/mage/walk/up_left/06.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1255; removed=1426
+- `assets/sprite_frames/player/mage/walk/left/01.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1386; removed=1518
+- `assets/sprite_frames/player/mage/walk/left/02.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.137; removed=1475
+- `assets/sprite_frames/player/mage/walk/left/03.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1308; removed=1373
+- `assets/sprite_frames/player/mage/walk/left/04.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1406; removed=1459
+- `assets/sprite_frames/player/mage/walk/left/05.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1414; removed=1519
+- `assets/sprite_frames/player/mage/walk/left/06.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1422; removed=1523
+- `assets/sprite_frames/player/mage/walk/down_left/01.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1372; removed=1267
+- `assets/sprite_frames/player/mage/walk/down_left/02.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1332; removed=1346
+- `assets/sprite_frames/player/mage/walk/down_left/03.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1356; removed=1342
+- `assets/sprite_frames/player/mage/walk/down_left/04.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.138; removed=1358
+- `assets/sprite_frames/player/mage/walk/down_left/05.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1355; removed=1286
+- `assets/sprite_frames/player/mage/walk/down_left/06.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1349; removed=1332
+- `assets/sprite_frames/player/hunter/walk/down/01.png`: cleaner_would_remove_visible_background; gray=0.0582; removed=530
+- `assets/sprite_frames/player/hunter/walk/down/02.png`: cleaner_would_remove_visible_background; gray=0.0675; removed=595
+- `assets/sprite_frames/player/hunter/walk/down/03.png`: cleaner_would_remove_visible_background; gray=0.0713; removed=652
+- `assets/sprite_frames/player/hunter/walk/down/04.png`: cleaner_would_remove_visible_background; gray=0.0632; removed=513
+- `assets/sprite_frames/player/hunter/walk/down/05.png`: cleaner_would_remove_visible_background; gray=0.0645; removed=463
+- `assets/sprite_frames/player/hunter/walk/down/06.png`: cleaner_would_remove_visible_background; gray=0.0642; removed=537
+- `assets/sprite_frames/player/hunter/walk/down_right/01.png`: cleaner_would_remove_visible_background; gray=0.0631; removed=571
+- `assets/sprite_frames/player/hunter/walk/down_right/02.png`: cleaner_would_remove_visible_background; gray=0.0809; removed=601
+- `assets/sprite_frames/player/hunter/walk/down_right/03.png`: cleaner_would_remove_visible_background; gray=0.0773; removed=644
+- `assets/sprite_frames/player/hunter/walk/down_right/04.png`: cleaner_would_remove_visible_background; gray=0.0716; removed=540
+- `assets/sprite_frames/player/hunter/walk/down_right/05.png`: cleaner_would_remove_visible_background; gray=0.0751; removed=604
+- `assets/sprite_frames/player/hunter/walk/down_right/06.png`: cleaner_would_remove_visible_background; gray=0.0784; removed=631
+- `assets/sprite_frames/player/hunter/walk/right/01.png`: cleaner_would_remove_visible_background; gray=0.0475; removed=420
+- `assets/sprite_frames/player/hunter/walk/right/02.png`: cleaner_would_remove_visible_background; gray=0.0542; removed=492
+- `assets/sprite_frames/player/hunter/walk/right/03.png`: cleaner_would_remove_visible_background; gray=0.0537; removed=481
+- `assets/sprite_frames/player/hunter/walk/right/04.png`: cleaner_would_remove_visible_background; gray=0.0466; removed=387
+- `assets/sprite_frames/player/hunter/walk/right/05.png`: cleaner_would_remove_visible_background; gray=0.0474; removed=407
+- `assets/sprite_frames/player/hunter/walk/right/06.png`: cleaner_would_remove_visible_background; gray=0.0511; removed=454
+- `assets/sprite_frames/player/hunter/walk/up_right/01.png`: cleaner_would_remove_visible_background, sprite_nearly_cropped; gray=0.0708; removed=1503
+- `assets/sprite_frames/player/hunter/walk/up_right/02.png`: cleaner_would_remove_visible_background; gray=0.0667; removed=1449
+- `assets/sprite_frames/player/hunter/walk/up_right/03.png`: cleaner_would_remove_visible_background; gray=0.0656; removed=1407
+- `assets/sprite_frames/player/hunter/walk/up_right/04.png`: cleaner_would_remove_visible_background; gray=0.0625; removed=1432
+- `assets/sprite_frames/player/hunter/walk/up_right/05.png`: cleaner_would_remove_visible_background; gray=0.0643; removed=1409
+- `assets/sprite_frames/player/hunter/walk/up_right/06.png`: cleaner_would_remove_visible_background; gray=0.0727; removed=1497
+- `assets/sprite_frames/player/hunter/walk/up/01.png`: cleaner_would_remove_visible_background; gray=0.0485; removed=393
+- `assets/sprite_frames/player/hunter/walk/up/02.png`: cleaner_would_remove_visible_background; gray=0.0546; removed=455
+- `assets/sprite_frames/player/hunter/walk/up/03.png`: cleaner_would_remove_visible_background; gray=0.0551; removed=471
+- `assets/sprite_frames/player/hunter/walk/up/04.png`: cleaner_would_remove_visible_background; gray=0.0513; removed=482
+- `assets/sprite_frames/player/hunter/walk/up/05.png`: cleaner_would_remove_visible_background; gray=0.0428; removed=347
+- `assets/sprite_frames/player/hunter/walk/up/06.png`: cleaner_would_remove_visible_background; gray=0.054; removed=450
+- `assets/sprite_frames/player/hunter/walk/up_left/01.png`: cleaner_would_remove_visible_background; gray=0.0502; removed=462
+- `assets/sprite_frames/player/hunter/walk/up_left/02.png`: cleaner_would_remove_visible_background; gray=0.0552; removed=468
+- `assets/sprite_frames/player/hunter/walk/up_left/03.png`: cleaner_would_remove_visible_background; gray=0.0613; removed=518
+- `assets/sprite_frames/player/hunter/walk/up_left/04.png`: cleaner_would_remove_visible_background; gray=0.0555; removed=499
+- `assets/sprite_frames/player/hunter/walk/up_left/05.png`: cleaner_would_remove_visible_background; gray=0.0493; removed=394
+- `assets/sprite_frames/player/hunter/walk/up_left/06.png`: cleaner_would_remove_visible_background; gray=0.0541; removed=494
+- `assets/sprite_frames/player/hunter/walk/left/01.png`: cleaner_would_remove_visible_background; gray=0.0494; removed=433
+- `assets/sprite_frames/player/hunter/walk/left/02.png`: cleaner_would_remove_visible_background; gray=0.0544; removed=409
+- `assets/sprite_frames/player/hunter/walk/left/03.png`: cleaner_would_remove_visible_background; gray=0.0534; removed=476
+- `assets/sprite_frames/player/hunter/walk/left/04.png`: cleaner_would_remove_visible_background; gray=0.0581; removed=495
+- `assets/sprite_frames/player/hunter/walk/left/05.png`: cleaner_would_remove_visible_background; gray=0.0507; removed=430
+- `assets/sprite_frames/player/hunter/walk/left/06.png`: cleaner_would_remove_visible_background; gray=0.0491; removed=459
+- `assets/sprite_frames/player/hunter/walk/down_left/01.png`: cleaner_would_remove_visible_background; gray=0.0705; removed=439
+- `assets/sprite_frames/player/hunter/walk/down_left/02.png`: cleaner_would_remove_visible_background; gray=0.084; removed=655
+- `assets/sprite_frames/player/hunter/walk/down_left/03.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.0894; removed=523
+- `assets/sprite_frames/player/hunter/walk/down_left/04.png`: cleaner_would_remove_visible_background; gray=0.081; removed=495
+- `assets/sprite_frames/player/hunter/walk/down_left/05.png`: cleaner_would_remove_visible_background; gray=0.0736; removed=432
+- `assets/sprite_frames/player/hunter/walk/down_left/06.png`: cleaner_would_remove_visible_background; gray=0.0797; removed=494
+- `assets/spritesheets/npc_neutral/generated/mineur_femme_walk.png`: cleaner_would_remove_visible_background, sprite_nearly_cropped; gray=0.0572; removed=35707
+- `assets/spritesheets/npc_neutral/generated/mineur_homme_walk.png`: cleaner_would_remove_visible_background, sprite_nearly_cropped; gray=0.0407; removed=34152
+- `assets/spritesheets/npc_neutral/generated/pecheur_femme_walk.png`: cleaner_would_remove_visible_background, sprite_nearly_cropped; gray=0.1127; removed=44519
+- `assets/spritesheets/npc_neutral/generated/pecheur_homme_walk.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background, sprite_nearly_cropped; gray=0.109; removed=67901
+- `assets/spritesheets/npc_neutral/generated/shaman_female_walk.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background, sprite_nearly_cropped; gray=0.1375; removed=74311
+- `assets/spritesheets/npc_neutral/generated/shaman_male_walk.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background, sprite_nearly_cropped; gray=0.1164; removed=50397
+- `assets/region_assets/npcs/main/marcus_vane.png`: cleaner_would_remove_visible_background; gray=0.0718; removed=531
+- `assets/region_assets/npcs/main/elara.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.141; removed=1597
+- `assets/region_assets/npcs/main/prefet_morel.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background; gray=0.1526; removed=1378
+- `assets/region_assets/npcs/main/maitre_village.png`: cleaner_would_remove_visible_background; gray=0.0692; removed=581
+- `assets/region_assets/npcs/main/forrest_chief_female.png`: opaque_pixels_touch_canvas_border, sprite_nearly_cropped; gray=0.0176; removed=0
+- `assets/region_assets/npcs/main/mine_chief_male.png`: opaque_pixels_touch_canvas_border, many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background, sprite_nearly_cropped; gray=0.2723; removed=45214
+- `assets/region_assets/npcs/main/port_chief_female.png`: opaque_pixels_touch_canvas_border, sprite_nearly_cropped; gray=0.0212; removed=0
+- `assets/region_assets/npcs/main/village_chief_male.png`: opaque_pixels_touch_canvas_border, many_gray_pixels_possible_matte_or_gray_armor, gray_cluster_near_feet, cleaner_would_remove_visible_background, sprite_nearly_cropped; gray=0.2825; removed=78449
+- `assets/region_assets/npcs/main/processed_idle/mine_chief_male_transparent.png`: gray_cluster_near_feet, cleaner_would_remove_visible_background, sprite_nearly_cropped; gray=0.0787; removed=33443
+- `assets/region_assets/npcs/main/processed_idle/port_chief_female_transparent.png`: sprite_nearly_cropped; gray=0.0524; removed=10259

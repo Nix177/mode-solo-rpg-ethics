@@ -1,0 +1,28 @@
+{
+  "created": "2026-05-15",
+  "cell": 256,
+  "frames": 6,
+  "direction_order": [
+    "down",
+    "down_right",
+    "right",
+    "up_right",
+    "up",
+    "up_left",
+    "left",
+    "down_left"
+  ],
+  "source": "action_rpg_mode/assets/sprite_frames/player/{class}/walk/{direction}/01..06.png",
+  "note": "Non-destructive generated candidate strips/sheets. Uses existing player frames to preserve model identity.",
+  "outputs": [
+    "action_rpg_mode\\assets\\imagegen_generated\\directional_combat_v1\\warrior\\attack_basic\\warrior_attack_basic_8dir_sheet_v1.png",
+    "action_rpg_mode\\assets\\imagegen_generated\\directional_combat_v1\\warrior\\skill_1\\warrior_skill_1_8dir_sheet_v1.png",
+    "action_rpg_mode\\assets\\imagegen_generated\\directional_combat_v1\\warrior\\skill_2\\warrior_skill_2_8dir_sheet_v1.png",
+    "action_rpg_mode\\assets\\imagegen_generated\\directional_combat_v1\\mage\\attack_basic\\mage_attack_basic_8dir_sheet_v1.png",
+    "action_rpg_mode\\assets\\imagegen_generated\\directional_combat_v1\\mage\\skill_1\\mage_skill_1_8dir_sheet_v1.png",
+    "action_rpg_mode\\assets\\imagegen_generated\\directional_combat_v1\\mage\\skill_2\\mage_skill_2_8dir_sheet_v1.png",
+    "action_rpg_mode\\assets\\imagegen_generated\\directional_combat_v1\\hunter\\attack_basic\\hunter_attack_basic_8dir_sheet_v1.png",
+    "action_rpg_mode\\assets\\imagegen_generated\\directional_combat_v1\\hunter\\skill_1\\hunter_skill_1_8dir_sheet_v1.png",
+    "action_rpg_mode\\assets\\imagegen_generated\\directional_combat_v1\\hunter\\skill_2\\hunter_skill_2_8dir_sheet_v1.png"
+  ]
+}

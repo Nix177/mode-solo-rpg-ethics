@@ -1,0 +1,134 @@
+{
+  "uiClick": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/select_1.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/menu_blip.wav",
+    "action_rpg_mode/assets/sounds/ding menu aigu.wav"
+  ],
+  "uiBackCancel": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/cancel.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/sci_fi_cancel.wav"
+  ],
+  "questAccepted": [
+    "action_rpg_mode/assets/sounds/quest accepted.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/8_bit_level_start.wav"
+  ],
+  "questComplete": [
+    "action_rpg_mode/assets/sounds/quest_complete.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/8_bit_level_complete.wav"
+  ],
+  "levelUp": [
+    "action_rpg_mode/assets/sounds/lvl_up.wav",
+    "action_rpg_mode/assets/sounds/level up.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/power_up.wav"
+  ],
+  "rareItem": [
+    "action_rpg_mode/assets/sounds/rare item.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/gem_collect.wav"
+  ],
+  "goldPickup": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/coins_gather_quick.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/coin_jingle_small.wav"
+  ],
+  "itemPickup": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/item_equip.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/heart_collect.wav",
+    "action_rpg_mode/assets/sounds/bubble pop.wav"
+  ],
+  "shopBuySell": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/coins_gather_small.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/coin_collect.wav"
+  ],
+  "equipWeapon": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/weapon_equip_short.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/weapon_equip.wav"
+  ],
+  "unequipWeapon": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/weapon_unequip.wav"
+  ],
+  "warriorSwing": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/sword_slice.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/sword_light.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/whoosh_1.wav"
+  ],
+  "warriorHit": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/sword_clash.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/sword_clash_2.wav"
+  ],
+  "hunterShoot": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/shot_muffled.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/throw.wav"
+  ],
+  "hunterHit": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/harsh_thud.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/cardboard_hit.wav"
+  ],
+  "mageCast": [
+    "action_rpg_mode/assets/sounds/hit_sort.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/air_burst.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/power_up_2.wav"
+  ],
+  "mageImpact": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/fire_lighting.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/explosion_quick.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/explosion_small.wav"
+  ],
+  "enemyHitLight": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/punch_2.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/kick.wav"
+  ],
+  "enemyHitHeavy": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/crunch_quick.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/crunch_splat_2.wav"
+  ],
+  "enemyDeath": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/splat_quick.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/hurt.wav"
+  ],
+  "playerHurtCandidate": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Human/man_0.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Human/man_2.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/hurt.wav"
+  ],
+  "doorWood": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/door_open.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/door_close.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/creaky_door_short.wav"
+  ],
+  "doorIndustrial": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Machines/industrial_door_open.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Machines/industrial_door_close.wav"
+  ],
+  "lockUnlock": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/lock_unlock.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/lock_lock.wav"
+  ],
+  "footstepsGrass": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_grass_1.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_grass_2.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_grass_3.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_grass_4.wav"
+  ],
+  "footstepsGravelMine": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_gravel_1.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_gravel_2.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_gravel_3.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_gravel_4.wav"
+  ],
+  "footstepsWoodShop": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_wood_1.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_wood_2.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_wood_3.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_wood_4.wav"
+  ],
+  "ambientForestOrWind": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/ambient_wind.wav"
+  ],
+  "ambientWaterPort": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/water_babbling_loop.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/water_splashing.wav"
+  ],
+  "forgeMachine": [
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Machines/drill_whizz.wav",
+    "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/fire_lighting.wav"
+  ]
+}

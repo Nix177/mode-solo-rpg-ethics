@@ -1,0 +1,5100 @@
+{
+  "generated_at": "2026-05-15 14:41:40",
+  "reports": [
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down/01.png",
+      "role": "player/warrior/walk/down",
+      "size": [
+        150,
+        197
+      ],
+      "bbox": [
+        12,
+        12,
+        137,
+        185
+      ],
+      "opaque_pixels": 12428,
+      "gray_candidate_pixels": 3763,
+      "gray_candidate_ratio": 0.3028,
+      "gray_bottom_pixels": 1727,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 3114,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        125,
+        173
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down/02.png",
+      "role": "player/warrior/walk/down",
+      "size": [
+        150,
+        197
+      ],
+      "bbox": [
+        12,
+        12,
+        138,
+        185
+      ],
+      "opaque_pixels": 12525,
+      "gray_candidate_pixels": 3589,
+      "gray_candidate_ratio": 0.2865,
+      "gray_bottom_pixels": 1704,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 3014,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        126,
+        173
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down/03.png",
+      "role": "player/warrior/walk/down",
+      "size": [
+        150,
+        197
+      ],
+      "bbox": [
+        12,
+        13,
+        138,
+        185
+      ],
+      "opaque_pixels": 12420,
+      "gray_candidate_pixels": 3768,
+      "gray_candidate_ratio": 0.3034,
+      "gray_bottom_pixels": 1760,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 3280,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        126,
+        172
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down/04.png",
+      "role": "player/warrior/walk/down",
+      "size": [
+        150,
+        197
+      ],
+      "bbox": [
+        13,
+        12,
+        137,
+        185
+      ],
+      "opaque_pixels": 12330,
+      "gray_candidate_pixels": 3680,
+      "gray_candidate_ratio": 0.2985,
+      "gray_bottom_pixels": 1681,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 3063,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        124,
+        173
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down/05.png",
+      "role": "player/warrior/walk/down",
+      "size": [
+        150,
+        197
+      ],
+      "bbox": [
+        13,
+        12,
+        136,
+        185
+      ],
+      "opaque_pixels": 12248,
+      "gray_candidate_pixels": 3746,
+      "gray_candidate_ratio": 0.3058,
+      "gray_bottom_pixels": 1751,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 3194,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        123,
+        173
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down/06.png",
+      "role": "player/warrior/walk/down",
+      "size": [
+        150,
+        197
+      ],
+      "bbox": [
+        15,
+        14,
+        135,
+        185
+      ],
+      "opaque_pixels": 12009,
+      "gray_candidate_pixels": 3659,
+      "gray_candidate_ratio": 0.3047,
+      "gray_bottom_pixels": 1653,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 3149,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        120,
+        171
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_right/01.png",
+      "role": "player/warrior/walk/down_right",
+      "size": [
+        162,
+        184
+      ],
+      "bbox": [
+        17,
+        5,
+        145,
+        177
+      ],
+      "opaque_pixels": 11559,
+      "gray_candidate_pixels": 2637,
+      "gray_candidate_ratio": 0.2281,
+      "gray_bottom_pixels": 1160,
+      "semi_transparent_halo_pixels": 742,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2820,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background",
+        "sprite_nearly_cropped"
+      ],
+      "bbox_size": [
+        128,
+        172
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_right/02.png",
+      "role": "player/warrior/walk/down_right",
+      "size": [
+        162,
+        184
+      ],
+      "bbox": [
+        16,
+        3,
+        145,
+        177
+      ],
+      "opaque_pixels": 11200,
+      "gray_candidate_pixels": 2322,
+      "gray_candidate_ratio": 0.2073,
+      "gray_bottom_pixels": 865,
+      "semi_transparent_halo_pixels": 726,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2545,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background",
+        "sprite_nearly_cropped"
+      ],
+      "bbox_size": [
+        129,
+        174
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_right/03.png",
+      "role": "player/warrior/walk/down_right",
+      "size": [
+        162,
+        184
+      ],
+      "bbox": [
+        12,
+        3,
+        149,
+        177
+      ],
+      "opaque_pixels": 11819,
+      "gray_candidate_pixels": 2686,
+      "gray_candidate_ratio": 0.2273,
+      "gray_bottom_pixels": 1181,
+      "semi_transparent_halo_pixels": 763,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2839,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background",
+        "sprite_nearly_cropped"
+      ],
+      "bbox_size": [
+        137,
+        174
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_right/04.png",
+      "role": "player/warrior/walk/down_right",
+      "size": [
+        162,
+        184
+      ],
+      "bbox": [
+        9,
+        3,
+        153,
+        177
+      ],
+      "opaque_pixels": 11500,
+      "gray_candidate_pixels": 2376,
+      "gray_candidate_ratio": 0.2066,
+      "gray_bottom_pixels": 819,
+      "semi_transparent_halo_pixels": 734,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2588,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background",
+        "sprite_nearly_cropped"
+      ],
+      "bbox_size": [
+        144,
+        174
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_right/05.png",
+      "role": "player/warrior/walk/down_right",
+      "size": [
+        162,
+        184
+      ],
+      "bbox": [
+        17,
+        5,
+        144,
+        177
+      ],
+      "opaque_pixels": 11708,
+      "gray_candidate_pixels": 2680,
+      "gray_candidate_ratio": 0.2289,
+      "gray_bottom_pixels": 1236,
+      "semi_transparent_halo_pixels": 748,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2899,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background",
+        "sprite_nearly_cropped"
+      ],
+      "bbox_size": [
+        127,
+        172
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_right/06.png",
+      "role": "player/warrior/walk/down_right",
+      "size": [
+        162,
+        184
+      ],
+      "bbox": [
+        17,
+        5,
+        144,
+        177
+      ],
+      "opaque_pixels": 11603,
+      "gray_candidate_pixels": 2701,
+      "gray_candidate_ratio": 0.2328,
+      "gray_bottom_pixels": 1179,
+      "semi_transparent_halo_pixels": 725,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2873,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background",
+        "sprite_nearly_cropped"
+      ],
+      "bbox_size": [
+        127,
+        172
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/right/01.png",
+      "role": "player/warrior/walk/right",
+      "size": [
+        156,
+        177
+      ],
+      "bbox": [
+        18,
+        12,
+        138,
+        165
+      ],
+      "opaque_pixels": 9264,
+      "gray_candidate_pixels": 2711,
+      "gray_candidate_ratio": 0.2926,
+      "gray_bottom_pixels": 1047,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2356,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        120,
+        153
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/right/02.png",
+      "role": "player/warrior/walk/right",
+      "size": [
+        156,
+        177
+      ],
+      "bbox": [
+        17,
+        12,
+        138,
+        165
+      ],
+      "opaque_pixels": 9625,
+      "gray_candidate_pixels": 3031,
+      "gray_candidate_ratio": 0.3149,
+      "gray_bottom_pixels": 1343,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2290,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        121,
+        153
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/right/03.png",
+      "role": "player/warrior/walk/right",
+      "size": [
+        156,
+        177
+      ],
+      "bbox": [
+        13,
+        12,
+        142,
+        165
+      ],
+      "opaque_pixels": 10080,
+      "gray_candidate_pixels": 3355,
+      "gray_candidate_ratio": 0.3328,
+      "gray_bottom_pixels": 1654,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2619,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        129,
+        153
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/right/04.png",
+      "role": "player/warrior/walk/right",
+      "size": [
+        156,
+        177
+      ],
+      "bbox": [
+        15,
+        14,
+        141,
+        165
+      ],
+      "opaque_pixels": 10029,
+      "gray_candidate_pixels": 3337,
+      "gray_candidate_ratio": 0.3327,
+      "gray_bottom_pixels": 1705,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2657,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        126,
+        151
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/right/05.png",
+      "role": "player/warrior/walk/right",
+      "size": [
+        156,
+        177
+      ],
+      "bbox": [
+        12,
+        17,
+        144,
+        165
+      ],
+      "opaque_pixels": 9646,
+      "gray_candidate_pixels": 3089,
+      "gray_candidate_ratio": 0.3202,
+      "gray_bottom_pixels": 1389,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2304,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        132,
+        148
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/right/06.png",
+      "role": "player/warrior/walk/right",
+      "size": [
+        156,
+        177
+      ],
+      "bbox": [
+        13,
+        17,
+        143,
+        165
+      ],
+      "opaque_pixels": 9576,
+      "gray_candidate_pixels": 2971,
+      "gray_candidate_ratio": 0.3103,
+      "gray_bottom_pixels": 1328,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2269,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        130,
+        148
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_right/01.png",
+      "role": "player/warrior/walk/up_right",
+      "size": [
+        167,
+        182
+      ],
+      "bbox": [
+        13,
+        13,
+        154,
+        170
+      ],
+      "opaque_pixels": 11789,
+      "gray_candidate_pixels": 3464,
+      "gray_candidate_ratio": 0.2938,
+      "gray_bottom_pixels": 1440,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 3040,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        141,
+        157
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_right/02.png",
+      "role": "player/warrior/walk/up_right",
+      "size": [
+        167,
+        182
+      ],
+      "bbox": [
+        13,
+        13,
+        154,
+        170
+      ],
+      "opaque_pixels": 11924,
+      "gray_candidate_pixels": 3638,
+      "gray_candidate_ratio": 0.3051,
+      "gray_bottom_pixels": 1576,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 3149,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        141,
+        157
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_right/03.png",
+      "role": "player/warrior/walk/up_right",
+      "size": [
+        167,
+        182
+      ],
+      "bbox": [
+        14,
+        12,
+        153,
+        170
+      ],
+      "opaque_pixels": 11599,
+      "gray_candidate_pixels": 3159,
+      "gray_candidate_ratio": 0.2724,
+      "gray_bottom_pixels": 1255,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2796,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        139,
+        158
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_right/04.png",
+      "role": "player/warrior/walk/up_right",
+      "size": [
+        167,
+        182
+      ],
+      "bbox": [
+        12,
+        12,
+        155,
+        170
+      ],
+      "opaque_pixels": 11802,
+      "gray_candidate_pixels": 3388,
+      "gray_candidate_ratio": 0.2871,
+      "gray_bottom_pixels": 1309,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2932,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        143,
+        158
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_right/05.png",
+      "role": "player/warrior/walk/up_right",
+      "size": [
+        167,
+        182
+      ],
+      "bbox": [
+        13,
+        12,
+        154,
+        170
+      ],
+      "opaque_pixels": 11732,
+      "gray_candidate_pixels": 3363,
+      "gray_candidate_ratio": 0.2867,
+      "gray_bottom_pixels": 1369,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2961,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        141,
+        158
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_right/06.png",
+      "role": "player/warrior/walk/up_right",
+      "size": [
+        167,
+        182
+      ],
+      "bbox": [
+        13,
+        13,
+        154,
+        170
+      ],
+      "opaque_pixels": 11705,
+      "gray_candidate_pixels": 3310,
+      "gray_candidate_ratio": 0.2828,
+      "gray_bottom_pixels": 1336,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2870,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        141,
+        157
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up/01.png",
+      "role": "player/warrior/walk/up",
+      "size": [
+        150,
+        191
+      ],
+      "bbox": [
+        12,
+        13,
+        138,
+        179
+      ],
+      "opaque_pixels": 11217,
+      "gray_candidate_pixels": 3004,
+      "gray_candidate_ratio": 0.2678,
+      "gray_bottom_pixels": 1589,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2921,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        126,
+        166
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up/02.png",
+      "role": "player/warrior/walk/up",
+      "size": [
+        150,
+        191
+      ],
+      "bbox": [
+        12,
+        13,
+        138,
+        179
+      ],
+      "opaque_pixels": 11252,
+      "gray_candidate_pixels": 2867,
+      "gray_candidate_ratio": 0.2548,
+      "gray_bottom_pixels": 1489,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2668,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        126,
+        166
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up/03.png",
+      "role": "player/warrior/walk/up",
+      "size": [
+        150,
+        191
+      ],
+      "bbox": [
+        12,
+        13,
+        138,
+        179
+      ],
+      "opaque_pixels": 11278,
+      "gray_candidate_pixels": 2887,
+      "gray_candidate_ratio": 0.256,
+      "gray_bottom_pixels": 1565,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2722,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        126,
+        166
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up/04.png",
+      "role": "player/warrior/walk/up",
+      "size": [
+        150,
+        191
+      ],
+      "bbox": [
+        13,
+        12,
+        137,
+        179
+      ],
+      "opaque_pixels": 11319,
+      "gray_candidate_pixels": 2957,
+      "gray_candidate_ratio": 0.2612,
+      "gray_bottom_pixels": 1533,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2817,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        124,
+        167
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up/05.png",
+      "role": "player/warrior/walk/up",
+      "size": [
+        150,
+        191
+      ],
+      "bbox": [
+        12,
+        12,
+        138,
+        179
+      ],
+      "opaque_pixels": 11262,
+      "gray_candidate_pixels": 3049,
+      "gray_candidate_ratio": 0.2707,
+      "gray_bottom_pixels": 1516,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2822,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        126,
+        167
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up/06.png",
+      "role": "player/warrior/walk/up",
+      "size": [
+        150,
+        191
+      ],
+      "bbox": [
+        13,
+        13,
+        137,
+        179
+      ],
+      "opaque_pixels": 11121,
+      "gray_candidate_pixels": 2847,
+      "gray_candidate_ratio": 0.256,
+      "gray_bottom_pixels": 1474,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2580,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        124,
+        166
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_left/01.png",
+      "role": "player/warrior/walk/up_left",
+      "size": [
+        139,
+        182
+      ],
+      "bbox": [
+        12,
+        13,
+        126,
+        170
+      ],
+      "opaque_pixels": 9546,
+      "gray_candidate_pixels": 2648,
+      "gray_candidate_ratio": 0.2774,
+      "gray_bottom_pixels": 963,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2450,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        114,
+        157
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_left/02.png",
+      "role": "player/warrior/walk/up_left",
+      "size": [
+        139,
+        182
+      ],
+      "bbox": [
+        14,
+        13,
+        125,
+        170
+      ],
+      "opaque_pixels": 9635,
+      "gray_candidate_pixels": 2599,
+      "gray_candidate_ratio": 0.2697,
+      "gray_bottom_pixels": 878,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2405,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        111,
+        157
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_left/03.png",
+      "role": "player/warrior/walk/up_left",
+      "size": [
+        139,
+        182
+      ],
+      "bbox": [
+        12,
+        12,
+        126,
+        170
+      ],
+      "opaque_pixels": 9827,
+      "gray_candidate_pixels": 2770,
+      "gray_candidate_ratio": 0.2819,
+      "gray_bottom_pixels": 1009,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2588,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        114,
+        158
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_left/04.png",
+      "role": "player/warrior/walk/up_left",
+      "size": [
+        139,
+        182
+      ],
+      "bbox": [
+        12,
+        13,
+        127,
+        170
+      ],
+      "opaque_pixels": 9875,
+      "gray_candidate_pixels": 2739,
+      "gray_candidate_ratio": 0.2774,
+      "gray_bottom_pixels": 1009,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2564,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        115,
+        157
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_left/05.png",
+      "role": "player/warrior/walk/up_left",
+      "size": [
+        139,
+        182
+      ],
+      "bbox": [
+        13,
+        13,
+        125,
+        170
+      ],
+      "opaque_pixels": 9790,
+      "gray_candidate_pixels": 2760,
+      "gray_candidate_ratio": 0.2819,
+      "gray_bottom_pixels": 977,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2533,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        112,
+        157
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/up_left/06.png",
+      "role": "player/warrior/walk/up_left",
+      "size": [
+        139,
+        182
+      ],
+      "bbox": [
+        16,
+        12,
+        123,
+        170
+      ],
+      "opaque_pixels": 9558,
+      "gray_candidate_pixels": 2609,
+      "gray_candidate_ratio": 0.273,
+      "gray_bottom_pixels": 934,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2365,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        107,
+        158
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/left/01.png",
+      "role": "player/warrior/walk/left",
+      "size": [
+        125,
+        182
+      ],
+      "bbox": [
+        5,
+        44,
+        120,
+        175
+      ],
+      "opaque_pixels": 7195,
+      "gray_candidate_pixels": 1661,
+      "gray_candidate_ratio": 0.2309,
+      "gray_bottom_pixels": 679,
+      "semi_transparent_halo_pixels": 521,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1804,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        115,
+        131
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/left/02.png",
+      "role": "player/warrior/walk/left",
+      "size": [
+        125,
+        182
+      ],
+      "bbox": [
+        5,
+        44,
+        119,
+        175
+      ],
+      "opaque_pixels": 7550,
+      "gray_candidate_pixels": 1859,
+      "gray_candidate_ratio": 0.2462,
+      "gray_bottom_pixels": 845,
+      "semi_transparent_halo_pixels": 503,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2065,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        114,
+        131
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/left/03.png",
+      "role": "player/warrior/walk/left",
+      "size": [
+        125,
+        182
+      ],
+      "bbox": [
+        5,
+        44,
+        119,
+        175
+      ],
+      "opaque_pixels": 7413,
+      "gray_candidate_pixels": 1789,
+      "gray_candidate_ratio": 0.2413,
+      "gray_bottom_pixels": 974,
+      "semi_transparent_halo_pixels": 526,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1974,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        114,
+        131
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/left/04.png",
+      "role": "player/warrior/walk/left",
+      "size": [
+        125,
+        182
+      ],
+      "bbox": [
+        6,
+        44,
+        118,
+        175
+      ],
+      "opaque_pixels": 7441,
+      "gray_candidate_pixels": 1832,
+      "gray_candidate_ratio": 0.2462,
+      "gray_bottom_pixels": 850,
+      "semi_transparent_halo_pixels": 495,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1947,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        112,
+        131
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/left/05.png",
+      "role": "player/warrior/walk/left",
+      "size": [
+        125,
+        182
+      ],
+      "bbox": [
+        5,
+        44,
+        119,
+        175
+      ],
+      "opaque_pixels": 7459,
+      "gray_candidate_pixels": 1888,
+      "gray_candidate_ratio": 0.2531,
+      "gray_bottom_pixels": 1042,
+      "semi_transparent_halo_pixels": 515,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2066,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        114,
+        131
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/left/06.png",
+      "role": "player/warrior/walk/left",
+      "size": [
+        125,
+        182
+      ],
+      "bbox": [
+        6,
+        44,
+        119,
+        175
+      ],
+      "opaque_pixels": 7115,
+      "gray_candidate_pixels": 1628,
+      "gray_candidate_ratio": 0.2288,
+      "gray_bottom_pixels": 637,
+      "semi_transparent_halo_pixels": 496,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1840,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        113,
+        131
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_left/01.png",
+      "role": "player/warrior/walk/down_left",
+      "size": [
+        150,
+        185
+      ],
+      "bbox": [
+        13,
+        14,
+        137,
+        173
+      ],
+      "opaque_pixels": 10586,
+      "gray_candidate_pixels": 2844,
+      "gray_candidate_ratio": 0.2687,
+      "gray_bottom_pixels": 1502,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2212,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        124,
+        159
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_left/02.png",
+      "role": "player/warrior/walk/down_left",
+      "size": [
+        150,
+        185
+      ],
+      "bbox": [
+        12,
+        15,
+        138,
+        173
+      ],
+      "opaque_pixels": 10659,
+      "gray_candidate_pixels": 2825,
+      "gray_candidate_ratio": 0.265,
+      "gray_bottom_pixels": 1437,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2159,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        126,
+        158
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_left/03.png",
+      "role": "player/warrior/walk/down_left",
+      "size": [
+        150,
+        185
+      ],
+      "bbox": [
+        14,
+        15,
+        136,
+        173
+      ],
+      "opaque_pixels": 10423,
+      "gray_candidate_pixels": 2842,
+      "gray_candidate_ratio": 0.2727,
+      "gray_bottom_pixels": 1476,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2186,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        122,
+        158
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_left/04.png",
+      "role": "player/warrior/walk/down_left",
+      "size": [
+        150,
+        185
+      ],
+      "bbox": [
+        12,
+        15,
+        138,
+        173
+      ],
+      "opaque_pixels": 10688,
+      "gray_candidate_pixels": 2837,
+      "gray_candidate_ratio": 0.2654,
+      "gray_bottom_pixels": 1507,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2168,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        126,
+        158
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_left/05.png",
+      "role": "player/warrior/walk/down_left",
+      "size": [
+        150,
+        185
+      ],
+      "bbox": [
+        13,
+        15,
+        137,
+        173
+      ],
+      "opaque_pixels": 10586,
+      "gray_candidate_pixels": 2995,
+      "gray_candidate_ratio": 0.2829,
+      "gray_bottom_pixels": 1539,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2008,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        124,
+        158
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/warrior/walk/down_left/06.png",
+      "role": "player/warrior/walk/down_left",
+      "size": [
+        150,
+        185
+      ],
+      "bbox": [
+        14,
+        12,
+        136,
+        173
+      ],
+      "opaque_pixels": 10533,
+      "gray_candidate_pixels": 2814,
+      "gray_candidate_ratio": 0.2672,
+      "gray_bottom_pixels": 1379,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 2107,
+      "flags": [
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        122,
+        161
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down/01.png",
+      "role": "player/mage/walk/down",
+      "size": [
+        148,
+        183
+      ],
+      "bbox": [
+        12,
+        12,
+        136,
+        171
+      ],
+      "opaque_pixels": 12504,
+      "gray_candidate_pixels": 1376,
+      "gray_candidate_ratio": 0.11,
+      "gray_bottom_pixels": 1022,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1113,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        124,
+        159
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down/02.png",
+      "role": "player/mage/walk/down",
+      "size": [
+        148,
+        183
+      ],
+      "bbox": [
+        16,
+        12,
+        131,
+        171
+      ],
+      "opaque_pixels": 12167,
+      "gray_candidate_pixels": 1398,
+      "gray_candidate_ratio": 0.1149,
+      "gray_bottom_pixels": 1089,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1132,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        115,
+        159
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down/03.png",
+      "role": "player/mage/walk/down",
+      "size": [
+        148,
+        183
+      ],
+      "bbox": [
+        16,
+        13,
+        131,
+        171
+      ],
+      "opaque_pixels": 11965,
+      "gray_candidate_pixels": 1464,
+      "gray_candidate_ratio": 0.1224,
+      "gray_bottom_pixels": 1097,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1185,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        115,
+        158
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down/04.png",
+      "role": "player/mage/walk/down",
+      "size": [
+        148,
+        183
+      ],
+      "bbox": [
+        14,
+        13,
+        133,
+        171
+      ],
+      "opaque_pixels": 12095,
+      "gray_candidate_pixels": 1484,
+      "gray_candidate_ratio": 0.1227,
+      "gray_bottom_pixels": 1098,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1253,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        119,
+        158
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down/05.png",
+      "role": "player/mage/walk/down",
+      "size": [
+        148,
+        183
+      ],
+      "bbox": [
+        16,
+        12,
+        131,
+        171
+      ],
+      "opaque_pixels": 12105,
+      "gray_candidate_pixels": 1457,
+      "gray_candidate_ratio": 0.1204,
+      "gray_bottom_pixels": 1083,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1210,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        115,
+        159
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down/06.png",
+      "role": "player/mage/walk/down",
+      "size": [
+        148,
+        183
+      ],
+      "bbox": [
+        16,
+        13,
+        131,
+        171
+      ],
+      "opaque_pixels": 12252,
+      "gray_candidate_pixels": 1516,
+      "gray_candidate_ratio": 0.1237,
+      "gray_bottom_pixels": 1144,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1253,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        115,
+        158
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_right/01.png",
+      "role": "player/mage/walk/down_right",
+      "size": [
+        144,
+        182
+      ],
+      "bbox": [
+        13,
+        13,
+        131,
+        170
+      ],
+      "opaque_pixels": 12326,
+      "gray_candidate_pixels": 1678,
+      "gray_candidate_ratio": 0.1361,
+      "gray_bottom_pixels": 1259,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1420,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        118,
+        157
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_right/02.png",
+      "role": "player/mage/walk/down_right",
+      "size": [
+        144,
+        182
+      ],
+      "bbox": [
+        12,
+        13,
+        131,
+        170
+      ],
+      "opaque_pixels": 12498,
+      "gray_candidate_pixels": 1831,
+      "gray_candidate_ratio": 0.1465,
+      "gray_bottom_pixels": 1404,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1584,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        119,
+        157
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_right/03.png",
+      "role": "player/mage/walk/down_right",
+      "size": [
+        144,
+        182
+      ],
+      "bbox": [
+        13,
+        13,
+        130,
+        170
+      ],
+      "opaque_pixels": 12728,
+      "gray_candidate_pixels": 1864,
+      "gray_candidate_ratio": 0.1464,
+      "gray_bottom_pixels": 1439,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1585,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        117,
+        157
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_right/04.png",
+      "role": "player/mage/walk/down_right",
+      "size": [
+        144,
+        182
+      ],
+      "bbox": [
+        12,
+        12,
+        132,
+        170
+      ],
+      "opaque_pixels": 12661,
+      "gray_candidate_pixels": 1718,
+      "gray_candidate_ratio": 0.1357,
+      "gray_bottom_pixels": 1334,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1442,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        120,
+        158
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_right/05.png",
+      "role": "player/mage/walk/down_right",
+      "size": [
+        144,
+        182
+      ],
+      "bbox": [
+        13,
+        13,
+        130,
+        170
+      ],
+      "opaque_pixels": 12020,
+      "gray_candidate_pixels": 1728,
+      "gray_candidate_ratio": 0.1438,
+      "gray_bottom_pixels": 1333,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1500,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        117,
+        157
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_right/06.png",
+      "role": "player/mage/walk/down_right",
+      "size": [
+        144,
+        182
+      ],
+      "bbox": [
+        14,
+        13,
+        129,
+        170
+      ],
+      "opaque_pixels": 12118,
+      "gray_candidate_pixels": 1641,
+      "gray_candidate_ratio": 0.1354,
+      "gray_bottom_pixels": 1263,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1450,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        115,
+        157
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/right/01.png",
+      "role": "player/mage/walk/right",
+      "size": [
+        142,
+        181
+      ],
+      "bbox": [
+        12,
+        12,
+        129,
+        169
+      ],
+      "opaque_pixels": 12510,
+      "gray_candidate_pixels": 1599,
+      "gray_candidate_ratio": 0.1278,
+      "gray_bottom_pixels": 1212,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1419,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        117,
+        157
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/right/02.png",
+      "role": "player/mage/walk/right",
+      "size": [
+        142,
+        181
+      ],
+      "bbox": [
+        14,
+        13,
+        127,
+        169
+      ],
+      "opaque_pixels": 12248,
+      "gray_candidate_pixels": 1811,
+      "gray_candidate_ratio": 0.1479,
+      "gray_bottom_pixels": 1405,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1597,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        113,
+        156
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/right/03.png",
+      "role": "player/mage/walk/right",
+      "size": [
+        142,
+        181
+      ],
+      "bbox": [
+        14,
+        13,
+        128,
+        169
+      ],
+      "opaque_pixels": 12470,
+      "gray_candidate_pixels": 1832,
+      "gray_candidate_ratio": 0.1469,
+      "gray_bottom_pixels": 1438,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1675,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        114,
+        156
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/right/04.png",
+      "role": "player/mage/walk/right",
+      "size": [
+        142,
+        181
+      ],
+      "bbox": [
+        12,
+        13,
+        129,
+        169
+      ],
+      "opaque_pixels": 12631,
+      "gray_candidate_pixels": 1906,
+      "gray_candidate_ratio": 0.1509,
+      "gray_bottom_pixels": 1446,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1668,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        117,
+        156
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/right/05.png",
+      "role": "player/mage/walk/right",
+      "size": [
+        142,
+        181
+      ],
+      "bbox": [
+        12,
+        13,
+        130,
+        169
+      ],
+      "opaque_pixels": 12747,
+      "gray_candidate_pixels": 1950,
+      "gray_candidate_ratio": 0.153,
+      "gray_bottom_pixels": 1525,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1750,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        118,
+        156
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/right/06.png",
+      "role": "player/mage/walk/right",
+      "size": [
+        142,
+        181
+      ],
+      "bbox": [
+        13,
+        14,
+        129,
+        169
+      ],
+      "opaque_pixels": 12539,
+      "gray_candidate_pixels": 1679,
+      "gray_candidate_ratio": 0.1339,
+      "gray_bottom_pixels": 1346,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1533,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        116,
+        155
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_right/01.png",
+      "role": "player/mage/walk/up_right",
+      "size": [
+        143,
+        177
+      ],
+      "bbox": [
+        12,
+        14,
+        131,
+        165
+      ],
+      "opaque_pixels": 11581,
+      "gray_candidate_pixels": 1362,
+      "gray_candidate_ratio": 0.1176,
+      "gray_bottom_pixels": 1067,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1258,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        119,
+        151
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_right/02.png",
+      "role": "player/mage/walk/up_right",
+      "size": [
+        143,
+        177
+      ],
+      "bbox": [
+        13,
+        16,
+        130,
+        165
+      ],
+      "opaque_pixels": 11534,
+      "gray_candidate_pixels": 1360,
+      "gray_candidate_ratio": 0.1179,
+      "gray_bottom_pixels": 1046,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1240,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        117,
+        149
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_right/03.png",
+      "role": "player/mage/walk/up_right",
+      "size": [
+        143,
+        177
+      ],
+      "bbox": [
+        16,
+        14,
+        127,
+        165
+      ],
+      "opaque_pixels": 11227,
+      "gray_candidate_pixels": 1336,
+      "gray_candidate_ratio": 0.119,
+      "gray_bottom_pixels": 1031,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1267,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        111,
+        151
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_right/04.png",
+      "role": "player/mage/walk/up_right",
+      "size": [
+        143,
+        177
+      ],
+      "bbox": [
+        14,
+        13,
+        129,
+        165
+      ],
+      "opaque_pixels": 11421,
+      "gray_candidate_pixels": 1436,
+      "gray_candidate_ratio": 0.1257,
+      "gray_bottom_pixels": 1148,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1323,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        115,
+        152
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_right/05.png",
+      "role": "player/mage/walk/up_right",
+      "size": [
+        143,
+        177
+      ],
+      "bbox": [
+        14,
+        12,
+        128,
+        165
+      ],
+      "opaque_pixels": 11530,
+      "gray_candidate_pixels": 1389,
+      "gray_candidate_ratio": 0.1205,
+      "gray_bottom_pixels": 1092,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1263,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        114,
+        153
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_right/06.png",
+      "role": "player/mage/walk/up_right",
+      "size": [
+        143,
+        177
+      ],
+      "bbox": [
+        13,
+        14,
+        130,
+        165
+      ],
+      "opaque_pixels": 11627,
+      "gray_candidate_pixels": 1421,
+      "gray_candidate_ratio": 0.1222,
+      "gray_bottom_pixels": 1083,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1311,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        117,
+        151
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up/01.png",
+      "role": "player/mage/walk/up",
+      "size": [
+        141,
+        177
+      ],
+      "bbox": [
+        13,
+        12,
+        128,
+        165
+      ],
+      "opaque_pixels": 11825,
+      "gray_candidate_pixels": 1639,
+      "gray_candidate_ratio": 0.1386,
+      "gray_bottom_pixels": 1336,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1501,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        115,
+        153
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up/02.png",
+      "role": "player/mage/walk/up",
+      "size": [
+        141,
+        177
+      ],
+      "bbox": [
+        12,
+        13,
+        129,
+        165
+      ],
+      "opaque_pixels": 12019,
+      "gray_candidate_pixels": 1678,
+      "gray_candidate_ratio": 0.1396,
+      "gray_bottom_pixels": 1339,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1464,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        117,
+        152
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up/03.png",
+      "role": "player/mage/walk/up",
+      "size": [
+        141,
+        177
+      ],
+      "bbox": [
+        12,
+        12,
+        129,
+        165
+      ],
+      "opaque_pixels": 12123,
+      "gray_candidate_pixels": 1718,
+      "gray_candidate_ratio": 0.1417,
+      "gray_bottom_pixels": 1379,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1568,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        117,
+        153
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up/04.png",
+      "role": "player/mage/walk/up",
+      "size": [
+        141,
+        177
+      ],
+      "bbox": [
+        12,
+        13,
+        129,
+        165
+      ],
+      "opaque_pixels": 11985,
+      "gray_candidate_pixels": 1586,
+      "gray_candidate_ratio": 0.1323,
+      "gray_bottom_pixels": 1266,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1419,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        117,
+        152
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up/05.png",
+      "role": "player/mage/walk/up",
+      "size": [
+        141,
+        177
+      ],
+      "bbox": [
+        12,
+        12,
+        129,
+        165
+      ],
+      "opaque_pixels": 11919,
+      "gray_candidate_pixels": 1512,
+      "gray_candidate_ratio": 0.1269,
+      "gray_bottom_pixels": 1229,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1406,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        117,
+        153
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up/06.png",
+      "role": "player/mage/walk/up",
+      "size": [
+        141,
+        177
+      ],
+      "bbox": [
+        12,
+        12,
+        128,
+        165
+      ],
+      "opaque_pixels": 12007,
+      "gray_candidate_pixels": 1706,
+      "gray_candidate_ratio": 0.1421,
+      "gray_bottom_pixels": 1377,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1566,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        116,
+        153
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_left/01.png",
+      "role": "player/mage/walk/up_left",
+      "size": [
+        146,
+        178
+      ],
+      "bbox": [
+        13,
+        16,
+        133,
+        166
+      ],
+      "opaque_pixels": 11826,
+      "gray_candidate_pixels": 1591,
+      "gray_candidate_ratio": 0.1345,
+      "gray_bottom_pixels": 1322,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1477,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        120,
+        150
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_left/02.png",
+      "role": "player/mage/walk/up_left",
+      "size": [
+        146,
+        178
+      ],
+      "bbox": [
+        12,
+        14,
+        133,
+        166
+      ],
+      "opaque_pixels": 11842,
+      "gray_candidate_pixels": 1562,
+      "gray_candidate_ratio": 0.1319,
+      "gray_bottom_pixels": 1288,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1438,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        121,
+        152
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_left/03.png",
+      "role": "player/mage/walk/up_left",
+      "size": [
+        146,
+        178
+      ],
+      "bbox": [
+        12,
+        13,
+        133,
+        166
+      ],
+      "opaque_pixels": 12093,
+      "gray_candidate_pixels": 1720,
+      "gray_candidate_ratio": 0.1422,
+      "gray_bottom_pixels": 1415,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1596,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        121,
+        153
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_left/04.png",
+      "role": "player/mage/walk/up_left",
+      "size": [
+        146,
+        178
+      ],
+      "bbox": [
+        14,
+        12,
+        131,
+        166
+      ],
+      "opaque_pixels": 11958,
+      "gray_candidate_pixels": 1684,
+      "gray_candidate_ratio": 0.1408,
+      "gray_bottom_pixels": 1432,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1564,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        117,
+        154
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_left/05.png",
+      "role": "player/mage/walk/up_left",
+      "size": [
+        146,
+        178
+      ],
+      "bbox": [
+        12,
+        12,
+        134,
+        166
+      ],
+      "opaque_pixels": 11972,
+      "gray_candidate_pixels": 1585,
+      "gray_candidate_ratio": 0.1324,
+      "gray_bottom_pixels": 1286,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1461,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        122,
+        154
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/up_left/06.png",
+      "role": "player/mage/walk/up_left",
+      "size": [
+        146,
+        178
+      ],
+      "bbox": [
+        12,
+        13,
+        133,
+        166
+      ],
+      "opaque_pixels": 12052,
+      "gray_candidate_pixels": 1513,
+      "gray_candidate_ratio": 0.1255,
+      "gray_bottom_pixels": 1244,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1426,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        121,
+        153
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/left/01.png",
+      "role": "player/mage/walk/left",
+      "size": [
+        142,
+        178
+      ],
+      "bbox": [
+        12,
+        13,
+        130,
+        166
+      ],
+      "opaque_pixels": 12092,
+      "gray_candidate_pixels": 1676,
+      "gray_candidate_ratio": 0.1386,
+      "gray_bottom_pixels": 1287,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1518,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        118,
+        153
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/left/02.png",
+      "role": "player/mage/walk/left",
+      "size": [
+        142,
+        178
+      ],
+      "bbox": [
+        13,
+        13,
+        128,
+        166
+      ],
+      "opaque_pixels": 11871,
+      "gray_candidate_pixels": 1626,
+      "gray_candidate_ratio": 0.137,
+      "gray_bottom_pixels": 1301,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1475,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        115,
+        153
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/left/03.png",
+      "role": "player/mage/walk/left",
+      "size": [
+        142,
+        178
+      ],
+      "bbox": [
+        15,
+        12,
+        127,
+        166
+      ],
+      "opaque_pixels": 11446,
+      "gray_candidate_pixels": 1497,
+      "gray_candidate_ratio": 0.1308,
+      "gray_bottom_pixels": 1182,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1373,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        112,
+        154
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/left/04.png",
+      "role": "player/mage/walk/left",
+      "size": [
+        142,
+        178
+      ],
+      "bbox": [
+        14,
+        13,
+        127,
+        166
+      ],
+      "opaque_pixels": 11582,
+      "gray_candidate_pixels": 1629,
+      "gray_candidate_ratio": 0.1406,
+      "gray_bottom_pixels": 1232,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1459,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        113,
+        153
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/left/05.png",
+      "role": "player/mage/walk/left",
+      "size": [
+        142,
+        178
+      ],
+      "bbox": [
+        15,
+        13,
+        127,
+        166
+      ],
+      "opaque_pixels": 11766,
+      "gray_candidate_pixels": 1664,
+      "gray_candidate_ratio": 0.1414,
+      "gray_bottom_pixels": 1326,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1519,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        112,
+        153
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/left/06.png",
+      "role": "player/mage/walk/left",
+      "size": [
+        142,
+        178
+      ],
+      "bbox": [
+        13,
+        13,
+        128,
+        166
+      ],
+      "opaque_pixels": 11748,
+      "gray_candidate_pixels": 1670,
+      "gray_candidate_ratio": 0.1422,
+      "gray_bottom_pixels": 1311,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1523,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        115,
+        153
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_left/01.png",
+      "role": "player/mage/walk/down_left",
+      "size": [
+        147,
+        181
+      ],
+      "bbox": [
+        14,
+        14,
+        132,
+        169
+      ],
+      "opaque_pixels": 11953,
+      "gray_candidate_pixels": 1640,
+      "gray_candidate_ratio": 0.1372,
+      "gray_bottom_pixels": 1273,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1267,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        118,
+        155
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_left/02.png",
+      "role": "player/mage/walk/down_left",
+      "size": [
+        147,
+        181
+      ],
+      "bbox": [
+        12,
+        12,
+        135,
+        169
+      ],
+      "opaque_pixels": 12001,
+      "gray_candidate_pixels": 1599,
+      "gray_candidate_ratio": 0.1332,
+      "gray_bottom_pixels": 1243,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1346,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        123,
+        157
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_left/03.png",
+      "role": "player/mage/walk/down_left",
+      "size": [
+        147,
+        181
+      ],
+      "bbox": [
+        14,
+        12,
+        133,
+        169
+      ],
+      "opaque_pixels": 11887,
+      "gray_candidate_pixels": 1612,
+      "gray_candidate_ratio": 0.1356,
+      "gray_bottom_pixels": 1261,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1342,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        119,
+        157
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_left/04.png",
+      "role": "player/mage/walk/down_left",
+      "size": [
+        147,
+        181
+      ],
+      "bbox": [
+        14,
+        13,
+        132,
+        169
+      ],
+      "opaque_pixels": 11569,
+      "gray_candidate_pixels": 1597,
+      "gray_candidate_ratio": 0.138,
+      "gray_bottom_pixels": 1167,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1358,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        118,
+        156
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_left/05.png",
+      "role": "player/mage/walk/down_left",
+      "size": [
+        147,
+        181
+      ],
+      "bbox": [
+        16,
+        13,
+        131,
+        169
+      ],
+      "opaque_pixels": 11844,
+      "gray_candidate_pixels": 1605,
+      "gray_candidate_ratio": 0.1355,
+      "gray_bottom_pixels": 1237,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1286,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        115,
+        156
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/mage/walk/down_left/06.png",
+      "role": "player/mage/walk/down_left",
+      "size": [
+        147,
+        181
+      ],
+      "bbox": [
+        14,
+        13,
+        132,
+        169
+      ],
+      "opaque_pixels": 11959,
+      "gray_candidate_pixels": 1613,
+      "gray_candidate_ratio": 0.1349,
+      "gray_bottom_pixels": 1206,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1332,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        118,
+        156
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down/01.png",
+      "role": "player/hunter/walk/down",
+      "size": [
+        125,
+        198
+      ],
+      "bbox": [
+        12,
+        13,
+        112,
+        186
+      ],
+      "opaque_pixels": 11308,
+      "gray_candidate_pixels": 658,
+      "gray_candidate_ratio": 0.0582,
+      "gray_bottom_pixels": 233,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 530,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        100,
+        173
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down/02.png",
+      "role": "player/hunter/walk/down",
+      "size": [
+        125,
+        198
+      ],
+      "bbox": [
+        12,
+        13,
+        112,
+        186
+      ],
+      "opaque_pixels": 10878,
+      "gray_candidate_pixels": 734,
+      "gray_candidate_ratio": 0.0675,
+      "gray_bottom_pixels": 224,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 595,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        100,
+        173
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down/03.png",
+      "role": "player/hunter/walk/down",
+      "size": [
+        125,
+        198
+      ],
+      "bbox": [
+        12,
+        14,
+        113,
+        186
+      ],
+      "opaque_pixels": 10711,
+      "gray_candidate_pixels": 764,
+      "gray_candidate_ratio": 0.0713,
+      "gray_bottom_pixels": 256,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 652,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        101,
+        172
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down/04.png",
+      "role": "player/hunter/walk/down",
+      "size": [
+        125,
+        198
+      ],
+      "bbox": [
+        13,
+        14,
+        111,
+        186
+      ],
+      "opaque_pixels": 10617,
+      "gray_candidate_pixels": 671,
+      "gray_candidate_ratio": 0.0632,
+      "gray_bottom_pixels": 205,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 513,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        98,
+        172
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down/05.png",
+      "role": "player/hunter/walk/down",
+      "size": [
+        125,
+        198
+      ],
+      "bbox": [
+        12,
+        13,
+        112,
+        186
+      ],
+      "opaque_pixels": 10871,
+      "gray_candidate_pixels": 701,
+      "gray_candidate_ratio": 0.0645,
+      "gray_bottom_pixels": 215,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 463,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        100,
+        173
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down/06.png",
+      "role": "player/hunter/walk/down",
+      "size": [
+        125,
+        198
+      ],
+      "bbox": [
+        13,
+        12,
+        112,
+        186
+      ],
+      "opaque_pixels": 10959,
+      "gray_candidate_pixels": 704,
+      "gray_candidate_ratio": 0.0642,
+      "gray_bottom_pixels": 212,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 537,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        99,
+        174
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_right/01.png",
+      "role": "player/hunter/walk/down_right",
+      "size": [
+        133,
+        186
+      ],
+      "bbox": [
+        12,
+        14,
+        121,
+        174
+      ],
+      "opaque_pixels": 11267,
+      "gray_candidate_pixels": 711,
+      "gray_candidate_ratio": 0.0631,
+      "gray_bottom_pixels": 229,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 571,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        109,
+        160
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_right/02.png",
+      "role": "player/hunter/walk/down_right",
+      "size": [
+        133,
+        186
+      ],
+      "bbox": [
+        14,
+        12,
+        119,
+        174
+      ],
+      "opaque_pixels": 10586,
+      "gray_candidate_pixels": 856,
+      "gray_candidate_ratio": 0.0809,
+      "gray_bottom_pixels": 209,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 601,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        105,
+        162
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_right/03.png",
+      "role": "player/hunter/walk/down_right",
+      "size": [
+        133,
+        186
+      ],
+      "bbox": [
+        14,
+        13,
+        118,
+        174
+      ],
+      "opaque_pixels": 10485,
+      "gray_candidate_pixels": 811,
+      "gray_candidate_ratio": 0.0773,
+      "gray_bottom_pixels": 243,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 644,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        104,
+        161
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_right/04.png",
+      "role": "player/hunter/walk/down_right",
+      "size": [
+        133,
+        186
+      ],
+      "bbox": [
+        12,
+        14,
+        120,
+        174
+      ],
+      "opaque_pixels": 10475,
+      "gray_candidate_pixels": 750,
+      "gray_candidate_ratio": 0.0716,
+      "gray_bottom_pixels": 210,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 540,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        108,
+        160
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_right/05.png",
+      "role": "player/hunter/walk/down_right",
+      "size": [
+        133,
+        186
+      ],
+      "bbox": [
+        14,
+        13,
+        119,
+        174
+      ],
+      "opaque_pixels": 10556,
+      "gray_candidate_pixels": 793,
+      "gray_candidate_ratio": 0.0751,
+      "gray_bottom_pixels": 222,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 604,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        105,
+        161
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_right/06.png",
+      "role": "player/hunter/walk/down_right",
+      "size": [
+        133,
+        186
+      ],
+      "bbox": [
+        14,
+        14,
+        119,
+        174
+      ],
+      "opaque_pixels": 10461,
+      "gray_candidate_pixels": 820,
+      "gray_candidate_ratio": 0.0784,
+      "gray_bottom_pixels": 227,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 631,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        105,
+        160
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/right/01.png",
+      "role": "player/hunter/walk/right",
+      "size": [
+        124,
+        182
+      ],
+      "bbox": [
+        13,
+        12,
+        111,
+        170
+      ],
+      "opaque_pixels": 9751,
+      "gray_candidate_pixels": 463,
+      "gray_candidate_ratio": 0.0475,
+      "gray_bottom_pixels": 167,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 420,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        98,
+        158
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/right/02.png",
+      "role": "player/hunter/walk/right",
+      "size": [
+        124,
+        182
+      ],
+      "bbox": [
+        13,
+        17,
+        111,
+        170
+      ],
+      "opaque_pixels": 9754,
+      "gray_candidate_pixels": 529,
+      "gray_candidate_ratio": 0.0542,
+      "gray_bottom_pixels": 207,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 492,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        98,
+        153
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/right/03.png",
+      "role": "player/hunter/walk/right",
+      "size": [
+        124,
+        182
+      ],
+      "bbox": [
+        13,
+        17,
+        111,
+        170
+      ],
+      "opaque_pixels": 9848,
+      "gray_candidate_pixels": 529,
+      "gray_candidate_ratio": 0.0537,
+      "gray_bottom_pixels": 196,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 481,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        98,
+        153
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/right/04.png",
+      "role": "player/hunter/walk/right",
+      "size": [
+        124,
+        182
+      ],
+      "bbox": [
+        12,
+        20,
+        112,
+        170
+      ],
+      "opaque_pixels": 9487,
+      "gray_candidate_pixels": 442,
+      "gray_candidate_ratio": 0.0466,
+      "gray_bottom_pixels": 178,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 387,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        100,
+        150
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/right/05.png",
+      "role": "player/hunter/walk/right",
+      "size": [
+        124,
+        182
+      ],
+      "bbox": [
+        14,
+        17,
+        109,
+        170
+      ],
+      "opaque_pixels": 9359,
+      "gray_candidate_pixels": 444,
+      "gray_candidate_ratio": 0.0474,
+      "gray_bottom_pixels": 166,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 407,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        95,
+        153
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/right/06.png",
+      "role": "player/hunter/walk/right",
+      "size": [
+        124,
+        182
+      ],
+      "bbox": [
+        12,
+        16,
+        111,
+        170
+      ],
+      "opaque_pixels": 9764,
+      "gray_candidate_pixels": 499,
+      "gray_candidate_ratio": 0.0511,
+      "gray_bottom_pixels": 180,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 454,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        99,
+        154
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_right/01.png",
+      "role": "player/hunter/walk/up_right",
+      "size": [
+        137,
+        183
+      ],
+      "bbox": [
+        5,
+        27,
+        132,
+        176
+      ],
+      "opaque_pixels": 11119,
+      "gray_candidate_pixels": 787,
+      "gray_candidate_ratio": 0.0708,
+      "gray_bottom_pixels": 321,
+      "semi_transparent_halo_pixels": 867,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1503,
+      "flags": [
+        "cleaner_would_remove_visible_background",
+        "sprite_nearly_cropped"
+      ],
+      "bbox_size": [
+        127,
+        149
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_right/02.png",
+      "role": "player/hunter/walk/up_right",
+      "size": [
+        137,
+        183
+      ],
+      "bbox": [
+        6,
+        26,
+        131,
+        176
+      ],
+      "opaque_pixels": 10888,
+      "gray_candidate_pixels": 726,
+      "gray_candidate_ratio": 0.0667,
+      "gray_bottom_pixels": 308,
+      "semi_transparent_halo_pixels": 778,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1449,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        125,
+        150
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_right/03.png",
+      "role": "player/hunter/walk/up_right",
+      "size": [
+        137,
+        183
+      ],
+      "bbox": [
+        8,
+        27,
+        129,
+        176
+      ],
+      "opaque_pixels": 10496,
+      "gray_candidate_pixels": 689,
+      "gray_candidate_ratio": 0.0656,
+      "gray_bottom_pixels": 312,
+      "semi_transparent_halo_pixels": 736,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1407,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        121,
+        149
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_right/04.png",
+      "role": "player/hunter/walk/up_right",
+      "size": [
+        137,
+        183
+      ],
+      "bbox": [
+        8,
+        22,
+        129,
+        176
+      ],
+      "opaque_pixels": 10341,
+      "gray_candidate_pixels": 646,
+      "gray_candidate_ratio": 0.0625,
+      "gray_bottom_pixels": 226,
+      "semi_transparent_halo_pixels": 802,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1432,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        121,
+        154
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_right/05.png",
+      "role": "player/hunter/walk/up_right",
+      "size": [
+        137,
+        183
+      ],
+      "bbox": [
+        7,
+        22,
+        130,
+        176
+      ],
+      "opaque_pixels": 10568,
+      "gray_candidate_pixels": 680,
+      "gray_candidate_ratio": 0.0643,
+      "gray_bottom_pixels": 258,
+      "semi_transparent_halo_pixels": 802,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1409,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        123,
+        154
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_right/06.png",
+      "role": "player/hunter/walk/up_right",
+      "size": [
+        137,
+        183
+      ],
+      "bbox": [
+        12,
+        27,
+        125,
+        176
+      ],
+      "opaque_pixels": 10500,
+      "gray_candidate_pixels": 763,
+      "gray_candidate_ratio": 0.0727,
+      "gray_bottom_pixels": 305,
+      "semi_transparent_halo_pixels": 828,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1497,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        113,
+        149
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up/01.png",
+      "role": "player/hunter/walk/up",
+      "size": [
+        113,
+        190
+      ],
+      "bbox": [
+        13,
+        13,
+        100,
+        178
+      ],
+      "opaque_pixels": 9889,
+      "gray_candidate_pixels": 480,
+      "gray_candidate_ratio": 0.0485,
+      "gray_bottom_pixels": 185,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 393,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        87,
+        165
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up/02.png",
+      "role": "player/hunter/walk/up",
+      "size": [
+        113,
+        190
+      ],
+      "bbox": [
+        12,
+        12,
+        101,
+        178
+      ],
+      "opaque_pixels": 9653,
+      "gray_candidate_pixels": 527,
+      "gray_candidate_ratio": 0.0546,
+      "gray_bottom_pixels": 174,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 455,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        89,
+        166
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up/03.png",
+      "role": "player/hunter/walk/up",
+      "size": [
+        113,
+        190
+      ],
+      "bbox": [
+        12,
+        13,
+        101,
+        178
+      ],
+      "opaque_pixels": 9588,
+      "gray_candidate_pixels": 528,
+      "gray_candidate_ratio": 0.0551,
+      "gray_bottom_pixels": 180,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 471,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        89,
+        165
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up/04.png",
+      "role": "player/hunter/walk/up",
+      "size": [
+        113,
+        190
+      ],
+      "bbox": [
+        12,
+        13,
+        100,
+        178
+      ],
+      "opaque_pixels": 9649,
+      "gray_candidate_pixels": 495,
+      "gray_candidate_ratio": 0.0513,
+      "gray_bottom_pixels": 185,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 482,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        88,
+        165
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up/05.png",
+      "role": "player/hunter/walk/up",
+      "size": [
+        113,
+        190
+      ],
+      "bbox": [
+        13,
+        14,
+        99,
+        178
+      ],
+      "opaque_pixels": 9637,
+      "gray_candidate_pixels": 412,
+      "gray_candidate_ratio": 0.0428,
+      "gray_bottom_pixels": 177,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 347,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        86,
+        164
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up/06.png",
+      "role": "player/hunter/walk/up",
+      "size": [
+        113,
+        190
+      ],
+      "bbox": [
+        12,
+        13,
+        101,
+        178
+      ],
+      "opaque_pixels": 9657,
+      "gray_candidate_pixels": 521,
+      "gray_candidate_ratio": 0.054,
+      "gray_bottom_pixels": 191,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 450,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        89,
+        165
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_left/01.png",
+      "role": "player/hunter/walk/up_left",
+      "size": [
+        125,
+        185
+      ],
+      "bbox": [
+        12,
+        12,
+        113,
+        173
+      ],
+      "opaque_pixels": 10135,
+      "gray_candidate_pixels": 509,
+      "gray_candidate_ratio": 0.0502,
+      "gray_bottom_pixels": 219,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 462,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        101,
+        161
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_left/02.png",
+      "role": "player/hunter/walk/up_left",
+      "size": [
+        125,
+        185
+      ],
+      "bbox": [
+        12,
+        18,
+        113,
+        173
+      ],
+      "opaque_pixels": 10050,
+      "gray_candidate_pixels": 555,
+      "gray_candidate_ratio": 0.0552,
+      "gray_bottom_pixels": 201,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 468,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        101,
+        155
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_left/03.png",
+      "role": "player/hunter/walk/up_left",
+      "size": [
+        125,
+        185
+      ],
+      "bbox": [
+        13,
+        18,
+        111,
+        173
+      ],
+      "opaque_pixels": 9807,
+      "gray_candidate_pixels": 601,
+      "gray_candidate_ratio": 0.0613,
+      "gray_bottom_pixels": 236,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 518,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        98,
+        155
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_left/04.png",
+      "role": "player/hunter/walk/up_left",
+      "size": [
+        125,
+        185
+      ],
+      "bbox": [
+        13,
+        17,
+        112,
+        173
+      ],
+      "opaque_pixels": 9801,
+      "gray_candidate_pixels": 544,
+      "gray_candidate_ratio": 0.0555,
+      "gray_bottom_pixels": 211,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 499,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        99,
+        156
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_left/05.png",
+      "role": "player/hunter/walk/up_left",
+      "size": [
+        125,
+        185
+      ],
+      "bbox": [
+        12,
+        15,
+        113,
+        173
+      ],
+      "opaque_pixels": 9992,
+      "gray_candidate_pixels": 493,
+      "gray_candidate_ratio": 0.0493,
+      "gray_bottom_pixels": 203,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 394,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        101,
+        158
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/up_left/06.png",
+      "role": "player/hunter/walk/up_left",
+      "size": [
+        125,
+        185
+      ],
+      "bbox": [
+        12,
+        15,
+        112,
+        173
+      ],
+      "opaque_pixels": 9724,
+      "gray_candidate_pixels": 526,
+      "gray_candidate_ratio": 0.0541,
+      "gray_bottom_pixels": 210,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 494,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        100,
+        158
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/left/01.png",
+      "role": "player/hunter/walk/left",
+      "size": [
+        123,
+        180
+      ],
+      "bbox": [
+        12,
+        12,
+        110,
+        168
+      ],
+      "opaque_pixels": 9471,
+      "gray_candidate_pixels": 468,
+      "gray_candidate_ratio": 0.0494,
+      "gray_bottom_pixels": 176,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 433,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        98,
+        156
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/left/02.png",
+      "role": "player/hunter/walk/left",
+      "size": [
+        123,
+        180
+      ],
+      "bbox": [
+        13,
+        12,
+        109,
+        168
+      ],
+      "opaque_pixels": 9386,
+      "gray_candidate_pixels": 511,
+      "gray_candidate_ratio": 0.0544,
+      "gray_bottom_pixels": 206,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 409,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        96,
+        156
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/left/03.png",
+      "role": "player/hunter/walk/left",
+      "size": [
+        123,
+        180
+      ],
+      "bbox": [
+        13,
+        14,
+        110,
+        168
+      ],
+      "opaque_pixels": 9514,
+      "gray_candidate_pixels": 508,
+      "gray_candidate_ratio": 0.0534,
+      "gray_bottom_pixels": 195,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 476,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        97,
+        154
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/left/04.png",
+      "role": "player/hunter/walk/left",
+      "size": [
+        123,
+        180
+      ],
+      "bbox": [
+        13,
+        13,
+        110,
+        168
+      ],
+      "opaque_pixels": 9491,
+      "gray_candidate_pixels": 551,
+      "gray_candidate_ratio": 0.0581,
+      "gray_bottom_pixels": 205,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 495,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        97,
+        155
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/left/05.png",
+      "role": "player/hunter/walk/left",
+      "size": [
+        123,
+        180
+      ],
+      "bbox": [
+        14,
+        12,
+        109,
+        168
+      ],
+      "opaque_pixels": 9480,
+      "gray_candidate_pixels": 481,
+      "gray_candidate_ratio": 0.0507,
+      "gray_bottom_pixels": 174,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 430,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        95,
+        156
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/left/06.png",
+      "role": "player/hunter/walk/left",
+      "size": [
+        123,
+        180
+      ],
+      "bbox": [
+        12,
+        13,
+        111,
+        168
+      ],
+      "opaque_pixels": 9445,
+      "gray_candidate_pixels": 464,
+      "gray_candidate_ratio": 0.0491,
+      "gray_bottom_pixels": 190,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 459,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        99,
+        155
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_left/01.png",
+      "role": "player/hunter/walk/down_left",
+      "size": [
+        130,
+        173
+      ],
+      "bbox": [
+        12,
+        12,
+        117,
+        161
+      ],
+      "opaque_pixels": 9361,
+      "gray_candidate_pixels": 660,
+      "gray_candidate_ratio": 0.0705,
+      "gray_bottom_pixels": 263,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 439,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        105,
+        149
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_left/02.png",
+      "role": "player/hunter/walk/down_left",
+      "size": [
+        130,
+        173
+      ],
+      "bbox": [
+        12,
+        15,
+        118,
+        161
+      ],
+      "opaque_pixels": 9138,
+      "gray_candidate_pixels": 768,
+      "gray_candidate_ratio": 0.084,
+      "gray_bottom_pixels": 299,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 655,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        106,
+        146
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_left/03.png",
+      "role": "player/hunter/walk/down_left",
+      "size": [
+        130,
+        173
+      ],
+      "bbox": [
+        14,
+        14,
+        115,
+        161
+      ],
+      "opaque_pixels": 9025,
+      "gray_candidate_pixels": 807,
+      "gray_candidate_ratio": 0.0894,
+      "gray_bottom_pixels": 338,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 523,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        101,
+        147
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_left/04.png",
+      "role": "player/hunter/walk/down_left",
+      "size": [
+        130,
+        173
+      ],
+      "bbox": [
+        14,
+        14,
+        116,
+        161
+      ],
+      "opaque_pixels": 8970,
+      "gray_candidate_pixels": 727,
+      "gray_candidate_ratio": 0.081,
+      "gray_bottom_pixels": 307,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 495,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        102,
+        147
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_left/05.png",
+      "role": "player/hunter/walk/down_left",
+      "size": [
+        130,
+        173
+      ],
+      "bbox": [
+        13,
+        12,
+        116,
+        161
+      ],
+      "opaque_pixels": 9121,
+      "gray_candidate_pixels": 671,
+      "gray_candidate_ratio": 0.0736,
+      "gray_bottom_pixels": 278,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 432,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        103,
+        149
+      ]
+    },
+    {
+      "path": "assets/sprite_frames/player/hunter/walk/down_left/06.png",
+      "role": "player/hunter/walk/down_left",
+      "size": [
+        130,
+        173
+      ],
+      "bbox": [
+        13,
+        12,
+        117,
+        161
+      ],
+      "opaque_pixels": 9174,
+      "gray_candidate_pixels": 731,
+      "gray_candidate_ratio": 0.0797,
+      "gray_bottom_pixels": 287,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 494,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        104,
+        149
+      ]
+    },
+    {
+      "path": "assets/spritesheets/npc_neutral/generated/mineur_femme_walk.png",
+      "role": "npc_neutral_sheet",
+      "size": [
+        1548,
+        3152
+      ],
+      "bbox": [
+        15,
+        12,
+        1533,
+        3140
+      ],
+      "opaque_pixels": 687517,
+      "gray_candidate_pixels": 39334,
+      "gray_candidate_ratio": 0.0572,
+      "gray_bottom_pixels": 12228,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 35707,
+      "flags": [
+        "cleaner_would_remove_visible_background",
+        "sprite_nearly_cropped"
+      ],
+      "bbox_size": [
+        1518,
+        3128
+      ]
+    },
+    {
+      "path": "assets/spritesheets/npc_neutral/generated/mineur_homme_walk.png",
+      "role": "npc_neutral_sheet",
+      "size": [
+        1782,
+        3240
+      ],
+      "bbox": [
+        12,
+        244,
+        1765,
+        3228
+      ],
+      "opaque_pixels": 922492,
+      "gray_candidate_pixels": 37561,
+      "gray_candidate_ratio": 0.0407,
+      "gray_bottom_pixels": 8589,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 34152,
+      "flags": [
+        "cleaner_would_remove_visible_background",
+        "sprite_nearly_cropped"
+      ],
+      "bbox_size": [
+        1753,
+        2984
+      ]
+    },
+    {
+      "path": "assets/spritesheets/npc_neutral/generated/pecheur_femme_walk.png",
+      "role": "npc_neutral_sheet",
+      "size": [
+        1038,
+        1640
+      ],
+      "bbox": [
+        27,
+        34,
+        1011,
+        1628
+      ],
+      "opaque_pixels": 486533,
+      "gray_candidate_pixels": 54849,
+      "gray_candidate_ratio": 0.1127,
+      "gray_bottom_pixels": 16843,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 44519,
+      "flags": [
+        "cleaner_would_remove_visible_background",
+        "sprite_nearly_cropped"
+      ],
+      "bbox_size": [
+        984,
+        1594
+      ]
+    },
+    {
+      "path": "assets/spritesheets/npc_neutral/generated/pecheur_homme_walk.png",
+      "role": "npc_neutral_sheet",
+      "size": [
+        2010,
+        3176
+      ],
+      "bbox": [
+        20,
+        219,
+        1987,
+        3164
+      ],
+      "opaque_pixels": 782749,
+      "gray_candidate_pixels": 85325,
+      "gray_candidate_ratio": 0.109,
+      "gray_bottom_pixels": 31243,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 67901,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background",
+        "sprite_nearly_cropped"
+      ],
+      "bbox_size": [
+        1967,
+        2945
+      ]
+    },
+    {
+      "path": "assets/spritesheets/npc_neutral/generated/shaman_female_walk.png",
+      "role": "npc_neutral_sheet",
+      "size": [
+        1218,
+        1640
+      ],
+      "bbox": [
+        37,
+        29,
+        1180,
+        1628
+      ],
+      "opaque_pixels": 626572,
+      "gray_candidate_pixels": 86156,
+      "gray_candidate_ratio": 0.1375,
+      "gray_bottom_pixels": 30079,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 74311,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background",
+        "sprite_nearly_cropped"
+      ],
+      "bbox_size": [
+        1143,
+        1599
+      ]
+    },
+    {
+      "path": "assets/spritesheets/npc_neutral/generated/shaman_male_walk.png",
+      "role": "npc_neutral_sheet",
+      "size": [
+        1044,
+        1640
+      ],
+      "bbox": [
+        13,
+        26,
+        1030,
+        1628
+      ],
+      "opaque_pixels": 638558,
+      "gray_candidate_pixels": 74347,
+      "gray_candidate_ratio": 0.1164,
+      "gray_bottom_pixels": 24594,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 50397,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background",
+        "sprite_nearly_cropped"
+      ],
+      "bbox_size": [
+        1017,
+        1602
+      ]
+    },
+    {
+      "path": "assets/region_assets/npcs/main/marcus_vane.png",
+      "role": "main_npc",
+      "size": [
+        164,
+        164
+      ],
+      "bbox": [
+        33,
+        12,
+        130,
+        152
+      ],
+      "opaque_pixels": 8018,
+      "gray_candidate_pixels": 576,
+      "gray_candidate_ratio": 0.0718,
+      "gray_bottom_pixels": 177,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 531,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        97,
+        140
+      ]
+    },
+    {
+      "path": "assets/region_assets/npcs/main/elara.png",
+      "role": "main_npc",
+      "size": [
+        185,
+        185
+      ],
+      "bbox": [
+        31,
+        12,
+        154,
+        173
+      ],
+      "opaque_pixels": 13708,
+      "gray_candidate_pixels": 1933,
+      "gray_candidate_ratio": 0.141,
+      "gray_bottom_pixels": 1226,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1597,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        123,
+        161
+      ]
+    },
+    {
+      "path": "assets/region_assets/npcs/main/prefet_morel.png",
+      "role": "main_npc",
+      "size": [
+        187,
+        187
+      ],
+      "bbox": [
+        43,
+        12,
+        143,
+        175
+      ],
+      "opaque_pixels": 10891,
+      "gray_candidate_pixels": 1662,
+      "gray_candidate_ratio": 0.1526,
+      "gray_bottom_pixels": 782,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 1378,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        100,
+        163
+      ]
+    },
+    {
+      "path": "assets/region_assets/npcs/main/maitre_village.png",
+      "role": "main_npc",
+      "size": [
+        165,
+        165
+      ],
+      "bbox": [
+        35,
+        12,
+        130,
+        153
+      ],
+      "opaque_pixels": 8760,
+      "gray_candidate_pixels": 606,
+      "gray_candidate_ratio": 0.0692,
+      "gray_bottom_pixels": 178,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 581,
+      "flags": [
+        "cleaner_would_remove_visible_background"
+      ],
+      "bbox_size": [
+        95,
+        141
+      ]
+    },
+    {
+      "path": "assets/region_assets/npcs/main/forrest_chief_female.png",
+      "role": "main_npc",
+      "size": [
+        3072,
+        512
+      ],
+      "bbox": [
+        0,
+        0,
+        3072,
+        512
+      ],
+      "opaque_pixels": 1572864,
+      "gray_candidate_pixels": 27698,
+      "gray_candidate_ratio": 0.0176,
+      "gray_bottom_pixels": 5952,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 7164,
+      "clean_removed_pixels": 0,
+      "flags": [
+        "opaque_pixels_touch_canvas_border",
+        "sprite_nearly_cropped"
+      ],
+      "bbox_size": [
+        3072,
+        512
+      ]
+    },
+    {
+      "path": "assets/region_assets/npcs/main/mine_chief_male.png",
+      "role": "main_npc",
+      "size": [
+        3072,
+        512
+      ],
+      "bbox": [
+        0,
+        0,
+        3072,
+        512
+      ],
+      "opaque_pixels": 1572864,
+      "gray_candidate_pixels": 428239,
+      "gray_candidate_ratio": 0.2723,
+      "gray_bottom_pixels": 162909,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 7164,
+      "clean_removed_pixels": 45214,
+      "flags": [
+        "opaque_pixels_touch_canvas_border",
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background",
+        "sprite_nearly_cropped"
+      ],
+      "bbox_size": [
+        3072,
+        512
+      ]
+    },
+    {
+      "path": "assets/region_assets/npcs/main/port_chief_female.png",
+      "role": "main_npc",
+      "size": [
+        3072,
+        512
+      ],
+      "bbox": [
+        0,
+        0,
+        3072,
+        512
+      ],
+      "opaque_pixels": 1572864,
+      "gray_candidate_pixels": 33354,
+      "gray_candidate_ratio": 0.0212,
+      "gray_bottom_pixels": 12302,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 7164,
+      "clean_removed_pixels": 0,
+      "flags": [
+        "opaque_pixels_touch_canvas_border",
+        "sprite_nearly_cropped"
+      ],
+      "bbox_size": [
+        3072,
+        512
+      ]
+    },
+    {
+      "path": "assets/region_assets/npcs/main/village_chief_male.png",
+      "role": "main_npc",
+      "size": [
+        3072,
+        512
+      ],
+      "bbox": [
+        0,
+        0,
+        3072,
+        512
+      ],
+      "opaque_pixels": 1572864,
+      "gray_candidate_pixels": 444323,
+      "gray_candidate_ratio": 0.2825,
+      "gray_bottom_pixels": 156292,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 7164,
+      "clean_removed_pixels": 78449,
+      "flags": [
+        "opaque_pixels_touch_canvas_border",
+        "many_gray_pixels_possible_matte_or_gray_armor",
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background",
+        "sprite_nearly_cropped"
+      ],
+      "bbox_size": [
+        3072,
+        512
+      ]
+    },
+    {
+      "path": "assets/region_assets/npcs/main/processed_idle/village_chief_male_transparent.png",
+      "role": "zone_chief_idle",
+      "size": [
+        3072,
+        512
+      ],
+      "bbox": [
+        167,
+        35,
+        2900,
+        461
+      ],
+      "opaque_pixels": 521921,
+      "gray_candidate_pixels": 9533,
+      "gray_candidate_ratio": 0.0183,
+      "gray_bottom_pixels": 3965,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 6054,
+      "flags": [],
+      "bbox_size": [
+        2733,
+        426
+      ]
+    },
+    {
+      "path": "assets/region_assets/npcs/main/processed_idle/mine_chief_male_transparent.png",
+      "role": "zone_chief_idle",
+      "size": [
+        3072,
+        512
+      ],
+      "bbox": [
+        85,
+        26,
+        2980,
+        481
+      ],
+      "opaque_pixels": 636558,
+      "gray_candidate_pixels": 50069,
+      "gray_candidate_ratio": 0.0787,
+      "gray_bottom_pixels": 37653,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 33443,
+      "flags": [
+        "gray_cluster_near_feet",
+        "cleaner_would_remove_visible_background",
+        "sprite_nearly_cropped"
+      ],
+      "bbox_size": [
+        2895,
+        455
+      ]
+    },
+    {
+      "path": "assets/region_assets/npcs/main/processed_idle/forrest_chief_female_transparent.png",
+      "role": "zone_chief_idle",
+      "size": [
+        3072,
+        512
+      ],
+      "bbox": [
+        93,
+        21,
+        2907,
+        470
+      ],
+      "opaque_pixels": 565190,
+      "gray_candidate_pixels": 21032,
+      "gray_candidate_ratio": 0.0372,
+      "gray_bottom_pixels": 4254,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 12464,
+      "flags": [],
+      "bbox_size": [
+        2814,
+        449
+      ]
+    },
+    {
+      "path": "assets/region_assets/npcs/main/processed_idle/port_chief_female_transparent.png",
+      "role": "zone_chief_idle",
+      "size": [
+        3072,
+        512
+      ],
+      "bbox": [
+        156,
+        16,
+        2934,
+        491
+      ],
+      "opaque_pixels": 453540,
+      "gray_candidate_pixels": 23759,
+      "gray_candidate_ratio": 0.0524,
+      "gray_bottom_pixels": 8587,
+      "semi_transparent_halo_pixels": 0,
+      "border_opaque_pixels": 0,
+      "clean_removed_pixels": 10259,
+      "flags": [
+        "sprite_nearly_cropped"
+      ],
+      "bbox_size": [
+        2778,
+        475
+      ]
+    }
+  ],
+  "direction_summary": [
+    {
+      "class": "warrior",
+      "direction": "down",
+      "frames": 6,
+      "width_minmax": [
+        120,
+        126
+      ],
+      "height_minmax": [
+        171,
+        173
+      ],
+      "width_delta": 6,
+      "height_delta": 2,
+      "flags": []
+    },
+    {
+      "class": "warrior",
+      "direction": "down_right",
+      "frames": 6,
+      "width_minmax": [
+        127,
+        144
+      ],
+      "height_minmax": [
+        172,
+        174
+      ],
+      "width_delta": 17,
+      "height_delta": 2,
+      "flags": [
+        "size_jitter"
+      ]
+    },
+    {
+      "class": "warrior",
+      "direction": "right",
+      "frames": 6,
+      "width_minmax": [
+        120,
+        132
+      ],
+      "height_minmax": [
+        148,
+        153
+      ],
+      "width_delta": 12,
+      "height_delta": 5,
+      "flags": []
+    },
+    {
+      "class": "warrior",
+      "direction": "up_right",
+      "frames": 6,
+      "width_minmax": [
+        139,
+        143
+      ],
+      "height_minmax": [
+        157,
+        158
+      ],
+      "width_delta": 4,
+      "height_delta": 1,
+      "flags": []
+    },
+    {
+      "class": "warrior",
+      "direction": "up",
+      "frames": 6,
+      "width_minmax": [
+        124,
+        126
+      ],
+      "height_minmax": [
+        166,
+        167
+      ],
+      "width_delta": 2,
+      "height_delta": 1,
+      "flags": []
+    },
+    {
+      "class": "warrior",
+      "direction": "up_left",
+      "frames": 6,
+      "width_minmax": [
+        107,
+        115
+      ],
+      "height_minmax": [
+        157,
+        158
+      ],
+      "width_delta": 8,
+      "height_delta": 1,
+      "flags": []
+    },
+    {
+      "class": "warrior",
+      "direction": "left",
+      "frames": 6,
+      "width_minmax": [
+        112,
+        115
+      ],
+      "height_minmax": [
+        131,
+        131
+      ],
+      "width_delta": 3,
+      "height_delta": 0,
+      "flags": []
+    },
+    {
+      "class": "warrior",
+      "direction": "down_left",
+      "frames": 6,
+      "width_minmax": [
+        122,
+        126
+      ],
+      "height_minmax": [
+        158,
+        161
+      ],
+      "width_delta": 4,
+      "height_delta": 3,
+      "flags": []
+    },
+    {
+      "class": "mage",
+      "direction": "down",
+      "frames": 6,
+      "width_minmax": [
+        115,
+        124
+      ],
+      "height_minmax": [
+        158,
+        159
+      ],
+      "width_delta": 9,
+      "height_delta": 1,
+      "flags": []
+    },
+    {
+      "class": "mage",
+      "direction": "down_right",
+      "frames": 6,
+      "width_minmax": [
+        115,
+        120
+      ],
+      "height_minmax": [
+        157,
+        158
+      ],
+      "width_delta": 5,
+      "height_delta": 1,
+      "flags": []
+    },
+    {
+      "class": "mage",
+      "direction": "right",
+      "frames": 6,
+      "width_minmax": [
+        113,
+        118
+      ],
+      "height_minmax": [
+        155,
+        157
+      ],
+      "width_delta": 5,
+      "height_delta": 2,
+      "flags": []
+    },
+    {
+      "class": "mage",
+      "direction": "up_right",
+      "frames": 6,
+      "width_minmax": [
+        111,
+        119
+      ],
+      "height_minmax": [
+        149,
+        153
+      ],
+      "width_delta": 8,
+      "height_delta": 4,
+      "flags": []
+    },
+    {
+      "class": "mage",
+      "direction": "up",
+      "frames": 6,
+      "width_minmax": [
+        115,
+        117
+      ],
+      "height_minmax": [
+        152,
+        153
+      ],
+      "width_delta": 2,
+      "height_delta": 1,
+      "flags": []
+    },
+    {
+      "class": "mage",
+      "direction": "up_left",
+      "frames": 6,
+      "width_minmax": [
+        117,
+        122
+      ],
+      "height_minmax": [
+        150,
+        154
+      ],
+      "width_delta": 5,
+      "height_delta": 4,
+      "flags": []
+    },
+    {
+      "class": "mage",
+      "direction": "left",
+      "frames": 6,
+      "width_minmax": [
+        112,
+        118
+      ],
+      "height_minmax": [
+        153,
+        154
+      ],
+      "width_delta": 6,
+      "height_delta": 1,
+      "flags": []
+    },
+    {
+      "class": "mage",
+      "direction": "down_left",
+      "frames": 6,
+      "width_minmax": [
+        115,
+        123
+      ],
+      "height_minmax": [
+        155,
+        157
+      ],
+      "width_delta": 8,
+      "height_delta": 2,
+      "flags": []
+    },
+    {
+      "class": "hunter",
+      "direction": "down",
+      "frames": 6,
+      "width_minmax": [
+        98,
+        101
+      ],
+      "height_minmax": [
+        172,
+        174
+      ],
+      "width_delta": 3,
+      "height_delta": 2,
+      "flags": []
+    },
+    {
+      "class": "hunter",
+      "direction": "down_right",
+      "frames": 6,
+      "width_minmax": [
+        104,
+        109
+      ],
+      "height_minmax": [
+        160,
+        162
+      ],
+      "width_delta": 5,
+      "height_delta": 2,
+      "flags": []
+    },
+    {
+      "class": "hunter",
+      "direction": "right",
+      "frames": 6,
+      "width_minmax": [
+        95,
+        100
+      ],
+      "height_minmax": [
+        150,
+        158
+      ],
+      "width_delta": 5,
+      "height_delta": 8,
+      "flags": []
+    },
+    {
+      "class": "hunter",
+      "direction": "up_right",
+      "frames": 6,
+      "width_minmax": [
+        113,
+        127
+      ],
+      "height_minmax": [
+        149,
+        154
+      ],
+      "width_delta": 14,
+      "height_delta": 5,
+      "flags": []
+    },
+    {
+      "class": "hunter",
+      "direction": "up",
+      "frames": 6,
+      "width_minmax": [
+        86,
+        89
+      ],
+      "height_minmax": [
+        164,
+        166
+      ],
+      "width_delta": 3,
+      "height_delta": 2,
+      "flags": []
+    },
+    {
+      "class": "hunter",
+      "direction": "up_left",
+      "frames": 6,
+      "width_minmax": [
+        98,
+        101
+      ],
+      "height_minmax": [
+        155,
+        161
+      ],
+      "width_delta": 3,
+      "height_delta": 6,
+      "flags": []
+    },
+    {
+      "class": "hunter",
+      "direction": "left",
+      "frames": 6,
+      "width_minmax": [
+        95,
+        99
+      ],
+      "height_minmax": [
+        154,
+        156
+      ],
+      "width_delta": 4,
+      "height_delta": 2,
+      "flags": []
+    },
+    {
+      "class": "hunter",
+      "direction": "down_left",
+      "frames": 6,
+      "width_minmax": [
+        101,
+        106
+      ],
+      "height_minmax": [
+        146,
+        149
+      ],
+      "width_delta": 5,
+      "height_delta": 3,
+      "flags": []
+    }
+  ]
+}

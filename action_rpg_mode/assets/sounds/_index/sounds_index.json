@@ -1,0 +1,5658 @@
+{
+  "pack_root": "action_rpg_mode/assets/sounds/400 Sounds Pack",
+  "generated": "2026-05-15",
+  "summary": {
+    "Card and Board": {
+      "count": 24,
+      "extensions": {
+        ".wav": 24
+      },
+      "total_bytes": 2791408,
+      "examples": [
+        "card_draw_1.wav",
+        "card_draw_2.wav",
+        "card_draw_3.wav",
+        "card_fan.wav",
+        "card_fan_2.wav",
+        "chips_drop.wav",
+        "chips_gather.wav",
+        "chips_gather_2.wav"
+      ]
+    },
+    "Combat and Gore": {
+      "count": 17,
+      "extensions": {
+        ".wav": 17
+      },
+      "total_bytes": 1763116,
+      "examples": [
+        "bone_snap.wav",
+        "crunch.wav",
+        "crunch_quick.wav",
+        "crunch_splat.wav",
+        "crunch_splat_2.wav",
+        "kick.wav",
+        "punch.wav",
+        "punch_2.wav"
+      ]
+    },
+    "Environment": {
+      "count": 24,
+      "extensions": {
+        ".wav": 24
+      },
+      "total_bytes": 11079128,
+      "examples": [
+        "air_burst.wav",
+        "ambient_wind.wav",
+        "clock_tick_only.wav",
+        "clock_ticking.wav",
+        "clock_tock_only.wav",
+        "creaky_door_long.wav",
+        "creaky_door_short.wav",
+        "door_close.wav"
+      ]
+    },
+    "Footsteps": {
+      "count": 33,
+      "extensions": {
+        ".wav": 33
+      },
+      "total_bytes": 1797788,
+      "examples": [
+        "digital_footstep_grass_1.wav",
+        "digital_footstep_grass_2.wav",
+        "digital_footstep_grass_3.wav",
+        "digital_footstep_grass_4.wav",
+        "digital_footstep_gravel_1.wav",
+        "digital_footstep_gravel_2.wav",
+        "digital_footstep_gravel_3.wav",
+        "digital_footstep_gravel_4.wav"
+      ]
+    },
+    "Human": {
+      "count": 17,
+      "extensions": {
+        ".wav": 17
+      },
+      "total_bytes": 1928940,
+      "examples": [
+        "belch_1.wav",
+        "belch_2.wav",
+        "belch_3.wav",
+        "cough_double.wav",
+        "cough_short.wav",
+        "man_0.wav",
+        "man_1.wav",
+        "man_10.wav"
+      ]
+    },
+    "Items": {
+      "count": 24,
+      "extensions": {
+        ".wav": 24
+      },
+      "total_bytes": 3206016,
+      "examples": [
+        "air_pump.wav",
+        "book_close.wav",
+        "book_open.wav",
+        "broom_sweep_1.wav",
+        "broom_sweep_2.wav",
+        "coin_collect.wav",
+        "coin_jingle_small.wav",
+        "coins_gather_medium.wav"
+      ]
+    },
+    "Machines": {
+      "count": 7,
+      "extensions": {
+        ".wav": 7
+      },
+      "total_bytes": 1658200,
+      "examples": [
+        "drill_whizz.wav",
+        "hairdryer.wav",
+        "hydraulic_down.wav",
+        "hydraulic_up.wav",
+        "industrial_door_close.wav",
+        "industrial_door_open.wav",
+        "razor_buzz.wav"
+      ]
+    },
+    "Match Three": {
+      "count": 20,
+      "extensions": {
+        ".wav": 20
+      },
+      "total_bytes": 5815400,
+      "examples": [
+        "match_synth_1.wav",
+        "match_synth_10_MAX.wav",
+        "match_synth_2.wav",
+        "match_synth_3.wav",
+        "match_synth_4.wav",
+        "match_synth_5.wav",
+        "match_synth_6.wav",
+        "match_synth_7.wav"
+      ]
+    },
+    "Materials": {
+      "count": 33,
+      "extensions": {
+        ".wav": 33
+      },
+      "total_bytes": 5124012,
+      "examples": [
+        "aluminium_can_pick_up.wav",
+        "aluminium_can_place.wav",
+        "bamboo_drop.wav",
+        "cardboard_box_close.wav",
+        "cardboard_drop.wav",
+        "cardboard_hit.wav",
+        "cardboard_pick_up.wav",
+        "cardboard_push.wav"
+      ]
+    },
+    "Musical Effects": {
+      "count": 111,
+      "extensions": {
+        ".wav": 111
+      },
+      "total_bytes": 39485984,
+      "examples": [
+        "8_bit_chime_positive.wav",
+        "8_bit_chime_quick.wav",
+        "8_bit_defeated.wav",
+        "8_bit_inn.wav",
+        "8_bit_level_complete.wav",
+        "8_bit_level_start.wav",
+        "8_bit_mystery.wav",
+        "8_bit_negative.wav"
+      ]
+    },
+    "Other": {
+      "count": 20,
+      "extensions": {
+        ".wav": 20
+      },
+      "total_bytes": 6407204,
+      "examples": [
+        "applause.wav",
+        "controller_button_press.wav",
+        "controller_button_press_2.wav",
+        "drink_slurp.wav",
+        "elastic_twang.wav",
+        "finger_click.wav",
+        "ghost_long.wav",
+        "itching.wav"
+      ]
+    },
+    "Retro": {
+      "count": 25,
+      "extensions": {
+        ".wav": 25
+      },
+      "total_bytes": 1242598,
+      "examples": [
+        "coin.wav",
+        "coin_2.wav",
+        "coin_3.wav",
+        "coin_4.wav",
+        "explosion_large.wav",
+        "explosion_medium.wav",
+        "explosion_quick.wav",
+        "explosion_small.wav"
+      ]
+    },
+    "UI": {
+      "count": 30,
+      "extensions": {
+        ".wav": 30
+      },
+      "total_bytes": 5449632,
+      "examples": [
+        "cancel.wav",
+        "click_double_off.wav",
+        "click_double_off_2.wav",
+        "click_double_on.wav",
+        "click_double_on_2.wav",
+        "pop_1.wav",
+        "pop_2.wav",
+        "pop_3.wav"
+      ]
+    },
+    "Weapons": {
+      "count": 15,
+      "extensions": {
+        ".wav": 15
+      },
+      "total_bytes": 1634964,
+      "examples": [
+        "harsh_thud.wav",
+        "shot_muffled.wav",
+        "sword_clash.wav",
+        "sword_clash_2.wav",
+        "sword_drop.wav",
+        "sword_light.wav",
+        "sword_sharpen.wav",
+        "sword_slice.wav"
+      ]
+    }
+  },
+  "records": [
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "card_draw_1.wav",
+      "stem": "card_draw_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/card_draw_1.wav",
+      "size_bytes": 61484,
+      "duration_seconds": 0.348,
+      "tags": [
+        "card_and_board"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "card_draw_2.wav",
+      "stem": "card_draw_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/card_draw_2.wav",
+      "size_bytes": 41004,
+      "duration_seconds": 0.232,
+      "tags": [
+        "card_and_board"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "card_draw_3.wav",
+      "stem": "card_draw_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/card_draw_3.wav",
+      "size_bytes": 59436,
+      "duration_seconds": 0.337,
+      "tags": [
+        "card_and_board"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "card_fan.wav",
+      "stem": "card_fan",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/card_fan.wav",
+      "size_bytes": 69676,
+      "duration_seconds": 0.395,
+      "tags": [
+        "card_and_board"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "card_fan_2.wav",
+      "stem": "card_fan_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/card_fan_2.wav",
+      "size_bytes": 116780,
+      "duration_seconds": 0.662,
+      "tags": [
+        "card_and_board"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "chips_drop.wav",
+      "stem": "chips_drop",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/chips_drop.wav",
+      "size_bytes": 208940,
+      "duration_seconds": 1.184,
+      "tags": [
+        "card_and_board"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "chips_gather.wav",
+      "stem": "chips_gather",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/chips_gather.wav",
+      "size_bytes": 63532,
+      "duration_seconds": 0.36,
+      "tags": [
+        "card_and_board"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "chips_gather_2.wav",
+      "stem": "chips_gather_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/chips_gather_2.wav",
+      "size_bytes": 118828,
+      "duration_seconds": 0.673,
+      "tags": [
+        "card_and_board"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "chips_gather_3.wav",
+      "stem": "chips_gather_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/chips_gather_3.wav",
+      "size_bytes": 90156,
+      "duration_seconds": 0.511,
+      "tags": [
+        "card_and_board"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "chips_in_sack_shake.wav",
+      "stem": "chips_in_sack_shake",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/chips_in_sack_shake.wav",
+      "size_bytes": 421932,
+      "duration_seconds": 2.392,
+      "tags": [
+        "card_and_board"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "chips_in_sack_short.wav",
+      "stem": "chips_in_sack_short",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/chips_in_sack_short.wav",
+      "size_bytes": 106540,
+      "duration_seconds": 0.604,
+      "tags": [
+        "card_and_board"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "chips_place_1.wav",
+      "stem": "chips_place_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/chips_place_1.wav",
+      "size_bytes": 59436,
+      "duration_seconds": 0.337,
+      "tags": [
+        "card_and_board"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "chips_place_2.wav",
+      "stem": "chips_place_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/chips_place_2.wav",
+      "size_bytes": 57388,
+      "duration_seconds": 0.325,
+      "tags": [
+        "card_and_board"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "chips_place_3.wav",
+      "stem": "chips_place_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/chips_place_3.wav",
+      "size_bytes": 26668,
+      "duration_seconds": 0.151,
+      "tags": [
+        "card_and_board"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "chips_stack.wav",
+      "stem": "chips_stack",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/chips_stack.wav",
+      "size_bytes": 49196,
+      "duration_seconds": 0.279,
+      "tags": [
+        "card_and_board"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "chips_stack_2.wav",
+      "stem": "chips_stack_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/chips_stack_2.wav",
+      "size_bytes": 149436,
+      "duration_seconds": 0.847,
+      "tags": [
+        "card_and_board"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "dice_grab.wav",
+      "stem": "dice_grab",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/dice_grab.wav",
+      "size_bytes": 59436,
+      "duration_seconds": 0.337,
+      "tags": [
+        "magic"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "dice_roll_1.wav",
+      "stem": "dice_roll_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/dice_roll_1.wav",
+      "size_bytes": 75820,
+      "duration_seconds": 0.43,
+      "tags": [
+        "magic"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "dice_roll_2.wav",
+      "stem": "dice_roll_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/dice_roll_2.wav",
+      "size_bytes": 96108,
+      "duration_seconds": 0.545,
+      "tags": [
+        "magic"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "dice_roll_3.wav",
+      "stem": "dice_roll_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/dice_roll_3.wav",
+      "size_bytes": 135468,
+      "duration_seconds": 0.768,
+      "tags": [
+        "magic"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "dice_roll_4.wav",
+      "stem": "dice_roll_4",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/dice_roll_4.wav",
+      "size_bytes": 110892,
+      "duration_seconds": 0.628,
+      "tags": [
+        "magic"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "dice_shake_2.wav",
+      "stem": "dice_shake_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/dice_shake_2.wav",
+      "size_bytes": 245804,
+      "duration_seconds": 1.393,
+      "tags": [
+        "magic"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "dice_shake_3.wav",
+      "stem": "dice_shake_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/dice_shake_3.wav",
+      "size_bytes": 166700,
+      "duration_seconds": 0.945,
+      "tags": [
+        "magic"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Card and Board",
+      "name": "dice_shake_4.wav",
+      "stem": "dice_shake_4",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Card and Board/dice_shake_4.wav",
+      "size_bytes": 200748,
+      "duration_seconds": 1.138,
+      "tags": [
+        "magic"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Combat and Gore",
+      "name": "bone_snap.wav",
+      "stem": "bone_snap",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/bone_snap.wav",
+      "size_bytes": 163884,
+      "duration_seconds": 0.929,
+      "tags": [
+        "death",
+        "hit_enemy"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Combat and Gore",
+      "name": "crunch.wav",
+      "stem": "crunch",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/crunch.wav",
+      "size_bytes": 190508,
+      "duration_seconds": 1.08,
+      "tags": [
+        "death",
+        "footstep",
+        "hit_enemy"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Combat and Gore",
+      "name": "crunch_quick.wav",
+      "stem": "crunch_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/crunch_quick.wav",
+      "size_bytes": 61484,
+      "duration_seconds": 0.348,
+      "tags": [
+        "death",
+        "footstep",
+        "hit_enemy",
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Combat and Gore",
+      "name": "crunch_splat.wav",
+      "stem": "crunch_splat",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/crunch_splat.wav",
+      "size_bytes": 133164,
+      "duration_seconds": 0.755,
+      "tags": [
+        "death",
+        "footstep",
+        "hit_enemy"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Combat and Gore",
+      "name": "crunch_splat_2.wav",
+      "stem": "crunch_splat_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/crunch_splat_2.wav",
+      "size_bytes": 106540,
+      "duration_seconds": 0.604,
+      "tags": [
+        "death",
+        "footstep",
+        "hit_enemy"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Combat and Gore",
+      "name": "kick.wav",
+      "stem": "kick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/kick.wav",
+      "size_bytes": 51868,
+      "duration_seconds": 0.294,
+      "tags": [
+        "attack",
+        "death",
+        "hit_enemy"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Combat and Gore",
+      "name": "punch.wav",
+      "stem": "punch",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/punch.wav",
+      "size_bytes": 98348,
+      "duration_seconds": 0.557,
+      "tags": [
+        "attack",
+        "death",
+        "hit_enemy"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Combat and Gore",
+      "name": "punch_2.wav",
+      "stem": "punch_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/punch_2.wav",
+      "size_bytes": 31756,
+      "duration_seconds": 0.18,
+      "tags": [
+        "attack",
+        "death",
+        "hit_enemy"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Combat and Gore",
+      "name": "punch_3.wav",
+      "stem": "punch_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/punch_3.wav",
+      "size_bytes": 70116,
+      "duration_seconds": 0.397,
+      "tags": [
+        "attack",
+        "death",
+        "hit_enemy"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Combat and Gore",
+      "name": "slap.wav",
+      "stem": "slap",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/slap.wav",
+      "size_bytes": 120876,
+      "duration_seconds": 0.685,
+      "tags": [
+        "death",
+        "hit_enemy"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Combat and Gore",
+      "name": "splat_double_quick.wav",
+      "stem": "splat_double_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/splat_double_quick.wav",
+      "size_bytes": 84012,
+      "duration_seconds": 0.476,
+      "tags": [
+        "death",
+        "hit_enemy",
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Combat and Gore",
+      "name": "splat_quick.wav",
+      "stem": "splat_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/splat_quick.wav",
+      "size_bytes": 57388,
+      "duration_seconds": 0.325,
+      "tags": [
+        "death",
+        "hit_enemy",
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Combat and Gore",
+      "name": "squelching_1.wav",
+      "stem": "squelching_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/squelching_1.wav",
+      "size_bytes": 153644,
+      "duration_seconds": 0.871,
+      "tags": [
+        "death",
+        "hit_enemy"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Combat and Gore",
+      "name": "squelching_2.wav",
+      "stem": "squelching_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/squelching_2.wav",
+      "size_bytes": 149548,
+      "duration_seconds": 0.848,
+      "tags": [
+        "death",
+        "hit_enemy"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Combat and Gore",
+      "name": "squelching_3.wav",
+      "stem": "squelching_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/squelching_3.wav",
+      "size_bytes": 81964,
+      "duration_seconds": 0.464,
+      "tags": [
+        "death",
+        "hit_enemy"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Combat and Gore",
+      "name": "squelching_4.wav",
+      "stem": "squelching_4",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/squelching_4.wav",
+      "size_bytes": 139308,
+      "duration_seconds": 0.789,
+      "tags": [
+        "death",
+        "hit_enemy"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Combat and Gore",
+      "name": "swipe.wav",
+      "stem": "swipe",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Combat and Gore/swipe.wav",
+      "size_bytes": 68708,
+      "duration_seconds": 0.389,
+      "tags": [
+        "attack",
+        "death",
+        "hit_enemy"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "air_burst.wav",
+      "stem": "air_burst",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/air_burst.wav",
+      "size_bytes": 53292,
+      "duration_seconds": 0.302,
+      "tags": [
+        "environment"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "ambient_wind.wav",
+      "stem": "ambient_wind",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/ambient_wind.wav",
+      "size_bytes": 1518232,
+      "duration_seconds": 8.607,
+      "tags": [
+        "environment",
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "clock_tick_only.wav",
+      "stem": "clock_tick_only",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/clock_tick_only.wav",
+      "size_bytes": 165932,
+      "duration_seconds": 0.94,
+      "tags": [
+        "environment"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "clock_ticking.wav",
+      "stem": "clock_ticking",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/clock_ticking.wav",
+      "size_bytes": 705644,
+      "duration_seconds": 4.0,
+      "tags": [
+        "environment"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "clock_tock_only.wav",
+      "stem": "clock_tock_only",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/clock_tock_only.wav",
+      "size_bytes": 173164,
+      "duration_seconds": 0.981,
+      "tags": [
+        "environment"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "creaky_door_long.wav",
+      "stem": "creaky_door_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/creaky_door_long.wav",
+      "size_bytes": 700460,
+      "duration_seconds": 3.971,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "creaky_door_short.wav",
+      "stem": "creaky_door_short",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/creaky_door_short.wav",
+      "size_bytes": 149036,
+      "duration_seconds": 0.845,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "door_close.wav",
+      "stem": "door_close",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/door_close.wav",
+      "size_bytes": 147500,
+      "duration_seconds": 0.836,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "door_knock.wav",
+      "stem": "door_knock",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/door_knock.wav",
+      "size_bytes": 184364,
+      "duration_seconds": 1.045,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "door_open.wav",
+      "stem": "door_open",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/door_open.wav",
+      "size_bytes": 288812,
+      "duration_seconds": 1.637,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "fire_lighting.wav",
+      "stem": "fire_lighting",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/fire_lighting.wav",
+      "size_bytes": 114732,
+      "duration_seconds": 0.65,
+      "tags": [
+        "environment",
+        "magic"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "gurgling.wav",
+      "stem": "gurgling",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/gurgling.wav",
+      "size_bytes": 380972,
+      "duration_seconds": 2.159,
+      "tags": [
+        "environment"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "ice_in_water.wav",
+      "stem": "ice_in_water",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/ice_in_water.wav",
+      "size_bytes": 86060,
+      "duration_seconds": 0.488,
+      "tags": [
+        "environment",
+        "footstep",
+        "magic"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "lock_lock.wav",
+      "stem": "lock_lock",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/lock_lock.wav",
+      "size_bytes": 170028,
+      "duration_seconds": 0.964,
+      "tags": [
+        "environment"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "lock_quick.wav",
+      "stem": "lock_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/lock_quick.wav",
+      "size_bytes": 108588,
+      "duration_seconds": 0.615,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "lock_unlock.wav",
+      "stem": "lock_unlock",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/lock_unlock.wav",
+      "size_bytes": 143404,
+      "duration_seconds": 0.813,
+      "tags": [
+        "environment"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "water_babbling_loop.wav",
+      "stem": "water_babbling_loop",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/water_babbling_loop.wav",
+      "size_bytes": 708652,
+      "duration_seconds": 4.017,
+      "tags": [
+        "environment",
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "water_boiling_loop.wav",
+      "stem": "water_boiling_loop",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/water_boiling_loop.wav",
+      "size_bytes": 1765420,
+      "duration_seconds": 10.008,
+      "tags": [
+        "environment",
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "water_dripping.wav",
+      "stem": "water_dripping",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/water_dripping.wav",
+      "size_bytes": 3022892,
+      "duration_seconds": 17.136,
+      "tags": [
+        "environment",
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "water_drop_medium.wav",
+      "stem": "water_drop_medium",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/water_drop_medium.wav",
+      "size_bytes": 120876,
+      "duration_seconds": 0.685,
+      "tags": [
+        "environment",
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "water_drop_synthetic.wav",
+      "stem": "water_drop_synthetic",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/water_drop_synthetic.wav",
+      "size_bytes": 12536,
+      "duration_seconds": 0.071,
+      "tags": [
+        "environment",
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "water_splashing.wav",
+      "stem": "water_splashing",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/water_splashing.wav",
+      "size_bytes": 202796,
+      "duration_seconds": 1.149,
+      "tags": [
+        "environment",
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "zipper_down.wav",
+      "stem": "zipper_down",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/zipper_down.wav",
+      "size_bytes": 94252,
+      "duration_seconds": 0.534,
+      "tags": [
+        "environment"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Environment",
+      "name": "zipper_up.wav",
+      "stem": "zipper_up",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Environment/zipper_up.wav",
+      "size_bytes": 61484,
+      "duration_seconds": 0.348,
+      "tags": [
+        "environment"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "digital_footstep_grass_1.wav",
+      "stem": "digital_footstep_grass_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_grass_1.wav",
+      "size_bytes": 27970,
+      "duration_seconds": 0.317,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "digital_footstep_grass_2.wav",
+      "stem": "digital_footstep_grass_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_grass_2.wav",
+      "size_bytes": 26260,
+      "duration_seconds": 0.297,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "digital_footstep_grass_3.wav",
+      "stem": "digital_footstep_grass_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_grass_3.wav",
+      "size_bytes": 27272,
+      "duration_seconds": 0.309,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "digital_footstep_grass_4.wav",
+      "stem": "digital_footstep_grass_4",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_grass_4.wav",
+      "size_bytes": 31118,
+      "duration_seconds": 0.352,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "digital_footstep_gravel_1.wav",
+      "stem": "digital_footstep_gravel_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_gravel_1.wav",
+      "size_bytes": 27970,
+      "duration_seconds": 0.317,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "digital_footstep_gravel_2.wav",
+      "stem": "digital_footstep_gravel_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_gravel_2.wav",
+      "size_bytes": 26260,
+      "duration_seconds": 0.297,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "digital_footstep_gravel_3.wav",
+      "stem": "digital_footstep_gravel_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_gravel_3.wav",
+      "size_bytes": 27272,
+      "duration_seconds": 0.309,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "digital_footstep_gravel_4.wav",
+      "stem": "digital_footstep_gravel_4",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_gravel_4.wav",
+      "size_bytes": 31118,
+      "duration_seconds": 0.352,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "digital_footstep_snow_1.wav",
+      "stem": "digital_footstep_snow_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_snow_1.wav",
+      "size_bytes": 27970,
+      "duration_seconds": 0.317,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "digital_footstep_snow_2.wav",
+      "stem": "digital_footstep_snow_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_snow_2.wav",
+      "size_bytes": 26260,
+      "duration_seconds": 0.297,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "digital_footstep_snow_3.wav",
+      "stem": "digital_footstep_snow_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_snow_3.wav",
+      "size_bytes": 27272,
+      "duration_seconds": 0.309,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "digital_footstep_snow_4.wav",
+      "stem": "digital_footstep_snow_4",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_snow_4.wav",
+      "size_bytes": 31118,
+      "duration_seconds": 0.352,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "digital_footstep_wood_1.wav",
+      "stem": "digital_footstep_wood_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_wood_1.wav",
+      "size_bytes": 27970,
+      "duration_seconds": 0.317,
+      "tags": [
+        "footstep",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "digital_footstep_wood_2.wav",
+      "stem": "digital_footstep_wood_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_wood_2.wav",
+      "size_bytes": 26260,
+      "duration_seconds": 0.297,
+      "tags": [
+        "footstep",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "digital_footstep_wood_3.wav",
+      "stem": "digital_footstep_wood_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_wood_3.wav",
+      "size_bytes": 27272,
+      "duration_seconds": 0.309,
+      "tags": [
+        "footstep",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "digital_footstep_wood_4.wav",
+      "stem": "digital_footstep_wood_4",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/digital/digital_footstep_wood_4.wav",
+      "size_bytes": 31118,
+      "duration_seconds": 0.352,
+      "tags": [
+        "footstep",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "foley_creak_1.wav",
+      "stem": "foley_creak_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_creak_1.wav",
+      "size_bytes": 90156,
+      "duration_seconds": 0.511,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "foley_footstep_carpet_1.wav",
+      "stem": "foley_footstep_carpet_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_carpet_1.wav",
+      "size_bytes": 86060,
+      "duration_seconds": 0.488,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "foley_footstep_carpet_2.wav",
+      "stem": "foley_footstep_carpet_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_carpet_2.wav",
+      "size_bytes": 108588,
+      "duration_seconds": 0.615,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "foley_footstep_carpet_3.wav",
+      "stem": "foley_footstep_carpet_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_carpet_3.wav",
+      "size_bytes": 96300,
+      "duration_seconds": 0.546,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "foley_footstep_carpet_4.wav",
+      "stem": "foley_footstep_carpet_4",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_carpet_4.wav",
+      "size_bytes": 118828,
+      "duration_seconds": 0.673,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "foley_footstep_concrete_1.wav",
+      "stem": "foley_footstep_concrete_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_concrete_1.wav",
+      "size_bytes": 50732,
+      "duration_seconds": 0.287,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "foley_footstep_concrete_2.wav",
+      "stem": "foley_footstep_concrete_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_concrete_2.wav",
+      "size_bytes": 49708,
+      "duration_seconds": 0.282,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "foley_footstep_concrete_3.wav",
+      "stem": "foley_footstep_concrete_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_concrete_3.wav",
+      "size_bytes": 43052,
+      "duration_seconds": 0.244,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "foley_footstep_concrete_4.wav",
+      "stem": "foley_footstep_concrete_4",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_concrete_4.wav",
+      "size_bytes": 46124,
+      "duration_seconds": 0.261,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "foley_footstep_gravel_1.wav",
+      "stem": "foley_footstep_gravel_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_gravel_1.wav",
+      "size_bytes": 84524,
+      "duration_seconds": 0.479,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "foley_footstep_gravel_2.wav",
+      "stem": "foley_footstep_gravel_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_gravel_2.wav",
+      "size_bytes": 92716,
+      "duration_seconds": 0.525,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "foley_footstep_gravel_3.wav",
+      "stem": "foley_footstep_gravel_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_gravel_3.wav",
+      "size_bytes": 60972,
+      "duration_seconds": 0.345,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "foley_footstep_gravel_4.wav",
+      "stem": "foley_footstep_gravel_4",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_gravel_4.wav",
+      "size_bytes": 108076,
+      "duration_seconds": 0.612,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "foley_footstep_vinyl_1.wav",
+      "stem": "foley_footstep_vinyl_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_vinyl_1.wav",
+      "size_bytes": 81964,
+      "duration_seconds": 0.464,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "foley_footstep_vinyl_2.wav",
+      "stem": "foley_footstep_vinyl_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_vinyl_2.wav",
+      "size_bytes": 65580,
+      "duration_seconds": 0.372,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "foley_footstep_vinyl_3.wav",
+      "stem": "foley_footstep_vinyl_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_vinyl_3.wav",
+      "size_bytes": 67628,
+      "duration_seconds": 0.383,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Footsteps",
+      "name": "foley_footstep_vinyl_4.wav",
+      "stem": "foley_footstep_vinyl_4",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Footsteps/foley_footstep_vinyl_4.wav",
+      "size_bytes": 96300,
+      "duration_seconds": 0.546,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Human",
+      "name": "belch_1.wav",
+      "stem": "belch_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Human/belch_1.wav",
+      "size_bytes": 74796,
+      "duration_seconds": 0.424,
+      "tags": [
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Human",
+      "name": "belch_2.wav",
+      "stem": "belch_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Human/belch_2.wav",
+      "size_bytes": 163884,
+      "duration_seconds": 0.929,
+      "tags": [
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Human",
+      "name": "belch_3.wav",
+      "stem": "belch_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Human/belch_3.wav",
+      "size_bytes": 57388,
+      "duration_seconds": 0.325,
+      "tags": [
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Human",
+      "name": "cough_double.wav",
+      "stem": "cough_double",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Human/cough_double.wav",
+      "size_bytes": 213036,
+      "duration_seconds": 1.207,
+      "tags": [
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Human",
+      "name": "cough_short.wav",
+      "stem": "cough_short",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Human/cough_short.wav",
+      "size_bytes": 159788,
+      "duration_seconds": 0.906,
+      "tags": [
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Human",
+      "name": "man_0.wav",
+      "stem": "man_0",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Human/man_0.wav",
+      "size_bytes": 96300,
+      "duration_seconds": 0.546,
+      "tags": [
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Human",
+      "name": "man_1.wav",
+      "stem": "man_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Human/man_1.wav",
+      "size_bytes": 71724,
+      "duration_seconds": 0.406,
+      "tags": [
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Human",
+      "name": "man_10.wav",
+      "stem": "man_10",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Human/man_10.wav",
+      "size_bytes": 71724,
+      "duration_seconds": 0.406,
+      "tags": [
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Human",
+      "name": "man_2.wav",
+      "stem": "man_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Human/man_2.wav",
+      "size_bytes": 65580,
+      "duration_seconds": 0.372,
+      "tags": [
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Human",
+      "name": "man_3.wav",
+      "stem": "man_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Human/man_3.wav",
+      "size_bytes": 84012,
+      "duration_seconds": 0.476,
+      "tags": [
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Human",
+      "name": "man_4.wav",
+      "stem": "man_4",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Human/man_4.wav",
+      "size_bytes": 102444,
+      "duration_seconds": 0.58,
+      "tags": [
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Human",
+      "name": "man_5.wav",
+      "stem": "man_5",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Human/man_5.wav",
+      "size_bytes": 90156,
+      "duration_seconds": 0.511,
+      "tags": [
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Human",
+      "name": "man_6.wav",
+      "stem": "man_6",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Human/man_6.wav",
+      "size_bytes": 116780,
+      "duration_seconds": 0.662,
+      "tags": [
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Human",
+      "name": "man_7.wav",
+      "stem": "man_7",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Human/man_7.wav",
+      "size_bytes": 86060,
+      "duration_seconds": 0.488,
+      "tags": [
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Human",
+      "name": "man_8.wav",
+      "stem": "man_8",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Human/man_8.wav",
+      "size_bytes": 65580,
+      "duration_seconds": 0.372,
+      "tags": [
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Human",
+      "name": "man_9.wav",
+      "stem": "man_9",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Human/man_9.wav",
+      "size_bytes": 90156,
+      "duration_seconds": 0.511,
+      "tags": [
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Human",
+      "name": "whistle.wav",
+      "stem": "whistle",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Human/whistle.wav",
+      "size_bytes": 319532,
+      "duration_seconds": 1.811,
+      "tags": [
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "air_pump.wav",
+      "stem": "air_pump",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/air_pump.wav",
+      "size_bytes": 91692,
+      "duration_seconds": 0.52,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "book_close.wav",
+      "stem": "book_close",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/book_close.wav",
+      "size_bytes": 32812,
+      "duration_seconds": 0.186,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "book_open.wav",
+      "stem": "book_open",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/book_open.wav",
+      "size_bytes": 127020,
+      "duration_seconds": 0.72,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "broom_sweep_1.wav",
+      "stem": "broom_sweep_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/broom_sweep_1.wav",
+      "size_bytes": 104492,
+      "duration_seconds": 0.592,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "broom_sweep_2.wav",
+      "stem": "broom_sweep_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/broom_sweep_2.wav",
+      "size_bytes": 130092,
+      "duration_seconds": 0.737,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "coin_collect.wav",
+      "stem": "coin_collect",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/coin_collect.wav",
+      "size_bytes": 247520,
+      "duration_seconds": 1.403,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "coin_jingle_small.wav",
+      "stem": "coin_jingle_small",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/coin_jingle_small.wav",
+      "size_bytes": 102444,
+      "duration_seconds": 0.58,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "coins_gather_medium.wav",
+      "stem": "coins_gather_medium",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/coins_gather_medium.wav",
+      "size_bytes": 155692,
+      "duration_seconds": 0.882,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "coins_gather_quick.wav",
+      "stem": "coins_gather_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/coins_gather_quick.wav",
+      "size_bytes": 84012,
+      "duration_seconds": 0.476,
+      "tags": [
+        "loot",
+        "shop",
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "coins_gather_small.wav",
+      "stem": "coins_gather_small",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/coins_gather_small.wav",
+      "size_bytes": 69676,
+      "duration_seconds": 0.395,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "gem_collect.wav",
+      "stem": "gem_collect",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/gem_collect.wav",
+      "size_bytes": 297040,
+      "duration_seconds": 1.684,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "heart_collect.wav",
+      "stem": "heart_collect",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/heart_collect.wav",
+      "size_bytes": 139348,
+      "duration_seconds": 0.79,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "item_equip.wav",
+      "stem": "item_equip",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/item_equip.wav",
+      "size_bytes": 53292,
+      "duration_seconds": 0.302,
+      "tags": [
+        "loot",
+        "shop",
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "jingle_bells_1.wav",
+      "stem": "jingle_bells_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/jingle_bells_1.wav",
+      "size_bytes": 200748,
+      "duration_seconds": 1.138,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "jingle_bells_2.wav",
+      "stem": "jingle_bells_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/jingle_bells_2.wav",
+      "size_bytes": 139308,
+      "duration_seconds": 0.789,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "keys_jingling.wav",
+      "stem": "keys_jingling",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/keys_jingling.wav",
+      "size_bytes": 90156,
+      "duration_seconds": 0.511,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "map_close.wav",
+      "stem": "map_close",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/map_close.wav",
+      "size_bytes": 106540,
+      "duration_seconds": 0.604,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "map_open.wav",
+      "stem": "map_open",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/map_open.wav",
+      "size_bytes": 106540,
+      "duration_seconds": 0.604,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "page_turn.wav",
+      "stem": "page_turn",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/page_turn.wav",
+      "size_bytes": 159788,
+      "duration_seconds": 0.906,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "pencil_eraser.wav",
+      "stem": "pencil_eraser",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/pencil_eraser.wav",
+      "size_bytes": 147596,
+      "duration_seconds": 0.836,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "pencil_scribble.wav",
+      "stem": "pencil_scribble",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/pencil_scribble.wav",
+      "size_bytes": 415788,
+      "duration_seconds": 2.357,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "shovel_dig.wav",
+      "stem": "shovel_dig",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/shovel_dig.wav",
+      "size_bytes": 106540,
+      "duration_seconds": 0.604,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "tennis_ball_bounce_1.wav",
+      "stem": "tennis_ball_bounce_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/tennis_ball_bounce_1.wav",
+      "size_bytes": 54828,
+      "duration_seconds": 0.311,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Items",
+      "name": "tennis_ball_bounce_2.wav",
+      "stem": "tennis_ball_bounce_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Items/tennis_ball_bounce_2.wav",
+      "size_bytes": 43052,
+      "duration_seconds": 0.244,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Machines",
+      "name": "drill_whizz.wav",
+      "stem": "drill_whizz",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Machines/drill_whizz.wav",
+      "size_bytes": 352336,
+      "duration_seconds": 1.997,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Machines",
+      "name": "hairdryer.wav",
+      "stem": "hairdryer",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Machines/hairdryer.wav",
+      "size_bytes": 384044,
+      "duration_seconds": 2.177,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Machines",
+      "name": "hydraulic_down.wav",
+      "stem": "hydraulic_down",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Machines/hydraulic_down.wav",
+      "size_bytes": 165932,
+      "duration_seconds": 0.94,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Machines",
+      "name": "hydraulic_up.wav",
+      "stem": "hydraulic_up",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Machines/hydraulic_up.wav",
+      "size_bytes": 198700,
+      "duration_seconds": 1.126,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Machines",
+      "name": "industrial_door_close.wav",
+      "stem": "industrial_door_close",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Machines/industrial_door_close.wav",
+      "size_bytes": 143404,
+      "duration_seconds": 0.813,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Machines",
+      "name": "industrial_door_open.wav",
+      "stem": "industrial_door_open",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Machines/industrial_door_open.wav",
+      "size_bytes": 163884,
+      "duration_seconds": 0.929,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Machines",
+      "name": "razor_buzz.wav",
+      "stem": "razor_buzz",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Machines/razor_buzz.wav",
+      "size_bytes": 249900,
+      "duration_seconds": 1.416,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_synth_1.wav",
+      "stem": "match_synth_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_synth_1.wav",
+      "size_bytes": 422476,
+      "duration_seconds": 2.395,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_synth_10_MAX.wav",
+      "stem": "match_synth_10_MAX",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_synth_10_MAX.wav",
+      "size_bytes": 412348,
+      "duration_seconds": 2.337,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_synth_2.wav",
+      "stem": "match_synth_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_synth_2.wav",
+      "size_bytes": 420772,
+      "duration_seconds": 2.385,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_synth_3.wav",
+      "stem": "match_synth_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_synth_3.wav",
+      "size_bytes": 415072,
+      "duration_seconds": 2.353,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_synth_4.wav",
+      "stem": "match_synth_4",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_synth_4.wav",
+      "size_bytes": 414656,
+      "duration_seconds": 2.35,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_synth_5.wav",
+      "stem": "match_synth_5",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_synth_5.wav",
+      "size_bytes": 399708,
+      "duration_seconds": 2.266,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_synth_6.wav",
+      "stem": "match_synth_6",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_synth_6.wav",
+      "size_bytes": 404156,
+      "duration_seconds": 2.291,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_synth_7.wav",
+      "stem": "match_synth_7",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_synth_7.wav",
+      "size_bytes": 401180,
+      "duration_seconds": 2.274,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_synth_8.wav",
+      "stem": "match_synth_8",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_synth_8.wav",
+      "size_bytes": 399080,
+      "duration_seconds": 2.262,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_synth_9.wav",
+      "stem": "match_synth_9",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_synth_9.wav",
+      "size_bytes": 395128,
+      "duration_seconds": 2.24,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_xylophone_1.wav",
+      "stem": "match_xylophone_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_xylophone_1.wav",
+      "size_bytes": 190040,
+      "duration_seconds": 1.077,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_xylophone_10_MAX.wav",
+      "stem": "match_xylophone_10_MAX",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_xylophone_10_MAX.wav",
+      "size_bytes": 188912,
+      "duration_seconds": 1.071,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_xylophone_2.wav",
+      "stem": "match_xylophone_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_xylophone_2.wav",
+      "size_bytes": 187140,
+      "duration_seconds": 1.061,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_xylophone_3.wav",
+      "stem": "match_xylophone_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_xylophone_3.wav",
+      "size_bytes": 188912,
+      "duration_seconds": 1.071,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_xylophone_4.wav",
+      "stem": "match_xylophone_4",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_xylophone_4.wav",
+      "size_bytes": 182508,
+      "duration_seconds": 1.034,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_xylophone_5.wav",
+      "stem": "match_xylophone_5",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_xylophone_5.wav",
+      "size_bytes": 177648,
+      "duration_seconds": 1.007,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_xylophone_6.wav",
+      "stem": "match_xylophone_6",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_xylophone_6.wav",
+      "size_bytes": 162760,
+      "duration_seconds": 0.922,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_xylophone_7.wav",
+      "stem": "match_xylophone_7",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_xylophone_7.wav",
+      "size_bytes": 147552,
+      "duration_seconds": 0.836,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_xylophone_8.wav",
+      "stem": "match_xylophone_8",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_xylophone_8.wav",
+      "size_bytes": 157304,
+      "duration_seconds": 0.891,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Match Three",
+      "name": "match_xylophone_9.wav",
+      "stem": "match_xylophone_9",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Match Three/match_xylophone_9.wav",
+      "size_bytes": 148048,
+      "duration_seconds": 0.839,
+      "tags": [
+        "match_three"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "aluminium_can_pick_up.wav",
+      "stem": "aluminium_can_pick_up",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/aluminium_can_pick_up.wav",
+      "size_bytes": 77868,
+      "duration_seconds": 0.441,
+      "tags": [
+        "materials"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "aluminium_can_place.wav",
+      "stem": "aluminium_can_place",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/aluminium_can_place.wav",
+      "size_bytes": 90156,
+      "duration_seconds": 0.511,
+      "tags": [
+        "materials"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "bamboo_drop.wav",
+      "stem": "bamboo_drop",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/bamboo_drop.wav",
+      "size_bytes": 54316,
+      "duration_seconds": 0.308,
+      "tags": [
+        "materials"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "cardboard_box_close.wav",
+      "stem": "cardboard_box_close",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/cardboard_box_close.wav",
+      "size_bytes": 206892,
+      "duration_seconds": 1.173,
+      "tags": [
+        "materials"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "cardboard_drop.wav",
+      "stem": "cardboard_drop",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/cardboard_drop.wav",
+      "size_bytes": 167980,
+      "duration_seconds": 0.952,
+      "tags": [
+        "materials"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "cardboard_hit.wav",
+      "stem": "cardboard_hit",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/cardboard_hit.wav",
+      "size_bytes": 120876,
+      "duration_seconds": 0.685,
+      "tags": [
+        "hit_enemy",
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "cardboard_pick_up.wav",
+      "stem": "cardboard_pick_up",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/cardboard_pick_up.wav",
+      "size_bytes": 182316,
+      "duration_seconds": 1.033,
+      "tags": [
+        "materials"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "cardboard_push.wav",
+      "stem": "cardboard_push",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/cardboard_push.wav",
+      "size_bytes": 233516,
+      "duration_seconds": 1.324,
+      "tags": [
+        "materials"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "cardboard_tear.wav",
+      "stem": "cardboard_tear",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/cardboard_tear.wav",
+      "size_bytes": 200748,
+      "duration_seconds": 1.138,
+      "tags": [
+        "materials"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "ceramic_jar_close.wav",
+      "stem": "ceramic_jar_close",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/ceramic_jar_close.wav",
+      "size_bytes": 98348,
+      "duration_seconds": 0.557,
+      "tags": [
+        "materials"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "ceramic_jar_open.wav",
+      "stem": "ceramic_jar_open",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/ceramic_jar_open.wav",
+      "size_bytes": 79916,
+      "duration_seconds": 0.453,
+      "tags": [
+        "materials"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "clothing_1.wav",
+      "stem": "clothing_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/clothing_1.wav",
+      "size_bytes": 215084,
+      "duration_seconds": 1.219,
+      "tags": [
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "clothing_2.wav",
+      "stem": "clothing_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/clothing_2.wav",
+      "size_bytes": 264236,
+      "duration_seconds": 1.498,
+      "tags": [
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "clothing_thud.wav",
+      "stem": "clothing_thud",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/clothing_thud.wav",
+      "size_bytes": 116780,
+      "duration_seconds": 0.662,
+      "tags": [
+        "hit_enemy",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "concrete_scrape.wav",
+      "stem": "concrete_scrape",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/concrete_scrape.wav",
+      "size_bytes": 152108,
+      "duration_seconds": 0.862,
+      "tags": [
+        "materials"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "cork_stabbed.wav",
+      "stem": "cork_stabbed",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/cork_stabbed.wav",
+      "size_bytes": 60460,
+      "duration_seconds": 0.342,
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "glass_ping_big.wav",
+      "stem": "glass_ping_big",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/glass_ping_big.wav",
+      "size_bytes": 206892,
+      "duration_seconds": 1.173,
+      "tags": [
+        "materials"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "glass_ping_small.wav",
+      "stem": "glass_ping_small",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/glass_ping_small.wav",
+      "size_bytes": 118828,
+      "duration_seconds": 0.673,
+      "tags": [
+        "materials"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "metal_blunt_tap.wav",
+      "stem": "metal_blunt_tap",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/metal_blunt_tap.wav",
+      "size_bytes": 73772,
+      "duration_seconds": 0.418,
+      "tags": [
+        "machine",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "metal_clang.wav",
+      "stem": "metal_clang",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/metal_clang.wav",
+      "size_bytes": 104492,
+      "duration_seconds": 0.592,
+      "tags": [
+        "machine",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "paper_move.wav",
+      "stem": "paper_move",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/paper_move.wav",
+      "size_bytes": 114732,
+      "duration_seconds": 0.65,
+      "tags": [
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "paper_scrunch.wav",
+      "stem": "paper_scrunch",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/paper_scrunch.wav",
+      "size_bytes": 178220,
+      "duration_seconds": 1.01,
+      "tags": [
+        "footstep",
+        "hit_enemy",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "paper_sort.wav",
+      "stem": "paper_sort",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/paper_sort.wav",
+      "size_bytes": 206892,
+      "duration_seconds": 1.173,
+      "tags": [
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "paper_tear_1.wav",
+      "stem": "paper_tear_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/paper_tear_1.wav",
+      "size_bytes": 153644,
+      "duration_seconds": 0.871,
+      "tags": [
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "paper_tear_2.wav",
+      "stem": "paper_tear_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/paper_tear_2.wav",
+      "size_bytes": 217132,
+      "duration_seconds": 1.231,
+      "tags": [
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "pottery_clang.wav",
+      "stem": "pottery_clang",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/pottery_clang.wav",
+      "size_bytes": 98348,
+      "duration_seconds": 0.557,
+      "tags": [
+        "materials"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "stone_push_long.wav",
+      "stem": "stone_push_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/stone_push_long.wav",
+      "size_bytes": 438316,
+      "duration_seconds": 2.485,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "stone_push_medium.wav",
+      "stem": "stone_push_medium",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/stone_push_medium.wav",
+      "size_bytes": 307244,
+      "duration_seconds": 1.741,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "stone_push_short.wav",
+      "stem": "stone_push_short",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/stone_push_short.wav",
+      "size_bytes": 163884,
+      "duration_seconds": 0.929,
+      "tags": [
+        "footstep"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "wood_small_drop.wav",
+      "stem": "wood_small_drop",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/wood_small_drop.wav",
+      "size_bytes": 94252,
+      "duration_seconds": 0.534,
+      "tags": [
+        "footstep",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "wood_small_gather.wav",
+      "stem": "wood_small_gather",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/wood_small_gather.wav",
+      "size_bytes": 147500,
+      "duration_seconds": 0.836,
+      "tags": [
+        "footstep",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "wood_small_hollow.wav",
+      "stem": "wood_small_hollow",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/wood_small_hollow.wav",
+      "size_bytes": 79916,
+      "duration_seconds": 0.453,
+      "tags": [
+        "footstep",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Materials",
+      "name": "wood_small_pickup.wav",
+      "stem": "wood_small_pickup",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Materials/wood_small_pickup.wav",
+      "size_bytes": 98348,
+      "duration_seconds": 0.557,
+      "tags": [
+        "footstep",
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "8_bit_chime_positive.wav",
+      "stem": "8_bit_chime_positive",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/8_bit_chime_positive.wav",
+      "size_bytes": 54612,
+      "duration_seconds": 0.309,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "8_bit_chime_quick.wav",
+      "stem": "8_bit_chime_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/8_bit_chime_quick.wav",
+      "size_bytes": 66604,
+      "duration_seconds": 0.377,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "8_bit_defeated.wav",
+      "stem": "8_bit_defeated",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/8_bit_defeated.wav",
+      "size_bytes": 543132,
+      "duration_seconds": 3.079,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "8_bit_inn.wav",
+      "stem": "8_bit_inn",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/8_bit_inn.wav",
+      "size_bytes": 521044,
+      "duration_seconds": 2.954,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "8_bit_level_complete.wav",
+      "stem": "8_bit_level_complete",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/8_bit_level_complete.wav",
+      "size_bytes": 545024,
+      "duration_seconds": 3.089,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "8_bit_level_start.wav",
+      "stem": "8_bit_level_start",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/8_bit_level_start.wav",
+      "size_bytes": 367524,
+      "duration_seconds": 2.083,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "8_bit_mystery.wav",
+      "stem": "8_bit_mystery",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/8_bit_mystery.wav",
+      "size_bytes": 213632,
+      "duration_seconds": 1.211,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "8_bit_negative.wav",
+      "stem": "8_bit_negative",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/8_bit_negative.wav",
+      "size_bytes": 146444,
+      "duration_seconds": 0.83,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "8_bit_negative_long.wav",
+      "stem": "8_bit_negative_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/8_bit_negative_long.wav",
+      "size_bytes": 146060,
+      "duration_seconds": 0.828,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "8_bit_negative_quick.wav",
+      "stem": "8_bit_negative_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/8_bit_negative_quick.wav",
+      "size_bytes": 66684,
+      "duration_seconds": 0.378,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "8_bit_positive_long.wav",
+      "stem": "8_bit_positive_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/8_bit_positive_long.wav",
+      "size_bytes": 213596,
+      "duration_seconds": 1.211,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "brass_chime_positive.wav",
+      "stem": "brass_chime_positive",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/brass_chime_positive.wav",
+      "size_bytes": 70692,
+      "duration_seconds": 0.4,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "brass_chime_quick.wav",
+      "stem": "brass_chime_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/brass_chime_quick.wav",
+      "size_bytes": 70424,
+      "duration_seconds": 0.399,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "brass_defeated.wav",
+      "stem": "brass_defeated",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/brass_defeated.wav",
+      "size_bytes": 546884,
+      "duration_seconds": 3.1,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "brass_inn.wav",
+      "stem": "brass_inn",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/brass_inn.wav",
+      "size_bytes": 524888,
+      "duration_seconds": 2.975,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "brass_level_complete.wav",
+      "stem": "brass_level_complete",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/brass_level_complete.wav",
+      "size_bytes": 547204,
+      "duration_seconds": 3.102,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "brass_level_start.wav",
+      "stem": "brass_level_start",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/brass_level_start.wav",
+      "size_bytes": 370376,
+      "duration_seconds": 2.099,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "brass_mystery.wav",
+      "stem": "brass_mystery",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/brass_mystery.wav",
+      "size_bytes": 216360,
+      "duration_seconds": 1.226,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "brass_negative.wav",
+      "stem": "brass_negative",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/brass_negative.wav",
+      "size_bytes": 150408,
+      "duration_seconds": 0.852,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "brass_negative_long.wav",
+      "stem": "brass_negative_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/brass_negative_long.wav",
+      "size_bytes": 149812,
+      "duration_seconds": 0.849,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "brass_negative_quick.wav",
+      "stem": "brass_negative_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/brass_negative_quick.wav",
+      "size_bytes": 70596,
+      "duration_seconds": 0.4,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "brass_positive_long.wav",
+      "stem": "brass_positive_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/brass_positive_long.wav",
+      "size_bytes": 216568,
+      "duration_seconds": 1.227,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "grand_piano_chime_positive.wav",
+      "stem": "grand_piano_chime_positive",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/grand_piano_chime_positive.wav",
+      "size_bytes": 172672,
+      "duration_seconds": 0.979,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "grand_piano_chime_quick.wav",
+      "stem": "grand_piano_chime_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/grand_piano_chime_quick.wav",
+      "size_bytes": 190308,
+      "duration_seconds": 1.079,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "grand_piano_defeated.wav",
+      "stem": "grand_piano_defeated",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/grand_piano_defeated.wav",
+      "size_bytes": 686300,
+      "duration_seconds": 3.89,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "grand_piano_inn.wav",
+      "stem": "grand_piano_inn",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/grand_piano_inn.wav",
+      "size_bytes": 660060,
+      "duration_seconds": 3.742,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "grand_piano_level_complete.wav",
+      "stem": "grand_piano_level_complete",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/grand_piano_level_complete.wav",
+      "size_bytes": 667540,
+      "duration_seconds": 3.784,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "grand_piano_level_start.wav",
+      "stem": "grand_piano_level_start",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/grand_piano_level_start.wav",
+      "size_bytes": 508340,
+      "duration_seconds": 2.881,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "grand_piano_mystery.wav",
+      "stem": "grand_piano_mystery",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/grand_piano_mystery.wav",
+      "size_bytes": 352468,
+      "duration_seconds": 1.998,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "grand_piano_negative.wav",
+      "stem": "grand_piano_negative",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/grand_piano_negative.wav",
+      "size_bytes": 268020,
+      "duration_seconds": 1.519,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "grand_piano_negative_long.wav",
+      "stem": "grand_piano_negative_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/grand_piano_negative_long.wav",
+      "size_bytes": 289188,
+      "duration_seconds": 1.639,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "grand_piano_negative_quick.wav",
+      "stem": "grand_piano_negative_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/grand_piano_negative_quick.wav",
+      "size_bytes": 195836,
+      "duration_seconds": 1.11,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "grand_piano_positive_long.wav",
+      "stem": "grand_piano_positive_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/grand_piano_positive_long.wav",
+      "size_bytes": 342284,
+      "duration_seconds": 1.94,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "harpsichord_chime_positive.wav",
+      "stem": "harpsichord_chime_positive",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/harpsichord_chime_positive.wav",
+      "size_bytes": 201928,
+      "duration_seconds": 1.144,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "harpsichord_chime_quick.wav",
+      "stem": "harpsichord_chime_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/harpsichord_chime_quick.wav",
+      "size_bytes": 188876,
+      "duration_seconds": 1.07,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "harpsichord_defeated.wav",
+      "stem": "harpsichord_defeated",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/harpsichord_defeated.wav",
+      "size_bytes": 528844,
+      "duration_seconds": 2.998,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "harpsichord_inn.wav",
+      "stem": "harpsichord_inn",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/harpsichord_inn.wav",
+      "size_bytes": 638856,
+      "duration_seconds": 3.621,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "harpsichord_level_complete.wav",
+      "stem": "harpsichord_level_complete",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/harpsichord_level_complete.wav",
+      "size_bytes": 652212,
+      "duration_seconds": 3.697,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "harpsichord_level_start.wav",
+      "stem": "harpsichord_level_start",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/harpsichord_level_start.wav",
+      "size_bytes": 462284,
+      "duration_seconds": 2.62,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "harpsichord_mystery.wav",
+      "stem": "harpsichord_mystery",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/harpsichord_mystery.wav",
+      "size_bytes": 264088,
+      "duration_seconds": 1.497,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "harpsichord_negative.wav",
+      "stem": "harpsichord_negative",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/harpsichord_negative.wav",
+      "size_bytes": 255436,
+      "duration_seconds": 1.448,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "harpsichord_negative_long.wav",
+      "stem": "harpsichord_negative_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/harpsichord_negative_long.wav",
+      "size_bytes": 272748,
+      "duration_seconds": 1.546,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "harpsichord_negative_quick.wav",
+      "stem": "harpsichord_negative_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/harpsichord_negative_quick.wav",
+      "size_bytes": 202116,
+      "duration_seconds": 1.146,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "harpsichord_positive_long.wav",
+      "stem": "harpsichord_positive_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/harpsichord_positive_long.wav",
+      "size_bytes": 334796,
+      "duration_seconds": 1.898,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "horror_sting.wav",
+      "stem": "horror_sting",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/horror_sting.wav",
+      "size_bytes": 155244,
+      "duration_seconds": 0.88,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "music_box_chime_positive.wav",
+      "stem": "music_box_chime_positive",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/music_box_chime_positive.wav",
+      "size_bytes": 290384,
+      "duration_seconds": 1.646,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "music_box_chime_quick.wav",
+      "stem": "music_box_chime_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/music_box_chime_quick.wav",
+      "size_bytes": 277072,
+      "duration_seconds": 1.57,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "music_box_defeated.wav",
+      "stem": "music_box_defeated",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/music_box_defeated.wav",
+      "size_bytes": 617044,
+      "duration_seconds": 3.498,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "music_box_inn.wav",
+      "stem": "music_box_inn",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/music_box_inn.wav",
+      "size_bytes": 727124,
+      "duration_seconds": 4.122,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "music_box_level_complete.wav",
+      "stem": "music_box_level_complete",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/music_box_level_complete.wav",
+      "size_bytes": 740436,
+      "duration_seconds": 4.197,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "music_box_level_start.wav",
+      "stem": "music_box_level_start",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/music_box_level_start.wav",
+      "size_bytes": 550484,
+      "duration_seconds": 3.12,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "music_box_mystery.wav",
+      "stem": "music_box_mystery",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/music_box_mystery.wav",
+      "size_bytes": 352340,
+      "duration_seconds": 1.997,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "music_box_negative.wav",
+      "stem": "music_box_negative",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/music_box_negative.wav",
+      "size_bytes": 343636,
+      "duration_seconds": 1.948,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "music_box_negative_long.wav",
+      "stem": "music_box_negative_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/music_box_negative_long.wav",
+      "size_bytes": 361044,
+      "duration_seconds": 2.046,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "music_box_negative_quick.wav",
+      "stem": "music_box_negative_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/music_box_negative_quick.wav",
+      "size_bytes": 290388,
+      "duration_seconds": 1.646,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "music_box_positive_long.wav",
+      "stem": "music_box_positive_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/music_box_positive_long.wav",
+      "size_bytes": 422996,
+      "duration_seconds": 2.398,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "sitar_chime_positive.wav",
+      "stem": "sitar_chime_positive",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/sitar_chime_positive.wav",
+      "size_bytes": 236008,
+      "duration_seconds": 1.338,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "sitar_chime_quick.wav",
+      "stem": "sitar_chime_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/sitar_chime_quick.wav",
+      "size_bytes": 222696,
+      "duration_seconds": 1.262,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "sitar_defeated.wav",
+      "stem": "sitar_defeated",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/sitar_defeated.wav",
+      "size_bytes": 617044,
+      "duration_seconds": 3.498,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "sitar_inn.wav",
+      "stem": "sitar_inn",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/sitar_inn.wav",
+      "size_bytes": 726816,
+      "duration_seconds": 4.12,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "sitar_level_complete.wav",
+      "stem": "sitar_level_complete",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/sitar_level_complete.wav",
+      "size_bytes": 687188,
+      "duration_seconds": 3.895,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "sitar_level_start.wav",
+      "stem": "sitar_level_start",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/sitar_level_start.wav",
+      "size_bytes": 550380,
+      "duration_seconds": 3.12,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "sitar_mystery.wav",
+      "stem": "sitar_mystery",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/sitar_mystery.wav",
+      "size_bytes": 352296,
+      "duration_seconds": 1.997,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "sitar_negative.wav",
+      "stem": "sitar_negative",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/sitar_negative.wav",
+      "size_bytes": 293244,
+      "duration_seconds": 1.662,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "sitar_negative_long.wav",
+      "stem": "sitar_negative_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/sitar_negative_long.wav",
+      "size_bytes": 360940,
+      "duration_seconds": 2.046,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "sitar_negative_quick.wav",
+      "stem": "sitar_negative_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/sitar_negative_quick.wav",
+      "size_bytes": 260312,
+      "duration_seconds": 1.475,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "sitar_positive_long.wav",
+      "stem": "sitar_positive_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/sitar_positive_long.wav",
+      "size_bytes": 414640,
+      "duration_seconds": 2.35,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "steel_drums_chime_positive.wav",
+      "stem": "steel_drums_chime_positive",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/steel_drums_chime_positive.wav",
+      "size_bytes": 202152,
+      "duration_seconds": 1.146,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "steel_drums_chime_quick.wav",
+      "stem": "steel_drums_chime_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/steel_drums_chime_quick.wav",
+      "size_bytes": 188840,
+      "duration_seconds": 1.07,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "steel_drums_defeated.wav",
+      "stem": "steel_drums_defeated",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/steel_drums_defeated.wav",
+      "size_bytes": 528844,
+      "duration_seconds": 2.998,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "steel_drums_inn.wav",
+      "stem": "steel_drums_inn",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/steel_drums_inn.wav",
+      "size_bytes": 638900,
+      "duration_seconds": 3.622,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "steel_drums_level_complete.wav",
+      "stem": "steel_drums_level_complete",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/steel_drums_level_complete.wav",
+      "size_bytes": 652236,
+      "duration_seconds": 3.697,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "steel_drums_level_start.wav",
+      "stem": "steel_drums_level_start",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/steel_drums_level_start.wav",
+      "size_bytes": 462284,
+      "duration_seconds": 2.62,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "steel_drums_mystery.wav",
+      "stem": "steel_drums_mystery",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/steel_drums_mystery.wav",
+      "size_bytes": 264140,
+      "duration_seconds": 1.497,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "steel_drums_negative.wav",
+      "stem": "steel_drums_negative",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/steel_drums_negative.wav",
+      "size_bytes": 255412,
+      "duration_seconds": 1.448,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "steel_drums_negative_long.wav",
+      "stem": "steel_drums_negative_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/steel_drums_negative_long.wav",
+      "size_bytes": 272844,
+      "duration_seconds": 1.546,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "steel_drums_negative_quick.wav",
+      "stem": "steel_drums_negative_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/steel_drums_negative_quick.wav",
+      "size_bytes": 202156,
+      "duration_seconds": 1.146,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "steel_drums_positive_long.wav",
+      "stem": "steel_drums_positive_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/steel_drums_positive_long.wav",
+      "size_bytes": 334796,
+      "duration_seconds": 1.898,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "synth_bass_chime_positive.wav",
+      "stem": "synth_bass_chime_positive",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/synth_bass_chime_positive.wav",
+      "size_bytes": 88072,
+      "duration_seconds": 0.499,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "synth_bass_chime_quick.wav",
+      "stem": "synth_bass_chime_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/synth_bass_chime_quick.wav",
+      "size_bytes": 87972,
+      "duration_seconds": 0.498,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "synth_bass_defeated.wav",
+      "stem": "synth_bass_defeated",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/synth_bass_defeated.wav",
+      "size_bytes": 564476,
+      "duration_seconds": 3.2,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "synth_bass_inn.wav",
+      "stem": "synth_bass_inn",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/synth_bass_inn.wav",
+      "size_bytes": 542232,
+      "duration_seconds": 3.074,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "synth_bass_level_complete.wav",
+      "stem": "synth_bass_level_complete",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/synth_bass_level_complete.wav",
+      "size_bytes": 564776,
+      "duration_seconds": 3.201,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "synth_bass_level_start.wav",
+      "stem": "synth_bass_level_start",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/synth_bass_level_start.wav",
+      "size_bytes": 387924,
+      "duration_seconds": 2.199,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "synth_bass_mystery.wav",
+      "stem": "synth_bass_mystery",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/synth_bass_mystery.wav",
+      "size_bytes": 233688,
+      "duration_seconds": 1.325,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "synth_bass_negative.wav",
+      "stem": "synth_bass_negative",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/synth_bass_negative.wav",
+      "size_bytes": 167764,
+      "duration_seconds": 0.951,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "synth_bass_negative_long.wav",
+      "stem": "synth_bass_negative_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/synth_bass_negative_long.wav",
+      "size_bytes": 167204,
+      "duration_seconds": 0.948,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "synth_bass_negative_quick.wav",
+      "stem": "synth_bass_negative_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/synth_bass_negative_quick.wav",
+      "size_bytes": 87956,
+      "duration_seconds": 0.498,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "synth_bass_positive_long.wav",
+      "stem": "synth_bass_positive_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/synth_bass_positive_long.wav",
+      "size_bytes": 233932,
+      "duration_seconds": 1.326,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "vibraphone_chime_positive.wav",
+      "stem": "vibraphone_chime_positive",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/vibraphone_chime_positive.wav",
+      "size_bytes": 240864,
+      "duration_seconds": 1.365,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "vibraphone_chime_quick.wav",
+      "stem": "vibraphone_chime_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/vibraphone_chime_quick.wav",
+      "size_bytes": 227552,
+      "duration_seconds": 1.29,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "vibraphone_defeated.wav",
+      "stem": "vibraphone_defeated",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/vibraphone_defeated.wav",
+      "size_bytes": 577396,
+      "duration_seconds": 3.273,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "vibraphone_inn.wav",
+      "stem": "vibraphone_inn",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/vibraphone_inn.wav",
+      "size_bytes": 682276,
+      "duration_seconds": 3.868,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "vibraphone_level_complete.wav",
+      "stem": "vibraphone_level_complete",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/vibraphone_level_complete.wav",
+      "size_bytes": 698540,
+      "duration_seconds": 3.96,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "vibraphone_level_start.wav",
+      "stem": "vibraphone_level_start",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/vibraphone_level_start.wav",
+      "size_bytes": 533112,
+      "duration_seconds": 3.022,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "vibraphone_mystery.wav",
+      "stem": "vibraphone_mystery",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/vibraphone_mystery.wav",
+      "size_bytes": 303980,
+      "duration_seconds": 1.723,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "vibraphone_negative.wav",
+      "stem": "vibraphone_negative",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/vibraphone_negative.wav",
+      "size_bytes": 295104,
+      "duration_seconds": 1.673,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "vibraphone_negative_long.wav",
+      "stem": "vibraphone_negative_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/vibraphone_negative_long.wav",
+      "size_bytes": 328472,
+      "duration_seconds": 1.862,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "vibraphone_negative_quick.wav",
+      "stem": "vibraphone_negative_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/vibraphone_negative_quick.wav",
+      "size_bytes": 264344,
+      "duration_seconds": 1.498,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "vibraphone_positive_long.wav",
+      "stem": "vibraphone_positive_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/vibraphone_positive_long.wav",
+      "size_bytes": 405624,
+      "duration_seconds": 2.299,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "xylophone_chime_positive.wav",
+      "stem": "xylophone_chime_positive",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/xylophone_chime_positive.wav",
+      "size_bytes": 183928,
+      "duration_seconds": 1.042,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "xylophone_chime_quick.wav",
+      "stem": "xylophone_chime_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/xylophone_chime_quick.wav",
+      "size_bytes": 182508,
+      "duration_seconds": 1.034,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "xylophone_defeated.wav",
+      "stem": "xylophone_defeated",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/xylophone_defeated.wav",
+      "size_bytes": 518376,
+      "duration_seconds": 2.938,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "xylophone_inn.wav",
+      "stem": "xylophone_inn",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/xylophone_inn.wav",
+      "size_bytes": 648604,
+      "duration_seconds": 3.677,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "xylophone_level_complete.wav",
+      "stem": "xylophone_level_complete",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/xylophone_level_complete.wav",
+      "size_bytes": 599612,
+      "duration_seconds": 3.399,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "xylophone_level_start.wav",
+      "stem": "xylophone_level_start",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/xylophone_level_start.wav",
+      "size_bytes": 469228,
+      "duration_seconds": 2.66,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "xylophone_mystery.wav",
+      "stem": "xylophone_mystery",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/xylophone_mystery.wav",
+      "size_bytes": 254960,
+      "duration_seconds": 1.445,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "xylophone_negative.wav",
+      "stem": "xylophone_negative",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/xylophone_negative.wav",
+      "size_bytes": 237176,
+      "duration_seconds": 1.344,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "xylophone_negative_long.wav",
+      "stem": "xylophone_negative_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/xylophone_negative_long.wav",
+      "size_bytes": 220572,
+      "duration_seconds": 1.25,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "xylophone_negative_quick.wav",
+      "stem": "xylophone_negative_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/xylophone_negative_quick.wav",
+      "size_bytes": 191720,
+      "duration_seconds": 1.087,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Musical Effects",
+      "name": "xylophone_positive_long.wav",
+      "stem": "xylophone_positive_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Musical Effects/xylophone_positive_long.wav",
+      "size_bytes": 289912,
+      "duration_seconds": 1.643,
+      "tags": [
+        "musical_effects"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "applause.wav",
+      "stem": "applause",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/applause.wav",
+      "size_bytes": 2078764,
+      "duration_seconds": 11.784,
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "controller_button_press.wav",
+      "stem": "controller_button_press",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/controller_button_press.wav",
+      "size_bytes": 196652,
+      "duration_seconds": 1.115,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "controller_button_press_2.wav",
+      "stem": "controller_button_press_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/controller_button_press_2.wav",
+      "size_bytes": 243756,
+      "duration_seconds": 1.382,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "drink_slurp.wav",
+      "stem": "drink_slurp",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/drink_slurp.wav",
+      "size_bytes": 180268,
+      "duration_seconds": 1.022,
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "elastic_twang.wav",
+      "stem": "elastic_twang",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/elastic_twang.wav",
+      "size_bytes": 47148,
+      "duration_seconds": 0.267,
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "finger_click.wav",
+      "stem": "finger_click",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/finger_click.wav",
+      "size_bytes": 94252,
+      "duration_seconds": 0.534,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "ghost_long.wav",
+      "stem": "ghost_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/ghost_long.wav",
+      "size_bytes": 367212,
+      "duration_seconds": 4.163,
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "itching.wav",
+      "stem": "itching",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/itching.wav",
+      "size_bytes": 231468,
+      "duration_seconds": 1.312,
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "keyboard_typing.wav",
+      "stem": "keyboard_typing",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/keyboard_typing.wav",
+      "size_bytes": 638060,
+      "duration_seconds": 3.617,
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "light_match.wav",
+      "stem": "light_match",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/light_match.wav",
+      "size_bytes": 225324,
+      "duration_seconds": 1.277,
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "munching_food.wav",
+      "stem": "munching_food",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/munching_food.wav",
+      "size_bytes": 202796,
+      "duration_seconds": 1.149,
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "paste.wav",
+      "stem": "paste",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/paste.wav",
+      "size_bytes": 145452,
+      "duration_seconds": 0.824,
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "record_scratch.wav",
+      "stem": "record_scratch",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/record_scratch.wav",
+      "size_bytes": 54348,
+      "duration_seconds": 0.308,
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "slide_and_click.wav",
+      "stem": "slide_and_click",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/slide_and_click.wav",
+      "size_bytes": 143404,
+      "duration_seconds": 0.813,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "snap.wav",
+      "stem": "snap",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/snap.wav",
+      "size_bytes": 45100,
+      "duration_seconds": 0.255,
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "subtle_knock.wav",
+      "stem": "subtle_knock",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/subtle_knock.wav",
+      "size_bytes": 65580,
+      "duration_seconds": 0.372,
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "white_noise_long.wav",
+      "stem": "white_noise_long",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/white_noise_long.wav",
+      "size_bytes": 1063196,
+      "duration_seconds": 6.027,
+      "tags": [
+        "hit_enemy",
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "white_noise_short.wav",
+      "stem": "white_noise_short",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/white_noise_short.wav",
+      "size_bytes": 191824,
+      "duration_seconds": 1.087,
+      "tags": [
+        "hit_enemy",
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "whoosh_1.wav",
+      "stem": "whoosh_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/whoosh_1.wav",
+      "size_bytes": 57388,
+      "duration_seconds": 0.325,
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Other",
+      "name": "whoosh_2.wav",
+      "stem": "whoosh_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Other/whoosh_2.wav",
+      "size_bytes": 135212,
+      "duration_seconds": 0.766,
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "coin.wav",
+      "stem": "coin",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/coin.wav",
+      "size_bytes": 29208,
+      "duration_seconds": 0.331,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "coin_2.wav",
+      "stem": "coin_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/coin_2.wav",
+      "size_bytes": 29208,
+      "duration_seconds": 0.331,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "coin_3.wav",
+      "stem": "coin_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/coin_3.wav",
+      "size_bytes": 44752,
+      "duration_seconds": 0.507,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "coin_4.wav",
+      "stem": "coin_4",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/coin_4.wav",
+      "size_bytes": 42072,
+      "duration_seconds": 0.477,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "explosion_large.wav",
+      "stem": "explosion_large",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/explosion_large.wav",
+      "size_bytes": 117410,
+      "duration_seconds": 1.331,
+      "tags": [
+        "retro"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "explosion_medium.wav",
+      "stem": "explosion_medium",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/explosion_medium.wav",
+      "size_bytes": 106990,
+      "duration_seconds": 1.213,
+      "tags": [
+        "retro"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "explosion_quick.wav",
+      "stem": "explosion_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/explosion_quick.wav",
+      "size_bytes": 57510,
+      "duration_seconds": 0.652,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "explosion_small.wav",
+      "stem": "explosion_small",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/explosion_small.wav",
+      "size_bytes": 61926,
+      "duration_seconds": 0.702,
+      "tags": [
+        "retro"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "fall_quick.wav",
+      "stem": "fall_quick",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/fall_quick.wav",
+      "size_bytes": 37964,
+      "duration_seconds": 0.43,
+      "tags": [
+        "death",
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "ghost.wav",
+      "stem": "ghost",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/ghost.wav",
+      "size_bytes": 58006,
+      "duration_seconds": 0.657,
+      "tags": [
+        "retro"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "grow_big.wav",
+      "stem": "grow_big",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/grow_big.wav",
+      "size_bytes": 94534,
+      "duration_seconds": 1.071,
+      "tags": [
+        "retro"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "hurt.wav",
+      "stem": "hurt",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/hurt.wav",
+      "size_bytes": 18996,
+      "duration_seconds": 0.215,
+      "tags": [
+        "hit_player"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "jump.wav",
+      "stem": "jump",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/jump.wav",
+      "size_bytes": 49198,
+      "duration_seconds": 0.557,
+      "tags": [
+        "retro"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "jump_short.wav",
+      "stem": "jump_short",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/jump_short.wav",
+      "size_bytes": 29224,
+      "duration_seconds": 0.331,
+      "tags": [
+        "retro"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "jump_square.wav",
+      "stem": "jump_square",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/jump_square.wav",
+      "size_bytes": 54454,
+      "duration_seconds": 0.617,
+      "tags": [
+        "retro"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "lose.wav",
+      "stem": "lose",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/lose.wav",
+      "size_bytes": 93740,
+      "duration_seconds": 1.062,
+      "tags": [
+        "retro"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "menu_blip.wav",
+      "stem": "menu_blip",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/menu_blip.wav",
+      "size_bytes": 8488,
+      "duration_seconds": 0.096,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "power_down.wav",
+      "stem": "power_down",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/power_down.wav",
+      "size_bytes": 45712,
+      "duration_seconds": 0.518,
+      "tags": [
+        "magic"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "power_down_2.wav",
+      "stem": "power_down_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/power_down_2.wav",
+      "size_bytes": 29738,
+      "duration_seconds": 0.337,
+      "tags": [
+        "magic"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "power_up.wav",
+      "stem": "power_up",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/power_up.wav",
+      "size_bytes": 56344,
+      "duration_seconds": 0.638,
+      "tags": [
+        "magic"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "power_up_2.wav",
+      "stem": "power_up_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/power_up_2.wav",
+      "size_bytes": 64716,
+      "duration_seconds": 0.733,
+      "tags": [
+        "magic"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "punch.wav",
+      "stem": "punch",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/punch.wav",
+      "size_bytes": 14160,
+      "duration_seconds": 0.16,
+      "tags": [
+        "attack",
+        "hit_enemy"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "throw.wav",
+      "stem": "throw",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/throw.wav",
+      "size_bytes": 31068,
+      "duration_seconds": 0.352,
+      "tags": [
+        "retro"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "undesired_effect.wav",
+      "stem": "undesired_effect",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/undesired_effect.wav",
+      "size_bytes": 42428,
+      "duration_seconds": 0.481,
+      "tags": [
+        "retro"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Retro",
+      "name": "wobble.wav",
+      "stem": "wobble",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Retro/wobble.wav",
+      "size_bytes": 24752,
+      "duration_seconds": 0.28,
+      "tags": [
+        "retro"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "cancel.wav",
+      "stem": "cancel",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/cancel.wav",
+      "size_bytes": 26856,
+      "duration_seconds": 0.152,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "click_double_off.wav",
+      "stem": "click_double_off",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/click_double_off.wav",
+      "size_bytes": 65580,
+      "duration_seconds": 0.372,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "click_double_off_2.wav",
+      "stem": "click_double_off_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/click_double_off_2.wav",
+      "size_bytes": 110124,
+      "duration_seconds": 0.624,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "click_double_on.wav",
+      "stem": "click_double_on",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/click_double_on.wav",
+      "size_bytes": 53292,
+      "duration_seconds": 0.302,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "click_double_on_2.wav",
+      "stem": "click_double_on_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/click_double_on_2.wav",
+      "size_bytes": 94252,
+      "duration_seconds": 0.534,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "pop_1.wav",
+      "stem": "pop_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/pop_1.wav",
+      "size_bytes": 38956,
+      "duration_seconds": 0.221,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "pop_2.wav",
+      "stem": "pop_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/pop_2.wav",
+      "size_bytes": 32812,
+      "duration_seconds": 0.186,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "pop_3.wav",
+      "stem": "pop_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/pop_3.wav",
+      "size_bytes": 41004,
+      "duration_seconds": 0.232,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "pop_4.wav",
+      "stem": "pop_4",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/pop_4.wav",
+      "size_bytes": 51244,
+      "duration_seconds": 0.29,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "sci_fi_cancel.wav",
+      "stem": "sci_fi_cancel",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/sci_fi_cancel.wav",
+      "size_bytes": 275028,
+      "duration_seconds": 1.559,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "sci_fi_confirm.wav",
+      "stem": "sci_fi_confirm",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/sci_fi_confirm.wav",
+      "size_bytes": 263764,
+      "duration_seconds": 1.495,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "sci_fi_deselect.wav",
+      "stem": "sci_fi_deselect",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/sci_fi_deselect.wav",
+      "size_bytes": 286292,
+      "duration_seconds": 1.623,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "sci_fi_disallow.wav",
+      "stem": "sci_fi_disallow",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/sci_fi_disallow.wav",
+      "size_bytes": 263720,
+      "duration_seconds": 1.495,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "sci_fi_error.wav",
+      "stem": "sci_fi_error",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/sci_fi_error.wav",
+      "size_bytes": 286212,
+      "duration_seconds": 1.622,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "sci_fi_hover.wav",
+      "stem": "sci_fi_hover",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/sci_fi_hover.wav",
+      "size_bytes": 133320,
+      "duration_seconds": 0.756,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "sci_fi_hover_high.wav",
+      "stem": "sci_fi_hover_high",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/sci_fi_hover_high.wav",
+      "size_bytes": 101428,
+      "duration_seconds": 0.575,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "sci_fi_select.wav",
+      "stem": "sci_fi_select",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/sci_fi_select.wav",
+      "size_bytes": 275028,
+      "duration_seconds": 1.559,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "sci_fi_select_big.wav",
+      "stem": "sci_fi_select_big",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/sci_fi_select_big.wav",
+      "size_bytes": 297044,
+      "duration_seconds": 1.684,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "select_1.wav",
+      "stem": "select_1",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/select_1.wav",
+      "size_bytes": 22500,
+      "duration_seconds": 0.127,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "select_2.wav",
+      "stem": "select_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/select_2.wav",
+      "size_bytes": 31264,
+      "duration_seconds": 0.177,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "select_3.wav",
+      "stem": "select_3",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/select_3.wav",
+      "size_bytes": 31244,
+      "duration_seconds": 0.177,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "select_4.wav",
+      "stem": "select_4",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/select_4.wav",
+      "size_bytes": 31172,
+      "duration_seconds": 0.176,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "synth_cancel.wav",
+      "stem": "synth_cancel",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/synth_cancel.wav",
+      "size_bytes": 426960,
+      "duration_seconds": 2.42,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "synth_confirmation.wav",
+      "stem": "synth_confirmation",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/synth_confirmation.wav",
+      "size_bytes": 445868,
+      "duration_seconds": 2.527,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "synth_error.wav",
+      "stem": "synth_error",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/synth_error.wav",
+      "size_bytes": 376824,
+      "duration_seconds": 2.136,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "synth_process_complete.wav",
+      "stem": "synth_process_complete",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/synth_process_complete.wav",
+      "size_bytes": 399448,
+      "duration_seconds": 2.264,
+      "tags": [
+        "quest",
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "synth_shut_down.wav",
+      "stem": "synth_shut_down",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/synth_shut_down.wav",
+      "size_bytes": 455968,
+      "duration_seconds": 2.585,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "synth_warning.wav",
+      "stem": "synth_warning",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/synth_warning.wav",
+      "size_bytes": 372596,
+      "duration_seconds": 2.112,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "toggle_off.wav",
+      "stem": "toggle_off",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/toggle_off.wav",
+      "size_bytes": 75820,
+      "duration_seconds": 0.43,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "UI",
+      "name": "toggle_on.wav",
+      "stem": "toggle_on",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/UI/toggle_on.wav",
+      "size_bytes": 84012,
+      "duration_seconds": 0.476,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Weapons",
+      "name": "harsh_thud.wav",
+      "stem": "harsh_thud",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/harsh_thud.wav",
+      "size_bytes": 89644,
+      "duration_seconds": 0.508,
+      "tags": [
+        "attack",
+        "hit_enemy"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Weapons",
+      "name": "shot_muffled.wav",
+      "stem": "shot_muffled",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/shot_muffled.wav",
+      "size_bytes": 98860,
+      "duration_seconds": 0.56,
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Weapons",
+      "name": "sword_clash.wav",
+      "stem": "sword_clash",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/sword_clash.wav",
+      "size_bytes": 61484,
+      "duration_seconds": 0.348,
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Weapons",
+      "name": "sword_clash_2.wav",
+      "stem": "sword_clash_2",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/sword_clash_2.wav",
+      "size_bytes": 47148,
+      "duration_seconds": 0.267,
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Weapons",
+      "name": "sword_drop.wav",
+      "stem": "sword_drop",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/sword_drop.wav",
+      "size_bytes": 170028,
+      "duration_seconds": 0.964,
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Weapons",
+      "name": "sword_light.wav",
+      "stem": "sword_light",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/sword_light.wav",
+      "size_bytes": 63532,
+      "duration_seconds": 0.36,
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Weapons",
+      "name": "sword_sharpen.wav",
+      "stem": "sword_sharpen",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/sword_sharpen.wav",
+      "size_bytes": 98348,
+      "duration_seconds": 0.557,
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Weapons",
+      "name": "sword_slice.wav",
+      "stem": "sword_slice",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/sword_slice.wav",
+      "size_bytes": 135212,
+      "duration_seconds": 0.766,
+      "tags": [
+        "attack",
+        "magic"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Weapons",
+      "name": "sword_unsheath.wav",
+      "stem": "sword_unsheath",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/sword_unsheath.wav",
+      "size_bytes": 124972,
+      "duration_seconds": 0.708,
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Weapons",
+      "name": "weapon_drop.wav",
+      "stem": "weapon_drop",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/weapon_drop.wav",
+      "size_bytes": 137260,
+      "duration_seconds": 0.778,
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Weapons",
+      "name": "weapon_equip.wav",
+      "stem": "weapon_equip",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/weapon_equip.wav",
+      "size_bytes": 141356,
+      "duration_seconds": 0.801,
+      "tags": [
+        "attack",
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Weapons",
+      "name": "weapon_equip_short.wav",
+      "stem": "weapon_equip_short",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/weapon_equip_short.wav",
+      "size_bytes": 51244,
+      "duration_seconds": 0.29,
+      "tags": [
+        "attack",
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Weapons",
+      "name": "weapon_pick_up.wav",
+      "stem": "weapon_pick_up",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/weapon_pick_up.wav",
+      "size_bytes": 159788,
+      "duration_seconds": 0.906,
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Weapons",
+      "name": "weapon_unequip.wav",
+      "stem": "weapon_unequip",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/weapon_unequip.wav",
+      "size_bytes": 116780,
+      "duration_seconds": 0.662,
+      "tags": [
+        "attack",
+        "ui"
+      ]
+    },
+    {
+      "source": "400 Sounds Pack",
+      "category": "Weapons",
+      "name": "weapon_upgrade.wav",
+      "stem": "weapon_upgrade",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/400 Sounds Pack/Weapons/weapon_upgrade.wav",
+      "size_bytes": 139308,
+      "duration_seconds": 0.789,
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "source": "custom",
+      "category": "custom_user_added",
+      "name": "bubble pop.wav",
+      "stem": "bubble pop",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/bubble pop.wav",
+      "size_bytes": 176478,
+      "duration_seconds": 1.0,
+      "tags": [
+        "custom"
+      ]
+    },
+    {
+      "source": "custom",
+      "category": "custom_user_added",
+      "name": "ding menu aigu.wav",
+      "stem": "ding menu aigu",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/ding menu aigu.wav",
+      "size_bytes": 302478,
+      "duration_seconds": 1.714,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "custom",
+      "category": "custom_user_added",
+      "name": "ding menu grave.wav",
+      "stem": "ding menu grave",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/ding menu grave.wav",
+      "size_bytes": 302478,
+      "duration_seconds": 1.714,
+      "tags": [
+        "ui"
+      ]
+    },
+    {
+      "source": "custom",
+      "category": "custom_user_added",
+      "name": "hit_sort.wav",
+      "stem": "hit_sort",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/hit_sort.wav",
+      "size_bytes": 176478,
+      "duration_seconds": 1.0,
+      "tags": [
+        "hit_enemy",
+        "hit_player"
+      ]
+    },
+    {
+      "source": "custom",
+      "category": "custom_user_added",
+      "name": "level up.wav",
+      "stem": "level up",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/level up.wav",
+      "size_bytes": 176478,
+      "duration_seconds": 1.0,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "custom",
+      "category": "custom_user_added",
+      "name": "lvl_up.wav",
+      "stem": "lvl_up",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/lvl_up.wav",
+      "size_bytes": 302478,
+      "duration_seconds": 1.714,
+      "tags": [
+        "custom"
+      ]
+    },
+    {
+      "source": "custom",
+      "category": "custom_user_added",
+      "name": "quest accepted.wav",
+      "stem": "quest accepted",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/quest accepted.wav",
+      "size_bytes": 213346,
+      "duration_seconds": 1.209,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "custom",
+      "category": "custom_user_added",
+      "name": "quest_complete.wav",
+      "stem": "quest_complete",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/quest_complete.wav",
+      "size_bytes": 201862,
+      "duration_seconds": 1.144,
+      "tags": [
+        "quest"
+      ]
+    },
+    {
+      "source": "custom",
+      "category": "custom_user_added",
+      "name": "rare item.wav",
+      "stem": "rare item",
+      "extension": ".wav",
+      "relative_path": "action_rpg_mode/assets/sounds/rare item.wav",
+      "size_bytes": 176478,
+      "duration_seconds": 1.0,
+      "tags": [
+        "loot",
+        "shop"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,482 @@
+[
+  {
+    "file": "shop_component_01.png",
+    "box": [
+      67,
+      7,
+      356,
+      268
+    ],
+    "pixels": 63858
+  },
+  {
+    "file": "shop_component_02.png",
+    "box": [
+      379,
+      56,
+      603,
+      268
+    ],
+    "pixels": 38705
+  },
+  {
+    "file": "shop_component_03.png",
+    "box": [
+      633,
+      55,
+      891,
+      286
+    ],
+    "pixels": 36133
+  },
+  {
+    "file": "shop_component_04.png",
+    "box": [
+      1048,
+      44,
+      1259,
+      274
+    ],
+    "pixels": 35103
+  },
+  {
+    "file": "shop_component_05.png",
+    "box": [
+      1277,
+      55,
+      1485,
+      266
+    ],
+    "pixels": 27892
+  },
+  {
+    "file": "shop_component_06.png",
+    "box": [
+      900,
+      91,
+      1022,
+      281
+    ],
+    "pixels": 12357
+  },
+  {
+    "file": "shop_component_07.png",
+    "box": [
+      23,
+      243,
+      634,
+      456
+    ],
+    "pixels": 102015
+  },
+  {
+    "file": "shop_component_08.png",
+    "box": [
+      664,
+      310,
+      808,
+      470
+    ],
+    "pixels": 18051
+  },
+  {
+    "file": "shop_component_09.png",
+    "box": [
+      1205,
+      294,
+      1431,
+      474
+    ],
+    "pixels": 34729
+  },
+  {
+    "file": "shop_component_10.png",
+    "box": [
+      853,
+      329,
+      1013,
+      468
+    ],
+    "pixels": 15956
+  },
+  {
+    "file": "shop_component_11.png",
+    "box": [
+      1075,
+      321,
+      1153,
+      471
+    ],
+    "pixels": 5626
+  },
+  {
+    "file": "shop_component_12.png",
+    "box": [
+      540,
+      458,
+      811,
+      682
+    ],
+    "pixels": 45271
+  },
+  {
+    "file": "shop_component_13.png",
+    "box": [
+      35,
+      478,
+      272,
+      676
+    ],
+    "pixels": 38353
+  },
+  {
+    "file": "shop_component_14.png",
+    "box": [
+      296,
+      490,
+      527,
+      674
+    ],
+    "pixels": 19670
+  },
+  {
+    "file": "shop_component_15.png",
+    "box": [
+      825,
+      530,
+      1004,
+      673
+    ],
+    "pixels": 18561
+  },
+  {
+    "file": "shop_component_16.png",
+    "box": [
+      1026,
+      510,
+      1215,
+      661
+    ],
+    "pixels": 19732
+  },
+  {
+    "file": "shop_component_17.png",
+    "box": [
+      1213,
+      510,
+      1330,
+      660
+    ],
+    "pixels": 12785
+  },
+  {
+    "file": "shop_component_18.png",
+    "box": [
+      1364,
+      487,
+      1473,
+      671
+    ],
+    "pixels": 16325
+  },
+  {
+    "file": "shop_component_19.png",
+    "box": [
+      28,
+      694,
+      133,
+      803
+    ],
+    "pixels": 9010
+  },
+  {
+    "file": "shop_component_20.png",
+    "box": [
+      132,
+      694,
+      235,
+      803
+    ],
+    "pixels": 8813
+  },
+  {
+    "file": "shop_component_21.png",
+    "box": [
+      234,
+      694,
+      334,
+      803
+    ],
+    "pixels": 8438
+  },
+  {
+    "file": "shop_component_22.png",
+    "box": [
+      333,
+      694,
+      437,
+      803
+    ],
+    "pixels": 8909
+  },
+  {
+    "file": "shop_component_23.png",
+    "box": [
+      438,
+      694,
+      544,
+      803
+    ],
+    "pixels": 9102
+  },
+  {
+    "file": "shop_component_24.png",
+    "box": [
+      543,
+      694,
+      649,
+      803
+    ],
+    "pixels": 9106
+  },
+  {
+    "file": "shop_component_25.png",
+    "box": [
+      648,
+      694,
+      753,
+      803
+    ],
+    "pixels": 9007
+  },
+  {
+    "file": "shop_component_26.png",
+    "box": [
+      766,
+      681,
+      870,
+      818
+    ],
+    "pixels": 8915
+  },
+  {
+    "file": "shop_component_27.png",
+    "box": [
+      881,
+      702,
+      988,
+      815
+    ],
+    "pixels": 7221
+  },
+  {
+    "file": "shop_component_28.png",
+    "box": [
+      1014,
+      708,
+      1138,
+      809
+    ],
+    "pixels": 9853
+  },
+  {
+    "file": "shop_component_29.png",
+    "box": [
+      1146,
+      697,
+      1229,
+      835
+    ],
+    "pixels": 7136
+  },
+  {
+    "file": "shop_component_30.png",
+    "box": [
+      1249,
+      697,
+      1369,
+      819
+    ],
+    "pixels": 9821
+  },
+  {
+    "file": "shop_component_31.png",
+    "box": [
+      28,
+      805,
+      133,
+      898
+    ],
+    "pixels": 7470
+  },
+  {
+    "file": "shop_component_32.png",
+    "box": [
+      133,
+      805,
+      234,
+      898
+    ],
+    "pixels": 7198
+  },
+  {
+    "file": "shop_component_33.png",
+    "box": [
+      234,
+      805,
+      333,
+      898
+    ],
+    "pixels": 7037
+  },
+  {
+    "file": "shop_component_34.png",
+    "box": [
+      333,
+      805,
+      437,
+      898
+    ],
+    "pixels": 7440
+  },
+  {
+    "file": "shop_component_35.png",
+    "box": [
+      439,
+      805,
+      543,
+      898
+    ],
+    "pixels": 7389
+  },
+  {
+    "file": "shop_component_36.png",
+    "box": [
+      543,
+      805,
+      649,
+      898
+    ],
+    "pixels": 7523
+  },
+  {
+    "file": "shop_component_37.png",
+    "box": [
+      649,
+      805,
+      753,
+      898
+    ],
+    "pixels": 7442
+  },
+  {
+    "file": "shop_component_38.png",
+    "box": [
+      675,
+      831,
+      800,
+      988
+    ],
+    "pixels": 9771
+  },
+  {
+    "file": "shop_component_39.png",
+    "box": [
+      813,
+      824,
+      941,
+      969
+    ],
+    "pixels": 14154
+  },
+  {
+    "file": "shop_component_40.png",
+    "box": [
+      1084,
+      840,
+      1210,
+      979
+    ],
+    "pixels": 14469
+  },
+  {
+    "file": "shop_component_41.png",
+    "box": [
+      1219,
+      840,
+      1343,
+      979
+    ],
+    "pixels": 14152
+  },
+  {
+    "file": "shop_component_42.png",
+    "box": [
+      1353,
+      840,
+      1490,
+      979
+    ],
+    "pixels": 15815
+  },
+  {
+    "file": "shop_component_43.png",
+    "box": [
+      28,
+      900,
+      132,
+      989
+    ],
+    "pixels": 6719
+  },
+  {
+    "file": "shop_component_44.png",
+    "box": [
+      133,
+      900,
+      233,
+      990
+    ],
+    "pixels": 6483
+  },
+  {
+    "file": "shop_component_45.png",
+    "box": [
+      235,
+      900,
+      371,
+      989
+    ],
+    "pixels": 9181
+  },
+  {
+    "file": "shop_component_46.png",
+    "box": [
+      375,
+      906,
+      480,
+      988
+    ],
+    "pixels": 6287
+  },
+  {
+    "file": "shop_component_47.png",
+    "box": [
+      482,
+      906,
+      659,
+      988
+    ],
+    "pixels": 11172
+  },
+  {
+    "file": "shop_component_48.png",
+    "box": [
+      956,
+      876,
+      1070,
+      976
+    ],
+    "pixels": 8782
+  }
+]

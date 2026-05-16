@@ -1,0 +1,28 @@
+{
+  "created": "2026-05-15",
+  "frames": 10,
+  "rows": 8,
+  "cell": 256,
+  "direction_order": [
+    "down",
+    "down_right",
+    "right",
+    "up_right",
+    "up",
+    "up_left",
+    "left",
+    "down_left"
+  ],
+  "note": "v3 procedural directional effects: fixed vertical/diagonal inversions, wider warrior slash, bow draw/release sequence.",
+  "outputs": [
+    "action_rpg_mode\\assets\\imagegen_generated\\directional_combat_v3\\warrior\\attack_basic\\warrior_attack_basic_8dir_10frame_sheet_v3.png",
+    "action_rpg_mode\\assets\\imagegen_generated\\directional_combat_v3\\warrior\\skill_1\\warrior_skill_1_8dir_10frame_sheet_v3.png",
+    "action_rpg_mode\\assets\\imagegen_generated\\directional_combat_v3\\warrior\\skill_2\\warrior_skill_2_8dir_10frame_sheet_v3.png",
+    "action_rpg_mode\\assets\\imagegen_generated\\directional_combat_v3\\mage\\attack_basic\\mage_attack_basic_8dir_10frame_sheet_v3.png",
+    "action_rpg_mode\\assets\\imagegen_generated\\directional_combat_v3\\mage\\skill_1\\mage_skill_1_8dir_10frame_sheet_v3.png",
+    "action_rpg_mode\\assets\\imagegen_generated\\directional_combat_v3\\mage\\skill_2\\mage_skill_2_8dir_10frame_sheet_v3.png",
+    "action_rpg_mode\\assets\\imagegen_generated\\directional_combat_v3\\hunter\\attack_basic\\hunter_attack_basic_8dir_10frame_sheet_v3.png",
+    "action_rpg_mode\\assets\\imagegen_generated\\directional_combat_v3\\hunter\\skill_1\\hunter_skill_1_8dir_10frame_sheet_v3.png",
+    "action_rpg_mode\\assets\\imagegen_generated\\directional_combat_v3\\hunter\\skill_2\\hunter_skill_2_8dir_10frame_sheet_v3.png"
+  ]
+}

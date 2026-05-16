@@ -1,0 +1,79 @@
+[
+  {
+    "file": "portrait_warrior_class_v1.png",
+    "box": [
+      18,
+      22,
+      496,
+      507,
+      148530
+    ],
+    "pixels": 148530
+  },
+  {
+    "file": "portrait_mage_class_v1.png",
+    "box": [
+      535,
+      31,
+      986,
+      507,
+      138542
+    ],
+    "pixels": 138542
+  },
+  {
+    "file": "portrait_hunter_class_v1.png",
+    "box": [
+      1016,
+      34,
+      1433,
+      495,
+      133282
+    ],
+    "pixels": 133282
+  },
+  {
+    "file": "portrait_marcus_vane_v1.png",
+    "box": [
+      14,
+      542,
+      394,
+      978,
+      105281
+    ],
+    "pixels": 105281
+  },
+  {
+    "file": "portrait_elara_v1.png",
+    "box": [
+      403,
+      556,
+      743,
+      980,
+      108724
+    ],
+    "pixels": 108724
+  },
+  {
+    "file": "portrait_prefet_morel_v1.png",
+    "box": [
+      761,
+      541,
+      1108,
+      976,
+      94044
+    ],
+    "pixels": 94044
+  },
+  {
+    "file": "portrait_maitre_village_v1.png",
+    "box": [
+      1117,
+      550,
+      1502,
+      978,
+      104938
+    ],
+    "pixels": 104938
+  }
+]

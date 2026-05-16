@@ -1,8 +1,8 @@
-
+﻿
 const TILE_SIZE = 48;
 const DEFAULT_WORLD_TILES = { w: 92, h: 58 };
 const MAX_ENEMIES = 120;
-const ASSET_VERSION = "20260429_bigger_maps_talents1";
+const ASSET_VERSION = "20260515_warrior_dr_test1";
 
 const RESOURCE_RULES = {
   runStaminaPerSecond: 24,
@@ -645,6 +645,40 @@ const ZONE_CHIEF_IDLE_SHEETS = {
   port: "./assets/region_assets/npcs/main/processed_idle/port_chief_female_transparent.png"
 };
 
+const SHOP_INTERIOR_ASSETS = {
+  shelfWeapons: "./assets/imagegen_generated/shop/components_v1/shop_component_03.png",
+  shelfPotions: "./assets/imagegen_generated/shop/components_v1/shop_component_02.png",
+  shelfGeneral: "./assets/imagegen_generated/shop/components_v1/shop_component_01.png",
+  crates: "./assets/imagegen_generated/shop/components_v1/shop_component_04.png",
+  barrels: "./assets/imagegen_generated/shop/components_v1/shop_component_05.png",
+  armorStand: "./assets/imagegen_generated/shop/components_v1/shop_component_06.png",
+  goldChest: "./assets/imagegen_generated/shop/components_v1/shop_component_08.png",
+  redRug: "./assets/imagegen_generated/shop/components_v1/shop_component_09.png",
+  ledger: "./assets/imagegen_generated/shop/components_v1/shop_component_10.png",
+  lantern: "./assets/imagegen_generated/shop/components_v1/shop_component_11.png",
+  forge: "./assets/imagegen_generated/shop/components_v1/shop_component_12.png",
+  displayCounter: "./assets/imagegen_generated/shop/components_v1/shop_component_13.png",
+  shopSign: "./assets/imagegen_generated/shop/components_v1/shop_component_14.png",
+  anvil: "./assets/imagegen_generated/shop/components_v1/shop_component_15.png",
+  sacks: "./assets/imagegen_generated/shop/components_v1/shop_component_16.png",
+  workbench: "./assets/imagegen_generated/shop/components_v1/shop_component_17.png",
+  woodFloorA: "./assets/imagegen_generated/shop/components_v1/shop_component_31.png",
+  woodFloorB: "./assets/imagegen_generated/shop/components_v1/shop_component_32.png",
+  woodFloorC: "./assets/imagegen_generated/shop/components_v1/shop_component_33.png",
+  stoneFloorA: "./assets/imagegen_generated/shop/components_v1/shop_component_23.png",
+  stoneFloorB: "./assets/imagegen_generated/shop/components_v1/shop_component_24.png",
+  stoneFloorC: "./assets/imagegen_generated/shop/components_v1/shop_component_25.png",
+  wallStraight: "./assets/imagegen_generated/shop/components_v1/shop_component_28.png",
+  wallCornerA: "./assets/imagegen_generated/shop/components_v1/shop_component_29.png",
+  wallCornerB: "./assets/imagegen_generated/shop/components_v1/shop_component_30.png",
+  door: "./assets/imagegen_generated/shop/components_v1/shop_component_39.png",
+  counterSmall: "./assets/imagegen_generated/shop/components_v1/shop_component_43.png",
+  counterMid: "./assets/imagegen_generated/shop/components_v1/shop_component_45.png",
+  counterLong: "./assets/imagegen_generated/shop/components_v1/shop_component_47.png",
+  blacksmithIdle: "./assets/imagegen_generated/shop/blacksmith_v1/blacksmith_idle_6f_v1.png",
+  blacksmithPortrait: "./assets/imagegen_generated/shop/blacksmith_v1/blacksmith_portrait_v1.png"
+};
+
 function getChiefNpcIdleSheetPath(region = null) {
   const type = region?.type || region?.id || "village";
   return ZONE_CHIEF_IDLE_SHEETS[type] || ZONE_CHIEF_IDLE_SHEETS.village;
@@ -682,7 +716,8 @@ function getRegionAssetPreloadPaths() {
     ...Object.values(VILLAGE_TILE_PATHS).flat(),
     ...Object.values(MAIN_NPC_SPRITE_PATHS),
     ...Object.values(REGION_MAIN_NPC_SPRITE_PATHS),
-    ...Object.values(ZONE_CHIEF_IDLE_SHEETS)
+    ...Object.values(ZONE_CHIEF_IDLE_SHEETS),
+    ...Object.values(SHOP_INTERIOR_ASSETS)
   ].filter(Boolean))];
 }
 // REGION_ASSETS_END
@@ -721,7 +756,7 @@ const TUTORIAL_STEPS = [
   { title: "Se d\u00e9placer", body: "Utilise ZQSD ou les fl\u00e8ches pour marcher. Le h\u00e9ros garde maintenant la derni\u00e8re direction au repos.", keys: ["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"], label: "Appuie sur une touche de d\u00e9placement" },
   { title: "Courir", body: "Maintiens MAJ pendant un d\u00e9placement pour courir. Cela consomme la stamina, qui revient apr\u00e8s une courte pause.", keys: ["ShiftLeft", "ShiftRight"], label: "Appuie sur MAJ" },
   { title: "Attaque de base", body: "Appuie sur ESPACE pour attaquer dans la direction regard\u00e9e. Les attaques physiques consomment de la stamina.", keys: ["Space"], label: "Appuie sur ESPACE" },
-  { title: "Skill principal", body: "La touche F sert au premier skill de classe, mais il se débloque au niveau 3. Au début, utilise surtout ESPACE et ta barre rapide.", keys: ["KeyF"], label: "Appuie sur F" },
+  { title: "Skill principal", body: "La touche F sert au premier skill de classe, mais il se dÃƒÂ©bloque au niveau 3. Au dÃƒÂ©but, utilise surtout ESPACE et ta barre rapide.", keys: ["KeyF"], label: "Appuie sur F" },
   { title: "Inventaire", body: "Appuie sur I pour ouvrir ton inventaire 6x7 et \u00e9quiper les objets trouv\u00e9s. Le tutoriel ne l\u2019ouvre pas ici, il v\u00e9rifie juste la touche.", keys: ["KeyI"], label: "Appuie sur I" },
   { title: "Interaction", body: "Appuie sur E pr\u00e8s d\u2019un marchand, d\u2019un conseiller ou de la porte finale. Les dialogues restent l\u2019histoire, pas tout le gameplay.", keys: ["KeyE"], label: "Appuie sur E" },
   { title: "Pause", body: "Appuie sur P pour ouvrir le menu pause pendant le jeu. Tu y gardes les contr\u00f4les musique.", keys: ["KeyP"], label: "Appuie sur P pour terminer le tutoriel" }
@@ -739,6 +774,10 @@ const FRAME_DIRECTION_PATH = {
   downLeft: "down_left"
 };
 const EIGHT_DIRECTION_FRAME_SEQUENCE = [0, 1, 2, 3, 4, 5];
+const WALK_FRAME_SEQUENCE = [0, 1, 2, 3, 4, 5, 4, 3, 2, 1];
+const COMBAT_DIRECTION_FRAME_SEQUENCE = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const PLAYER_COMBAT_ACTIONS = new Set(["attack_basic", "skill_1", "skill_2"]);
+const PLAYER_ACTION_VISUAL_DURATIONS = { attack_basic: 0.48, skill_1: 0.58, skill_2: 0.68 };
 const EIGHT_DIRECTION_ROW_MAP = {
   down: 0,
   downRight: 1,
@@ -750,28 +789,28 @@ const EIGHT_DIRECTION_ROW_MAP = {
   downLeft: 7
 };
 
-function createEightDirectionFrames() {
+function createEightDirectionFrames(frameSequence = EIGHT_DIRECTION_FRAME_SEQUENCE) {
   return {
-    down: { row: 0, idle: 0, seq: EIGHT_DIRECTION_FRAME_SEQUENCE },
-    downRight: { row: 1, idle: 0, seq: EIGHT_DIRECTION_FRAME_SEQUENCE },
-    right: { row: 2, idle: 0, seq: EIGHT_DIRECTION_FRAME_SEQUENCE },
-    upRight: { row: 3, idle: 0, seq: EIGHT_DIRECTION_FRAME_SEQUENCE },
-    up: { row: 4, idle: 0, seq: EIGHT_DIRECTION_FRAME_SEQUENCE },
-    upLeft: { row: 5, idle: 0, seq: EIGHT_DIRECTION_FRAME_SEQUENCE },
-    left: { row: 6, idle: 0, seq: EIGHT_DIRECTION_FRAME_SEQUENCE },
-    downLeft: { row: 7, idle: 0, seq: EIGHT_DIRECTION_FRAME_SEQUENCE }
+    down: { row: 0, idle: 0, seq: frameSequence },
+    downRight: { row: 1, idle: 0, seq: frameSequence },
+    right: { row: 2, idle: 0, seq: frameSequence },
+    upRight: { row: 3, idle: 0, seq: frameSequence },
+    up: { row: 4, idle: 0, seq: frameSequence },
+    upLeft: { row: 5, idle: 0, seq: frameSequence },
+    left: { row: 6, idle: 0, seq: frameSequence },
+    downLeft: { row: 7, idle: 0, seq: frameSequence }
   };
 }
 
-function createEightDirectionProfile(yAnchor = 0.9) {
+function createEightDirectionProfile(yAnchor = 0.9, frameSequence = EIGHT_DIRECTION_FRAME_SEQUENCE) {
   return {
-    cols: 6,
+    cols: frameSequence.length,
     rows: 8,
     yAnchor,
-    directionFrames: createEightDirectionFrames(),
+    directionFrames: createEightDirectionFrames(frameSequence),
     rowMap: EIGHT_DIRECTION_ROW_MAP,
-    horizontalFrameSequence: EIGHT_DIRECTION_FRAME_SEQUENCE,
-    verticalFrameSequence: EIGHT_DIRECTION_FRAME_SEQUENCE,
+    horizontalFrameSequence: frameSequence,
+    verticalFrameSequence: frameSequence,
     mirrorLeft: false,
     trueDiagonals: true
   };
@@ -783,8 +822,91 @@ const PLAYER_SHEET_PROFILES = {
   hunter: createEightDirectionProfile(0.9)
 };
 
+const PLAYER_COMBAT_SHEET_PROFILES = {
+  warrior: createEightDirectionProfile(0.9, COMBAT_DIRECTION_FRAME_SEQUENCE),
+  mage: createEightDirectionProfile(0.9, COMBAT_DIRECTION_FRAME_SEQUENCE),
+  hunter: createEightDirectionProfile(0.9, COMBAT_DIRECTION_FRAME_SEQUENCE)
+};
+
+const SPRITE_ALPHA_BOUNDS_CACHE = new Map();
+let spriteBoundsCanvas = null;
+let spriteBoundsCtx = null;
+
+function getSpriteAlphaBounds(img, sx = 0, sy = 0, sw = img?.width || 0, sh = img?.height || 0, cacheKey = null) {
+  if (!img || sw <= 0 || sh <= 0) return null;
+  const key = cacheKey || `${img.src || "inline"}:${sx}:${sy}:${sw}:${sh}`;
+  if (SPRITE_ALPHA_BOUNDS_CACHE.has(key)) return SPRITE_ALPHA_BOUNDS_CACHE.get(key);
+  if (!spriteBoundsCanvas) {
+    spriteBoundsCanvas = document.createElement("canvas");
+    spriteBoundsCtx = spriteBoundsCanvas.getContext("2d", { willReadFrequently: true });
+  }
+  const maxProbe = 160;
+  const scale = Math.min(1, maxProbe / Math.max(sw, sh));
+  const cw = Math.max(1, Math.ceil(sw * scale));
+  const ch = Math.max(1, Math.ceil(sh * scale));
+  spriteBoundsCanvas.width = cw;
+  spriteBoundsCanvas.height = ch;
+  spriteBoundsCtx.clearRect(0, 0, cw, ch);
+  spriteBoundsCtx.drawImage(img, sx, sy, sw, sh, 0, 0, cw, ch);
+  let data;
+  try {
+    data = spriteBoundsCtx.getImageData(0, 0, cw, ch).data;
+  } catch (error) {
+    const fallback = { sx, sy, sw, sh };
+    SPRITE_ALPHA_BOUNDS_CACHE.set(key, fallback);
+    return fallback;
+  }
+  let minX = cw;
+  let minY = ch;
+  let maxX = -1;
+  let maxY = -1;
+  for (let py = 0; py < ch; py += 1) {
+    for (let px = 0; px < cw; px += 1) {
+      if (data[(py * cw + px) * 4 + 3] > 18) {
+        if (px < minX) minX = px;
+        if (py < minY) minY = py;
+        if (px > maxX) maxX = px;
+        if (py > maxY) maxY = py;
+      }
+    }
+  }
+  if (maxX < minX || maxY < minY) {
+    const fallback = { sx, sy, sw, sh };
+    SPRITE_ALPHA_BOUNDS_CACHE.set(key, fallback);
+    return fallback;
+  }
+  const pad = 2 / Math.max(scale, 0.001);
+  const bx = clamp(Math.floor(sx + minX / scale - pad), sx, sx + sw - 1);
+  const by = clamp(Math.floor(sy + minY / scale - pad), sy, sy + sh - 1);
+  const br = clamp(Math.ceil(sx + (maxX + 1) / scale + pad), bx + 1, sx + sw);
+  const bb = clamp(Math.ceil(sy + (maxY + 1) / scale + pad), by + 1, sy + sh);
+  const bounds = { sx: bx, sy: by, sw: br - bx, sh: bb - by };
+  SPRITE_ALPHA_BOUNDS_CACHE.set(key, bounds);
+  return bounds;
+}
+
+function drawNormalizedSpriteFrame(img, source, x, y, targetHeight, yAnchor, options = {}) {
+  if (!img || !source || targetHeight <= 0) return false;
+  const drawH = targetHeight;
+  const drawW = typeof options.targetWidth === "number"
+    ? options.targetWidth
+    : drawH * (source.sw / Math.max(1, source.sh));
+  const offsetX = options.offsetX || 0;
+  const offsetY = options.offsetY || 0;
+  ctx.save();
+  ctx.translate(x + offsetX, y + offsetY);
+  if (options.rotation) ctx.rotate(options.rotation);
+  if (options.flipX) ctx.scale(-1, 1);
+  ctx.drawImage(img, source.sx, source.sy, source.sw, source.sh, -drawW / 2, -drawH * yAnchor, drawW, drawH);
+  ctx.restore();
+  return true;
+}
+
 const BOSS_SHEET_PROFILE = createEightDirectionProfile(0.88);
 function getPlayerSheetPath(classId, action) {
+  if (PLAYER_COMBAT_ACTIONS.has(action)) {
+    return `./assets/imagegen_generated/directional_combat_v3/${classId}/${action}/${classId}_${action}_8dir_10frame_sheet_v3.png`;
+  }
   return `./assets/spritesheets/player/${classId}/${action}.png`;
 }
 
@@ -853,10 +975,28 @@ const LEVEL_REGION_CONFIGS = {
         },
         portals: [
           { target: "mine", label: "Mine", color: "#f59e0b", x: 0.84, y: 0.48 },
-          { target: "port", label: "Port", color: "#38bdf8", x: 0.50, y: 0.84 }
+          { target: "port", label: "Port", color: "#38bdf8", x: 0.50, y: 0.84 },
+          { target: "blacksmith_shop", label: "Forgeron-Marchand", color: "#facc15", x: 0.27, y: 0.665, style: "door", alwaysLabel: true, labelYOffset: -150, arrival: { x: 0.50, y: 0.78 } }
         ],
         walkers: 9,
         enemies: 7
+      },
+      blacksmith_shop: {
+        id: "blacksmith_shop",
+        label: "Forge du village",
+        shortLabel: "Forge",
+        biome: "urban",
+        type: "blacksmith_shop",
+        tilesW: 32,
+        tilesH: 22,
+        color: "#facc15",
+        intro: "La forge sent le charbon, le cuir et le metal chaud. Ici, tu prepares ton equipement avant les routes dangereuses.",
+        palette: { floor: "#6b3f1d", floorAlt: "#475569", path: "#7c2d12", wall: "#1f2937", water: "#0e7490" },
+        portals: [
+          { target: "village", label: "Sortir", color: "#facc15", x: 0.50, y: 0.91, style: "door", arrival: { x: 0.27, y: 0.705 } }
+        ],
+        walkers: 0,
+        enemies: 0
       },
       mine: {
         id: "mine",
@@ -956,11 +1096,122 @@ function getRequiredFactionRegions(scene = state.currentScene) {
 
 
 const AUDIO_PATHS = {
-  hitEnemy: "../assets/audio/mg_tick.mp3",
-  hitPlayer: "../assets/audio/sfx_error.mp3",
-  enemyDead: "../assets/audio/mg_win.mp3",
-  itemUse: "../assets/audio/sfx_click.mp3",
-  uiClick: "../assets/audio/sfx_click.mp3"
+  uiClick: [
+    "./assets/sounds/400 Sounds Pack/UI/select_1.wav",
+    "./assets/sounds/400 Sounds Pack/Retro/menu_blip.wav",
+    "./assets/sounds/ding menu aigu.wav"
+  ],
+  uiBackCancel: [
+    "./assets/sounds/400 Sounds Pack/UI/cancel.wav",
+    "./assets/sounds/400 Sounds Pack/UI/sci_fi_cancel.wav",
+    "./assets/sounds/ding menu grave.wav"
+  ],
+  questAccepted: [
+    "./assets/sounds/quest accepted.wav",
+    "./assets/sounds/400 Sounds Pack/Musical Effects/8_bit_level_start.wav"
+  ],
+  questComplete: [
+    "./assets/sounds/quest_complete.wav",
+    "./assets/sounds/400 Sounds Pack/Musical Effects/8_bit_level_complete.wav"
+  ],
+  levelUp: [
+    "./assets/sounds/lvl_up.wav",
+    "./assets/sounds/level up.wav",
+    "./assets/sounds/400 Sounds Pack/Retro/power_up.wav"
+  ],
+  rareItem: [
+    "./assets/sounds/rare item.wav",
+    "./assets/sounds/400 Sounds Pack/Items/gem_collect.wav"
+  ],
+  goldPickup: [
+    "./assets/sounds/400 Sounds Pack/Items/coins_gather_quick.wav",
+    "./assets/sounds/400 Sounds Pack/Items/coin_jingle_small.wav"
+  ],
+  itemPickup: [
+    "./assets/sounds/400 Sounds Pack/Items/item_equip.wav",
+    "./assets/sounds/400 Sounds Pack/Items/heart_collect.wav",
+    "./assets/sounds/bubble pop.wav"
+  ],
+  itemUse: [
+    "./assets/sounds/400 Sounds Pack/Items/heart_collect.wav",
+    "./assets/sounds/400 Sounds Pack/Items/item_equip.wav",
+    "./assets/sounds/bubble pop.wav"
+  ],
+  shopBuySell: [
+    "./assets/sounds/400 Sounds Pack/Items/coins_gather_small.wav",
+    "./assets/sounds/400 Sounds Pack/Items/coin_collect.wav"
+  ],
+  equipWeapon: [
+    "./assets/sounds/400 Sounds Pack/Weapons/weapon_equip_short.wav",
+    "./assets/sounds/400 Sounds Pack/Weapons/weapon_equip.wav"
+  ],
+  unequipWeapon: [
+    "./assets/sounds/400 Sounds Pack/Weapons/weapon_unequip.wav"
+  ],
+  warriorSwing: [
+    "./assets/sounds/400 Sounds Pack/Weapons/sword_slice.wav",
+    "./assets/sounds/400 Sounds Pack/Weapons/sword_light.wav",
+    "./assets/sounds/400 Sounds Pack/Other/whoosh_1.wav"
+  ],
+  warriorHit: [
+    "./assets/sounds/400 Sounds Pack/Weapons/sword_clash.wav",
+    "./assets/sounds/400 Sounds Pack/Weapons/sword_clash_2.wav"
+  ],
+  hunterShoot: [
+    "./assets/sounds/400 Sounds Pack/Weapons/shot_muffled.wav",
+    "./assets/sounds/400 Sounds Pack/Retro/throw.wav"
+  ],
+  hunterHit: [
+    "./assets/sounds/400 Sounds Pack/Weapons/harsh_thud.wav",
+    "./assets/sounds/400 Sounds Pack/Materials/cardboard_hit.wav"
+  ],
+  mageCast: [
+    "./assets/sounds/hit_sort.wav",
+    "./assets/sounds/400 Sounds Pack/Environment/air_burst.wav",
+    "./assets/sounds/400 Sounds Pack/Retro/power_up_2.wav"
+  ],
+  mageImpact: [
+    "./assets/sounds/400 Sounds Pack/Environment/fire_lighting.wav",
+    "./assets/sounds/400 Sounds Pack/Retro/explosion_quick.wav",
+    "./assets/sounds/400 Sounds Pack/Retro/explosion_small.wav"
+  ],
+  enemyHitLight: [
+    "./assets/sounds/400 Sounds Pack/Combat and Gore/punch_2.wav",
+    "./assets/sounds/400 Sounds Pack/Combat and Gore/kick.wav"
+  ],
+  enemyHitHeavy: [
+    "./assets/sounds/400 Sounds Pack/Combat and Gore/crunch_quick.wav",
+    "./assets/sounds/400 Sounds Pack/Combat and Gore/crunch_splat_2.wav"
+  ],
+  enemyDeath: [
+    "./assets/sounds/400 Sounds Pack/Combat and Gore/splat_quick.wav",
+    "./assets/sounds/400 Sounds Pack/Retro/hurt.wav"
+  ],
+  hitPlayer: [
+    "./assets/sounds/400 Sounds Pack/Human/man_0.wav",
+    "./assets/sounds/400 Sounds Pack/Human/man_2.wav",
+    "./assets/sounds/400 Sounds Pack/Retro/hurt.wav"
+  ],
+  doorWood: [
+    "./assets/sounds/400 Sounds Pack/Environment/door_open.wav",
+    "./assets/sounds/400 Sounds Pack/Environment/creaky_door_short.wav"
+  ],
+  doorIndustrial: [
+    "./assets/sounds/400 Sounds Pack/Machines/industrial_door_open.wav",
+    "./assets/sounds/400 Sounds Pack/Machines/industrial_door_close.wav"
+  ],
+  lockUnlock: [
+    "./assets/sounds/400 Sounds Pack/Environment/lock_unlock.wav",
+    "./assets/sounds/400 Sounds Pack/Environment/lock_lock.wav"
+  ],
+  hitEnemy: [
+    "./assets/sounds/400 Sounds Pack/Combat and Gore/punch_2.wav",
+    "./assets/sounds/400 Sounds Pack/Combat and Gore/kick.wav"
+  ],
+  enemyDead: [
+    "./assets/sounds/400 Sounds Pack/Combat and Gore/splat_quick.wav",
+    "./assets/sounds/400 Sounds Pack/Retro/hurt.wav"
+  ]
 };
 
 
@@ -978,10 +1229,19 @@ const MUSIC_PLAYLIST_PATHS = [
 
 const SFX_COOLDOWNS = {
   hitEnemy: 0.065,
+  enemyHitLight: 0.065,
+  enemyHitHeavy: 0.09,
   hitPlayer: 0.13,
   enemyDead: 0.09,
+  enemyDeath: 0.09,
   itemUse: 0.08,
-  uiClick: 0.05
+  itemPickup: 0.06,
+  goldPickup: 0.06,
+  warriorSwing: 0.12,
+  hunterShoot: 0.12,
+  mageCast: 0.12,
+  uiClick: 0.05,
+  uiBackCancel: 0.06
 };
 
 
@@ -1011,6 +1271,17 @@ const ITEM_ICON_PATHS = {
   xp: "./assets/items_generated/xp_orb.png",
   rareOrb: "./assets/items_generated/rare_orb.png"
 };
+
+const SHOP_OFFERS = [
+  { id: "healthPotion", label: "Potion soin", desc: "Restaure 45% de la vie max.", kind: "healthPotion", price: 25, icon: ITEM_ICON_PATHS.healthPotion },
+  { id: "manaPotion", label: "Potion mana", desc: "Restaure 55% du mana max.", kind: "manaPotion", price: 25, icon: ITEM_ICON_PATHS.manaPotion },
+  { id: "weapon_magic", label: "Arme de classe", desc: "Arme magique adaptee a ta classe.", kind: "equipment", slot: "weapon", rarity: "magic", price: 95 },
+  { id: "gloves_magic", label: "Gants de precision", desc: "Gants magiques pour ameliorer attaque et ressources.", kind: "equipment", slot: "gloves", rarity: "magic", price: 82 },
+  { id: "legs_magic", label: "Bottes renforcees", desc: "Protection mobile pour survivre aux routes dangereuses.", kind: "equipment", slot: "legs", rarity: "magic", price: 86 },
+  { id: "chest_magic", label: "Protection de terrain", desc: "Piece de torse magique pour survivre plus longtemps.", kind: "equipment", slot: "chest", rarity: "magic", price: 90 },
+  { id: "cape_rare", label: "Cape de voyage", desc: "Cape rare pour les longues expeditions entre regions.", kind: "equipment", slot: "cape", rarity: "rare", price: 128 },
+  { id: "necklace_rare", label: "Collier rare", desc: "Bijou rare utile pour les zones difficiles.", kind: "equipment", slot: "necklace", rarity: "rare", price: 145 }
+];
 
 const TALENT_DEFS = {
   warrior: [
@@ -1104,6 +1375,9 @@ const DOM = {
   changeCharacter: document.getElementById("change-character"),
   merchantPanel: document.getElementById("merchant-panel"),
   merchantClose: document.getElementById("merchant-close"),
+  merchantStock: document.getElementById("merchant-stock"),
+  merchantSellList: document.getElementById("merchant-sell-list"),
+  merchantGold: document.getElementById("merchant-gold"),
   buyPotion: document.getElementById("buy-potion"),
   buyManaPotion: document.getElementById("buy-mana-potion"),
   inventoryPanel: document.getElementById("inventory-panel"),
@@ -1136,15 +1410,17 @@ const ctx = DOM.canvas.getContext("2d", { alpha: false });
 const miniCtx = DOM.miniMap.getContext("2d", { alpha: false });
 
 const state = {
-  selectedClassId: null,
+  selectedClassId: "warrior",
   selectedHeroId: null,
   mode: "class",
+  starting: false,
+  readyToStart: false,
   paused: false,
   overlay: null,
   audioEnabled: true,
   musicEnabled: true,
   musicVolume: 0.42,
-  sfxVolume: 0.65,
+  sfxVolume: 0.5,
   musicStarted: false,
   player: null,
   world: null,
@@ -1285,10 +1561,17 @@ function loadImage(path) {
 }
 
 function cloneAudio(src) {
-  const audio = new Audio(src);
+  const audio = new Audio(encodeURI(src));
   audio.preload = "auto";
   audio.volume = state.sfxVolume;
   return audio;
+}
+
+function pickAudioVariant(entry) {
+  if (!entry) return null;
+  if (!Array.isArray(entry)) return entry;
+  if (!entry.length) return null;
+  return entry[Math.floor(Math.random() * entry.length)];
 }
 
 function playTone(key) {
@@ -1334,7 +1617,7 @@ function playSfx(key, volume = 0.5) {
   }
   state.assets.sfxLastPlayed[key] = now;
 
-  const audio = state.assets.audio[key];
+  const audio = pickAudioVariant(state.assets.audio[key]);
   if (audio) {
     const instance = audio.cloneNode();
     instance.volume = clamp(volume * state.sfxVolume, 0, 1);
@@ -1343,10 +1626,26 @@ function playSfx(key, volume = 0.5) {
     } catch (error) {
       // ignore currentTime reset errors for unsupported codecs
     }
-    instance.play().catch(() => {});
+    instance.play().catch(() => playTone(key));
     return;
   }
   playTone(key);
+}
+
+function getPlayerAttackSoundKey() {
+  const classId = state.player?.classId;
+  if (classId === "mage") return "mageCast";
+  if (classId === "hunter") return "hunterShoot";
+  return "warriorSwing";
+}
+
+function getPlayerImpactSoundKey(enemy) {
+  if (enemy?.elite || enemy?.boss) return "enemyHitHeavy";
+  const classId = state.player?.classId;
+  if (classId === "mage") return "mageImpact";
+  if (classId === "hunter") return "hunterHit";
+  if (classId === "warrior") return "warriorHit";
+  return "enemyHitLight";
 }
 
 function shuffleMusicPlaylist() {
@@ -1582,8 +1881,9 @@ async function preloadAssets() {
 
   await Promise.all(imageTasks);
 
-  for (const [key, path] of Object.entries(AUDIO_PATHS)) {
-    state.assets.audio[key] = cloneAudio(path);
+  for (const [key, paths] of Object.entries(AUDIO_PATHS)) {
+    const list = Array.isArray(paths) ? paths : [paths];
+    state.assets.audio[key] = list.map((path) => cloneAudio(path));
   }
 }
 
@@ -2193,7 +2493,11 @@ function addRegionPortal(world, portal) {
     r: 42,
     target: portal.target,
     label: portal.label || portal.target,
-    color: portal.color || "#facc15"
+    color: portal.color || "#facc15",
+    style: portal.style || "portal",
+    alwaysLabel: !!portal.alwaysLabel,
+    labelYOffset: portal.labelYOffset || 0,
+    arrival: portal.arrival || null
   });
 }
 
@@ -2260,7 +2564,7 @@ function addVillageMaster(world, region) {
       shortLine: "Avant le conseil, explore la mine, la foret et le port. Les chemins sont dangereux: prepare ton equipement.",
       viewpoint: "Je ne te demande pas de choisir maintenant. Va rencontrer chaque chef de faction, puis reviens justifier ton avis.",
       consequence: "Si tu ignores une zone, ton vote risque d'oublier des consequences importantes.",
-      counter: "Certains chemins sont risqués, mais comprendre le village demande de sortir de la place centrale.",
+      counter: "Certains chemins sont risquÃƒÂ©s, mais comprendre le village demande de sortir de la place centrale.",
       rewardHint: "Accepte la quete d'exploration pour suivre les zones et les personnes a rencontrer."
     },
     quest: {
@@ -2345,6 +2649,91 @@ function scatterRegionProps(world, kinds, count, area, options = {}) {
 }
 
 
+
+function addShopProp(world, assetKey, x, y, w, h, options = {}) {
+  const collidable = options.collidable !== false;
+  world.deco.push({
+    id: uid("shop_prop"),
+    kind: "shop_prop",
+    imagePath: SHOP_INTERIOR_ASSETS[assetKey],
+    x,
+    y,
+    w,
+    h,
+    collidable,
+    occludesPlayer: options.occludesPlayer ?? h > 96,
+    drawScale: options.drawScale || 1,
+    yAnchor: options.yAnchor ?? 0.5,
+    label: options.label || null
+  });
+  if (!collidable) return;
+  const footprint = options.footprint || { w: w * 0.62, h: Math.max(18, h * 0.24), y: h * 0.18 };
+  world.obstacles.push({
+    x: x - footprint.w / 2,
+    y: y + (footprint.y || 0) - footprint.h / 2,
+    w: footprint.w,
+    h: footprint.h,
+    kind: options.obstacleKind || "shop-prop",
+    soft: options.soft !== false
+  });
+}
+
+function paintShopInteriorTiles(world) {
+  fillTiles(world, "wall");
+  const woodTiles = [SHOP_INTERIOR_ASSETS.woodFloorA, SHOP_INTERIOR_ASSETS.woodFloorB, SHOP_INTERIOR_ASSETS.woodFloorC];
+  const stoneTiles = [SHOP_INTERIOR_ASSETS.stoneFloorA, SHOP_INTERIOR_ASSETS.stoneFloorB, SHOP_INTERIOR_ASSETS.stoneFloorC];
+  paintTileBlock(world, 2, 3, world.tilesW - 4, world.tilesH - 5, "floor", woodTiles);
+  paintTileBlock(world, 3, 3, world.tilesW - 6, 2, "floorAlt", stoneTiles);
+  paintTileBlock(world, 4, 12, world.tilesW - 8, 4, "floorAlt", stoneTiles);
+  paintTileBlock(world, 13, 6, 6, 5, "path", [SHOP_INTERIOR_ASSETS.redRug]);
+  for (let x = 1; x < world.tilesW - 1; x += 1) {
+    setTileVisual(world, x, 1, "wall", SHOP_INTERIOR_ASSETS.wallStraight);
+    setTileVisual(world, x, 2, "wall", SHOP_INTERIOR_ASSETS.wallStraight);
+  }
+  setTileVisual(world, 1, 1, "wall", SHOP_INTERIOR_ASSETS.wallCornerA);
+  setTileVisual(world, world.tilesW - 2, 1, "wall", SHOP_INTERIOR_ASSETS.wallCornerB);
+  setTileVisual(world, Math.floor(world.tilesW / 2), world.tilesH - 2, "path", SHOP_INTERIOR_ASSETS.door);
+}
+
+function buildBlacksmithShopInterior(world) {
+  world.spawn = { x: world.width * 0.50, y: world.height * 0.78 };
+  world.safeZones = [{ id: "forge_room", label: "Forge", enemyFree: true, x: world.width / 2, y: world.height / 2, r: Math.max(world.width, world.height) }];
+  world.enemyTargetCount = 0;
+  paintShopInteriorTiles(world);
+
+  addShopProp(world, "forge", world.width * 0.20, world.height * 0.25, 190, 142, { footprint: { w: 120, h: 34, y: 34 }, occludesPlayer: true });
+  addShopProp(world, "anvil", world.width * 0.28, world.height * 0.43, 120, 74, { footprint: { w: 84, h: 28, y: 16 }, occludesPlayer: false });
+  addShopProp(world, "workbench", world.width * 0.78, world.height * 0.27, 150, 118, { footprint: { w: 106, h: 30, y: 24 }, occludesPlayer: true });
+  addShopProp(world, "shelfWeapons", world.width * 0.50, world.height * 0.21, 158, 140, { footprint: { w: 94, h: 24, y: 34 }, occludesPlayer: true });
+  addShopProp(world, "shelfPotions", world.width * 0.66, world.height * 0.22, 160, 132, { footprint: { w: 96, h: 24, y: 34 }, occludesPlayer: true });
+  addShopProp(world, "shelfGeneral", world.width * 0.36, world.height * 0.22, 150, 130, { footprint: { w: 90, h: 24, y: 34 }, occludesPlayer: true });
+  addShopProp(world, "armorStand", world.width * 0.86, world.height * 0.49, 92, 138, { footprint: { w: 52, h: 28, y: 38 }, occludesPlayer: true });
+  addShopProp(world, "goldChest", world.width * 0.13, world.height * 0.58, 110, 92, { footprint: { w: 76, h: 30, y: 18 }, occludesPlayer: false });
+  addShopProp(world, "barrels", world.width * 0.10, world.height * 0.34, 112, 92, { footprint: { w: 76, h: 30, y: 18 }, occludesPlayer: false });
+  addShopProp(world, "crates", world.width * 0.88, world.height * 0.33, 120, 96, { footprint: { w: 86, h: 32, y: 18 }, occludesPlayer: false });
+  addShopProp(world, "sacks", world.width * 0.78, world.height * 0.64, 92, 76, { footprint: { w: 68, h: 26, y: 14 }, occludesPlayer: false });
+  addShopProp(world, "ledger", world.width * 0.57, world.height * 0.42, 92, 74, { collidable: false, occludesPlayer: false });
+  addShopProp(world, "lantern", world.width * 0.12, world.height * 0.17, 58, 88, { footprint: { w: 30, h: 24, y: 24 }, occludesPlayer: true });
+  addShopProp(world, "lantern", world.width * 0.88, world.height * 0.17, 58, 88, { footprint: { w: 30, h: 24, y: 24 }, occludesPlayer: true });
+
+  addShopProp(world, "counterLong", world.width * 0.50, world.height * 0.49, 260, 76, { footprint: { w: 250, h: 32, y: 12 }, occludesPlayer: false });
+  addShopProp(world, "counterSmall", world.width * 0.35, world.height * 0.49, 116, 72, { footprint: { w: 104, h: 30, y: 12 }, occludesPlayer: false });
+  addShopProp(world, "counterSmall", world.width * 0.65, world.height * 0.49, 116, 72, { footprint: { w: 104, h: 30, y: 12 }, occludesPlayer: false });
+  addShopProp(world, "displayCounter", world.width * 0.50, world.height * 0.58, 164, 94, { footprint: { w: 130, h: 30, y: 16 }, occludesPlayer: false });
+  addShopProp(world, "shopSign", world.width * 0.50, world.height * 0.12, 140, 74, { collidable: false, occludesPlayer: false });
+
+  world.merchants = [{
+    id: "merchant_blacksmith_inside",
+    x: world.width * 0.50,
+    y: world.height * 0.43,
+    r: 22,
+    name: "Forgeron-Marchand",
+    idleSheetPath: SHOP_INTERIOR_ASSETS.blacksmithIdle,
+    spriteScale: 4.2,
+    interactionRange: 150
+  }];
+}
+
 function addVillageManualProps(world) {
   const w = world.width;
   const h = world.height;
@@ -2409,7 +2798,6 @@ function decorateRegionWorld(world) {
     addVillageManualProps(world);
 
     addVillageMaster(world, region);
-    createMerchant(world, { x: world.width * 0.32, y: world.height * 0.58 });
     scatterRegionProps(world, ["village_flower_planter", "village_sacks", "village_crate_stack"], 8, { x: world.width * 0.12, y: world.height * 0.18, w: world.width * 0.76, h: world.height * 0.66 }, { sizeMin: 38, sizeMax: 62, collidable: false, occludesPlayer: false, spawnSafeRadius: 260 });
     world.walkerZones = [{ x: world.width * 0.52, y: world.height * 0.52, r: 460, type: "default" }];
     world.enemyZones = [
@@ -2418,6 +2806,8 @@ function decorateRegionWorld(world) {
       { x: world.width * 0.12, y: world.height * 0.88 },
       { x: world.width * 0.91, y: world.height * 0.84 }
     ];
+  } else if (region.type === "blacksmith_shop") {
+    buildBlacksmithShopInterior(world);
   } else if (region.type === "mine") {
     world.spawn = { x: world.width * 0.14, y: world.height * 0.52 };
     buildMineTileLayout(world);
@@ -2603,6 +2993,7 @@ function acceptQuestFromNpc(kind) {
   }
   state.quest.acceptedQuests[quest.id] = quest;
   state.quest.trackedQuestId = quest.id;
+  playSfx("questAccepted", 0.38);
   addJournalEntry(`Quete acceptee: ${quest.title}. ${quest.desc}`, quest.regionId);
   appendChatLine(`J'accepte: ${quest.title}.`, "player");
   appendChatLine(kind === "optional"
@@ -2649,7 +3040,7 @@ function allRequiredFactionsHeard() {
   return required.length > 0 && required.every((regionId) => getRegionProgress(regionId).talked);
 }
 
-function transitionToRegion(targetRegionId) {
+function transitionToRegion(targetRegionId, arrival = null) {
   const region = getRegionDefinition(targetRegionId);
   if (!region || !state.currentScene || !state.player) return;
   closeAllPanels();
@@ -2657,8 +3048,11 @@ function transitionToRegion(targetRegionId) {
   const stats = getEffectiveStats();
   state.world = createEmptyWorld(state.currentScene, targetRegionId);
   state.currentRegion = targetRegionId;
-  state.player.x = state.world.spawn.x;
-  state.player.y = state.world.spawn.y;
+  playSfx(targetRegionId === "mine" ? "doorIndustrial" : "doorWood", 0.28);
+  const arrivalX = arrival && Number.isFinite(arrival.x) ? (arrival.x <= 1 ? arrival.x * state.world.width : arrival.x) : state.world.spawn.x;
+  const arrivalY = arrival && Number.isFinite(arrival.y) ? (arrival.y <= 1 ? arrival.y * state.world.height : arrival.y) : state.world.spawn.y;
+  state.player.x = arrivalX;
+  state.player.y = arrivalY;
   state.player.hp = Math.min(Math.max(1, state.player.hp), stats.maxHp);
   state.player.stamina = stats.maxStamina;
   state.player.mana = Math.min(stats.maxMana, Math.max(state.player.mana, stats.maxMana * 0.45));
@@ -2811,7 +3205,7 @@ function decorateMineZone(world, center) {
 }
 
 function bossNameForWorld(world) {
-  const names = { forest: "Gardien du chantier", lab: "Prototype instable", hospital: "Crise logistique", space: "Sentinelle de dôme", coast: "Gardien des marées", urban: "Chef de patrouille" };
+  const names = { forest: "Gardien du chantier", lab: "Prototype instable", hospital: "Crise logistique", space: "Sentinelle de dÃƒÂ´me", coast: "Gardien des marÃƒÂ©es", urban: "Chef de patrouille" };
   return names[world.biome] || "Gardien de zone";
 }
 
@@ -3033,6 +3427,7 @@ function createClassSelectionUI() {
   DOM.classGrid.innerHTML = "";
   if (DOM.avatarGrid) DOM.avatarGrid.innerHTML = "";
   state.selectedHeroId = state.selectedHeroId || HERO_PRESETS[0].id;
+  state.selectedClassId = state.selectedClassId || Object.keys(CLASS_DEFS)[0] || "warrior";
 
   Object.values(CLASS_DEFS).forEach((cls) => {
     const card = document.createElement("button");
@@ -3040,10 +3435,15 @@ function createClassSelectionUI() {
     card.className = "class-item";
     card.dataset.classId = cls.id;
     card.innerHTML = `<img src="${cls.icon}" alt="${cls.name}"><div><strong>${cls.name}</strong></div><div>${cls.desc}</div>`;
-    card.addEventListener("click", () => {
+    const selectClass = () => {
       state.selectedClassId = cls.id;
       updateClassAvatarSelectionUI();
       playSfx("uiClick", 0.35);
+    };
+    card.addEventListener("pointerdown", selectClass);
+    card.addEventListener("click", (event) => {
+      event.preventDefault();
+      selectClass();
     });
     DOM.classGrid.appendChild(card);
   });
@@ -3060,7 +3460,8 @@ function updateClassAvatarSelectionUI() {
       item.classList.toggle("selected", item.dataset.heroId === state.selectedHeroId);
     }
   }
-  DOM.startBtn.disabled = !state.selectedClassId;
+  const waitingForBoot = state.mode === "class" && !state.readyToStart;
+  DOM.startBtn.disabled = !state.selectedClassId || !!state.starting || waitingForBoot;
 }
 
 
@@ -3120,6 +3521,48 @@ function createEquipmentDrop(enemy, forcedRarity = null) {
     iconPath: getEquipmentIconPath(classId, slot),
     value: Math.round(18 * level * rarityDef.mult)
   };
+}
+
+function createShopEquipment(slot, rarity = "magic") {
+  const p = state.player;
+  const classId = p?.classId || "warrior";
+  const level = Math.max(1, Math.min(12, Math.max(p?.level || 1, state.world?.levelNumber || 1)));
+  const rarityDef = RARITIES[rarity] || RARITIES.magic;
+  const baseName = (CLASS_GEAR_NAMES[classId] || CLASS_GEAR_NAMES.warrior)[slot] || "Equipement";
+  const stats = {};
+  for (const stat of SLOT_STAT_FOCUS[slot] || ["attack"]) {
+    const base = stat === "attack" ? 0.95 : 1.2;
+    stats[stat] = Math.max(1, Math.round((level + 2) * rarityDef.mult * base));
+  }
+  return {
+    id: uid("shop_item"),
+    kind: "equipment",
+    slot,
+    classId,
+    level,
+    rarity,
+    name: `${rarityDef.label} ${baseName} de boutique +${level}`,
+    stats,
+    iconColor: rarityDef.color,
+    iconShape: slot,
+    iconPath: getEquipmentIconPath(classId, slot),
+    value: Math.round(20 * level * rarityDef.mult)
+  };
+}
+
+function getSellValue(item) {
+  if (!item) return 0;
+  if (item.kind === "equipment") {
+    const rarity = RARITIES[item.rarity] || RARITIES.common;
+    const base = item.value || Math.round(18 * (item.level || 1) * rarity.mult);
+    return Math.max(5, Math.round(base * 0.55));
+  }
+  if (item.kind === "healthPotion" || item.kind === "manaPotion") return 8;
+  return Math.max(1, Math.round((item.value || 2) * 0.5));
+}
+
+function canSellItem(item) {
+  return !!item && item.kind === "equipment";
 }
 
 function statLabel(key) {
@@ -3222,6 +3665,7 @@ function equipItemToSlot(index, slot) {
   p.equipment[item.slot] = item;
   p.inventory[index] = previous;
   clampPlayerToEffectiveCaps();
+  playSfx("equipWeapon", 0.34);
   addNotification(`${SLOT_LABELS[item.slot]} equipe: ${item.name}`, 2.2, item.iconColor || "#67f0c8");
   updateHud();
   renderInventory();
@@ -3254,6 +3698,7 @@ function unequipSlot(slot) {
   p.inventory[empty] = p.equipment[slot];
   p.equipment[slot] = null;
   clampPlayerToEffectiveCaps();
+  playSfx("unequipWeapon", 0.28);
   updateHud();
   renderInventory();
 }
@@ -3389,8 +3834,8 @@ function skillMeta(skillKey) {
   const p = state.player;
   const defs = getTalentDefs();
   const def = defs.find((node) => node.skill === skillKey || node.unlockSkill === skillKey || node.id === skillKey);
-  const fallback = skillKey === "skill1" ? "Compétence F" : "Compétence R";
-  return { key: skillKey, label: def?.name || fallback, desc: def?.desc || "Compétence de classe.", icon: def?.icon || `./assets/talents/${skillKey === "skill2" ? "special" : "skill1"}.svg`, unlocked: skillKey === "skill1" ? !!p?.unlockedSkills?.skill1 : !!p?.unlockedSkills?.skill2, levelReq: skillKey === "skill1" ? 3 : (def?.levelReq || 3) };
+  const fallback = skillKey === "skill1" ? "CompÃƒÂ©tence F" : "CompÃƒÂ©tence R";
+  return { key: skillKey, label: def?.name || fallback, desc: def?.desc || "CompÃƒÂ©tence de classe.", icon: def?.icon || `./assets/talents/${skillKey === "skill2" ? "special" : "skill1"}.svg`, unlocked: skillKey === "skill1" ? !!p?.unlockedSkills?.skill1 : !!p?.unlockedSkills?.skill2, levelReq: skillKey === "skill1" ? 3 : (def?.levelReq || 3) };
 }
 
 function ensureDefaultHotbar() {
@@ -3436,7 +3881,7 @@ function assignHotbarSlot(slotIndex, payload) {
   else if (payload.type === "consumable") state.hotbar[slotIndex] = { type: "consumable", kind: payload.kind };
   else return;
   renderHotbar();
-  addNotification(`Raccourci ${slotIndex + 1} mis à jour.`, 1.6, "#67f0c8");
+  addNotification(`Raccourci ${slotIndex + 1} mis ÃƒÂ  jour.`, 1.6, "#67f0c8");
 }
 
 function activateHotbarSlot(slotIndex) {
@@ -3488,7 +3933,7 @@ function renderSkillBook() {
     card.type = "button";
     card.className = `skill-card ${entry.unlocked ? "" : "locked"}`;
     card.draggable = entry.unlocked;
-    const lockText = entry.unlocked ? (entry.count !== undefined ? `Stock: ${entry.count}` : "Débloqué") : `Débloqué au niveau ${entry.levelReq}`;
+    const lockText = entry.unlocked ? (entry.count !== undefined ? `Stock: ${entry.count}` : "DÃƒÂ©bloquÃƒÂ©") : `DÃƒÂ©bloquÃƒÂ© au niveau ${entry.levelReq}`;
     card.innerHTML = `<img src="${entry.icon}" alt=""><strong>${entry.label}</strong><small>${entry.desc}</small><span>${lockText}</span>`;
     if (entry.unlocked) {
       card.addEventListener("dragstart", (event) => setHotbarDragData(event, entry.type === "skill" ? { type: "skill", skill: entry.skill } : { type: "consumable", kind: entry.kind }));
@@ -3504,6 +3949,16 @@ function closeGrimoire() {
   DOM.grimoirePanel?.classList.add("hidden");
   if (state.overlay === "grimoire") state.overlay = null;
   if (state.paused && state.mode === "running") state.paused = false;
+}
+
+function openTalentGrimoire() {
+  if (!state.player) return;
+  closeAllPanels();
+  state.paused = true;
+  state.overlay = "grimoire";
+  renderGrimoire();
+  DOM.grimoirePanel?.classList.remove("hidden");
+  addNotification("Point de talent: choisis une amelioration dans le grimoire.", 2.6, "#facc15");
 }
 
 function renderInventory() {
@@ -3573,6 +4028,7 @@ function renderInventory() {
     };
   }
   renderHotbar();
+  if (state.overlay === "merchant") renderMerchant();
   if (DOM.inventoryDetails) {
     DOM.inventoryDetails.textContent = `Soin: ${p.potions} | Mana: ${p.manaPotions} | Inventaire: ${p.inventory.filter(Boolean).length}/${INVENTORY_SIZE}`;
   }
@@ -3682,7 +4138,7 @@ function updateHud() {
   const stats = getEffectiveStats();
   DOM.hudScene.textContent = `Niveau: ${state.currentScene.id.replace("level_", "")}/50`;
   DOM.hudClass.textContent = `Classe: ${p.className}`;
-  DOM.hudHero.textContent = `Héros: ${p.heroName}`;
+  DOM.hudHero.textContent = `HÃƒÂ©ros: ${p.heroName}`;
   DOM.hudLevel.innerHTML = `Lvl: <strong>${p.level}</strong>${(p.talentPoints || 0) > 0 ? `<button type="button" class="talent-plus" data-open-talents title="Points a depenser dans le grimoire">+${p.talentPoints}</button>` : ""}`;
   DOM.hudLevel.classList.toggle("has-talent", (p.talentPoints || 0) > 0);
   DOM.hudHp.textContent = `HP: ${Math.max(0, Math.round(p.hp))}/${Math.round(stats.maxHp)}`;
@@ -3701,9 +4157,13 @@ function showLevelUpAnimation(level) {
   void DOM.hudLevel.offsetWidth;
   DOM.hudLevel.classList.add("level-bump");
   const root = document.getElementById("game-root") || document.body;
-  const pop = document.createElement("div");
+  const pop = document.createElement("button");
   pop.className = "level-up-pop";
-  pop.textContent = "NIVEAU " + level;
+  pop.type = "button";
+  pop.setAttribute("title", "Ouvrir le grimoire");
+  pop.innerHTML = `<strong>NIVEAU ${level}</strong><span>+1 talent</span>`;
+  const open = () => openTalentGrimoire();
+  pop.addEventListener("click", open);
   root.appendChild(pop);
   window.setTimeout(() => pop.remove(), 1500);
 }
@@ -3733,8 +4193,13 @@ function updateGuideText() {
 }
 
 function startGameAtScene(sceneId = "level_1") {
+  state.selectedClassId = state.selectedClassId || Object.keys(CLASS_DEFS)[0] || "warrior";
   const scene = state.scenes[sceneId] || state.scenes[state.sceneOrder[0]];
-  if (!scene) return;
+  if (!scene) {
+    state.starting = false;
+    updateClassAvatarSelectionUI();
+    return false;
+  }
   state.currentScene = scene;
   resetQuestProgress();
   const config = getSceneRegionConfig(scene);
@@ -3745,6 +4210,8 @@ function startGameAtScene(sceneId = "level_1") {
   state.mode = "running";
   state.overlay = null;
   DOM.classPanel.classList.add("hidden");
+  DOM.startBtn.disabled = false;
+  state.starting = false;
   updateHud();
   updateGuideText();
   ensureDefaultHotbar();
@@ -3753,6 +4220,7 @@ function startGameAtScene(sceneId = "level_1") {
   renderQuestJournal();
   showTutorialStep(0);
   addNotification(`Mission: ${scene.theme}`, 3.4, "#67f0c8");
+  return true;
 }
 
 function loadSceneById(sceneId, keepPlayerProgress = true) {
@@ -4024,7 +4492,7 @@ function applyDamageToEnemy(enemy, rawDamage) {
   if (enemy.hp <= 0) return;
   const damage = Math.max(1, Math.round(rawDamage));
   enemy.hp -= damage;
-  playSfx("hitEnemy", enemy.elite ? 0.65 : 0.4);
+  playSfx(getPlayerImpactSoundKey(enemy), enemy.elite || enemy.boss ? 0.42 : 0.26);
   if (enemy.hp <= 0) {
     enemy.hp = 0;
     onEnemyDefeated(enemy);
@@ -4079,6 +4547,7 @@ function tryBasicAttack(now) {
   if (staminaCost > 0 && !consumeStamina(staminaCost, now, true)) return;
   if (manaCost > 0 && !consumeMana(manaCost, now, true)) return;
   p.lastBasic = now;
+  playSfx(getPlayerAttackSoundKey(), 0.24);
 
   if (cls.basicKind === "melee") {
     const center = { x: p.x + p.dirX * 48, y: p.y + p.dirY * 48 };
@@ -4109,7 +4578,7 @@ function useSkill1(now) {
   const p = state.player;
   if (!p) return;
   if (!p.unlockedSkills?.skill1) {
-    addNotification("Skill F verrouillé: atteins le niveau 3 pour le débloquer dans le grimoire.", 2.4, "#c084fc");
+    addNotification("Skill F verrouillÃƒÂ©: atteins le niveau 3 pour le dÃƒÂ©bloquer dans le grimoire.", 2.4, "#c084fc");
     return;
   }
   const stats = getEffectiveStats();
@@ -4117,6 +4586,7 @@ function useSkill1(now) {
   if (now - p.lastSkill1 < cooldown) return;
   if (!consumeSkillResources("skill1", now)) return;
   p.lastSkill1 = now;
+  playSfx(getPlayerAttackSoundKey(), 0.28);
 
   if (p.classId === "warrior") {
     moveEntityWithCollision(p, p.dirX * 56, p.dirY * 56);
@@ -4165,7 +4635,7 @@ function useSkill2(now) {
   const p = state.player;
   if (!p) return;
   if (!p.unlockedSkills || !p.unlockedSkills.skill2) {
-    addNotification("Skill R verrouillé: débloque le talent spécial dans le grimoire.", 2.2, "#c084fc");
+    addNotification("Skill R verrouillÃƒÂ©: dÃƒÂ©bloque le talent spÃƒÂ©cial dans le grimoire.", 2.2, "#c084fc");
     return;
   }
   const stats = getEffectiveStats();
@@ -4173,6 +4643,7 @@ function useSkill2(now) {
   if (now - p.lastSkill2 < cooldown) return;
   if (!consumeSkillResources("skill2", now)) return;
   p.lastSkill2 = now;
+  playSfx(getPlayerAttackSoundKey(), 0.32);
 
   if (p.classId === "warrior") {
     damageEnemiesInCircle(p.x, p.y, 76, Math.round(stats.attack * 2.15), 84);
@@ -4201,6 +4672,7 @@ function awardFactionQuestReward(npc) {
   const reward = createEquipmentDrop({ elite: true, boss: false }, Math.random() < 0.24 ? "epic" : "rare");
   reward.name = `${reward.name} - ${npc.name}`;
   addItemToInventory(reward);
+  playSfx("questComplete", 0.45);
   const region = getRegionDefinition(npc.regionId);
   addJournalEntry(`Quete terminee: ${region?.questOptional || "zone stabilisee"}. Recompense recue.`, npc.regionId);
   addNotification(`Quete de ${npc.name}: +${gold} or, +${xp} XP, objet rare.`, 3.4, "#facc15");
@@ -4208,6 +4680,7 @@ function awardFactionQuestReward(npc) {
 }
 
 function onEnemyDefeated(enemy) {
+  playSfx(enemy.boss || enemy.elite ? "enemyDeath" : "enemyDead", enemy.boss ? 0.42 : 0.26);
   if (!enemy.boss && !enemy.elite && !enemy.challengeNpcId) scheduleEnemyRespawn(state.world);
   const xpGain = enemy.boss ? 420 + state.world.levelNumber * 80 : (enemy.elite ? 150 : 42);
   const goldGain = enemy.boss ? 90 + state.world.levelNumber * 14 : (enemy.elite ? 32 : 6 + Math.floor(Math.random() * 6));
@@ -4266,10 +4739,10 @@ function maybeLevelUp() {
     leveled = true;
   }
   if (leveled) {
-    playSfx("enemyDead", 0.65);
+    playSfx("levelUp", 0.55);
     showLevelUpAnimation(p.level);
-    addNotification(`Niveau ${p.level} atteint! ${p.talentPoints} point(s) de talent à dépenser dans le grimoire.`, 3.8, "#ffc857");
-    if (unlockedSkill1) addNotification("Compétence F débloquée! Glisse-la depuis le grimoire vers la barre rapide.", 3.4, "#c084fc");
+    addNotification(`Niveau ${p.level} atteint! ${p.talentPoints} point(s) de talent ÃƒÂ  dÃƒÂ©penser dans le grimoire.`, 3.8, "#ffc857");
+    if (unlockedSkill1) addNotification("CompÃƒÂ©tence F dÃƒÂ©bloquÃƒÂ©e! Glisse-la depuis le grimoire vers la barre rapide.", 3.4, "#c084fc");
   }
   renderInventory();
   renderGrimoire();
@@ -4293,7 +4766,7 @@ function damagePlayer(rawDamage, now) {
     p.x = state.world.spawn.x;
     p.y = state.world.spawn.y;
     p.gold = Math.max(0, p.gold - 25);
-    addNotification("Défaite temporaire. Repli au camp.", 3.2, "#ff8c8c");
+    addNotification("DÃƒÂ©faite temporaire. Repli au camp.", 3.2, "#ff8c8c");
   }
 }
 
@@ -4490,12 +4963,21 @@ function collectNearbyLoot() {
   for (const loot of state.world.loot) {
     const d = Math.hypot(loot.x - p.x, loot.y - p.y);
     if (d >= p.r + 34) continue;
-    if (loot.kind === "gold") p.gold += loot.amount;
-    else if (loot.kind === "xp") gainXp(loot.amount);
-    else if (loot.kind === "healthPotion") p.potions += loot.amount || 1;
-    else if (loot.kind === "manaPotion") p.manaPotions += loot.amount || 1;
+    if (loot.kind === "gold") {
+      p.gold += loot.amount;
+      playSfx("goldPickup", 0.22);
+    } else if (loot.kind === "xp") {
+      gainXp(loot.amount);
+    } else if (loot.kind === "healthPotion") {
+      p.potions += loot.amount || 1;
+      playSfx("itemPickup", 0.24);
+    } else if (loot.kind === "manaPotion") {
+      p.manaPotions += loot.amount || 1;
+      playSfx("itemPickup", 0.24);
+    }
     else if (loot.kind === "equipment") {
       if (!addItemToInventory(loot.item)) continue;
+      playSfx(loot.item?.rarity === "rare" || loot.item?.rarity === "epic" || loot.item?.rarity === "legendary" ? "rareItem" : "itemPickup", 0.34);
     }
     loot.ttl = -1;
   }
@@ -4626,6 +5108,18 @@ function drawDecor(camX, camY) {
 }
 
 
+function drawOutlinedText(text, x, y, color = "#facc15", align = "center", font = "13px Georgia") {
+  ctx.save();
+  ctx.font = font;
+  ctx.textAlign = align;
+  ctx.lineWidth = 4;
+  ctx.strokeStyle = "rgba(0,0,0,0.92)";
+  ctx.strokeText(text, x, y);
+  ctx.fillStyle = color;
+  ctx.fillText(text, x, y);
+  ctx.restore();
+}
+
 function drawEntityLabel(entity, camX, camY, text, color = "#d9eef8") {
   const x = entity.x - camX;
   const y = entity.y - camY;
@@ -4644,6 +5138,22 @@ function drawPortals(camX, camY) {
   for (const portal of state.world.portals) {
     const x = portal.x - camX;
     const y = portal.y - camY;
+    const near = Math.hypot(state.player.x - portal.x, state.player.y - portal.y) < 88;
+    if (portal.style === "door") {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.fillStyle = near ? "rgba(250,204,21,0.24)" : "rgba(0,0,0,0.28)";
+      ctx.beginPath();
+      ctx.ellipse(0, 10, near ? 46 : 34, near ? 15 : 11, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = portal.color || "#facc15";
+      ctx.lineWidth = near ? 3 : 2;
+      ctx.strokeRect(-22, -24, 44, 54);
+      ctx.restore();
+      if (portal.alwaysLabel) drawOutlinedText(portal.label, x, y + (portal.labelYOffset || -52), portal.color || "#facc15", "center", "14px Georgia");
+      if (near) drawEntityLabel({ x: portal.x, y: portal.y, r: 24 }, camX, camY, `[E] ${portal.target === "village" ? "Sortir" : "Entrer"}`, portal.color);
+      continue;
+    }
     ctx.save();
     ctx.translate(x, y);
     ctx.scale(pulse, pulse);
@@ -4667,7 +5177,7 @@ function drawPortals(camX, camY) {
     ctx.fill();
     ctx.restore();
 
-    if (Math.hypot(state.player.x - portal.x, state.player.y - portal.y) < 88) {
+    if (near) {
       drawEntityLabel({ x: portal.x, y: portal.y, r: 24 }, camX, camY, `[E] ${portal.label}`, portal.color);
     }
   }
@@ -4698,7 +5208,7 @@ function drawGate(camX, camY) {
     ctx.fillRect(x - 30, y - 36, 200, 28);
     ctx.fillStyle = "#e5f5ff";
     ctx.font = "14px Segoe UI";
-    ctx.fillText(gate.open ? "[E] Voter et quitter" : "Porte verrouillée", x - 24, y - 17);
+    ctx.fillText(gate.open ? "[E] Voter et quitter" : "Porte verrouillÃƒÂ©e", x - 24, y - 17);
   }
 }
 
@@ -4712,6 +5222,8 @@ function drawNpcSpriteEntity(entity, camX, camY, fallbackColor = "#ffd166") {
       frameCount: 6,
       rowMap: { down: 0 },
       yAnchor: 0.88,
+      normalizeFrame: true,
+      targetHeight: Math.max(58, (entity.r || 20) * 3.25),
       frameOffset: entity.animOffset || 0
     });
   }
@@ -4796,6 +5308,8 @@ function drawNpcs(camX, camY) {
           frameCount: 6,
           rowMap: EIGHT_DIRECTION_ROW_MAP,
           yAnchor: 0.9,
+          normalizeFrame: true,
+          targetHeight: walker.r * 3.85,
           frameOffset: walker.animOffset || 0
         }
       );
@@ -4814,11 +5328,16 @@ function drawNpcs(camX, camY) {
   for (const merchant of state.world.merchants) {
     const x = merchant.x - camX;
     const y = merchant.y - camY;
-    ctx.fillStyle = "#22d3ee";
-    ctx.beginPath();
-    ctx.arc(x, y, merchant.r, 0, Math.PI * 2);
-    ctx.fill();
-    drawEntityLabel(merchant, camX, camY, `${merchant.name} [E]`, "#93ecff");
+    const merchantDrawn = drawNpcSpriteEntity(merchant, camX, camY, "#22d3ee");
+    if (!merchantDrawn) {
+      ctx.fillStyle = "#22d3ee";
+      ctx.beginPath();
+      ctx.arc(x, y, merchant.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    if (Math.hypot(state.player.x - merchant.x, state.player.y - merchant.y) < (merchant.interactionRange || 88)) {
+      drawEntityLabel(merchant, camX, camY, `${merchant.name} [E]`, "#93ecff");
+    }
   }
 }
 
@@ -4873,12 +5392,24 @@ function drawFromSpritesheet(path, action, dir, x, y, size, speed = 10, options 
     : null;
 
   let frame;
+  const animationStart = Number.isFinite(options.animationStart) ? options.animationStart : null;
+  const animationDuration = Number.isFinite(options.animationDuration) ? Math.max(0.01, options.animationDuration) : null;
   if (seq && seq.length) {
-    const idx = (Math.floor((performance.now() / 1000) * speed + frameOffset) % seq.length + seq.length) % seq.length;
-    frame = seq[idx];
+    if (animationStart !== null && animationDuration !== null) {
+      const progress = clamp(((performance.now() / 1000) - animationStart) / animationDuration, 0, 0.999);
+      frame = seq[Math.min(seq.length - 1, Math.floor(progress * seq.length))];
+    } else {
+      const idx = (Math.floor((performance.now() / 1000) * speed + frameOffset) % seq.length + seq.length) % seq.length;
+      frame = seq[idx];
+    }
   } else {
     const frameCount = clamp(options.frameCount || cols, 1, cols);
-    frame = (Math.floor((performance.now() / 1000) * speed + frameOffset) % frameCount + frameCount) % frameCount;
+    if (animationStart !== null && animationDuration !== null) {
+      const progress = clamp(((performance.now() / 1000) - animationStart) / animationDuration, 0, 0.999);
+      frame = Math.min(frameCount - 1, Math.floor(progress * frameCount));
+    } else {
+      frame = (Math.floor((performance.now() / 1000) * speed + frameOffset) % frameCount + frameCount) % frameCount;
+    }
   }
 
   const sx = xCuts[frame];
@@ -4895,6 +5426,17 @@ function drawFromSpritesheet(path, action, dir, x, y, size, speed = 10, options 
   const rotation = options.rotation || 0;
   const offsetX = options.offsetX || 0;
   const offsetY = options.offsetY || 0;
+
+  if (options.normalizeFrame) {
+    const bounds = getSpriteAlphaBounds(img, sx, sy, sw, sh, `${path}:${row}:${frame}:${sw}:${sh}`);
+    return drawNormalizedSpriteFrame(img, bounds, x, y, options.targetHeight || drawH, yAnchor, {
+      targetWidth: options.targetWidth,
+      rotation,
+      flipX: options.flipX,
+      offsetX,
+      offsetY
+    });
+  }
 
   ctx.save();
   ctx.translate(x + offsetX, y + offsetY);
@@ -4915,6 +5457,15 @@ function drawFrameSequence(pathFactory, dir, x, y, targetHeight, speed = 9, opti
   const img = state.assets.images[path];
   if (!img) return false;
   const yAnchor = typeof options.yAnchor === "number" ? options.yAnchor : 0.88;
+  if (options.normalizeFrame) {
+    const bounds = getSpriteAlphaBounds(img, 0, 0, img.width, img.height, `${path}:full`);
+    return drawNormalizedSpriteFrame(img, bounds, x, y, targetHeight, yAnchor, {
+      targetWidth: options.targetWidth,
+      flipX: options.flipX,
+      offsetX: options.offsetX || 0,
+      offsetY: options.offsetY || 0
+    });
+  }
   const drawH = targetHeight;
   const drawW = drawH * (img.width / Math.max(1, img.height));
   const offsetX = options.offsetX || 0;
@@ -5128,6 +5679,7 @@ function drawEnemies(camX, camY) {
       if (USE_BOSS_FRAME_IMAGES) {
         drawn = drawFrameSequence((frame) => getBossFramePath("level_01", bossAction, dir, frame), dir, x, y, enemy.r * 5.95, bossAction === "attack" ? 10 : 7, {
           yAnchor: BOSS_SHEET_PROFILE.yAnchor,
+          normalizeFrame: true,
           frameSequence: bossFrame?.seq || EIGHT_DIRECTION_FRAME_SEQUENCE
         });
       }
@@ -5139,6 +5691,7 @@ function drawEnemies(camX, camY) {
           rowMap: BOSS_SHEET_PROFILE.rowMap,
           rowOverride: bossFrame?.row,
           yAnchor: BOSS_SHEET_PROFILE.yAnchor,
+          normalizeFrame: true,
           frameSequence: bossFrame?.seq || EIGHT_DIRECTION_FRAME_SEQUENCE
         });
       }
@@ -5150,6 +5703,8 @@ function drawEnemies(camX, camY) {
         rowMap: EIGHT_DIRECTION_ROW_MAP,
         frameCount: 6,
         yAnchor: 0.9,
+        normalizeFrame: true,
+        targetHeight: enemy.r * 3.95,
         frameOffset: enemy.animOffset || 0
       });
     }
@@ -5163,9 +5718,9 @@ function drawEnemies(camX, camY) {
       const idleSheetPath = getEnemySheetPath(enemy.type.id, "idle");
       const walkSheetPath = getEnemySheetPath(enemy.type.id, "walk");
       const size = enemy.r * 3.6;
-      drawn = drawFromSpritesheet(sheetPath, action, dir, x, y, size, action === "attack" ? 14 : 9, { yAnchor: 0.86 })
-        || drawFromSpritesheet(walkSheetPath, "walk", dir, x, y, size, 9, { yAnchor: 0.86 })
-        || drawFromSpritesheet(idleSheetPath, "idle", dir, x, y, size, 5, { yAnchor: 0.86 });
+      drawn = drawFromSpritesheet(sheetPath, action, dir, x, y, size, action === "attack" ? 14 : 9, { yAnchor: 0.86, normalizeFrame: true, targetHeight: enemy.r * 3.2 })
+        || drawFromSpritesheet(walkSheetPath, "walk", dir, x, y, size, 9, { yAnchor: 0.86, normalizeFrame: true, targetHeight: enemy.r * 3.2 })
+        || drawFromSpritesheet(idleSheetPath, "idle", dir, x, y, size, 5, { yAnchor: 0.86, normalizeFrame: true, targetHeight: enemy.r * 3.2 });
     }
     if (!drawn) drawProceduralEnemy(enemy, x, y);
 
@@ -5208,17 +5763,30 @@ function drawPlayer(camX, camY) {
   ) && !state.overlay;
 
   let action = "idle";
+  let actionStartedAt = null;
+  let actionDuration = null;
   const now = performance.now() / 1000;
-  if (now - p.lastSkill2 < 0.34) action = "skill_2";
-  else if (now - p.lastSkill1 < 0.28) action = "skill_1";
-  else if (now - p.lastBasic < 0.22) action = "attack_basic";
-  else if (moving && p.running) action = "run";
+  if (now - p.lastSkill2 < PLAYER_ACTION_VISUAL_DURATIONS.skill_2) {
+    action = "skill_2";
+    actionStartedAt = p.lastSkill2;
+    actionDuration = PLAYER_ACTION_VISUAL_DURATIONS.skill_2;
+  } else if (now - p.lastSkill1 < PLAYER_ACTION_VISUAL_DURATIONS.skill_1) {
+    action = "skill_1";
+    actionStartedAt = p.lastSkill1;
+    actionDuration = PLAYER_ACTION_VISUAL_DURATIONS.skill_1;
+  } else if (now - p.lastBasic < PLAYER_ACTION_VISUAL_DURATIONS.attack_basic) {
+    action = "attack_basic";
+    actionStartedAt = p.lastBasic;
+    actionDuration = PLAYER_ACTION_VISUAL_DURATIONS.attack_basic;
+  } else if (moving && p.running) action = "run";
   else if (moving) action = "walk";
 
   const dir = p.facing || vecToDirection(p.dirX, p.dirY, "down", 0.05);
   let drawn = false;
   if (USE_PLAYER_SPRITESHEETS) {
-    const profile = PLAYER_SHEET_PROFILES[p.classId] || PLAYER_SHEET_PROFILES.warrior;
+    const profile = PLAYER_COMBAT_ACTIONS.has(action)
+      ? (PLAYER_COMBAT_SHEET_PROFILES[p.classId] || PLAYER_COMBAT_SHEET_PROFILES.warrior)
+      : (PLAYER_SHEET_PROFILES[p.classId] || PLAYER_SHEET_PROFILES.warrior);
     const hasTrueDirection = profile.trueDiagonals && Object.prototype.hasOwnProperty.call(profile.rowMap || {}, dir);
     const visualDir = hasTrueDirection ? { baseDir: dir, rotation: 0, offsetX: 0 } : getDiagonalSpriteTransform(dir, p.classId);
     const baseDir = hasTrueDirection ? dir : getCardinalDirection(visualDir.baseDir);
@@ -5228,7 +5796,7 @@ function drawPlayer(camX, camY) {
     const directionFrame = profile.directionFrames?.[baseDir] || profile.directionFrames?.down || null;
     const frameSequence = action === "idle"
       ? [directionFrame?.idle ?? 0]
-      : (directionFrame?.seq || EIGHT_DIRECTION_FRAME_SEQUENCE);
+      : ((action === "walk" || action === "run") ? WALK_FRAME_SEQUENCE : (directionFrame?.seq || EIGHT_DIRECTION_FRAME_SEQUENCE));
     const flipX = !hasTrueDirection && profile.mirrorLeft && baseDir === "left";
     const size = p.r * 5.15;
     const drawOpts = {
@@ -5240,11 +5808,17 @@ function drawPlayer(camX, camY) {
       frameSequence,
       flipX,
       rotation: visualDir.rotation,
-      offsetX: visualDir.offsetX
+      offsetX: visualDir.offsetX,
+      normalizeFrame: true,
+      targetHeight: p.r * 4.25,
+      animationStart: actionStartedAt,
+      animationDuration: actionDuration
     };
-    if (USE_PLAYER_FRAME_IMAGES && hasTrueDirection) {
+    const canUseMovementFrames = action === "idle" || action === "walk" || action === "run";
+    if (USE_PLAYER_FRAME_IMAGES && hasTrueDirection && canUseMovementFrames) {
       drawn = drawFrameSequence((frame) => getPlayerFramePath(p.classId, action, baseDir, frame), baseDir, x, y, p.r * 4.45, p.running ? 13 : 9, {
         yAnchor: profile.yAnchor,
+        normalizeFrame: true,
         frameSequence,
         offsetY: 0
       });
@@ -5716,8 +6290,44 @@ function openMasterCouncil() {
   openVotePanel();
 }
 
+function renderMerchant() {
+  const p = state.player;
+  if (!p) return;
+  if (DOM.merchantGold) DOM.merchantGold.textContent = `Or disponible: ${Math.round(p.gold)}`;
+  if (DOM.merchantStock) {
+    DOM.merchantStock.innerHTML = SHOP_OFFERS.map((offer) => {
+      const icon = offer.icon || (offer.kind === "equipment" ? getEquipmentIconPath(p.classId, offer.slot) : ITEM_ICON_PATHS[offer.kind]);
+      const disabled = p.gold < offer.price || (offer.kind === "equipment" && firstEmptyInventorySlot() < 0);
+      return `<button class="merchant-offer" type="button" data-buy-offer="${offer.id}" ${disabled ? "disabled" : ""}>
+        <img src="${icon}" alt="">
+        <span><strong>${escapeHtml(offer.label)}</strong><small>${escapeHtml(offer.desc)}</small></span>
+        <b>${offer.price} or</b>
+      </button>`;
+    }).join("");
+  }
+  if (DOM.merchantSellList) {
+    const sellables = p.inventory
+      .map((item, index) => ({ item, index }))
+      .filter(({ item }) => canSellItem(item));
+    if (!sellables.length) {
+      DOM.merchantSellList.innerHTML = `<div class="merchant-empty">Aucun loot vendable pour le moment. Les equipements trouves sur les ennemis apparaitront ici.</div>`;
+    } else {
+      DOM.merchantSellList.innerHTML = sellables.map(({ item, index }) => {
+        const icon = getItemIconPath(item);
+        const rarity = RARITIES[item.rarity] || RARITIES.common;
+        return `<button class="merchant-sell-item rarity-${item.rarity || "common"}" type="button" data-sell-index="${index}">
+          ${icon ? `<img src="${icon}" alt="">` : ""}
+          <span><strong>${escapeHtml(item.name)}</strong><small style="color:${rarity.color}">${SLOT_LABELS[item.slot]} - ${rarity.label}</small></span>
+          <b>Vendre ${getSellValue(item)} or</b>
+        </button>`;
+      }).join("");
+    }
+  }
+}
+
 function openMerchant() {
   state.overlay = "merchant";
+  renderMerchant();
   DOM.merchantPanel.classList.remove("hidden");
 }
 
@@ -5726,45 +6336,63 @@ function closeMerchant() {
   if (state.overlay === "merchant") state.overlay = null;
 }
 
-function buyPotion() {
+function buyShopOffer(offerId) {
   const p = state.player;
-  if (p.gold < 25) { addNotification("Or insuffisant.", 1.9, "#ff8c8c"); return; }
-  p.gold -= 25;
-  p.potions += 1;
-  playSfx("itemUse", 0.5);
-  addNotification("Potion soin achetée.", 1.9, "#67f0c8");
+  const offer = SHOP_OFFERS.find((entry) => entry.id === offerId);
+  if (!p || !offer) return;
+  if (p.gold < offer.price) { addNotification("Or insuffisant.", 1.9, "#ff8c8c"); return; }
+  if (offer.kind === "equipment" && firstEmptyInventorySlot() < 0) { addNotification("Inventaire plein.", 2.0, "#ff8c8c"); return; }
+  p.gold -= offer.price;
+  if (offer.kind === "healthPotion") p.potions += 1;
+  else if (offer.kind === "manaPotion") p.manaPotions += 1;
+  else if (offer.kind === "equipment") addItemToInventory(createShopEquipment(offer.slot, offer.rarity));
+  playSfx(offer.kind === "equipment" ? "equipWeapon" : "shopBuySell", 0.34);
+  addNotification(`${offer.label} achete.`, 1.9, "#67f0c8");
   updateHud();
   renderInventory();
+  renderMerchant();
+}
+
+function sellInventoryItem(index) {
+  const p = state.player;
+  if (!p || !p.inventory[index]) return;
+  const item = p.inventory[index];
+  if (!canSellItem(item)) { addNotification("Le marchand reprend seulement les loots d'equipement.", 2.1, "#ffc857"); return; }
+  const value = getSellValue(item);
+  p.inventory[index] = null;
+  p.gold += value;
+  playSfx("shopBuySell", 0.32);
+  addNotification(`${item.name} vendu pour ${value} or.`, 2.2, "#facc15");
+  updateHud();
+  renderInventory();
+  renderMerchant();
+}
+
+function buyPotion() {
+  buyShopOffer("healthPotion");
 }
 
 function buyManaPotion() {
-  const p = state.player;
-  if (p.gold < 25) { addNotification("Or insuffisant.", 1.9, "#ff8c8c"); return; }
-  p.gold -= 25;
-  p.manaPotions += 1;
-  playSfx("itemUse", 0.5);
-  addNotification("Potion mana achetée.", 1.9, "#67f0c8");
-  updateHud();
-  renderInventory();
+  buyShopOffer("manaPotion");
 }
 
 function buyWeapon() {
-  buyManaPotion();
+  buyShopOffer("weapon_magic");
 }
 
 function buyArmor() {
-  buyManaPotion();
+  buyShopOffer("chest_magic");
 }
 
 function usePotion() {
   const p = state.player;
   const stats = getEffectiveStats();
   if (!p || p.potions <= 0) { addNotification("Aucune potion soin.", 1.5, "#ff8c8c"); return; }
-  if (p.hp >= stats.maxHp) { addNotification("Vie déjà au maximum.", 1.5, "#ffc857"); return; }
+  if (p.hp >= stats.maxHp) { addNotification("Vie dÃƒÂ©jÃƒÂ  au maximum.", 1.5, "#ffc857"); return; }
   p.potions -= 1;
   p.hp = Math.min(stats.maxHp, p.hp + Math.round(stats.maxHp * 0.45));
   playSfx("itemUse", 0.55);
-  addNotification("Potion soin utilisée.", 1.8, "#67f0c8");
+  addNotification("Potion soin utilisÃƒÂ©e.", 1.8, "#67f0c8");
   updateHud();
   renderInventory();
 }
@@ -5773,11 +6401,11 @@ function useManaPotion() {
   const p = state.player;
   const stats = getEffectiveStats();
   if (!p || p.manaPotions <= 0) { addNotification("Aucune potion mana.", 1.5, "#ff8c8c"); return; }
-  if (p.mana >= stats.maxMana) { addNotification("Mana déjà au maximum.", 1.5, "#ffc857"); return; }
+  if (p.mana >= stats.maxMana) { addNotification("Mana dÃƒÂ©jÃƒÂ  au maximum.", 1.5, "#ffc857"); return; }
   p.manaPotions -= 1;
   p.mana = Math.min(stats.maxMana, p.mana + Math.round(stats.maxMana * 0.55));
   playSfx("itemUse", 0.55);
-  addNotification("Potion mana utilisée.", 1.8, "#67f0c8");
+  addNotification("Potion mana utilisÃƒÂ©e.", 1.8, "#67f0c8");
   updateHud();
   renderInventory();
 }
@@ -5847,7 +6475,7 @@ function advanceToNextScene(preferredTargetId) {
     if (nextIdx < state.sceneOrder.length) nextId = state.sceneOrder[nextIdx];
   }
   if (!nextId) {
-    addNotification("Campagne terminée. Bravo médiateur.", 4, "#67f0c8");
+    addNotification("Campagne terminÃƒÂ©e. Bravo mÃƒÂ©diateur.", 4, "#67f0c8");
     return;
   }
   loadSceneById(nextId, true);
@@ -5860,7 +6488,7 @@ function submitVote() {
   }
   const justification = DOM.voteJustification.value.trim();
   if (justification.length < 20) {
-    addNotification("Justification trop courte (20+ caractères).", 2.4, "#ff8c8c");
+    addNotification("Justification trop courte (20+ caractÃƒÂ¨res).", 2.4, "#ff8c8c");
     return;
   }
 
@@ -5872,7 +6500,7 @@ function submitVote() {
     timestamp: Date.now()
   });
   closeVotePanel();
-  addNotification("Vote enregistré. Transition en cours...", 2.8, "#67f0c8");
+  addNotification("Vote enregistrÃƒÂ©. Transition en cours...", 2.8, "#67f0c8");
   advanceToNextScene(state.voteChoice.target || null);
 }
 
@@ -5908,7 +6536,7 @@ function interactionAction() {
     return;
   }
 
-  const merchant = state.world.merchants.find((m) => isNear(m, p.x, p.y, 78));
+  const merchant = state.world.merchants.find((m) => isNear(m, p.x, p.y, m.interactionRange || 78));
   if (merchant) {
     openMerchant();
     return;
@@ -5922,7 +6550,7 @@ function interactionAction() {
 
   const portal = (state.world.portals || []).find((entry) => Math.hypot(p.x - entry.x, p.y - entry.y) < 88);
   if (portal) {
-    transitionToRegion(portal.target);
+    transitionToRegion(portal.target, portal.arrival || null);
     return;
   }
 
@@ -6064,7 +6692,9 @@ function applyCharacterChange() {
   old.mana = Math.min(old.mana, stats.maxMana);
   old.stamina = Math.min(old.stamina, stats.maxStamina);
   DOM.classPanel.classList.add("hidden");
-  DOM.startBtn.textContent = "Démarrer";
+  DOM.startBtn.textContent = "Demarrer";
+  DOM.startBtn.disabled = false;
+  state.starting = false;
   state.paused = false;
   state.overlay = null;
   updateHud();
@@ -6079,13 +6709,24 @@ function setupEvents() {
   document.addEventListener("keydown", (event) => processInputEvents(event, true));
   document.addEventListener("keyup", (event) => processInputEvents(event, false));
 
-  DOM.startBtn.addEventListener("click", () => {
-    if (!state.selectedClassId) return;
+  DOM.startBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (state.starting) return;
+    if (state.mode === "class" && !state.readyToStart) {
+      addNotification("Chargement du monde en cours. Le bouton s'activera dans un instant.", 2.2, "#ffc857");
+      return;
+    }
+    state.selectedClassId = state.selectedClassId || Object.keys(CLASS_DEFS)[0] || "warrior";
     state.selectedHeroId = state.selectedHeroId || HERO_PRESETS[0].id;
+    state.starting = true;
+    DOM.startBtn.disabled = true;
     ensureMusicPlayback();
     playSfx("uiClick", 0.4);
     if (state.overlay === "classChange") applyCharacterChange();
-    else startGameAtScene("level_1");
+    else if (!startGameAtScene("level_1")) {
+      state.starting = false;
+      updateClassAvatarSelectionUI();
+    }
   });
 
   DOM.chatSend.addEventListener("click", sendChatMessage);
@@ -6106,8 +6747,8 @@ function setupEvents() {
   DOM.questClose?.addEventListener("click", closeQuestJournal);
   DOM.hudLevel?.addEventListener("click", (event) => {
     if (!event.target.closest("[data-open-talents]")) return;
-    if (state.overlay && state.overlay !== "grimoire") closeOverlayWithEscape();
-    openGrimoire();
+    event.preventDefault();
+    openTalentGrimoire();
   });
   DOM.questTracker?.addEventListener("click", (event) => {
     if (!event.target.closest("[data-quest-tracker-toggle]")) return;
@@ -6119,8 +6760,24 @@ function setupEvents() {
   DOM.voteSubmit.addEventListener("click", submitVote);
 
   DOM.merchantClose.addEventListener("click", closeMerchant);
-  DOM.buyPotion.addEventListener("click", buyPotion);
-  DOM.buyManaPotion.addEventListener("click", buyManaPotion);
+  DOM.buyPotion?.addEventListener("click", buyPotion);
+  DOM.buyManaPotion?.addEventListener("click", buyManaPotion);
+  DOM.merchantStock?.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-buy-offer]");
+    if (button) buyShopOffer(button.dataset.buyOffer);
+  });
+  DOM.merchantSellList?.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-sell-index]");
+    if (button) sellInventoryItem(Number(button.dataset.sellIndex));
+  });
+  DOM.merchantSellList?.addEventListener("dragover", (event) => { event.preventDefault(); DOM.merchantSellList.classList.add("drag-over"); });
+  DOM.merchantSellList?.addEventListener("dragleave", () => DOM.merchantSellList.classList.remove("drag-over"));
+  DOM.merchantSellList?.addEventListener("drop", (event) => {
+    event.preventDefault();
+    DOM.merchantSellList.classList.remove("drag-over");
+    const index = Number(event.dataTransfer.getData("text/plain"));
+    if (Number.isFinite(index)) sellInventoryItem(index);
+  });
   DOM.inventoryClose.addEventListener("click", closeInventory);
   DOM.grimoireClose?.addEventListener("click", closeGrimoire);
 
@@ -6158,9 +6815,13 @@ async function init() {
   resizeCanvasToViewport();
   setupEvents();
   repairStaticTextNodes();
+  DOM.startBtn.textContent = "Chargement...";
   createClassSelectionUI();
   await preloadAssets();
   await loadScenarioData();
+  state.readyToStart = true;
+  DOM.startBtn.textContent = "Demarrer";
+  updateClassAvatarSelectionUI();
   ensureMusicPlaylist();
   loadMusicTrack(Math.floor(Math.random() * state.assets.musicPlaylist.length), false);
   primeMusicAutoplay();
@@ -6183,3 +6844,4 @@ window.actionRpgMode = {
     else loadSceneById(sceneId || "level_1", true);
   }
 };
+

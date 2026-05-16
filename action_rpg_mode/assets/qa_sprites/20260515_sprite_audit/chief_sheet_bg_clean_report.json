@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-05-15 14:45:35",
+  "stats": [
+    {
+      "path": "assets/region_assets/npcs/main/processed_idle/village_chief_male_transparent.png",
+      "removed": 1014
+    },
+    {
+      "path": "assets/region_assets/npcs/main/processed_idle/mine_chief_male_transparent.png",
+      "removed": 5163
+    },
+    {
+      "path": "assets/region_assets/npcs/main/processed_idle/forrest_chief_female_transparent.png",
+      "removed": 2488
+    },
+    {
+      "path": "assets/region_assets/npcs/main/processed_idle/port_chief_female_transparent.png",
+      "removed": 1859
+    }
+  ]
+}

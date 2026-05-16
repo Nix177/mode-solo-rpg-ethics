@@ -1,0 +1,119 @@
+[
+  {
+    "file": "projectile_arrow_v1.png",
+    "source_box": [
+      40,
+      75,
+      210,
+      155
+    ],
+    "size": [
+      150,
+      34
+    ]
+  },
+  {
+    "file": "projectile_magic_bolt_v1.png",
+    "source_box": [
+      250,
+      45,
+      535,
+      175
+    ],
+    "size": [
+      239,
+      99
+    ]
+  },
+  {
+    "file": "projectile_triple_arrow_v1.png",
+    "source_box": [
+      545,
+      55,
+      735,
+      180
+    ],
+    "size": [
+      187,
+      110
+    ]
+  },
+  {
+    "file": "fx_sword_slash_strip_v1.png",
+    "source_box": [
+      770,
+      25,
+      1425,
+      195
+    ],
+    "size": [
+      627,
+      162
+    ]
+  },
+  {
+    "file": "fx_shield_wave_strip_v1.png",
+    "source_box": [
+      55,
+      200,
+      1175,
+      370
+    ],
+    "size": [
+      1120,
+      170
+    ]
+  },
+  {
+    "file": "fx_magic_impact_strip_v1.png",
+    "source_box": [
+      50,
+      380,
+      1260,
+      535
+    ],
+    "size": [
+      1196,
+      145
+    ]
+  },
+  {
+    "file": "fx_enemy_hit_strip_v1.png",
+    "source_box": [
+      55,
+      555,
+      1210,
+      665
+    ],
+    "size": [
+      1147,
+      110
+    ]
+  },
+  {
+    "file": "fx_level_up_strip_v1.png",
+    "source_box": [
+      45,
+      680,
+      1320,
+      855
+    ],
+    "size": [
+      1209,
+      175
+    ]
+  },
+  {
+    "file": "fx_rare_drop_strip_v1.png",
+    "source_box": [
+      45,
+      855,
+      1460,
+      1015
+    ],
+    "size": [
+      1344,
+      126
+    ]
+  }
+]

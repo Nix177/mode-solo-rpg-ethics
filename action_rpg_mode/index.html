@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Observatoire - Action RPG Mode</title>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./style.css?v=20260515_warrior_dr_test1">
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
 </head>
 <body>
@@ -13,7 +13,7 @@
       <div class="hud-row">
         <span id="hud-scene">Niveau: -</span>
         <span id="hud-class">Classe: -</span>
-        <span id="hud-hero">Héros: -</span>
+        <span id="hud-hero">HÃƒÂ©ros: -</span>
         <span id="hud-level">Lvl: 1</span>
         <span id="hud-hp">HP: 0/0</span>
         <span id="hud-xp">XP: 0/0</span>
@@ -75,13 +75,24 @@
 
     <div id="merchant-panel" class="hidden">
       <div id="merchant-card">
-        <h2>Marchand de terrain</h2>
-        <p id="merchant-desc">Ravitaille ton heros avant de repartir en zone dangereuse.</p>
-        <div id="merchant-actions">
-          <button id="buy-potion" type="button">Potion soin (25 or)</button>
-          <button id="buy-mana-potion" type="button">Potion mana (25 or)</button>
+        <div id="merchant-head">
+          <div>
+            <h2>Forge du village</h2>
+            <p id="merchant-desc">Achete armes, armures et provisions, puis vends les loots inutiles au forgeron.</p>
+          </div>
+          <button id="merchant-close" type="button">x</button>
         </div>
-        <button id="merchant-close" type="button">Fermer</button>
+        <div id="merchant-gold">Or disponible: 0</div>
+        <div id="merchant-layout">
+          <section class="merchant-section">
+            <h3>Acheter</h3>
+            <div id="merchant-stock"></div>
+          </section>
+          <section class="merchant-section">
+            <h3>Vendre des loots</h3>
+            <div id="merchant-sell-list" aria-label="Glisse un loot ici pour le vendre"></div>
+          </section>
+        </div>
       </div>
     </div>
 
@@ -111,8 +122,8 @@
             <div id="inventory-trash" aria-label="Jeter un objet">Glisse ici pour jeter</div>
           </div>
         </div>
-        <div id="item-tooltip">Survole un objet pour voir ses statistiques. Glisse l'objet vers le bon slot pour l'équiper.</div>
-        <p id="inventory-details">Clique sur une potion pour l'utiliser. Glisse l'équipement vers son slot.</p>
+        <div id="item-tooltip">Survole un objet pour voir ses statistiques. Glisse l'objet vers le bon slot pour l'ÃƒÂ©quiper.</div>
+        <p id="inventory-details">Clique sur une potion pour l'utiliser. Glisse l'ÃƒÂ©quipement vers son slot.</p>
       </div>
     </div>
 
@@ -123,9 +134,9 @@
           <h2>Grimoire</h2>
           <button id="grimoire-close" type="button">x</button>
         </div>
-        <p id="grimoire-help">Glisse une compétence débloquée ou une potion vers la barre rapide en bas de l'écran.</p>
+        <p id="grimoire-help">Glisse une compÃƒÂ©tence dÃƒÂ©bloquÃƒÂ©e ou une potion vers la barre rapide en bas de l'ÃƒÂ©cran.</p>
         <section id="skill-book">
-          <h3>Compétences débloquées</h3>
+          <h3>CompÃƒÂ©tences dÃƒÂ©bloquÃƒÂ©es</h3>
           <div id="skill-grid"></div>
         </section>
         <section id="talent-panel-inline">
@@ -139,13 +150,13 @@
       <div id="quest-card">
         <div id="quest-head">
           <div>
-            <h2>Journal de quêtes</h2>
+            <h2>Journal de quÃƒÂªtes</h2>
             <p id="quest-lore">Comprends les factions avant le conseil final.</p>
           </div>
           <button id="quest-close" type="button">x</button>
         </div>
         <ul id="quest-list"></ul>
-        <p class="quest-help">Raccourci: J. Les objectifs secondaires donnent or, XP et équipement, mais ne dictent jamais ton vote.</p>
+        <p class="quest-help">Raccourci: J. Les objectifs secondaires donnent or, XP et ÃƒÂ©quipement, mais ne dictent jamais ton vote.</p>
       </div>
     </div>
 
@@ -168,7 +179,7 @@
         <p>Choisis une classe pour partir explorer le dilemme.</p>
         <h3>Choisis ta classe</h3>
         <div id="class-grid"></div>
-        <button id="start-btn" type="button" disabled>Démarrer</button>
+        <button id="start-btn" type="button" disabled>Chargement...</button>
       </div>
     </div>
 
@@ -179,7 +190,7 @@
         <button id="tutorial-skip" type="button">Passer</button>
         <div id="tutorial-progress">1/7</div>
         <h2 id="tutorial-title">Tutoriel</h2>
-        <p id="tutorial-body">Lis l’action puis appuie sur la touche demandée.</p>
+        <p id="tutorial-body">Lis lÃ¢â‚¬â„¢action puis appuie sur la touche demandÃƒÂ©e.</p>
         <div id="tutorial-action">Appuie sur une touche</div>
       </div>
     </div>
@@ -191,10 +202,10 @@
         <p id="music-now-playing">Musique: chargement...</p>
         <div id="pause-sliders">
           <label>Musique <input id="music-volume" type="range" min="0" max="100" value="42"></label>
-          <label>Bruitages <input id="sfx-volume" type="range" min="0" max="100" value="65"></label>
+          <label>Bruitages <input id="sfx-volume" type="range" min="0" max="100" value="50"></label>
         </div>
         <div id="pause-actions">
-          <button id="music-prev" type="button">Précédente</button>
+          <button id="music-prev" type="button">PrÃƒÂ©cÃƒÂ©dente</button>
           <button id="toggle-audio" type="button">Musique: Pause</button>
           <button id="music-next" type="button">Suivante</button>
           <button id="change-character" type="button">Changer de classe</button>
@@ -217,6 +228,7 @@
     </div>
   </div>
 
-  <script type="module" src="./game.js?v=20260429_item_icons1"></script>
+  <script type="module" src="./game.js?v=20260515_warrior_dr_test1"></script>
 </body>
 </html>
+
