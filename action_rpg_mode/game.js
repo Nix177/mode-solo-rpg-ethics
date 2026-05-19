@@ -2,7 +2,7 @@
 const TILE_SIZE = 48;
 const DEFAULT_WORLD_TILES = { w: 92, h: 58 };
 const MAX_ENEMIES = 120;
-const ASSET_VERSION = "20260519_xpbar1";
+const ASSET_VERSION = "20260519_playerdirs1";
 
 const RESOURCE_RULES = {
   runStaminaPerSecond: 24,
@@ -5917,19 +5917,24 @@ function drawPlayer(camX, camY) {
   const dir = p.facing || vecToDirection(p.dirX, p.dirY, "down", 0.05);
   let drawn = false;
   if (USE_PLAYER_SPRITESHEETS) {
-    const profile = PLAYER_COMBAT_ACTIONS.has(action)
+    const renderAction = p.classId === "mage" && PLAYER_COMBAT_ACTIONS.has(action)
+      ? (moving ? "walk" : "idle")
+      : action;
+    const renderStartedAt = renderAction === action ? actionStartedAt : null;
+    const renderDuration = renderAction === action ? actionDuration : null;
+    const profile = PLAYER_COMBAT_ACTIONS.has(renderAction)
       ? (PLAYER_COMBAT_SHEET_PROFILES[p.classId] || PLAYER_COMBAT_SHEET_PROFILES.warrior)
       : (PLAYER_SHEET_PROFILES[p.classId] || PLAYER_SHEET_PROFILES.warrior);
     const hasTrueDirection = profile.trueDiagonals && Object.prototype.hasOwnProperty.call(profile.rowMap || {}, dir);
     const visualDir = hasTrueDirection ? { baseDir: dir, rotation: 0, offsetX: 0 } : getDiagonalSpriteTransform(dir, p.classId);
     const baseDir = hasTrueDirection ? dir : getCardinalDirection(visualDir.baseDir);
-    const sheetPath = getPlayerSheetPath(p.classId, action);
+    const sheetPath = getPlayerSheetPath(p.classId, renderAction);
     const idleSheetPath = getPlayerSheetPath(p.classId, "idle");
     const walkSheetPath = getPlayerSheetPath(p.classId, "walk");
     const directionFrame = profile.directionFrames?.[baseDir] || profile.directionFrames?.down || null;
-    const frameSequence = action === "idle"
+    const frameSequence = renderAction === "idle"
       ? [directionFrame?.idle ?? 0]
-      : ((action === "walk" || action === "run") ? getPlayerWalkFrameSequence(p.classId) : (directionFrame?.seq || EIGHT_DIRECTION_FRAME_SEQUENCE));
+      : ((renderAction === "walk" || renderAction === "run") ? getPlayerWalkFrameSequence(p.classId) : (directionFrame?.seq || EIGHT_DIRECTION_FRAME_SEQUENCE));
     const flipX = !hasTrueDirection && profile.mirrorLeft && baseDir === "left";
     const size = p.r * 5.15;
     const drawOpts = {
@@ -5944,12 +5949,12 @@ function drawPlayer(camX, camY) {
       offsetX: visualDir.offsetX,
       normalizeFrame: true,
       targetHeight: p.r * 4.25,
-      animationStart: actionStartedAt,
-      animationDuration: actionDuration
+      animationStart: renderStartedAt,
+      animationDuration: renderDuration
     };
-    const canUseMovementFrames = action === "idle" || action === "walk" || action === "run";
+    const canUseMovementFrames = renderAction === "idle" || renderAction === "walk" || renderAction === "run";
     if (USE_PLAYER_FRAME_IMAGES && hasTrueDirection && canUseMovementFrames) {
-      drawn = drawFrameSequence((frame) => getPlayerFramePath(p.classId, action, baseDir, frame), baseDir, x, y, p.r * 4.45, p.running ? 13 : 9, {
+      drawn = drawFrameSequence((frame) => getPlayerFramePath(p.classId, renderAction, baseDir, frame), baseDir, x, y, p.r * 4.45, p.running ? 13 : 9, {
         yAnchor: profile.yAnchor,
         normalizeFrame: true,
         frameSequence,
