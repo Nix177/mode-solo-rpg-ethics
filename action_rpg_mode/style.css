@@ -48,8 +48,9 @@ body {
   border: 1px solid var(--line);
   background: var(--panel);
   border-radius: 10px;
-  padding: 6px 9px;
-  max-width: min(520px, calc(100vw - 250px));
+  padding: 7px 9px 8px;
+  width: min(260px, calc(100vw - 250px));
+  max-width: 260px;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
 }
 
@@ -63,27 +64,33 @@ body {
 }
 
 #hud-bars {
-  margin: 4px 0 2px;
+  margin: 6px 0 0;
   display: grid;
-  gap: 3px;
-  min-width: 190px;
+  gap: 5px;
+  min-width: 210px;
   max-width: 230px;
 }
 
 .stat-row {
   display: grid;
-  grid-template-columns: 36px 1fr 36px;
+  grid-template-columns: 48px 1fr;
   align-items: center;
-  gap: 4px;
+  gap: 7px;
 }
 
-.stat-label,
-.stat-text {
+.stat-label {
   font-size: 10px;
+  color: rgba(217, 238, 248, 0.82);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.stat-text {
+  display: none;
 }
 
 .stat-bar {
-  height: 6px;
+  height: 8px;
   border-radius: 999px;
   border: 1px solid rgba(113, 152, 181, 0.8);
   background: rgba(8, 16, 28, 0.9);
@@ -106,6 +113,46 @@ body {
 
 .stat-fill.mana {
   background: linear-gradient(90deg, #3b82f6, #22d3ee);
+}
+
+#xp-bar-wrap {
+  position: absolute;
+  left: 50%;
+  bottom: 78px;
+  transform: translateX(-50%);
+  width: min(520px, calc(100vw - 40px));
+  z-index: 24;
+  pointer-events: none;
+}
+
+#xp-bar-track {
+  position: relative;
+  height: 18px;
+  overflow: hidden;
+  border: 2px solid rgba(92, 55, 12, 0.9);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(62, 35, 8, 0.95), rgba(23, 14, 5, 0.96));
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.38), inset 0 0 0 1px rgba(255, 231, 162, 0.14);
+}
+
+#xp-bar-track .stat-fill.xp {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: linear-gradient(90deg, #9b5b12, #facc15 52%, #fff1a8);
+  box-shadow: 0 0 12px rgba(250, 204, 21, 0.48);
+}
+
+#bar-xp-text {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #2c1704;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-shadow: 0 1px 0 rgba(255, 240, 180, 0.85);
 }
 
 #minimap-wrap {
@@ -346,17 +393,37 @@ button:hover {
   cursor: pointer;
 }
 
+.class-item {
+  display: grid;
+  grid-template-rows: 112px auto auto;
+  justify-items: center;
+  align-items: start;
+  gap: 8px;
+  min-height: 205px;
+  text-align: center;
+}
+
 .class-item.selected,
 .avatar-item.selected {
   border-color: var(--accent);
   box-shadow: 0 0 0 2px rgba(103, 240, 200, 0.2);
 }
 
-.class-item img,
+.class-item img {
+  width: 104px;
+  height: 104px;
+  object-fit: contain;
+  object-position: center bottom;
+  image-rendering: auto;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
 .avatar-item img {
   width: 56px;
   height: 56px;
-  image-rendering: pixelated;
+  object-fit: contain;
+  image-rendering: auto;
 }
 
 
@@ -510,6 +577,7 @@ button:hover {
 
 @media (max-width: 1100px) {
   #hud {
+    width: min(250px, calc(100vw - 24px));
     max-width: calc(100vw - 24px);
   }
 
@@ -517,6 +585,12 @@ button:hover {
     top: auto;
     bottom: 14px;
     right: 14px;
+  }
+
+  #quest-tracker {
+    top: auto;
+    right: 14px;
+    bottom: 166px;
   }
 }
 
@@ -534,8 +608,8 @@ button:hover {
   }
 
   .stat-row {
-    grid-template-columns: 32px 1fr 32px;
-    gap: 3px;
+    grid-template-columns: 44px 1fr;
+    gap: 6px;
   }
 
   #chat-panel {
@@ -565,6 +639,11 @@ button:hover {
   #miniMap {
     width: 170px;
     height: 110px;
+  }
+
+  #xp-bar-wrap {
+    bottom: 76px;
+    width: min(420px, calc(100vw - 28px));
   }
 }
 
@@ -833,7 +912,7 @@ button:hover {
   letter-spacing: 0.08em;
   text-shadow: 0 2px 0 #000;
   box-shadow: 0 0 30px rgba(250, 204, 21, 0.35);
-  animation: levelPop 1.45s ease-out forwards;
+  animation: levelPop 4.05s ease-out forwards;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -857,7 +936,7 @@ button:hover {
 @keyframes levelPop {
   0% { opacity: 0; transform: translate(-50%, -35%) scale(0.8); }
   18% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
-  72% { opacity: 1; }
+  82% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
   100% { opacity: 0; transform: translate(-50%, -80%) scale(0.96); }
 }
 
@@ -1052,18 +1131,22 @@ button:hover {
 #quest-tracker {
   position: absolute;
   right: 12px;
-  top: 166px;
+  top: 168px;
   left: auto;
-  width: min(285px, calc(100vw - 36px));
+  width: min(260px, calc(100vw - 36px));
   z-index: 21;
-  padding: 9px 12px 10px;
-  border: 1px solid rgba(126, 82, 23, 0.62);
-  border-radius: 13px;
+  padding: 10px 12px 11px;
+  border: 2px solid rgba(81, 45, 17, 0.92);
+  border-radius: 14px;
   background:
-    radial-gradient(circle at 12% 0%, rgba(255, 239, 190, 0.42), transparent 32%),
-    linear-gradient(160deg, rgba(244, 213, 154, 0.94), rgba(150, 88, 34, 0.88));
-  box-shadow: 0 12px 24px rgba(19, 12, 4, 0.26), inset 0 0 0 1px rgba(255,255,255,0.22);
-  color: #321d0b;
+    radial-gradient(circle at 18% 12%, rgba(255, 236, 178, 0.36), transparent 34%),
+    repeating-linear-gradient(135deg, rgba(60, 34, 13, 0.07) 0 2px, transparent 2px 7px),
+    linear-gradient(160deg, rgba(212, 158, 91, 0.96), rgba(151, 88, 38, 0.95));
+  box-shadow:
+    0 14px 26px rgba(19, 12, 4, 0.32),
+    inset 0 0 0 1px rgba(255,255,255,0.2),
+    inset 0 0 18px rgba(72, 35, 9, 0.18);
+  color: #2d1909;
   font-family: Georgia, "Times New Roman", serif;
 }
 
@@ -1084,7 +1167,7 @@ button:hover {
 }
 
 #quest-tracker p {
-  margin: 6px 0 2px;
+  margin: 6px 0 0;
   font-size: 12px;
   line-height: 1.25;
 }
@@ -1109,8 +1192,15 @@ button:hover {
 }
 
 #quest-tracker.quest-tracker-minimized {
-  width: min(220px, calc(100vw - 36px));
+  width: min(180px, calc(100vw - 36px));
+  min-height: 42px;
   padding-right: 42px;
+}
+
+#quest-tracker.quest-tracker-minimized p,
+#quest-tracker.quest-tracker-minimized span,
+#quest-tracker.quest-tracker-minimized small {
+  display: none;
 }
 
 #quest-tracker.quest-tracker-done {
@@ -1281,4 +1371,77 @@ button:hover {
 
 @media (max-width: 760px) {
   #merchant-layout { grid-template-columns: 1fr; }
+}
+
+
+/* Large grimoire talent tree */
+#grimoire-card {
+  width: min(96vw, 1280px);
+  max-height: min(92vh, 880px);
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(250, 204, 21, 0.08), transparent 34%),
+    linear-gradient(145deg, rgba(36, 20, 9, 0.97), rgba(11, 18, 26, 0.98));
+  border-color: rgba(176, 118, 43, 0.72);
+}
+#grimoire-help { margin: 8px 0 14px; }
+#talent-panel-inline {
+  min-height: 0;
+  overflow: auto;
+  padding: 14px;
+  border-color: rgba(176, 118, 43, 0.62);
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+    rgba(25, 15, 8, 0.76);
+  background-size: 32px 32px, 32px 32px, auto;
+}
+#talent-grid {
+  display: grid;
+  gap: 22px 26px;
+  min-width: 920px;
+  align-items: stretch;
+  padding: 8px 4px 18px;
+}
+.talent-node {
+  position: relative;
+  display: grid;
+  grid-template-columns: 74px 1fr;
+  gap: 11px;
+  min-height: 112px;
+  padding: 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(250, 204, 21, 0.28);
+  background: linear-gradient(145deg, rgba(71, 42, 18, 0.92), rgba(10, 18, 27, 0.92));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04), 0 10px 24px rgba(0,0,0,0.24);
+}
+.talent-node::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -18px;
+  width: 2px;
+  height: 18px;
+  background: linear-gradient(#b0762b, rgba(176,118,43,0));
+  opacity: 0.34;
+}
+.talent-node img {
+  width: 68px;
+  height: 68px;
+  align-self: start;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.45));
+}
+.talent-node strong { color: #ffe8a3; line-height: 1.1; }
+.talent-node strong span { color: #67f0c8; font-size: 12px; }
+.talent-node small { color: #ead7af; font-size: 12px; }
+.talent-node em { display:block; margin-top: 6px; color:#9fd5ff; font-size: 11px; font-style: normal; line-height: 1.2; }
+.talent-node.available:not(.maxed) { border-color: rgba(103,240,200,0.55); box-shadow: 0 0 18px rgba(103,240,200,0.12), inset 0 0 0 1px rgba(103,240,200,0.12); }
+.talent-node.locked { opacity: 0.48; filter: saturate(0.45); }
+.talent-node.maxed { border-color: #facc15; box-shadow: 0 0 20px rgba(250,204,21,0.15), inset 0 0 0 1px rgba(250,204,21,0.24); }
+@media (max-width: 760px) {
+  #grimoire-card { width: 98vw; max-height: 94vh; }
+  #talent-grid { min-width: 760px; }
 }

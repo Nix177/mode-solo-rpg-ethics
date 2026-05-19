@@ -1,8 +1,8 @@
-﻿
+
 const TILE_SIZE = 48;
 const DEFAULT_WORLD_TILES = { w: 92, h: 58 };
 const MAX_ENEMIES = 120;
-const ASSET_VERSION = "20260515_warrior_dr_test1";
+const ASSET_VERSION = "20260519_talent_tree1";
 
 const RESOURCE_RULES = {
   runStaminaPerSecond: 24,
@@ -617,6 +617,13 @@ const VILLAGE_TILE_PATHS = {
   flowers: "./assets/region_assets/tiles/village/48_flowers_grass_tile.png"
 };
 
+const REGION_PORTAL_IMAGE_PATHS = {
+  village: "./assets/region_assets/portals/portal_village.png",
+  mine: "./assets/region_assets/portals/portal_mine.png",
+  port: "./assets/region_assets/portals/portal_port.png",
+  forest: "./assets/region_assets/portals/portal_forest.png"
+};
+
 const REGION_ENEMY_SHEET_PATHS = {
   village: "./assets/region_assets/enemies/village_bandit/walk.png",
   port: "./assets/region_assets/enemies/port_pirate/walk.png",
@@ -713,6 +720,7 @@ function getRegionAssetPreloadPaths() {
     ...Object.values(REGION_PROP_IMAGE_PATHS),
     ...tilePaths,
     ...Object.values(REGION_ENEMY_SHEET_PATHS),
+    ...Object.values(REGION_PORTAL_IMAGE_PATHS),
     ...Object.values(VILLAGE_TILE_PATHS).flat(),
     ...Object.values(MAIN_NPC_SPRITE_PATHS),
     ...Object.values(REGION_MAIN_NPC_SPRITE_PATHS),
@@ -756,7 +764,7 @@ const TUTORIAL_STEPS = [
   { title: "Se d\u00e9placer", body: "Utilise ZQSD ou les fl\u00e8ches pour marcher. Le h\u00e9ros garde maintenant la derni\u00e8re direction au repos.", keys: ["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"], label: "Appuie sur une touche de d\u00e9placement" },
   { title: "Courir", body: "Maintiens MAJ pendant un d\u00e9placement pour courir. Cela consomme la stamina, qui revient apr\u00e8s une courte pause.", keys: ["ShiftLeft", "ShiftRight"], label: "Appuie sur MAJ" },
   { title: "Attaque de base", body: "Appuie sur ESPACE pour attaquer dans la direction regard\u00e9e. Les attaques physiques consomment de la stamina.", keys: ["Space"], label: "Appuie sur ESPACE" },
-  { title: "Skill principal", body: "La touche F sert au premier skill de classe, mais il se dÃƒÂ©bloque au niveau 3. Au dÃƒÂ©but, utilise surtout ESPACE et ta barre rapide.", keys: ["KeyF"], label: "Appuie sur F" },
+  { title: "Skill principal", body: "La touche F sert au premier skill de classe, mais il se débloque au niveau 3. Au début, utilise surtout ESPACE et ta barre rapide.", keys: ["KeyF"], label: "Appuie sur F" },
   { title: "Inventaire", body: "Appuie sur I pour ouvrir ton inventaire 6x7 et \u00e9quiper les objets trouv\u00e9s. Le tutoriel ne l\u2019ouvre pas ici, il v\u00e9rifie juste la touche.", keys: ["KeyI"], label: "Appuie sur I" },
   { title: "Interaction", body: "Appuie sur E pr\u00e8s d\u2019un marchand, d\u2019un conseiller ou de la porte finale. Les dialogues restent l\u2019histoire, pas tout le gameplay.", keys: ["KeyE"], label: "Appuie sur E" },
   { title: "Pause", body: "Appuie sur P pour ouvrir le menu pause pendant le jeu. Tu y gardes les contr\u00f4les musique.", keys: ["KeyP"], label: "Appuie sur P pour terminer le tutoriel" }
@@ -775,6 +783,8 @@ const FRAME_DIRECTION_PATH = {
 };
 const EIGHT_DIRECTION_FRAME_SEQUENCE = [0, 1, 2, 3, 4, 5];
 const WALK_FRAME_SEQUENCE = [0, 1, 2, 3, 4, 5, 4, 3, 2, 1];
+const WALK_FRAME_SEQUENCE_LONG = [0, 1, 2, 3, 4, 5, 6, 7];
+const PLAYER_WALK_FRAME_COUNTS = { warrior: 6, mage: 8, hunter: 8 };
 const COMBAT_DIRECTION_FRAME_SEQUENCE = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const PLAYER_COMBAT_ACTIONS = new Set(["attack_basic", "skill_1", "skill_2"]);
 const PLAYER_ACTION_VISUAL_DURATIONS = { attack_basic: 0.48, skill_1: 0.58, skill_2: 0.68 };
@@ -924,6 +934,14 @@ function getPlayerFramePath(classId, action, dir, frame) {
   return `./assets/sprite_frames/player/${classId}/${safeAction}/${safeDir}/${String(frame).padStart(2, "0")}.png`;
 }
 
+function getPlayerWalkFrameCount(classId) {
+  return PLAYER_WALK_FRAME_COUNTS[classId] || 6;
+}
+
+function getPlayerWalkFrameSequence(classId) {
+  return getPlayerWalkFrameCount(classId) >= 8 ? WALK_FRAME_SEQUENCE_LONG : WALK_FRAME_SEQUENCE;
+}
+
 function getBossFramePath(levelId, action, dir, frame) {
   const safeDir = FRAME_DIRECTION_PATH[dir] || "down";
   return `./assets/sprite_frames/bosses/${levelId}/${action}/${safeDir}/${String(frame).padStart(2, "0")}.png`;
@@ -962,16 +980,16 @@ const LEVEL_REGION_CONFIGS = {
         shortLabel: "Village",
         biome: "coast",
         type: "village",
-        tilesW: 84,
-        tilesH: 53,
+        tilesW: 102,
+        tilesH: 64,
         color: "#eab308",
-        intro: "Le village attend ton arbitrage. Les routes menent a la mine, au port et a la foret sacree.",
+        intro: "Le village attend ton arbitrage. Les routes menent a la mine, au port et a la forêt sacree.",
         master: {
           id: "master_l1_village",
           name: "Maitre Lior",
           role: "Hote du conseil",
           bio: "Il organise le conseil final et refuse de voter a la place du mediateur.",
-          prompt: "Reviens me voir quand tu auras entendu les trois camps: travail local, foret sacree et transition energetique."
+          prompt: "Reviens me voir quand tu auras entendu les trois camps: travail local, forêt sacree et transition energetique."
         },
         portals: [
           { target: "mine", label: "Mine", color: "#f59e0b", x: 0.84, y: 0.48 },
@@ -990,7 +1008,7 @@ const LEVEL_REGION_CONFIGS = {
         tilesW: 32,
         tilesH: 22,
         color: "#facc15",
-        intro: "La forge sent le charbon, le cuir et le metal chaud. Ici, tu prepares ton equipement avant les routes dangereuses.",
+        intro: "La forge sent le charbon, le cuir et le métal chaud. Ici, tu prépares ton équipement avant les routes dangereuses.",
         palette: { floor: "#6b3f1d", floorAlt: "#475569", path: "#7c2d12", wall: "#1f2937", water: "#0e7490" },
         portals: [
           { target: "village", label: "Sortir", color: "#facc15", x: 0.50, y: 0.91, style: "door", arrival: { x: 0.27, y: 0.705 } }
@@ -1004,8 +1022,8 @@ const LEVEL_REGION_CONFIGS = {
         shortLabel: "Mine",
         biome: "forest",
         type: "mine",
-        tilesW: 80,
-        tilesH: 50,
+        tilesW: 96,
+        tilesH: 60,
         color: "#f97316",
         characterIndex: 0,
         questTitle: "Securiser la galerie du gisement",
@@ -1014,7 +1032,7 @@ const LEVEL_REGION_CONFIGS = {
         values: ["travail", "urgence climatique", "responsabilite economique"],
         viewpoint: "La mine peut ramener du travail et fournir le lithium necessaire aux eoliennes. Refuser le projet peut condamner le village a l'immobilisme.",
         shortLine: "Ce chantier peut ramener du travail et donner au village un role dans la transition.",
-        consequence: "Des familles gagnent un revenu, mais le sol de la foret est ouvert et transforme.",
+        consequence: "Des familles gagnent un revenu, mais le sol de la forêt est ouvert et transforme.",
         counter: "Le travail compte, mais aucun salaire ne remplace facilement un sanctuaire perdu.",
         rewardHint: "Recompense: or, XP et objet rare adapte a ta classe.",
         portals: [
@@ -1030,17 +1048,17 @@ const LEVEL_REGION_CONFIGS = {
         shortLabel: "Foret",
         biome: "forest",
         type: "forest",
-        tilesW: 82,
-        tilesH: 55,
+        tilesW: 100,
+        tilesH: 66,
         color: "#22c55e",
         characterIndex: 1,
         questTitle: "Proteger le sanctuaire ancien",
-        questMain: "Ecouter Elara sur la valeur spirituelle et vivante de la foret.",
+        questMain: "Ecouter Elara sur la valeur spirituelle et vivante de la forêt.",
         questOptional: "Calmer les creatures affolees pres du sanctuaire.",
         values: ["patrimoine", "vivant", "irreversibilite"],
-        viewpoint: "La foret n'est pas seulement un decor: c'est une memoire, un habitat et un lieu sacre que l'on ne reconstruit pas apres coup.",
-        shortLine: "Ils vont detruire une foret que personne ne sait remplacer.",
-        consequence: "Sauver la foret preserve un monde vivant, mais peut retarder un projet energetique attendu.",
+        viewpoint: "La forêt n'est pas seulement un decor: c'est une memoire, un habitat et un lieu sacre que l'on ne reconstruit pas apres coup.",
+        shortLine: "Ils vont detruire une forêt que personne ne sait remplacer.",
+        consequence: "Sauver la forêt preserve un monde vivant, mais peut retarder un projet energetique attendu.",
         counter: "La protection du sacre ne suffit pas toujours a repondre aux besoins d'energie et de travail.",
         rewardHint: "Recompense: or, XP et objet rare adapte a ta classe.",
         portals: [
@@ -1056,12 +1074,12 @@ const LEVEL_REGION_CONFIGS = {
         shortLabel: "Port",
         biome: "coast",
         type: "port",
-        tilesW: 82,
-        tilesH: 53,
+        tilesW: 98,
+        tilesH: 64,
         color: "#38bdf8",
         characterIndex: 2,
         questTitle: "Inspecter le quai des eoliennes",
-        questMain: "Ecouter le Prefet Morel sur l'energie verte et la decision publique.",
+        questMain: "Écouter le Préfet Morel sur l'énergie verte et la décision publique.",
         questOptional: "Degager la route des pieces d'eolienne au bord du quai.",
         values: ["transition energetique", "independance", "prudence publique"],
         viewpoint: "Les eoliennes peuvent etre un premier pas vers l'independance aux energies fossiles, meme si leur bilan n'est pas parfait.",
@@ -1188,9 +1206,9 @@ const AUDIO_PATHS = {
     "./assets/sounds/400 Sounds Pack/Retro/hurt.wav"
   ],
   hitPlayer: [
-    "./assets/sounds/400 Sounds Pack/Human/man_0.wav",
-    "./assets/sounds/400 Sounds Pack/Human/man_2.wav",
-    "./assets/sounds/400 Sounds Pack/Retro/hurt.wav"
+    "./assets/sounds/400 Sounds Pack/Combat and Gore/slap.wav",
+    "./assets/sounds/400 Sounds Pack/Combat and Gore/punch.wav",
+    "./assets/sounds/400 Sounds Pack/Combat and Gore/punch_3.wav"
   ],
   doorWood: [
     "./assets/sounds/400 Sounds Pack/Environment/door_open.wav",
@@ -1214,6 +1232,8 @@ const AUDIO_PATHS = {
   ]
 };
 
+
+const VILLAGE_START_MUSIC_PATH = "../assets/music/sunlight.mp3";
 
 const MUSIC_PLAYLIST_PATHS = [
   "../assets/music/contemplation.mp3",
@@ -1275,38 +1295,57 @@ const ITEM_ICON_PATHS = {
 const SHOP_OFFERS = [
   { id: "healthPotion", label: "Potion soin", desc: "Restaure 45% de la vie max.", kind: "healthPotion", price: 25, icon: ITEM_ICON_PATHS.healthPotion },
   { id: "manaPotion", label: "Potion mana", desc: "Restaure 55% du mana max.", kind: "manaPotion", price: 25, icon: ITEM_ICON_PATHS.manaPotion },
-  { id: "weapon_magic", label: "Arme de classe", desc: "Arme magique adaptee a ta classe.", kind: "equipment", slot: "weapon", rarity: "magic", price: 95 },
-  { id: "gloves_magic", label: "Gants de precision", desc: "Gants magiques pour ameliorer attaque et ressources.", kind: "equipment", slot: "gloves", rarity: "magic", price: 82 },
-  { id: "legs_magic", label: "Bottes renforcees", desc: "Protection mobile pour survivre aux routes dangereuses.", kind: "equipment", slot: "legs", rarity: "magic", price: 86 },
-  { id: "chest_magic", label: "Protection de terrain", desc: "Piece de torse magique pour survivre plus longtemps.", kind: "equipment", slot: "chest", rarity: "magic", price: 90 },
-  { id: "cape_rare", label: "Cape de voyage", desc: "Cape rare pour les longues expeditions entre regions.", kind: "equipment", slot: "cape", rarity: "rare", price: 128 },
+  { id: "weapon_magic", label: "Arme de classe", desc: "Arme magique adaptée à ta classe.", kind: "equipment", slot: "weapon", rarity: "magic", price: 95 },
+  { id: "gloves_magic", label: "Gants de précision", desc: "Gants magiques pour améliorer attaque et ressources.", kind: "equipment", slot: "gloves", rarity: "magic", price: 82 },
+  { id: "legs_magic", label: "Bottes renforcées", desc: "Protection mobile pour survivre aux routes dangereuses.", kind: "equipment", slot: "legs", rarity: "magic", price: 86 },
+  { id: "chest_magic", label: "Protection de terrain", desc: "Pièce de torse magique pour survivre plus longtemps.", kind: "equipment", slot: "chest", rarity: "magic", price: 90 },
+  { id: "cape_rare", label: "Cape de voyage", desc: "Cape rare pour les longues expéditions entre régions.", kind: "equipment", slot: "cape", rarity: "rare", price: 128 },
   { id: "necklace_rare", label: "Collier rare", desc: "Bijou rare utile pour les zones difficiles.", kind: "equipment", slot: "necklace", rarity: "rare", price: 145 }
 ];
 
+const TALENT_ICON_ROOT = "./assets/imagegen_generated/talents";
 const TALENT_DEFS = {
   warrior: [
-    { id: "vigor", name: "Mur de garde", icon: "./assets/talents/vigor.svg", max: 3, desc: "+12 vie et +1 defense par rang.", stats: { maxHp: 12, defense: 1 } },
-    { id: "agility", name: "Charge stable", icon: "./assets/talents/agility.svg", max: 2, desc: "+8 stamina et +4 vitesse par rang.", stats: { maxStamina: 8, speed: 4 } },
-    { id: "skill1", name: "Fente renforcee", icon: "./assets/talents/skill1.svg", max: 3, levelReq: 3, desc: "Ameliore l attaque F.", skill: "skill1" },
-    { id: "special", name: "Onde de bouclier", icon: "./assets/talents/special.svg", max: 1, levelReq: 3, desc: "Debloque l'attaque speciale R.", unlockSkill: "skill2" },
-    { id: "mastery", name: "Maitrise d'acier", icon: "./assets/talents/mastery.svg", max: 4, desc: "+2 attaque par rang.", stats: { attack: 2 } },
-    { id: "focus", name: "Discipline", icon: "./assets/talents/focus.svg", max: 2, desc: "+10 mana par rang.", stats: { maxMana: 10 } }
+    { id: "vigor", name: "Mur de garde", icon: `${TALENT_ICON_ROOT}/warrior/warrior_vigor.png`, max: 3, x: 1, y: 1, desc: "+12 vie et +1 defense par rang.", stats: { maxHp: 12, defense: 1 } },
+    { id: "agility", name: "Charge stable", icon: `${TALENT_ICON_ROOT}/warrior/warrior_agility.png`, max: 2, x: 2, y: 1, desc: "+8 stamina et +4 vitesse par rang.", stats: { maxStamina: 8, speed: 4 } },
+    { id: "focus", name: "Discipline", icon: `${TALENT_ICON_ROOT}/warrior/warrior_focus.png`, max: 2, x: 3, y: 1, desc: "+10 mana par rang pour les techniques avancees.", stats: { maxMana: 10 } },
+    { id: "mastery", name: "Maitrise d'acier", icon: `${TALENT_ICON_ROOT}/warrior/warrior_mastery.png`, max: 4, x: 1, y: 2, requires: ["vigor"], desc: "+2 attaque par rang.", stats: { attack: 2 } },
+    { id: "skill1", name: "Fente renforcee", icon: `${TALENT_ICON_ROOT}/warrior/warrior_skill1.png`, max: 3, x: 2, y: 2, levelReq: 3, requires: ["agility"], desc: "Ameliore l'attaque F: plus de degats et de controle.", skill: "skill1" },
+    { id: "special", name: "Onde de bouclier", icon: `${TALENT_ICON_ROOT}/warrior/warrior_special.png`, max: 1, x: 3, y: 2, levelReq: 3, requires: ["focus"], desc: "Debloque l'attaque speciale R.", unlockSkill: "skill2" },
+    { id: "staminaSurge", name: "Souffle de combat", icon: `${TALENT_ICON_ROOT}/warrior/warrior_stamina_surge.png`, max: 3, x: 1, y: 3, levelReq: 4, requires: ["mastery"], desc: "Reduit le cout en stamina des techniques.", passive: "staminaCost" },
+    { id: "whirlwind", name: "Tourbillon de lames", icon: `${TALENT_ICON_ROOT}/warrior/warrior_whirlwind.png`, max: 2, x: 2, y: 3, levelReq: 5, requiresRank: { skill1: 2 }, desc: "F ajoute une onde circulaire autour du guerrier.", skill: "skill1" },
+    { id: "cooldown", name: "Rythme martial", icon: `${TALENT_ICON_ROOT}/warrior/warrior_cooldown.png`, max: 3, x: 3, y: 3, levelReq: 5, requires: ["special"], desc: "Reduit les cooldowns des techniques.", passive: "cooldown" },
+    { id: "ironSkin", name: "Peau d'acier", icon: `${TALENT_ICON_ROOT}/warrior/warrior_iron_skin.png`, max: 3, x: 1, y: 4, levelReq: 6, requires: ["staminaSurge"], desc: "+2 defense et +10 vie par rang.", stats: { defense: 2, maxHp: 10 } },
+    { id: "lifesteal", name: "Riposte vitale", icon: `${TALENT_ICON_ROOT}/warrior/warrior_lifesteal.png`, max: 2, x: 3, y: 4, levelReq: 7, requires: ["cooldown"], desc: "Les techniques rendent un peu de vie si elles touchent.", passive: "lifesteal" },
+    { id: "ultimate", name: "Tempete de lames", icon: `${TALENT_ICON_ROOT}/warrior/warrior_ultimate.png`, max: 1, x: 2, y: 5, levelReq: 9, requires: ["whirlwind", "ironSkin", "lifesteal"], desc: "R devient une grande tempete de lames autour de toi.", skill: "skill2" }
   ],
   mage: [
-    { id: "focus", name: "Reservoir astral", icon: "./assets/talents/focus.svg", max: 4, desc: "+14 mana par rang.", stats: { maxMana: 14 } },
-    { id: "mastery", name: "Canalisation", icon: "./assets/talents/mastery.svg", max: 4, desc: "+2 attaque magique par rang.", stats: { attack: 2 } },
-    { id: "skill1", name: "Orbe instable", icon: "./assets/talents/skill1.svg", max: 3, levelReq: 3, desc: "Ameliore le sort F.", skill: "skill1" },
-    { id: "special", name: "Nova ethique", icon: "./assets/talents/special.svg", max: 1, levelReq: 3, desc: "Debloque le sort special R.", unlockSkill: "skill2" },
-    { id: "vigor", name: "Peau de rune", icon: "./assets/talents/vigor.svg", max: 2, desc: "+10 vie et +1 defense par rang.", stats: { maxHp: 10, defense: 1 } },
-    { id: "agility", name: "Pas leger", icon: "./assets/talents/agility.svg", max: 2, desc: "+5 vitesse par rang.", stats: { speed: 5 } }
+    { id: "focus", name: "Reservoir astral", icon: `${TALENT_ICON_ROOT}/mage/mage_focus.png`, max: 4, x: 1, y: 1, desc: "+14 mana par rang.", stats: { maxMana: 14 } },
+    { id: "mastery", name: "Canalisation", icon: `${TALENT_ICON_ROOT}/mage/mage_mastery.png`, max: 4, x: 2, y: 1, desc: "+2 puissance magique par rang.", stats: { attack: 2 } },
+    { id: "agility", name: "Pas aerien", icon: `${TALENT_ICON_ROOT}/mage/mage_agility.png`, max: 2, x: 3, y: 1, desc: "+5 vitesse par rang.", stats: { speed: 5 } },
+    { id: "vigor", name: "Peau de rune", icon: `${TALENT_ICON_ROOT}/mage/mage_vigor.png`, max: 2, x: 1, y: 2, requires: ["focus"], desc: "+10 vie et +1 defense par rang.", stats: { maxHp: 10, defense: 1 } },
+    { id: "skill1", name: "Orbe instable", icon: `${TALENT_ICON_ROOT}/mage/mage_skill1.png`, max: 3, x: 2, y: 2, levelReq: 3, requires: ["mastery"], desc: "Ameliore F: projectile plus fort et explosion plus large.", skill: "skill1" },
+    { id: "special", name: "Nova arcanique", icon: `${TALENT_ICON_ROOT}/mage/mage_special.png`, max: 1, x: 3, y: 2, levelReq: 3, requires: ["agility"], desc: "Debloque le sort special R.", unlockSkill: "skill2" },
+    { id: "manaRegen", name: "Source de mana", icon: `${TALENT_ICON_ROOT}/mage/mage_mana_regen.png`, max: 3, x: 1, y: 3, levelReq: 4, requires: ["vigor"], desc: "Reduit le cout en mana des sorts et accelere la regeneration.", passive: "manaCost" },
+    { id: "fireball", name: "Boule de feu explosive", icon: `${TALENT_ICON_ROOT}/mage/mage_fireball.png`, max: 2, x: 2, y: 3, levelReq: 5, requiresRank: { skill1: 2 }, desc: "F devient une boule de feu qui explose.", skill: "skill1" },
+    { id: "cooldown", name: "Horloge lunaire", icon: `${TALENT_ICON_ROOT}/mage/mage_cooldown.png`, max: 3, x: 3, y: 3, levelReq: 5, requires: ["special"], desc: "Reduit les cooldowns des sorts.", passive: "cooldown" },
+    { id: "frostField", name: "Champ de givre", icon: `${TALENT_ICON_ROOT}/mage/mage_frost_field.png`, max: 2, x: 1, y: 4, levelReq: 6, requires: ["manaRegen"], desc: "R laisse une zone de givre qui repousse les ennemis.", skill: "skill2" },
+    { id: "chainLightning", name: "Eclair en chaine", icon: `${TALENT_ICON_ROOT}/mage/mage_chain_lightning.png`, max: 2, x: 3, y: 4, levelReq: 7, requires: ["cooldown"], desc: "F frappe aussi les ennemis proches de l'impact.", skill: "skill1" },
+    { id: "meteor", name: "Pluie de meteores", icon: `${TALENT_ICON_ROOT}/mage/mage_meteor.png`, max: 1, x: 2, y: 5, levelReq: 9, requires: ["fireball", "frostField", "chainLightning"], desc: "R invoque une zone de meteores devastatrice.", skill: "skill2" }
   ],
   hunter: [
-    { id: "agility", name: "Piste rapide", icon: "./assets/talents/agility.svg", max: 3, desc: "+6 vitesse et +6 stamina par rang.", stats: { speed: 6, maxStamina: 6 } },
-    { id: "mastery", name: "Tir precis", icon: "./assets/talents/mastery.svg", max: 4, desc: "+2 attaque par rang.", stats: { attack: 2 } },
-    { id: "skill1", name: "Triple fleche", icon: "./assets/talents/skill1.svg", max: 3, levelReq: 3, desc: "Ameliore l attaque F.", skill: "skill1" },
-    { id: "special", name: "Roulade-lame", icon: "./assets/talents/special.svg", max: 1, levelReq: 3, desc: "Debloque l'attaque speciale R.", unlockSkill: "skill2" },
-    { id: "vigor", name: "Instinct de survie", icon: "./assets/talents/vigor.svg", max: 2, desc: "+12 vie par rang.", stats: { maxHp: 12 } },
-    { id: "focus", name: "Concentration", icon: "./assets/talents/focus.svg", max: 2, desc: "+10 mana par rang.", stats: { maxMana: 10 } }
+    { id: "agility", name: "Piste rapide", icon: `${TALENT_ICON_ROOT}/hunter/hunter_agility.png`, max: 3, x: 1, y: 1, desc: "+6 vitesse et +6 stamina par rang.", stats: { speed: 6, maxStamina: 6 } },
+    { id: "mastery", name: "Tir precis", icon: `${TALENT_ICON_ROOT}/hunter/hunter_mastery.png`, max: 4, x: 2, y: 1, desc: "+2 attaque par rang.", stats: { attack: 2 } },
+    { id: "focus", name: "Concentration", icon: `${TALENT_ICON_ROOT}/hunter/hunter_focus.png`, max: 2, x: 3, y: 1, desc: "+10 mana par rang.", stats: { maxMana: 10 } },
+    { id: "vigor", name: "Instinct de survie", icon: `${TALENT_ICON_ROOT}/hunter/hunter_vigor.png`, max: 2, x: 1, y: 2, requires: ["agility"], desc: "+12 vie par rang.", stats: { maxHp: 12 } },
+    { id: "skill1", name: "Triple fleche", icon: `${TALENT_ICON_ROOT}/hunter/hunter_skill1.png`, max: 3, x: 2, y: 2, levelReq: 3, requires: ["mastery"], desc: "Ameliore F: salves plus dangereuses.", skill: "skill1" },
+    { id: "special", name: "Roulade-lame", icon: `${TALENT_ICON_ROOT}/hunter/hunter_special.png`, max: 1, x: 3, y: 2, levelReq: 3, requires: ["focus"], desc: "Debloque l'attaque speciale R.", unlockSkill: "skill2" },
+    { id: "shadowCloak", name: "Cape d'ombre", icon: `${TALENT_ICON_ROOT}/hunter/hunter_shadow_cloak.png`, max: 2, x: 1, y: 3, levelReq: 4, requires: ["vigor"], desc: "Rend R plus sur et augmente l'esquive temporaire.", skill: "skill2" },
+    { id: "explosiveArrow", name: "Fleche explosive", icon: `${TALENT_ICON_ROOT}/hunter/hunter_explosive_arrow.png`, max: 2, x: 2, y: 3, levelReq: 5, requiresRank: { skill1: 2 }, desc: "La fleche centrale de F explose a l'impact.", skill: "skill1" },
+    { id: "cooldown", name: "Vent du chasseur", icon: `${TALENT_ICON_ROOT}/hunter/hunter_cooldown.png`, max: 3, x: 3, y: 3, levelReq: 5, requires: ["special"], desc: "Reduit les cooldowns des techniques.", passive: "cooldown" },
+    { id: "poisonArrow", name: "Pointe venimeuse", icon: `${TALENT_ICON_ROOT}/hunter/hunter_poison_arrow.png`, max: 2, x: 1, y: 4, levelReq: 6, requires: ["shadowCloak"], desc: "Les salves ajoutent une petite explosion de poison.", skill: "skill1" },
+    { id: "arrowRain", name: "Pluie de fleches", icon: `${TALENT_ICON_ROOT}/hunter/hunter_arrow_rain.png`, max: 2, x: 3, y: 4, levelReq: 7, requires: ["cooldown"], desc: "R declenche une pluie de fleches dans la direction visee.", skill: "skill2" },
+    { id: "ultimate", name: "Arc de tempete", icon: `${TALENT_ICON_ROOT}/hunter/hunter_ultimate.png`, max: 1, x: 2, y: 5, levelReq: 9, requires: ["explosiveArrow", "poisonArrow", "arrowRain"], desc: "R tire une fleche de tempete qui nettoie une zone.", skill: "skill2" }
   ]
 };
 const BIOME_ENEMY_LOADOUTS = {
@@ -1331,10 +1370,7 @@ const DOM = {
   startBtn: document.getElementById("start-btn"),
   hudScene: document.getElementById("hud-scene"),
   hudClass: document.getElementById("hud-class"),
-  hudHero: document.getElementById("hud-hero"),
   hudLevel: document.getElementById("hud-level"),
-  hudHp: document.getElementById("hud-hp"),
-  hudXp: document.getElementById("hud-xp"),
   hudGold: document.getElementById("hud-gold"),
   barHpFill: document.getElementById("bar-hp-fill"),
   barHpText: document.getElementById("bar-hp-text"),
@@ -1345,7 +1381,6 @@ const DOM = {
   barXpFill: document.getElementById("bar-xp-fill"),
   barXpText: document.getElementById("bar-xp-text"),
   hotbar: document.getElementById("hotbar"),
-  hudObjective: document.getElementById("hud-objective"),
   chatPanel: document.getElementById("chat-panel"),
   chatName: document.getElementById("chat-npc-name"),
   chatLog: document.getElementById("chat-log"),
@@ -1648,13 +1683,15 @@ function getPlayerImpactSoundKey(enemy) {
   return "enemyHitLight";
 }
 
-function shuffleMusicPlaylist() {
+function shuffleMusicPlaylist(preferredFirst = null) {
   const list = [...MUSIC_PLAYLIST_PATHS];
-  for (let i = list.length - 1; i > 0; i -= 1) {
+  const preferred = preferredFirst ? list.find((path) => path === preferredFirst) : null;
+  const rest = preferred ? list.filter((path) => path !== preferred) : list;
+  for (let i = rest.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));
-    [list[i], list[j]] = [list[j], list[i]];
+    [rest[i], rest[j]] = [rest[j], rest[i]];
   }
-  return list;
+  return preferred ? [preferred, ...rest] : rest;
 }
 
 function formatTrackName(path) {
@@ -1694,7 +1731,7 @@ function setSfxVolume(value) {
 
 function ensureMusicPlaylist() {
   if (state.assets.musicPlaylist && state.assets.musicPlaylist.length) return;
-  state.assets.musicPlaylist = shuffleMusicPlaylist();
+  state.assets.musicPlaylist = shuffleMusicPlaylist(VILLAGE_START_MUSIC_PATH);
   state.assets.musicIndex = 0;
 }
 
@@ -1848,7 +1885,7 @@ async function preloadAssets() {
       imageTasks.push(loadImage(path).then((img) => { state.assets.images[path] = img; }));
     }
     for (const dir of EIGHT_DIRECTIONS) {
-      for (let frame = 1; frame <= 6; frame += 1) {
+      for (let frame = 1; frame <= getPlayerWalkFrameCount(classId); frame += 1) {
         const path = getPlayerFramePath(classId, "walk", dir, frame);
         imageTasks.push(loadImage(path).then((img) => { state.assets.images[path] = img; }));
       }
@@ -2561,16 +2598,16 @@ function addVillageMaster(world, region) {
     isZoneChief: true,
     questGiver: true,
     dialogue: {
-      shortLine: "Avant le conseil, explore la mine, la foret et le port. Les chemins sont dangereux: prepare ton equipement.",
+      shortLine: "Avant le conseil, explore la mine, la forêt et le port. Les chemins sont dangereux: prépare ton équipement.",
       viewpoint: "Je ne te demande pas de choisir maintenant. Va rencontrer chaque chef de faction, puis reviens justifier ton avis.",
       consequence: "Si tu ignores une zone, ton vote risque d'oublier des consequences importantes.",
-      counter: "Certains chemins sont risquÃƒÂ©s, mais comprendre le village demande de sortir de la place centrale.",
-      rewardHint: "Accepte la quete d'exploration pour suivre les zones et les personnes a rencontrer."
+      counter: "Certains chemins sont risqués, mais comprendre le village demande de sortir de la place centrale.",
+      rewardHint: "Accepte la quête d'exploration pour suivre les zones et les personnes a rencontrer."
     },
     quest: {
       title: "Explorer les zones du dilemme",
-      main: "Visiter la mine, la foret et le port pour parler aux trois chefs de faction.",
-      optional: "Les chemins sont dangereux: avance equipe et reviens au village si besoin."
+      main: "Visiter la mine, la forêt et le port pour parler aux trois chefs de faction.",
+      optional: "Les chemins sont dangereux: avance équipé et reviens au village si besoin."
     }
   };
 }
@@ -2801,10 +2838,10 @@ function decorateRegionWorld(world) {
     scatterRegionProps(world, ["village_flower_planter", "village_sacks", "village_crate_stack"], 8, { x: world.width * 0.12, y: world.height * 0.18, w: world.width * 0.76, h: world.height * 0.66 }, { sizeMin: 38, sizeMax: 62, collidable: false, occludesPlayer: false, spawnSafeRadius: 260 });
     world.walkerZones = [{ x: world.width * 0.52, y: world.height * 0.52, r: 460, type: "default" }];
     world.enemyZones = [
-      { x: world.width * 0.10, y: world.height * 0.16 },
-      { x: world.width * 0.91, y: world.height * 0.18 },
-      { x: world.width * 0.12, y: world.height * 0.88 },
-      { x: world.width * 0.91, y: world.height * 0.84 }
+      { x: world.width * 0.10, y: world.height * 0.14, radiusMin: 150, radiusMax: 820 },
+      { x: world.width * 0.91, y: world.height * 0.16, radiusMin: 150, radiusMax: 820 },
+      { x: world.width * 0.12, y: world.height * 0.88, radiusMin: 150, radiusMax: 780 },
+      { x: world.width * 0.91, y: world.height * 0.86, radiusMin: 150, radiusMax: 780 }
     ];
   } else if (region.type === "blacksmith_shop") {
     buildBlacksmithShopInterior(world);
@@ -2815,9 +2852,9 @@ function decorateRegionWorld(world) {
     addFactionNpcForRegion(world, state.currentScene, region);
     world.walkerZones = [{ x: world.width * 0.36, y: world.height * 0.47, r: 300, type: "mine" }];
     world.enemyZones = [
-      { x: world.width * 0.62, y: world.height * 0.60, radiusMin: 70, radiusMax: 640 },
-      { x: world.width * 0.76, y: world.height * 0.32, radiusMin: 70, radiusMax: 560 },
-      { x: world.width * 0.42, y: world.height * 0.30, radiusMin: 90, radiusMax: 480 }
+      { x: world.width * 0.63, y: world.height * 0.61, radiusMin: 120, radiusMax: 820 },
+      { x: world.width * 0.79, y: world.height * 0.31, radiusMin: 120, radiusMax: 760 },
+      { x: world.width * 0.41, y: world.height * 0.29, radiusMin: 130, radiusMax: 680 }
     ];
   } else if (region.type === "forest") {
     world.spawn = { x: world.width * 0.13, y: world.height * 0.50 };
@@ -2826,9 +2863,9 @@ function decorateRegionWorld(world) {
     addFactionNpcForRegion(world, state.currentScene, region);
     world.walkerZones = [{ x: world.width * 0.54, y: world.height * 0.46, r: 430, type: "forest" }];
     world.enemyZones = [
-      { x: world.width * 0.72, y: world.height * 0.36, radiusMin: 90, radiusMax: 620 },
-      { x: world.width * 0.67, y: world.height * 0.73, radiusMin: 90, radiusMax: 600 },
-      { x: world.width * 0.43, y: world.height * 0.22, radiusMin: 100, radiusMax: 500 }
+      { x: world.width * 0.74, y: world.height * 0.35, radiusMin: 130, radiusMax: 800 },
+      { x: world.width * 0.68, y: world.height * 0.74, radiusMin: 130, radiusMax: 800 },
+      { x: world.width * 0.42, y: world.height * 0.22, radiusMin: 140, radiusMax: 700 }
     ];
   } else if (region.type === "port") {
     world.spawn = { x: world.width * 0.50, y: world.height * 0.17 };
@@ -2837,9 +2874,9 @@ function decorateRegionWorld(world) {
     addFactionNpcForRegion(world, state.currentScene, region);
     world.walkerZones = [{ x: world.width * 0.48, y: world.height * 0.45, r: 405, type: "port" }];
     world.enemyZones = [
-      { x: world.width * 0.24, y: world.height * 0.55, radiusMin: 80, radiusMax: 520 },
-      { x: world.width * 0.74, y: world.height * 0.55, radiusMin: 80, radiusMax: 520 },
-      { x: world.width * 0.50, y: world.height * 0.68, radiusMin: 70, radiusMax: 460 }
+      { x: world.width * 0.24, y: world.height * 0.58, radiusMin: 130, radiusMax: 760 },
+      { x: world.width * 0.76, y: world.height * 0.58, radiusMin: 130, radiusMax: 760 },
+      { x: world.width * 0.50, y: world.height * 0.72, radiusMin: 120, radiusMax: 680 }
     ];
   }
 
@@ -2905,7 +2942,7 @@ function getQuestRecordForNpc(npc, kind) {
       npcId: npc.id,
       regionId: config.start,
       title: "Explorer les zones",
-      desc: "Va a la mine, dans la foret et au port. Les chemins sont dangereux: prepare ton equipement et parle au chef de chaque zone.",
+      desc: "Va à la mine, dans la forêt et au port. Les chemins sont dangereux: prépare ton équipement et parle au chef de chaque zone.",
       time: Date.now()
     };
   }
@@ -2928,7 +2965,7 @@ function getQuestRecordForNpc(npc, kind) {
       npcId: npc.id,
       regionId: region.id,
       title: region.questOptional || `Stabiliser ${region.label}`,
-      desc: "Objectif d'action: aider la zone pour obtenir or, XP et equipement, sans orienter ton vote moral.",
+      desc: "Objectif d'action: aider la zone pour obtenir or, XP et équipement, sans orienter ton vote moral.",
       time: Date.now()
     };
   }
@@ -2956,9 +2993,9 @@ function getQuestObjectives(quest) {
       const region = getRegionDefinition(regionId);
       const progress = getRegionProgress(regionId);
       const contact = getRegionContactName(regionId);
-      let text = `Aller vers ${region?.label || regionId} et parler a ${contact}.`;
+      let text = `Aller vers ${region?.label || regionId} et parler à ${contact}.`;
       if (!progress.visited) text = `Suivre le chemin vers ${region?.label || regionId}: attention, la route est dangereuse.`;
-      else if (!progress.talked) text = `Trouver ${contact} dans ${region?.label || regionId} et ecouter son point de vue.`;
+      else if (!progress.talked) text = `Trouver ${contact} dans ${region?.label || regionId} et écouter son point de vue.`;
       else text = `${region?.label || regionId}: point de vue de ${contact} entendu.`;
       return { text, done: progress.talked };
     }).concat([{ text: "Revenir au village pour le conseil final.", done: allRequiredFactionsHeard() }]);
@@ -2987,17 +3024,17 @@ function acceptQuestFromNpc(kind) {
   const quest = getQuestRecordForNpc(npc, kind);
   if (!quest) return;
   if (state.quest.acceptedQuests[quest.id]) {
-    appendChatLine("Cette quete est deja dans mon journal.", "player");
-    appendChatLine("Garde-la dans ton suivi: elle t'aide a savoir ou aller sans te donner la bonne reponse morale.", "npc");
+    appendChatLine("Cette quête est déjà dans mon journal.", "player");
+    appendChatLine("Garde-la dans ton suivi: elle t'aide à savoir où aller sans te donner la bonne réponse morale.", "npc");
     return;
   }
   state.quest.acceptedQuests[quest.id] = quest;
   state.quest.trackedQuestId = quest.id;
   playSfx("questAccepted", 0.38);
-  addJournalEntry(`Quete acceptee: ${quest.title}. ${quest.desc}`, quest.regionId);
+  addJournalEntry(`Quête acceptée: ${quest.title}. ${quest.desc}`, quest.regionId);
   appendChatLine(`J'accepte: ${quest.title}.`, "player");
   appendChatLine(kind === "optional"
-    ? "D'accord. Cette aide donne du defi et une recompense, mais elle ne t'oblige pas a voter pour mon camp."
+    ? "D'accord. Cette aide donne du défi et une récompense, mais elle ne t'oblige pas à voter pour mon camp."
     : "Bien. Suis les objectifs dans ton journal: ils te guident sans remplacer ton jugement.", "npc");
   if (kind === "optional") spawnEliteForNpc(npc);
   renderChatChoices(npc);
@@ -3005,7 +3042,7 @@ function acceptQuestFromNpc(kind) {
   renderQuestTracker();
   updateGuideText();
   updateHud();
-  addNotification(`Quete ajoutee: ${quest.title}`, 2.6, "#facc15");
+  addNotification(`Quête ajoutée: ${quest.title}`, 2.6, "#facc15");
 }
 
 function renderQuestTracker() {
@@ -3025,10 +3062,10 @@ function renderQuestTracker() {
   DOM.questTracker.classList.toggle("quest-tracker-minimized", !!state.ui.questTrackerMinimized);
   DOM.questTracker.classList.remove("hidden");
   if (state.ui.questTrackerMinimized) {
-    DOM.questTracker.innerHTML = `<button class="quest-tracker-toggle" type="button" data-quest-tracker-toggle title="Afficher le suivi">+</button><strong>Quete</strong><p>${escapeHtml(activeObjective.text)}</p>`;
+    DOM.questTracker.innerHTML = `<button class="quest-tracker-toggle" type="button" data-quest-tracker-toggle title="Afficher le suivi">+</button><strong>Quête</strong><p>${escapeHtml(activeObjective.text)}</p>`;
     return;
   }
-  DOM.questTracker.innerHTML = `<button class="quest-tracker-toggle" type="button" data-quest-tracker-toggle title="Minimiser le suivi">-</button><strong>${escapeHtml(tracked.title)}</strong><span>${done ? "terminee" : "en cours"}</span><p>${activeObjective.done ? "[x]" : "[ ]"} ${escapeHtml(activeObjective.text)}</p><small>J: journal detaille</small>`;
+  DOM.questTracker.innerHTML = `<button class="quest-tracker-toggle" type="button" data-quest-tracker-toggle title="Minimiser le suivi">-</button><strong>${escapeHtml(tracked.title)}</strong><span>${done ? "terminée" : "en cours"}</span><p>${activeObjective.done ? "[x]" : "[ ]"} ${escapeHtml(activeObjective.text)}</p><small>J: journal détaillé</small>`;
 }
 
 function requiredFactionTalkCount() {
@@ -3177,7 +3214,7 @@ function createEnemies(world, count, options = {}) {
       speed: type.speed * (1 + Math.max(0, level - 1) * 0.05), atk: Math.round(type.atk * scale),
       range: type.range, vision: type.vision, ranged: type.ranged, skinColor: skinColors[i % skinColors.length],
       spriteSheetPath,
-      homeX: zone.x, homeY: zone.y, spawnZoneX: zone.x, spawnZoneY: zone.y, leash: options.respawn ? 520 : 620,
+      homeX: zone.x, homeY: zone.y, spawnZoneX: zone.x, spawnZoneY: zone.y, leash: options.respawn ? Math.max(520, zone.radiusMax || 520) : Math.max(620, (zone.radiusMax || 620) + 80),
       vx: 0, vy: 0, wanderT: 0, lastAttack: 0, immuneUntil: 0, facing: "down", moveVX: 0, moveVY: 0
     });
   }
@@ -3205,7 +3242,7 @@ function decorateMineZone(world, center) {
 }
 
 function bossNameForWorld(world) {
-  const names = { forest: "Gardien du chantier", lab: "Prototype instable", hospital: "Crise logistique", space: "Sentinelle de dÃƒÂ´me", coast: "Gardien des marÃƒÂ©es", urban: "Chef de patrouille" };
+  const names = { forest: "Gardien du chantier", lab: "Prototype instable", hospital: "Crise logistique", space: "Sentinelle de dôme", coast: "Gardien des marées", urban: "Chef de patrouille" };
   return names[world.biome] || "Gardien de zone";
 }
 
@@ -3347,7 +3384,7 @@ function spawnEliteForNpc(npc) {
 
   world.enemies.push(elite);
   state.quest.challenges[npc.id] = { active: true, completed: false, eliteId: elite.id, regionId: npc.regionId || state.currentRegion };
-  addNotification(`Quete optionnelle: stabilise la zone de ${npc.name}.`, 3.4, "#ffc857");
+  addNotification(`Quête optionnelle: stabilise la zone de ${npc.name}.`, 3.4, "#ffc857");
 }
 
 async function loadScenarioData() {
@@ -3382,16 +3419,16 @@ async function loadScenarioData() {
         id: "level_1",
         theme: "Sacred Forest vs Wind Energy",
         narrative: {
-          context: "Conflit entre extraction de lithium pour un projet eolien et preservation d'une foret sacree.",
+          context: "Conflit entre extraction de lithium pour un projet eolien et preservation d'une forêt sacree.",
           characters: [
             { id: "char_l1_ceo", name: "Marcus Vane", role: "Industrie", bio: "Il defend l'urgence energetique." },
-            { id: "char_l1_elder", name: "Elara", role: "Gardienne", bio: "Elle defend la valeur spirituelle de la foret." },
+            { id: "char_l1_elder", name: "Elara", role: "Gardienne", bio: "Elle defend la valeur spirituelle de la forêt." },
             { id: "char_l1_gov", name: "Prefet Morel", role: "Arbitre public", bio: "Il rappelle les contraintes politiques." }
           ]
         },
         exits: [
           { id: "EXTRACT", description: "Autoriser l'extraction", target: "level_7" },
-          { id: "PROTECT", description: "Sanctuariser la foret", target: "level_9" }
+          { id: "PROTECT", description: "Sanctuariser la forêt", target: "level_9" }
         ]
       }
     };
@@ -3472,8 +3509,12 @@ function createEmptyEquipment() {
   }, {});
 }
 
-function createEmptyTalents() {
-  return { vigor: 0, focus: 0, agility: 0, skill1: 0, special: 0, mastery: 0 };
+function createEmptyTalents(classId = state.selectedClassId || "warrior") {
+  const defs = TALENT_DEFS[classId] || TALENT_DEFS.warrior;
+  return defs.reduce((acc, def) => {
+    acc[def.id] = 0;
+    return acc;
+  }, {});
 }
 
 function chooseWeightedRarity() {
@@ -3583,7 +3624,7 @@ function itemSummary(item) {
 }
 
 function itemDetailsHtml(item) {
-  if (!item) return "Survole un objet pour voir ses statistiques. Glisse l'objet vers le bon slot pour l'equiper.";
+  if (!item) return "Survole un objet pour voir ses statistiques. Glisse l'objet vers le bon slot pour l'équiper.";
   if (item.kind === "healthPotion" || item.kind === "manaPotion") return `<strong>${escapeHtml(item.name)}</strong><br>${escapeHtml(itemSummary(item))}`;
   const rarity = RARITIES[item.rarity] || RARITIES.common;
   const stats = Object.entries(item.stats || {}).map(([key, value]) => `<li>${statLabel(key)}: +${value}</li>`).join("");
@@ -3604,7 +3645,7 @@ function addItemToInventory(item) {
     return false;
   }
   p.inventory[index] = item;
-  addNotification(`${item.name} ajoute a l'inventaire.`, 2.4, RARITIES[item.rarity]?.color || "#d9eef8");
+  addNotification(`${item.name} ajouté à l'inventaire.`, 2.4, RARITIES[item.rarity]?.color || "#d9eef8");
   renderInventory();
   return true;
 }
@@ -3612,6 +3653,25 @@ function addItemToInventory(item) {
 function getTalentDefs() {
   const p = state.player;
   return p ? (TALENT_DEFS[p.classId] || TALENT_DEFS.warrior) : TALENT_DEFS.warrior;
+}
+
+function getTalentRank(id) {
+  return state.player?.talents?.[id] || 0;
+}
+
+function hasTalent(id) {
+  return getTalentRank(id) > 0;
+}
+
+function getCooldownReduction() {
+  return Math.min(1.25, getTalentRank("cooldown") * 0.18);
+}
+
+function getSkillDamageBoost(skillKey) {
+  const p = state.player;
+  if (!p) return 1;
+  const skillLevel = p.skillLevels?.[skillKey] || 1;
+  return 1 + Math.max(0, skillLevel - 1) * 0.08;
 }
 
 function getTalentBonusStats() {
@@ -3666,7 +3726,7 @@ function equipItemToSlot(index, slot) {
   p.inventory[index] = previous;
   clampPlayerToEffectiveCaps();
   playSfx("equipWeapon", 0.34);
-  addNotification(`${SLOT_LABELS[item.slot]} equipe: ${item.name}`, 2.2, item.iconColor || "#67f0c8");
+  addNotification(`${SLOT_LABELS[item.slot]} équipé: ${item.name}`, 2.2, item.iconColor || "#67f0c8");
   updateHud();
   renderInventory();
 }
@@ -3750,7 +3810,7 @@ function createPlayer() {
     xp: 0,
     xpToNext: 65,
     talentPoints: 0,
-    talents: createEmptyTalents(),
+    talents: createEmptyTalents(cls.id),
     gold: 50,
     potions: 2,
     manaPotions: 1,
@@ -3790,6 +3850,12 @@ function canUnlockTalent(def) {
   if (rank >= def.max) return false;
   if ((p.talentPoints || 0) <= 0) return false;
   if (def.levelReq && p.level < def.levelReq) return false;
+  if (Array.isArray(def.requires) && def.requires.some((id) => (p.talents?.[id] || 0) <= 0)) return false;
+  if (def.requiresRank) {
+    for (const [id, requiredRank] of Object.entries(def.requiresRank)) {
+      if ((p.talents?.[id] || 0) < requiredRank) return false;
+    }
+  }
   return true;
 }
 
@@ -3817,14 +3883,26 @@ function renderTalentTree() {
   const p = state.player;
   DOM.talentGrid.innerHTML = "";
   if (DOM.talentPoints) DOM.talentPoints.textContent = `${p.talentPoints || 0} point${(p.talentPoints || 0) > 1 ? "s" : ""}`;
-  for (const def of getTalentDefs()) {
+  const defs = getTalentDefs();
+  const maxX = Math.max(...defs.map((def) => def.x || 1), 4);
+  const maxY = Math.max(...defs.map((def) => def.y || 1), 5);
+  DOM.talentGrid.style.gridTemplateColumns = `repeat(${maxX}, minmax(190px, 1fr))`;
+  DOM.talentGrid.style.gridTemplateRows = `repeat(${maxY}, minmax(116px, auto))`;
+  for (const def of defs) {
     const rank = p.talents?.[def.id] || 0;
-    const locked = !canUnlockTalent(def) && rank < def.max;
+    const canUnlock = canUnlockTalent(def);
+    const maxed = rank >= def.max;
     const button = document.createElement("button");
     button.type = "button";
-    button.className = `talent-node ${locked ? "locked" : ""} ${rank >= def.max ? "maxed" : ""}`;
-    button.innerHTML = `<img src="${def.icon}" alt=""><div><strong>${def.name} ${rank}/${def.max}</strong><small>${def.desc}${def.levelReq ? ` Niveau requis: ${def.levelReq}.` : ""}</small></div>`;
-    button.title = def.desc;
+    button.className = `talent-node ${!canUnlock && !maxed ? "locked" : "available"} ${maxed ? "maxed" : ""}`;
+    button.style.gridColumn = String(def.x || 1);
+    button.style.gridRow = String(def.y || 1);
+    const reqParts = [];
+    if (def.levelReq) reqParts.push(`Niv. ${def.levelReq}`);
+    if (def.requires?.length) reqParts.push(`Prereq: ${def.requires.map((id) => defs.find((entry) => entry.id === id)?.name || id).join(", ")}`);
+    if (def.requiresRank) reqParts.push(`Rang requis: ${Object.entries(def.requiresRank).map(([id, value]) => `${defs.find((entry) => entry.id === id)?.name || id} ${value}`).join(", ")}`);
+    button.innerHTML = `<img src="${def.icon}" alt=""><div><strong>${def.name} <span>${rank}/${def.max}</span></strong><small>${def.desc}</small>${reqParts.length ? `<em>${reqParts.join(" • ")}</em>` : ""}</div>`;
+    button.title = `${def.name}: ${def.desc}`;
     button.addEventListener("click", () => unlockTalent(def.id));
     DOM.talentGrid.appendChild(button);
   }
@@ -3834,8 +3912,8 @@ function skillMeta(skillKey) {
   const p = state.player;
   const defs = getTalentDefs();
   const def = defs.find((node) => node.skill === skillKey || node.unlockSkill === skillKey || node.id === skillKey);
-  const fallback = skillKey === "skill1" ? "CompÃƒÂ©tence F" : "CompÃƒÂ©tence R";
-  return { key: skillKey, label: def?.name || fallback, desc: def?.desc || "CompÃƒÂ©tence de classe.", icon: def?.icon || `./assets/talents/${skillKey === "skill2" ? "special" : "skill1"}.svg`, unlocked: skillKey === "skill1" ? !!p?.unlockedSkills?.skill1 : !!p?.unlockedSkills?.skill2, levelReq: skillKey === "skill1" ? 3 : (def?.levelReq || 3) };
+  const fallback = skillKey === "skill1" ? "Compétence F" : "Compétence R";
+  return { key: skillKey, label: def?.name || fallback, desc: def?.desc || "Compétence de classe.", icon: def?.icon || `./assets/talents/${skillKey === "skill2" ? "special" : "skill1"}.svg`, unlocked: skillKey === "skill1" ? !!p?.unlockedSkills?.skill1 : !!p?.unlockedSkills?.skill2, levelReq: skillKey === "skill1" ? 3 : (def?.levelReq || 3) };
 }
 
 function ensureDefaultHotbar() {
@@ -3881,7 +3959,7 @@ function assignHotbarSlot(slotIndex, payload) {
   else if (payload.type === "consumable") state.hotbar[slotIndex] = { type: "consumable", kind: payload.kind };
   else return;
   renderHotbar();
-  addNotification(`Raccourci ${slotIndex + 1} mis ÃƒÂ  jour.`, 1.6, "#67f0c8");
+  addNotification(`Raccourci ${slotIndex + 1} mis à jour.`, 1.6, "#67f0c8");
 }
 
 function activateHotbarSlot(slotIndex) {
@@ -3933,7 +4011,7 @@ function renderSkillBook() {
     card.type = "button";
     card.className = `skill-card ${entry.unlocked ? "" : "locked"}`;
     card.draggable = entry.unlocked;
-    const lockText = entry.unlocked ? (entry.count !== undefined ? `Stock: ${entry.count}` : "DÃƒÂ©bloquÃƒÂ©") : `DÃƒÂ©bloquÃƒÂ© au niveau ${entry.levelReq}`;
+    const lockText = entry.unlocked ? (entry.count !== undefined ? `Stock: ${entry.count}` : "Débloqué") : `Débloqué au niveau ${entry.levelReq}`;
     card.innerHTML = `<img src="${entry.icon}" alt=""><strong>${entry.label}</strong><small>${entry.desc}</small><span>${lockText}</span>`;
     if (entry.unlocked) {
       card.addEventListener("dragstart", (event) => setHotbarDragData(event, entry.type === "skill" ? { type: "skill", skill: entry.skill } : { type: "consumable", kind: entry.kind }));
@@ -4063,7 +4141,7 @@ function finishTutorial() {
   state.tutorial.active = false;
   state.overlay = null;
   DOM.tutorialPanel.classList.add("hidden");
-  addNotification("Tutoriel termin?. Explore, combats, puis parle aux conseillers.", 3.2, "#67f0c8");
+  addNotification("Tutoriel terminé. Explore, combats, puis parle aux conseillers.", 3.2, "#67f0c8");
 }
 
 function handleTutorialInput(event) {
@@ -4136,19 +4214,18 @@ function updateHud() {
   if (!state.player || !state.currentScene) return;
   const p = state.player;
   const stats = getEffectiveStats();
-  DOM.hudScene.textContent = `Niveau: ${state.currentScene.id.replace("level_", "")}/50`;
-  DOM.hudClass.textContent = `Classe: ${p.className}`;
-  DOM.hudHero.textContent = `HÃƒÂ©ros: ${p.heroName}`;
-  DOM.hudLevel.innerHTML = `Lvl: <strong>${p.level}</strong>${(p.talentPoints || 0) > 0 ? `<button type="button" class="talent-plus" data-open-talents title="Points a depenser dans le grimoire">+${p.talentPoints}</button>` : ""}`;
-  DOM.hudLevel.classList.toggle("has-talent", (p.talentPoints || 0) > 0);
-  DOM.hudHp.textContent = `HP: ${Math.max(0, Math.round(p.hp))}/${Math.round(stats.maxHp)}`;
-  DOM.hudXp.textContent = `XP: ${Math.round(p.xp)}/${Math.round(p.xpToNext)}`;
-  DOM.hudGold.textContent = `Or: ${Math.round(p.gold)} | Soin: ${p.potions} | Mana: ${p.manaPotions}`;
-  DOM.hudObjective.textContent = `Objectif: ${computeObjectiveText()}`;
+  if (DOM.hudScene) DOM.hudScene.textContent = `Niveau: ${state.currentScene.id.replace("level_", "")}/50`;
+  if (DOM.hudClass) DOM.hudClass.textContent = `${p.className}`;
+  if (DOM.hudLevel) {
+    DOM.hudLevel.innerHTML = `Lvl: <strong>${p.level}</strong>${(p.talentPoints || 0) > 0 ? `<button type="button" class="talent-plus" data-open-talents title="Points à dépenser dans le grimoire">+${p.talentPoints}</button>` : ""}`;
+    DOM.hudLevel.classList.toggle("has-talent", (p.talentPoints || 0) > 0);
+  }
+  if (DOM.hudGold) DOM.hudGold.textContent = `Or: ${Math.round(p.gold)} | Potions: ${p.potions}/${p.manaPotions}`;
   setResourceBar(DOM.barHpFill, DOM.barHpText, p.hp, stats.maxHp);
   setResourceBar(DOM.barStaminaFill, DOM.barStaminaText, p.stamina, stats.maxStamina);
   setResourceBar(DOM.barManaFill, DOM.barManaText, p.mana, stats.maxMana);
   setResourceBar(DOM.barXpFill, DOM.barXpText, p.xp, p.xpToNext);
+  if (DOM.barXpText) DOM.barXpText.textContent = `${Math.round(p.xp)} / ${Math.round(p.xpToNext)} XP`;
 }
 
 function showLevelUpAnimation(level) {
@@ -4165,7 +4242,7 @@ function showLevelUpAnimation(level) {
   const open = () => openTalentGrimoire();
   pop.addEventListener("click", open);
   root.appendChild(pop);
-  window.setTimeout(() => pop.remove(), 1500);
+  window.setTimeout(() => pop.remove(), 4200);
 }
 
 function openTalentPointGuide() {
@@ -4186,7 +4263,7 @@ function updateGuideText() {
   const config = getSceneRegionConfig();
   if (config) {
     const region = getRegionDefinition(state.currentRegion);
-    DOM.guideText.textContent = `${computeObjectiveText()}. Carte actuelle: ${region?.label || "region"}. Le dilemme reste ouvert: aucune faction n'a automatiquement raison. Ouvre le journal avec J si tu es perdu.`;
+    DOM.guideText.textContent = `${computeObjectiveText()}. Carte actuelle: ${region?.label || "région"}. Le dilemme reste ouvert: aucune faction n'a automatiquement raison. Ouvre le journal avec J si tu es perdu.`;
     return;
   }
   DOM.guideText.textContent = `${computeObjectiveText()}. Dilemme: ${state.currentScene.theme}.`;
@@ -4272,7 +4349,7 @@ function togglePause(force) {
 function closeOverlayWithEscape() {
   if (state.overlay === "classChange") {
     DOM.classPanel.classList.add("hidden");
-    DOM.startBtn.textContent = "Demarrer";
+    DOM.startBtn.textContent = "Démarrer";
     state.paused = false;
     state.overlay = null;
     return true;
@@ -4516,14 +4593,17 @@ function damageEnemiesInCircle(x, y, radius, damage, knockback = 40, stun = 0) {
     hitCount += 1;
   }
 
+  return hitCount;
 }
 
 
 function consumeSkillResources(skillKey, now) {
   const p = state.player;
   if (!p) return false;
-  const manaCost = (skillKey === "skill1" ? RESOURCE_RULES.skill1Mana : RESOURCE_RULES.skill2Mana)[p.classId] || 0;
-  const staminaCost = RESOURCE_RULES.skillStamina[p.classId]?.[skillKey] || 0;
+  let manaCost = (skillKey === "skill1" ? RESOURCE_RULES.skill1Mana : RESOURCE_RULES.skill2Mana)[p.classId] || 0;
+  let staminaCost = RESOURCE_RULES.skillStamina[p.classId]?.[skillKey] || 0;
+  if (p.classId === "mage") manaCost = Math.max(0, Math.round(manaCost * (1 - Math.min(0.32, getTalentRank("manaRegen") * 0.08))));
+  if (p.classId === "warrior") staminaCost = Math.max(0, Math.round(staminaCost * (1 - Math.min(0.3, getTalentRank("staminaSurge") * 0.08))));
   if (p.mana < manaCost) {
     if (canShowResourceWarning(p, now)) { addNotification("Mana insuffisant.", 1.3, "#8ac7ff"); p.lastResourceWarn = now; }
     return false;
@@ -4578,87 +4658,119 @@ function useSkill1(now) {
   const p = state.player;
   if (!p) return;
   if (!p.unlockedSkills?.skill1) {
-    addNotification("Skill F verrouillÃƒÂ©: atteins le niveau 3 pour le dÃƒÂ©bloquer dans le grimoire.", 2.4, "#c084fc");
+    addNotification("Skill F verrouille: atteins le niveau 3 pour le debloquer dans le grimoire.", 2.4, "#c084fc");
     return;
   }
   const stats = getEffectiveStats();
-  const cooldown = 2.3 - Math.min(0.8, (p.skillLevels.skill1 - 1) * 0.08);
+  const cooldown = Math.max(0.85, 2.3 - Math.min(0.8, (p.skillLevels.skill1 - 1) * 0.08) - getCooldownReduction());
   if (now - p.lastSkill1 < cooldown) return;
   if (!consumeSkillResources("skill1", now)) return;
   p.lastSkill1 = now;
-  playSfx(getPlayerAttackSoundKey(), 0.28);
+  playSfx(getPlayerAttackSoundKey(), 0.3);
+  const boost = getSkillDamageBoost("skill1");
 
   if (p.classId === "warrior") {
     moveEntityWithCollision(p, p.dirX * 56, p.dirY * 56);
     const hit = { x: p.x + p.dirX * 42, y: p.y + p.dirY * 42 };
-    damageEnemiesInCircle(hit.x, hit.y, 58, Math.round(stats.attack * 1.7), 70, 0.7);
-    spawnFx(hit.x, hit.y, FX_PATHS.slash_warrior, 0.24, 96);
+    const damage = Math.round(stats.attack * (1.72 + getTalentRank("whirlwind") * 0.18) * boost);
+    const hits = damageEnemiesInCircle(hit.x, hit.y, 60, damage, 78, 0.72);
+    spawnFx(hit.x, hit.y, FX_PATHS.slash_warrior, 0.34, 110);
+    if (hasTalent("whirlwind")) {
+      const extraHits = damageEnemiesInCircle(p.x, p.y, 78 + getTalentRank("whirlwind") * 18, Math.round(stats.attack * 1.05 * boost), 58, 0.35);
+      spawnFx(p.x, p.y, FX_PATHS.slash_warrior, 0.38, 136 + getTalentRank("whirlwind") * 18);
+      if (hasTalent("lifesteal") && hits + extraHits > 0) p.hp = Math.min(getEffectiveStats().maxHp, p.hp + getTalentRank("lifesteal") * 4);
+    } else if (hasTalent("lifesteal") && hits > 0) {
+      p.hp = Math.min(getEffectiveStats().maxHp, p.hp + getTalentRank("lifesteal") * 3);
+    }
   } else if (p.classId === "mage") {
+    const fireball = hasTalent("fireball");
+    const chain = getTalentRank("chainLightning");
+    const splash = fireball ? 74 + getTalentRank("fireball") * 18 : 54;
     spawnProjectile({
       from: "player",
-      kind: "arcane",
+      kind: fireball ? "fireball" : "arcane",
       x: p.x + p.dirX * 20,
       y: p.y + p.dirY * 20,
-      vx: p.dirX * 360,
-      vy: p.dirY * 360,
-      dmg: Math.round(stats.attack * 1.9),
-      ttl: 1.9,
-      r: 14,
-      color: "#d946ef",
-      splash: 54
+      vx: p.dirX * (fireball ? 330 : 360),
+      vy: p.dirY * (fireball ? 330 : 360),
+      dmg: Math.round(stats.attack * (fireball ? 2.35 : 1.9) * boost),
+      ttl: 2.0,
+      r: fireball ? 18 : 14,
+      color: fireball ? "#fb923c" : "#d946ef",
+      splash,
+      chain
     });
-    spawnFx(p.x + p.dirX * 26, p.y + p.dirY * 26, FX_PATHS.burst_mage, 0.26, 92);
+    spawnFx(p.x + p.dirX * 30, p.y + p.dirY * 30, FX_PATHS.burst_mage, 0.34, fireball ? 118 : 96);
   } else {
-    const spread = [-0.16, 0, 0.16];
+    const explosive = hasTalent("explosiveArrow");
+    const poison = hasTalent("poisonArrow");
+    const spread = [-0.18, 0, 0.18];
     for (const angleOffset of spread) {
       const angle = Math.atan2(p.dirY, p.dirX) + angleOffset;
+      const centerArrow = Math.abs(angleOffset) < 0.01;
       spawnProjectile({
         from: "player",
-        kind: "arrow",
+        kind: poison ? "poison_arrow" : "arrow",
         x: p.x,
         y: p.y,
-        vx: Math.cos(angle) * 500,
-        vy: Math.sin(angle) * 500,
-        dmg: Math.round(stats.attack * 1.15),
-        ttl: 1.5,
-        r: 6,
-        color: "#84cc16"
+        vx: Math.cos(angle) * 530,
+        vy: Math.sin(angle) * 530,
+        dmg: Math.round(stats.attack * (1.18 + getTalentRank("explosiveArrow") * 0.12 + getTalentRank("poisonArrow") * 0.1) * boost),
+        ttl: 1.65,
+        r: centerArrow && explosive ? 8 : 6,
+        color: poison ? "#22c55e" : "#84cc16",
+        splash: centerArrow && explosive ? 48 + getTalentRank("explosiveArrow") * 18 : (poison ? 28 : 0)
       });
     }
-    spawnFx(p.x + p.dirX * 30, p.y + p.dirY * 30, FX_PATHS.slash_hunter, 0.2, 82);
+    spawnFx(p.x + p.dirX * 34, p.y + p.dirY * 34, FX_PATHS.slash_hunter, 0.26, 92);
   }
+  updateHud();
 }
-
 
 
 function useSkill2(now) {
   const p = state.player;
   if (!p) return;
   if (!p.unlockedSkills || !p.unlockedSkills.skill2) {
-    addNotification("Skill R verrouillÃƒÂ©: dÃƒÂ©bloque le talent spÃƒÂ©cial dans le grimoire.", 2.2, "#c084fc");
+    addNotification("Skill R verrouille: debloque le talent special dans le grimoire.", 2.2, "#c084fc");
     return;
   }
   const stats = getEffectiveStats();
-  const cooldown = 3.6 - Math.min(1.2, (p.skillLevels.skill2 - 1) * 0.12);
+  const cooldown = Math.max(1.15, 3.6 - Math.min(1.2, (p.skillLevels.skill2 - 1) * 0.12) - getCooldownReduction());
   if (now - p.lastSkill2 < cooldown) return;
   if (!consumeSkillResources("skill2", now)) return;
   p.lastSkill2 = now;
-  playSfx(getPlayerAttackSoundKey(), 0.32);
+  playSfx(getPlayerAttackSoundKey(), 0.34);
+  const boost = getSkillDamageBoost("skill2");
 
   if (p.classId === "warrior") {
-    damageEnemiesInCircle(p.x, p.y, 76, Math.round(stats.attack * 2.15), 84);
-    spawnFx(p.x, p.y, FX_PATHS.slash_warrior, 0.3, 116);
+    const ultimate = hasTalent("ultimate");
+    const radius = ultimate ? 148 : 84;
+    const damage = Math.round(stats.attack * (ultimate ? 3.25 : 2.2) * boost);
+    const hits = damageEnemiesInCircle(p.x, p.y, radius, damage, ultimate ? 126 : 88, ultimate ? 0.85 : 0.3);
+    spawnFx(p.x, p.y, FX_PATHS.slash_warrior, ultimate ? 0.58 : 0.38, ultimate ? 220 : 128);
+    if (hasTalent("lifesteal") && hits > 0) p.hp = Math.min(getEffectiveStats().maxHp, p.hp + getTalentRank("lifesteal") * (ultimate ? 9 : 5));
   } else if (p.classId === "mage") {
-    damageEnemiesInCircle(p.x, p.y, 88, Math.round(stats.attack * 2.0), 62);
-    spawnFx(p.x, p.y, FX_PATHS.burst_mage, 0.34, 128);
+    const meteor = hasTalent("meteor");
+    const frost = hasTalent("frostField");
+    const radius = meteor ? 154 : (frost ? 118 : 92);
+    const damage = Math.round(stats.attack * (meteor ? 3.15 : frost ? 2.3 : 2.0) * boost);
+    damageEnemiesInCircle(p.x + p.dirX * 42, p.y + p.dirY * 42, radius, damage, meteor ? 118 : 76, frost ? 0.9 : 0.35);
+    spawnFx(p.x + p.dirX * 42, p.y + p.dirY * 42, FX_PATHS.burst_mage, meteor ? 0.62 : 0.42, meteor ? 230 : 150);
   } else {
-    p.invulnUntil = now + 0.38;
-    moveEntityWithCollision(p, p.dirX * 120, p.dirY * 120);
-    damageEnemiesInCircle(p.x + p.dirX * 10, p.y + p.dirY * 10, 60, Math.round(stats.attack * 1.8), 80);
-    spawnFx(p.x, p.y, FX_PATHS.slash_hunter, 0.26, 102);
+    const arrowRain = hasTalent("arrowRain");
+    const ultimate = hasTalent("ultimate");
+    p.invulnUntil = now + (hasTalent("shadowCloak") ? 0.62 : 0.38);
+    moveEntityWithCollision(p, p.dirX * (ultimate ? 150 : 120), p.dirY * (ultimate ? 150 : 120));
+    const targetX = p.x + p.dirX * (arrowRain || ultimate ? 92 : 16);
+    const targetY = p.y + p.dirY * (arrowRain || ultimate ? 92 : 16);
+    const radius = ultimate ? 142 : (arrowRain ? 118 : 64);
+    const damage = Math.round(stats.attack * (ultimate ? 2.85 : arrowRain ? 2.35 : 1.85) * boost);
+    damageEnemiesInCircle(targetX, targetY, radius, damage, ultimate ? 112 : 84, 0.45);
+    spawnFx(targetX, targetY, FX_PATHS.slash_hunter, ultimate ? 0.5 : 0.34, ultimate ? 190 : 120);
   }
+  updateHud();
 }
-
 
 
 function awardFactionQuestReward(npc) {
@@ -4674,8 +4786,8 @@ function awardFactionQuestReward(npc) {
   addItemToInventory(reward);
   playSfx("questComplete", 0.45);
   const region = getRegionDefinition(npc.regionId);
-  addJournalEntry(`Quete terminee: ${region?.questOptional || "zone stabilisee"}. Recompense recue.`, npc.regionId);
-  addNotification(`Quete de ${npc.name}: +${gold} or, +${xp} XP, objet rare.`, 3.4, "#facc15");
+  addJournalEntry(`Quête terminée: ${region?.questOptional || "zone stabilisée"}. Récompense reçue.`, npc.regionId);
+  addNotification(`Quête de ${npc.name}: +${gold} or, +${xp} XP, objet rare.`, 3.4, "#facc15");
   renderQuestJournal();
 }
 
@@ -4707,7 +4819,7 @@ function onEnemyDefeated(enemy) {
     const regionId = npc?.regionId || challenge?.regionId;
     if (regionId) getRegionProgress(regionId).optional = true;
     if (npc) awardFactionQuestReward(npc);
-    addNotification("Zone stabilisee. Objectif secondaire rempli.", 2.8, "#67f0c8");
+    addNotification("Zone stabilisée. Objectif secondaire rempli.", 2.8, "#67f0c8");
     updateGuideText();
     renderQuestJournal();
   }
@@ -4741,8 +4853,8 @@ function maybeLevelUp() {
   if (leveled) {
     playSfx("levelUp", 0.55);
     showLevelUpAnimation(p.level);
-    addNotification(`Niveau ${p.level} atteint! ${p.talentPoints} point(s) de talent ÃƒÂ  dÃƒÂ©penser dans le grimoire.`, 3.8, "#ffc857");
-    if (unlockedSkill1) addNotification("CompÃƒÂ©tence F dÃƒÂ©bloquÃƒÂ©e! Glisse-la depuis le grimoire vers la barre rapide.", 3.4, "#c084fc");
+    addNotification(`Niveau ${p.level} atteint! ${p.talentPoints} point(s) de talent à dépenser dans le grimoire.`, 3.8, "#ffc857");
+    if (unlockedSkill1) addNotification("Compétence F débloquée! Glisse-la depuis le grimoire vers la barre rapide.", 3.4, "#c084fc");
   }
   renderInventory();
   renderGrimoire();
@@ -4756,7 +4868,7 @@ function damagePlayer(rawDamage, now) {
   const reduced = Math.max(1, Math.round(rawDamage - stats.defense * 0.35));
   p.hp -= reduced;
   p.invulnUntil = now + 0.6;
-  playSfx("hitPlayer", 0.65);
+  playSfx("hitPlayer", 0.38);
   updateHud();
 
   if (p.hp <= 0) {
@@ -4766,7 +4878,7 @@ function damagePlayer(rawDamage, now) {
     p.x = state.world.spawn.x;
     p.y = state.world.spawn.y;
     p.gold = Math.max(0, p.gold - 25);
-    addNotification("DÃƒÂ©faite temporaire. Repli au camp.", 3.2, "#ff8c8c");
+    addNotification("Défaite temporaire. Repli au camp.", 3.2, "#ff8c8c");
   }
 }
 
@@ -4796,6 +4908,7 @@ function updateProjectiles(dt, now) {
         if (d <= proj.r + enemy.r) {
           applyDamageToEnemy(enemy, proj.dmg, now);
           if (proj.splash) damageEnemiesInCircle(proj.x, proj.y, proj.splash, Math.round(proj.dmg * 0.7), 34);
+          if (proj.chain) damageEnemiesInCircle(proj.x, proj.y, 92 + proj.chain * 18, Math.round(proj.dmg * 0.42), 20, 0.25);
           proj.ttl = -1;
           break;
         }
@@ -5139,6 +5252,25 @@ function drawPortals(camX, camY) {
     const x = portal.x - camX;
     const y = portal.y - camY;
     const near = Math.hypot(state.player.x - portal.x, state.player.y - portal.y) < 88;
+    const portalImagePath = REGION_PORTAL_IMAGE_PATHS[portal.target] || REGION_PORTAL_IMAGE_PATHS[portal.region] || null;
+    const portalImg = portalImagePath ? state.assets.images[portalImagePath] : null;
+
+    if (portalImg) {
+      const size = near ? 126 : 112;
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(pulse, pulse);
+      ctx.fillStyle = near ? "rgba(250,204,21,0.24)" : "rgba(0,0,0,0.34)";
+      ctx.beginPath();
+      ctx.ellipse(0, 30, size * 0.38, size * 0.13, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.drawImage(portalImg, -size / 2, -size * 0.74, size, size);
+      ctx.restore();
+      if (portal.alwaysLabel) drawOutlinedText(portal.label, x, y + (portal.labelYOffset || -72), portal.color || "#facc15", "center", "14px Georgia");
+      if (near) drawEntityLabel({ x: portal.x, y: portal.y, r: 42 }, camX, camY, `[E] ${portal.target === "village" ? "Sortir" : portal.label}`, portal.color || "#facc15");
+      continue;
+    }
+
     if (portal.style === "door") {
       ctx.save();
       ctx.translate(x, y);
@@ -5154,6 +5286,7 @@ function drawPortals(camX, camY) {
       if (near) drawEntityLabel({ x: portal.x, y: portal.y, r: 24 }, camX, camY, `[E] ${portal.target === "village" ? "Sortir" : "Entrer"}`, portal.color);
       continue;
     }
+
     ctx.save();
     ctx.translate(x, y);
     ctx.scale(pulse, pulse);
@@ -5208,7 +5341,7 @@ function drawGate(camX, camY) {
     ctx.fillRect(x - 30, y - 36, 200, 28);
     ctx.fillStyle = "#e5f5ff";
     ctx.font = "14px Segoe UI";
-    ctx.fillText(gate.open ? "[E] Voter et quitter" : "Porte verrouillÃƒÂ©e", x - 24, y - 17);
+    ctx.fillText(gate.open ? "[E] Voter et quitter" : "Porte verrouillée", x - 24, y - 17);
   }
 }
 
@@ -5796,7 +5929,7 @@ function drawPlayer(camX, camY) {
     const directionFrame = profile.directionFrames?.[baseDir] || profile.directionFrames?.down || null;
     const frameSequence = action === "idle"
       ? [directionFrame?.idle ?? 0]
-      : ((action === "walk" || action === "run") ? WALK_FRAME_SEQUENCE : (directionFrame?.seq || EIGHT_DIRECTION_FRAME_SEQUENCE));
+      : ((action === "walk" || action === "run") ? getPlayerWalkFrameSequence(p.classId) : (directionFrame?.seq || EIGHT_DIRECTION_FRAME_SEQUENCE));
     const flipX = !hasTrueDirection && profile.mirrorLeft && baseDir === "left";
     const size = p.r * 5.15;
     const drawOpts = {
@@ -5845,14 +5978,14 @@ function drawProjectiles(camX, camY) {
     ctx.save();
     ctx.translate(x, y);
     ctx.rotate(angle);
-    if (proj.kind === "arrow") {
+    if (proj.kind === "arrow" || proj.kind === "poison_arrow") {
       ctx.strokeStyle = "rgba(254,249,195,0.55)";
       ctx.lineWidth = 5;
       ctx.beginPath();
       ctx.moveTo(-18, 0);
       ctx.lineTo(10, 0);
       ctx.stroke();
-      ctx.strokeStyle = proj.color || "#d9f99d";
+      ctx.strokeStyle = proj.kind === "poison_arrow" ? "#22c55e" : (proj.color || "#d9f99d");
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(-14, 0);
@@ -5868,13 +6001,13 @@ function drawProjectiles(camX, camY) {
     } else {
       const gradient = ctx.createRadialGradient(0, 0, 1, 0, 0, proj.r * 2.4);
       gradient.addColorStop(0, "#ffffff");
-      gradient.addColorStop(0.35, proj.color || "#f8fafc");
+      gradient.addColorStop(0.35, proj.kind === "fireball" ? "#fb923c" : (proj.color || "#f8fafc"));
       gradient.addColorStop(1, "rgba(255,255,255,0)");
       ctx.fillStyle = gradient;
       ctx.beginPath();
       ctx.arc(0, 0, proj.r * 2.2, 0, Math.PI * 2);
       ctx.fill();
-      ctx.strokeStyle = proj.color || "#f8fafc";
+      ctx.strokeStyle = proj.kind === "fireball" ? "#fed7aa" : (proj.color || "#f8fafc");
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.arc(0, 0, proj.r, 0, Math.PI * 2);
@@ -6113,12 +6246,12 @@ function generateNpcAnswer(npc, playerText, mode = "free") {
   const persona = getPersonaForNpc(npc);
   const tone = persona ? `${persona.displayName}: ` : "";
   if (mode === "position") return `${tone}${dialogue.viewpoint || buildNpcLine(npc)} Quelle valeur te semble la plus importante ici ?`;
-  if (mode === "consequence") return `${tone}${dialogue.consequence || "Chaque choix protege quelque chose et expose autre chose."} Qu'est-ce qui te parait le plus grave ?`;
-  if (mode === "counter") return `${tone}${dialogue.counter || "L'autre camp voit un risque que je ne veux pas effacer."} Que repondrais-tu a cette objection ?`;
-  if (mode === "reward") return `${tone}${dialogue.rewardHint || "Si tu aides la zone, tu recevras une recompense de quete."} Cette aide ne t'oblige pas a voter pour moi.`;
-  if (lower.includes("pourquoi")) return `${tone}Parce que ce dilemme oppose plusieurs biens: ${dialogue.values?.join(", ") || "progres, prudence et justice"}. On doit choisir ce qu'on accepte de risquer.`;
+  if (mode === "consequence") return `${tone}${dialogue.consequence || "Chaque choix protège quelque chose et expose autre chose."} Qu'est-ce qui te parait le plus grave ?`;
+  if (mode === "counter") return `${tone}${dialogue.counter || "L'autre camp voit un risque que je ne veux pas effacer."} Que répondrais-tu à cette objection ?`;
+  if (mode === "reward") return `${tone}${dialogue.rewardHint || "Si tu aides la zone, tu recevras une récompense de quête."} Cette aide ne t'oblige pas à voter pour moi.`;
+  if (lower.includes("pourquoi")) return `${tone}Parce que ce dilemme oppose plusieurs biens: ${dialogue.values?.join(", ") || "progrès, prudence et justice"}. On doit choisir ce qu'on accepte de risquer.`;
   if (lower.includes("autre") || lower.includes("contre")) return `${tone}${dialogue.counter || "L'autre camp rappelle une consequence que je ne dois pas balayer."}`;
-  if (lower.includes("vote") || lower.includes("choix")) return `${tone}Ton vote final doit venir de ta justification, pas de ma recompense. Essaie de nommer la valeur que tu veux proteger en premier.`;
+  if (lower.includes("vote") || lower.includes("choix")) return `${tone}Ton vote final doit venir de ta justification, pas de ma recompense. Essaie de nommer la valeur que tu veux protéger en premier.`;
   return `${tone}${dialogue.viewpoint || buildNpcLine(npc)} Je peux developper si tu me demandes une consequence, une objection ou un exemple.`;
 }
 
@@ -6128,10 +6261,10 @@ function renderChatChoices(npc) {
   const questKinds = [];
   const config = getSceneRegionConfig();
   if (npc.questGiver && config) {
-    if (npc.regionId === config.start || npc.id === state.world?.master?.id) questKinds.push(["explore", "Quete: explorer les zones"]);
+    if (npc.regionId === config.start || npc.id === state.world?.master?.id) questKinds.push(["explore", "Quête: explorer les zones"]);
     else {
       const region = getRegionDefinition(npc.regionId);
-      questKinds.push(["main", `Quete: ${region?.questTitle || "comprendre la zone"}`]);
+      questKinds.push(["main", `Quête: ${region?.questTitle || "comprendre la zone"}`]);
       questKinds.push(["optional", `Aide locale: ${region?.questOptional || "stabiliser la zone"}`]);
     }
   }
@@ -6140,7 +6273,7 @@ function renderChatChoices(npc) {
     questArea.className = "quest-choice-area";
     const labelNode = document.createElement("span");
     labelNode.className = "quest-choice-label";
-    labelNode.textContent = "Quetes disponibles";
+    labelNode.textContent = "Quêtes disponibles";
     questArea.appendChild(labelNode);
     for (const [kind, label] of questKinds) {
       const quest = getQuestRecordForNpc(npc, kind);
@@ -6156,9 +6289,9 @@ function renderChatChoices(npc) {
   }
   const choices = [
     ["position", "Ton point de vue"],
-    ["consequence", "Consequences"],
+    ["consequence", "Conséquences"],
     ["counter", "Objection"],
-    ["reward", "Quete"],
+    ["reward", "Quête"],
     ["free", "Question libre"]
   ];
   for (const [key, label] of choices) {
@@ -6177,7 +6310,7 @@ function askGuidedNpcQuestion(key) {
     DOM.chatInput.focus();
     return;
   }
-  const labels = { position: "Explique ton point de vue.", consequence: "Quelles consequences ?", counter: "Que dirait l'autre camp ?", reward: "Quelle quete proposes-tu ?" };
+  const labels = { position: "Explique ton point de vue.", consequence: "Quelles conséquences ?", counter: "Que dirait l'autre camp ?", reward: "Quelle quête proposes-tu ?" };
   appendChatLine(labels[key] || "Explique.", "player");
   appendChatLine(generateNpcAnswer(state.chatNpc, labels[key], key), "npc");
 }
@@ -6191,7 +6324,7 @@ function markNpcConversation(npc) {
     progress.talked = true;
     const region = getRegionDefinition(npc.regionId);
     addJournalEntry(`Point de vue entendu: ${npc.name} (${region?.label || npc.role}).`, npc.regionId);
-    addJournalEntry(`Question cle: ${npc.dialogue?.consequence || "Quelle consequence acceptes-tu ?"}`, npc.regionId);
+    addJournalEntry(`Question clé: ${npc.dialogue?.consequence || "Quelle conséquence acceptes-tu ?"}`, npc.regionId);
   }
   addNotification(`Point de vue ajoute au journal: ${npc.name}.`, 2.4, "#67f0c8");
   renderQuestJournal();
@@ -6210,7 +6343,7 @@ function openNpcChat(npc) {
     DOM.chatContext.textContent = region ? `${region.label} - ${region.questTitle || "Point de vue"}` : "Dialogue de faction";
   }
   appendChatLine(buildNpcLine(npc), "npc");
-  appendChatLine("Tu peux utiliser les boutons pour lire peu, ou poser une question libre si tu veux aller plus loin.", "npc");
+  appendChatLine("Tu peux utiliser les boutons pour interagir ou écrire dans le chat.", "npc");
   renderChatChoices(npc);
   DOM.chatInput.value = "";
   DOM.chatInput.focus();
@@ -6243,13 +6376,13 @@ function renderQuestJournal() {
   }
   const current = getRegionDefinition(state.currentRegion);
   if (DOM.questLore) {
-    DOM.questLore.textContent = `${state.currentScene?.theme || "Dilemme"} - Carte actuelle: ${current?.label || "Village"}. Accepte les quetes des chefs pour suivre ton chemin.`;
+    DOM.questLore.textContent = `${state.currentScene?.theme || "Dilemme"} - Carte actuelle: ${current?.label || "Village"}. Accepte les quêtes des chefs pour suivre ton chemin.`;
   }
   const quests = getAcceptedQuestList();
   if (!quests.length) {
     const item = document.createElement("li");
     item.className = "quest-active";
-    item.innerHTML = "<strong>Aucune quete acceptee</strong><p>Parle au chef du village et accepte la quete d'exploration. Elle t'indiquera les zones a visiter et les chefs a rencontrer.</p>";
+    item.innerHTML = "<strong>Aucune quête acceptée</strong><p>Parle au chef du village et accepte la quête d'exploration. Elle t'indiquera les zones à visiter et les chefs a rencontrer.</p>";
     DOM.questList.appendChild(item);
   }
   for (const quest of quests) {
@@ -6257,7 +6390,7 @@ function renderQuestJournal() {
     const done = questIsDone(quest);
     item.className = done ? "quest-done" : "quest-active";
     const objectives = getQuestObjectives(quest).map((objective) => `<p class="quest-secondary">${objective.done ? "[x]" : "[ ]"} ${escapeHtml(objective.text)}</p>`).join("");
-    item.innerHTML = `<strong>${escapeHtml(quest.title)}</strong><span>${done ? "terminee" : "en cours"}</span><p>${escapeHtml(quest.desc || "")}</p>${objectives}`;
+    item.innerHTML = `<strong>${escapeHtml(quest.title)}</strong><span>${done ? "terminée" : "en cours"}</span><p>${escapeHtml(quest.desc || "")}</p>${objectives}`;
     DOM.questList.appendChild(item);
   }
   for (const entry of state.quest.journalEntries.slice(-6)) {
@@ -6310,7 +6443,7 @@ function renderMerchant() {
       .map((item, index) => ({ item, index }))
       .filter(({ item }) => canSellItem(item));
     if (!sellables.length) {
-      DOM.merchantSellList.innerHTML = `<div class="merchant-empty">Aucun loot vendable pour le moment. Les equipements trouves sur les ennemis apparaitront ici.</div>`;
+      DOM.merchantSellList.innerHTML = `<div class="merchant-empty">Aucun loot vendable pour le moment. Les équipements trouvés sur les ennemis apparaîtront ici.</div>`;
     } else {
       DOM.merchantSellList.innerHTML = sellables.map(({ item, index }) => {
         const icon = getItemIconPath(item);
@@ -6347,7 +6480,7 @@ function buyShopOffer(offerId) {
   else if (offer.kind === "manaPotion") p.manaPotions += 1;
   else if (offer.kind === "equipment") addItemToInventory(createShopEquipment(offer.slot, offer.rarity));
   playSfx(offer.kind === "equipment" ? "equipWeapon" : "shopBuySell", 0.34);
-  addNotification(`${offer.label} achete.`, 1.9, "#67f0c8");
+  addNotification(`${offer.label} acheté.`, 1.9, "#67f0c8");
   updateHud();
   renderInventory();
   renderMerchant();
@@ -6357,7 +6490,7 @@ function sellInventoryItem(index) {
   const p = state.player;
   if (!p || !p.inventory[index]) return;
   const item = p.inventory[index];
-  if (!canSellItem(item)) { addNotification("Le marchand reprend seulement les loots d'equipement.", 2.1, "#ffc857"); return; }
+  if (!canSellItem(item)) { addNotification("Le marchand reprend seulement les loots d'équipement.", 2.1, "#ffc857"); return; }
   const value = getSellValue(item);
   p.inventory[index] = null;
   p.gold += value;
@@ -6388,11 +6521,11 @@ function usePotion() {
   const p = state.player;
   const stats = getEffectiveStats();
   if (!p || p.potions <= 0) { addNotification("Aucune potion soin.", 1.5, "#ff8c8c"); return; }
-  if (p.hp >= stats.maxHp) { addNotification("Vie dÃƒÂ©jÃƒÂ  au maximum.", 1.5, "#ffc857"); return; }
+  if (p.hp >= stats.maxHp) { addNotification("Vie déjà au maximum.", 1.5, "#ffc857"); return; }
   p.potions -= 1;
   p.hp = Math.min(stats.maxHp, p.hp + Math.round(stats.maxHp * 0.45));
   playSfx("itemUse", 0.55);
-  addNotification("Potion soin utilisÃƒÂ©e.", 1.8, "#67f0c8");
+  addNotification("Potion soin utilisée.", 1.8, "#67f0c8");
   updateHud();
   renderInventory();
 }
@@ -6401,11 +6534,11 @@ function useManaPotion() {
   const p = state.player;
   const stats = getEffectiveStats();
   if (!p || p.manaPotions <= 0) { addNotification("Aucune potion mana.", 1.5, "#ff8c8c"); return; }
-  if (p.mana >= stats.maxMana) { addNotification("Mana dÃƒÂ©jÃƒÂ  au maximum.", 1.5, "#ffc857"); return; }
+  if (p.mana >= stats.maxMana) { addNotification("Mana déjà au maximum.", 1.5, "#ffc857"); return; }
   p.manaPotions -= 1;
   p.mana = Math.min(stats.maxMana, p.mana + Math.round(stats.maxMana * 0.55));
   playSfx("itemUse", 0.55);
-  addNotification("Potion mana utilisÃƒÂ©e.", 1.8, "#67f0c8");
+  addNotification("Potion mana utilisée.", 1.8, "#67f0c8");
   updateHud();
   renderInventory();
 }
@@ -6436,7 +6569,7 @@ function openVotePanel() {
   const scene = state.currentScene;
   state.overlay = "vote";
   DOM.votePanel.classList.remove("hidden");
-  DOM.voteDilemma.textContent = getSceneRegionConfig() ? `Conseil du village: formule ton avis sur ${scene.theme}. Ta justification sera enregistree, sans score moral.` : (scene.narrative.context || `Dilemme du niveau: ${scene.theme}`);
+  DOM.voteDilemma.textContent = getSceneRegionConfig() ? `Conseil du village: formule ton avis sur ${scene.theme}. Ta justification sera enregistrée, sans score moral.` : (scene.narrative.context || `Dilemme du niveau: ${scene.theme}`);
   DOM.voteJustification.value = "";
   DOM.voteOptions.innerHTML = "";
 
@@ -6475,7 +6608,7 @@ function advanceToNextScene(preferredTargetId) {
     if (nextIdx < state.sceneOrder.length) nextId = state.sceneOrder[nextIdx];
   }
   if (!nextId) {
-    addNotification("Campagne terminÃƒÂ©e. Bravo mÃƒÂ©diateur.", 4, "#67f0c8");
+    addNotification("Campagne terminée. Bravo médiateur.", 4, "#67f0c8");
     return;
   }
   loadSceneById(nextId, true);
@@ -6488,7 +6621,7 @@ function submitVote() {
   }
   const justification = DOM.voteJustification.value.trim();
   if (justification.length < 20) {
-    addNotification("Justification trop courte (20+ caractÃƒÂ¨res).", 2.4, "#ff8c8c");
+    addNotification("Justification trop courte (20+ caractères).", 2.4, "#ff8c8c");
     return;
   }
 
@@ -6500,7 +6633,7 @@ function submitVote() {
     timestamp: Date.now()
   });
   closeVotePanel();
-  addNotification("Vote enregistrÃƒÂ©. Transition en cours...", 2.8, "#67f0c8");
+  addNotification("Vote enregistré. Transition en cours...", 2.8, "#67f0c8");
   advanceToNextScene(state.voteChoice.target || null);
 }
 
@@ -6564,7 +6697,20 @@ function interactionAction() {
 
 
 
+function isTextEntryTarget(target) {
+  if (!target) return false;
+  const tag = target.tagName;
+  return tag === "INPUT" || tag === "TEXTAREA" || target.isContentEditable;
+}
+
 function processInputEvents(event, isDown) {
+  if (isTextEntryTarget(event.target)) {
+    if (!isDown) state.keysDown.delete(event.code);
+    if (isDown && event.code === "Escape") {
+      if (closeOverlayWithEscape()) event.preventDefault();
+    }
+    return;
+  }
   if (isDown) state.keysDown.add(event.code);
   else state.keysDown.delete(event.code);
   if (!isDown) return;
@@ -6683,7 +6829,7 @@ function applyCharacterChange() {
   old.maxStamina = 100 + Math.max(0, old.level - 1) * (cls.id === "mage" ? 1 : 3);
   old.manaRegenRate = cls.id === "mage" ? 30 : 24;
   old.equipment = createEmptyEquipment();
-  old.talents = createEmptyTalents();
+  old.talents = createEmptyTalents(cls.id);
   old.talentPoints = Math.max(0, old.level - 1);
   old.skillLevels = { skill1: 1, skill2: 1 };
   old.unlockedSkills = { skill1: old.level >= 3, skill2: false };
@@ -6692,7 +6838,7 @@ function applyCharacterChange() {
   old.mana = Math.min(old.mana, stats.maxMana);
   old.stamina = Math.min(old.stamina, stats.maxStamina);
   DOM.classPanel.classList.add("hidden");
-  DOM.startBtn.textContent = "Demarrer";
+  DOM.startBtn.textContent = "Démarrer";
   DOM.startBtn.disabled = false;
   state.starting = false;
   state.paused = false;
@@ -6701,7 +6847,7 @@ function applyCharacterChange() {
   renderInventory();
   renderGrimoire();
   renderHotbar();
-  addNotification("Personnage et classe mis a jour.", 2.4, "#67f0c8");
+  addNotification("Personnage et classe mis à jour.", 2.4, "#67f0c8");
 }
 
 function setupEvents() {
@@ -6730,8 +6876,14 @@ function setupEvents() {
   });
 
   DOM.chatSend.addEventListener("click", sendChatMessage);
+  DOM.chatInput.addEventListener("pointerdown", (event) => event.stopPropagation());
+  DOM.chatInput.addEventListener("click", (event) => event.stopPropagation());
   DOM.chatInput.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") sendChatMessage();
+    event.stopPropagation();
+    if (event.key === "Enter") {
+      event.preventDefault();
+      sendChatMessage();
+    }
   });
   DOM.chatClose.addEventListener("click", closeChat);
   DOM.chatChoices?.addEventListener("click", (event) => {
@@ -6820,10 +6972,10 @@ async function init() {
   await preloadAssets();
   await loadScenarioData();
   state.readyToStart = true;
-  DOM.startBtn.textContent = "Demarrer";
+  DOM.startBtn.textContent = "Démarrer";
   updateClassAvatarSelectionUI();
   ensureMusicPlaylist();
-  loadMusicTrack(Math.floor(Math.random() * state.assets.musicPlaylist.length), false);
+  loadMusicTrack(0, false);
   primeMusicAutoplay();
   updateMusicUi();
   addNotification("Choisis ton personnage puis ta classe pour commencer.", 4.4, "#67f0c8");
@@ -6844,4 +6996,3 @@ window.actionRpgMode = {
     else loadSceneById(sceneId || "level_1", true);
   }
 };
-

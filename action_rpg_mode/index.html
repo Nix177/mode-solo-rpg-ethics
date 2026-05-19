@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Observatoire - Action RPG Mode</title>
-  <link rel="stylesheet" href="./style.css?v=20260515_warrior_dr_test1">
+  <link rel="stylesheet" href="./style.css?v=20260519_talent_tree1">
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
 </head>
 <body>
@@ -13,10 +13,7 @@
       <div class="hud-row">
         <span id="hud-scene">Niveau: -</span>
         <span id="hud-class">Classe: -</span>
-        <span id="hud-hero">HÃƒÂ©ros: -</span>
         <span id="hud-level">Lvl: 1</span>
-        <span id="hud-hp">HP: 0/0</span>
-        <span id="hud-xp">XP: 0/0</span>
         <span id="hud-gold">Or: 0</span>
       </div>
       <div id="hud-bars">
@@ -35,21 +32,19 @@
           <div class="stat-bar"><div id="bar-mana-fill" class="stat-fill mana"></div></div>
           <span id="bar-mana-text" class="stat-text">0/0</span>
         </div>
-        <div class="stat-row xp-row">
-          <span class="stat-label">XP</span>
-          <div class="stat-bar"><div id="bar-xp-fill" class="stat-fill xp"></div></div>
-          <span id="bar-xp-text" class="stat-text">0/0</span>
-        </div>
-      </div>
-      <div class="hud-row">
-        <span id="hud-objective">Objectif: -</span>
-        <span id="hud-skills">SHIFT courir | SPACE attaque | J journal | G grimoire | I inventaire | E interagir | P pause</span>
       </div>
     </div>
 
     <canvas id="gameCanvas" width="1280" height="720"></canvas>
 
-    <div id="hotbar" aria-label="Barre d acces rapide"></div>
+    <div id="xp-bar-wrap" aria-label="Progression d'expérience">
+      <div id="xp-bar-track">
+        <div id="bar-xp-fill" class="stat-fill xp"></div>
+        <span id="bar-xp-text">0/0 XP</span>
+      </div>
+    </div>
+
+    <div id="hotbar" aria-label="Barre d'accès rapide"></div>
 
     <div id="minimap-wrap">
       <canvas id="miniMap" width="220" height="140"></canvas>
@@ -122,8 +117,8 @@
             <div id="inventory-trash" aria-label="Jeter un objet">Glisse ici pour jeter</div>
           </div>
         </div>
-        <div id="item-tooltip">Survole un objet pour voir ses statistiques. Glisse l'objet vers le bon slot pour l'ÃƒÂ©quiper.</div>
-        <p id="inventory-details">Clique sur une potion pour l'utiliser. Glisse l'ÃƒÂ©quipement vers son slot.</p>
+        <div id="item-tooltip">Survole un objet pour voir ses statistiques. Glisse l'objet vers le bon slot pour l'équiper.</div>
+        <p id="inventory-details">Clique sur une potion pour l'utiliser. Glisse l'équipement vers son slot.</p>
       </div>
     </div>
 
@@ -134,9 +129,9 @@
           <h2>Grimoire</h2>
           <button id="grimoire-close" type="button">x</button>
         </div>
-        <p id="grimoire-help">Glisse une compÃƒÂ©tence dÃƒÂ©bloquÃƒÂ©e ou une potion vers la barre rapide en bas de l'ÃƒÂ©cran.</p>
+        <p id="grimoire-help">Glisse une compétence débloquée ou une potion vers la barre rapide. Fais défiler l'arbre pour voir les pouvoirs futurs.</p>
         <section id="skill-book">
-          <h3>CompÃƒÂ©tences dÃƒÂ©bloquÃƒÂ©es</h3>
+          <h3>Compétences débloquées</h3>
           <div id="skill-grid"></div>
         </section>
         <section id="talent-panel-inline">
@@ -150,13 +145,13 @@
       <div id="quest-card">
         <div id="quest-head">
           <div>
-            <h2>Journal de quÃƒÂªtes</h2>
+            <h2>Journal de quêtes</h2>
             <p id="quest-lore">Comprends les factions avant le conseil final.</p>
           </div>
           <button id="quest-close" type="button">x</button>
         </div>
         <ul id="quest-list"></ul>
-        <p class="quest-help">Raccourci: J. Les objectifs secondaires donnent or, XP et ÃƒÂ©quipement, mais ne dictent jamais ton vote.</p>
+        <p class="quest-help">Raccourci: J. Les objectifs secondaires donnent or, XP et équipement, mais ne dictent jamais ton vote.</p>
       </div>
     </div>
 
@@ -165,7 +160,7 @@
         <h2>Conseil du village</h2>
         <p id="vote-dilemma">-</p>
         <div id="vote-options"></div>
-        <textarea id="vote-justification" placeholder="Justifie ton avis: quelle valeur veux-tu proteger en premier ?"></textarea>
+        <textarea id="vote-justification" placeholder="Justifie ton avis: quelle valeur veux-tu protéger en premier ?"></textarea>
         <div id="vote-actions">
           <button id="vote-cancel" type="button">Annuler</button>
           <button id="vote-submit" type="button">Valider</button>
@@ -190,7 +185,7 @@
         <button id="tutorial-skip" type="button">Passer</button>
         <div id="tutorial-progress">1/7</div>
         <h2 id="tutorial-title">Tutoriel</h2>
-        <p id="tutorial-body">Lis lÃ¢â‚¬â„¢action puis appuie sur la touche demandÃƒÂ©e.</p>
+        <p id="tutorial-body">Lis l'action puis appuie sur la touche demandée.</p>
         <div id="tutorial-action">Appuie sur une touche</div>
       </div>
     </div>
@@ -205,7 +200,7 @@
           <label>Bruitages <input id="sfx-volume" type="range" min="0" max="100" value="50"></label>
         </div>
         <div id="pause-actions">
-          <button id="music-prev" type="button">PrÃƒÂ©cÃƒÂ©dente</button>
+          <button id="music-prev" type="button">Précédente</button>
           <button id="toggle-audio" type="button">Musique: Pause</button>
           <button id="music-next" type="button">Suivante</button>
           <button id="change-character" type="button">Changer de classe</button>
@@ -228,7 +223,6 @@
     </div>
   </div>
 
-  <script type="module" src="./game.js?v=20260515_warrior_dr_test1"></script>
+  <script type="module" src="./game.js?v=20260519_talent_tree1"></script>
 </body>
 </html>
-
