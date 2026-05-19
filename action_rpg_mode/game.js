@@ -2,7 +2,7 @@
 const TILE_SIZE = 48;
 const DEFAULT_WORLD_TILES = { w: 92, h: 58 };
 const MAX_ENEMIES = 120;
-const ASSET_VERSION = "20260519_minemusic1";
+const ASSET_VERSION = "20260519_xpalpha1";
 
 const RESOURCE_RULES = {
   runStaminaPerSecond: 24,
