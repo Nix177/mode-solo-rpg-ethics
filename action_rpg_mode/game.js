@@ -2,7 +2,7 @@
 const TILE_SIZE = 48;
 const DEFAULT_WORLD_TILES = { w: 92, h: 58 };
 const MAX_ENEMIES = 120;
-const ASSET_VERSION = "20260519_playerdirs2";
+const ASSET_VERSION = "20260519_minemusic1";
 
 const RESOURCE_RULES = {
   runStaminaPerSecond: 24,
@@ -1234,6 +1234,10 @@ const AUDIO_PATHS = {
 
 
 const VILLAGE_START_MUSIC_PATH = "../assets/music/sunlight.mp3";
+const MINE_START_MUSIC_PATH = "../assets/music/tension.mp3";
+const REGION_START_MUSIC_PATHS = {
+  mine: MINE_START_MUSIC_PATH
+};
 
 const MUSIC_PLAYLIST_PATHS = [
   "../assets/music/contemplation.mp3",
@@ -1804,6 +1808,17 @@ function playNextMusic(reshuffleAtEnd = false) {
 function playPreviousMusic() {
   ensureMusicPlaylist();
   loadMusicTrack(state.assets.musicIndex - 1, true);
+}
+
+function playRegionEntryMusic(regionId) {
+  const preferredTrack = REGION_START_MUSIC_PATHS[regionId];
+  if (!preferredTrack) return;
+  ensureMusicPlaylist();
+  const currentTrack = state.assets.musicPlaylist[state.assets.musicIndex];
+  if (currentTrack === preferredTrack) return;
+  state.assets.musicPlaylist = shuffleMusicPlaylist(preferredTrack);
+  state.assets.musicIndex = 0;
+  loadMusicTrack(0, state.musicEnabled);
 }
 
 function toggleMusicPlayback() {
@@ -3096,6 +3111,7 @@ function transitionToRegion(targetRegionId, arrival = null) {
   state.camera.x = 0;
   state.camera.y = 0;
   registerRegionVisit(targetRegionId);
+  playRegionEntryMusic(targetRegionId);
   addNotification(`Carte: ${region.label}`, 2.4, region.color || "#facc15");
   updateHud();
   updateGuideText();
