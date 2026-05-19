@@ -2,7 +2,7 @@
 const TILE_SIZE = 48;
 const DEFAULT_WORLD_TILES = { w: 92, h: 58 };
 const MAX_ENEMIES = 120;
-const ASSET_VERSION = "20260519_xpalpha1";
+const ASSET_VERSION = "20260519_chatfix1";
 
 const RESOURCE_RULES = {
   runStaminaPerSecond: 24,
@@ -1034,7 +1034,7 @@ const LEVEL_REGION_CONFIGS = {
         shortLine: "Ce chantier peut ramener du travail et donner au village un role dans la transition.",
         consequence: "Des familles gagnent un revenu, mais le sol de la forêt est ouvert et transforme.",
         counter: "Le travail compte, mais aucun salaire ne remplace facilement un sanctuaire perdu.",
-        rewardHint: "Recompense: or, XP et objet rare adapte a ta classe.",
+        rewardHint: "Récompense: or, XP et objet rare adapté à ta classe.",
         portals: [
           { target: "village", label: "Village", color: "#eab308", x: 0.10, y: 0.52 },
           { target: "forest", label: "Foret", color: "#22c55e", x: 0.88, y: 0.36 }
@@ -1044,23 +1044,23 @@ const LEVEL_REGION_CONFIGS = {
       },
       forest: {
         id: "forest",
-        label: "Foret enchantee",
-        shortLabel: "Foret",
+        label: "Forêt enchantée",
+        shortLabel: "Forêt",
         biome: "forest",
         type: "forest",
         tilesW: 100,
         tilesH: 66,
         color: "#22c55e",
         characterIndex: 1,
-        questTitle: "Proteger le sanctuaire ancien",
-        questMain: "Ecouter Elara sur la valeur spirituelle et vivante de la forêt.",
-        questOptional: "Calmer les creatures affolees pres du sanctuaire.",
-        values: ["patrimoine", "vivant", "irreversibilite"],
-        viewpoint: "La forêt n'est pas seulement un decor: c'est une memoire, un habitat et un lieu sacre que l'on ne reconstruit pas apres coup.",
-        shortLine: "Ils vont detruire une forêt que personne ne sait remplacer.",
-        consequence: "Sauver la forêt preserve un monde vivant, mais peut retarder un projet energetique attendu.",
-        counter: "La protection du sacre ne suffit pas toujours a repondre aux besoins d'energie et de travail.",
-        rewardHint: "Recompense: or, XP et objet rare adapte a ta classe.",
+        questTitle: "Protéger le sanctuaire ancien",
+        questMain: "Écouter Elara sur la valeur spirituelle et vivante de la forêt.",
+        questOptional: "Calmer les créatures affolées près du sanctuaire.",
+        values: ["patrimoine", "vivant", "irréversibilité"],
+        viewpoint: "La forêt n'est pas seulement un décor: c'est une mémoire, un habitat et un lieu sacré que l'on ne reconstruit pas après coup.",
+        shortLine: "Ils vont détruire une forêt que personne ne sait remplacer.",
+        consequence: "Sauver la forêt préserve un monde vivant, mais peut retarder un projet énergétique attendu.",
+        counter: "La protection du sacré ne suffit pas toujours à répondre aux besoins d'énergie et de travail.",
+        rewardHint: "Récompense: or, XP et objet rare adapté à ta classe.",
         portals: [
           { target: "mine", label: "Mine", color: "#f59e0b", x: 0.10, y: 0.50 },
           { target: "village", label: "Village", color: "#eab308", x: 0.52, y: 0.88 }
@@ -1070,7 +1070,7 @@ const LEVEL_REGION_CONFIGS = {
       },
       port: {
         id: "port",
-        label: "Port des eoliennes",
+        label: "Port des éoliennes",
         shortLabel: "Port",
         biome: "coast",
         type: "port",
@@ -1086,7 +1086,7 @@ const LEVEL_REGION_CONFIGS = {
         shortLine: "Produire une energie plus verte peut etre imparfait, mais rester aux fossiles a aussi un cout.",
         consequence: "Le port gagne une mission collective, mais la promesse energetique reste incertaine.",
         counter: "Une solution verte imparfaite ne doit pas devenir une excuse pour ignorer les degats locaux.",
-        rewardHint: "Recompense: or, XP et objet rare adapte a ta classe.",
+        rewardHint: "Récompense: or, XP et objet rare adapté à ta classe.",
         portals: [
           { target: "village", label: "Village", color: "#eab308", x: 0.50, y: 0.12 }
         ],
@@ -4052,7 +4052,7 @@ function openTalentGrimoire() {
   state.overlay = "grimoire";
   renderGrimoire();
   DOM.grimoirePanel?.classList.remove("hidden");
-  addNotification("Point de talent: choisis une amelioration dans le grimoire.", 2.6, "#facc15");
+  addNotification("Point de talent: choisis une amélioration dans le grimoire.", 2.6, "#facc15");
 }
 
 function renderInventory() {
@@ -4268,7 +4268,7 @@ function openTalentPointGuide() {
   state.overlay = "grimoire";
   renderGrimoire();
   DOM.grimoirePanel?.classList.remove("hidden");
-  addNotification("Nouveau point de talent: choisis une amelioration dans le grimoire. Le jeu est en pause pendant que tu testes.", 6, "#facc15");
+  addNotification("Nouveau point de talent: choisis une amélioration dans le grimoire. Le jeu est en pause pendant que tu testes.", 6, "#facc15");
 }
 
 function updateGuideText() {
@@ -6123,20 +6123,45 @@ function drawLoot(camX, camY) {
 }
 
 
+function wrapNotificationText(text, maxWidth) {
+  const words = String(text || "").split(/\s+/).filter(Boolean);
+  const lines = [];
+  let line = "";
+  for (const word of words) {
+    const test = line ? `${line} ${word}` : word;
+    if (ctx.measureText(test).width <= maxWidth || !line) {
+      line = test;
+    } else {
+      lines.push(line);
+      line = word;
+    }
+  }
+  if (line) lines.push(line);
+  return lines.length ? lines : [""];
+}
+
 function drawNotifications() {
   if (!state.notifications.length) return;
-  let y = 94;
+  const maxWidth = Math.min(700, Math.max(260, DOM.canvas.width - 80));
+  let y = 118;
+  ctx.save();
+  ctx.font = "14px Segoe UI";
   for (const note of state.notifications) {
-    ctx.font = "14px Segoe UI";
-    const width = ctx.measureText(note.text).width + 22;
-    ctx.fillStyle = "rgba(2, 12, 22, 0.75)";
-    ctx.fillRect(18, y, width, 24);
-    ctx.strokeStyle = "rgba(103, 240, 200, 0.55)";
-    ctx.strokeRect(18, y, width, 24);
+    const lines = wrapNotificationText(note.text, maxWidth - 26);
+    const textWidth = Math.max(...lines.map((line) => ctx.measureText(line).width), 0);
+    const width = Math.min(maxWidth, Math.max(260, textWidth + 26));
+    const height = 16 + lines.length * 18;
+    const x = Math.round((DOM.canvas.width - width) / 2);
+    ctx.fillStyle = "rgba(2, 12, 22, 0.84)";
+    ctx.fillRect(x, y, width, height);
+    ctx.strokeStyle = "rgba(238, 196, 96, 0.72)";
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(x, y, width, height);
     ctx.fillStyle = note.color;
-    ctx.fillText(note.text, 28, y + 16);
-    y += 30;
+    lines.forEach((line, index) => ctx.fillText(line, x + 13, y + 18 + index * 18));
+    y += height + 8;
   }
+  ctx.restore();
 }
 
 function drawMiniMap() {
@@ -6244,13 +6269,13 @@ function buildNpcPromptContext(npc) {
     npc: npc ? { name: npc.name, role: npc.role, archetype: npc.archetype, viewpoint: npc.dialogue?.viewpoint } : null,
     persona,
     worldFacts: state.worldLore?.factsBank || [],
-    instruction: "Repondre en francais simple, 3 a 5 lignes maximum, sans dire qu'une solution morale est la seule bonne. Relancer l'eleve avec une question courte."
+    instruction: "Répondre en français simple, 3 à 5 lignes maximum, sans dire qu'une solution morale est la seule bonne. Relancer l'élève avec une question courte."
   };
 }
 
 function buildNpcLine(npc) {
   const dialogue = npc.dialogue || {};
-  return dialogue.shortLine || `${npc.name} defend une lecture du dilemme: ${npc.role}.`;
+  return dialogue.shortLine || `${npc.name} défend une lecture du dilemme.`;
 }
 
 function appendChatLine(text, author) {
@@ -6264,16 +6289,14 @@ function appendChatLine(text, author) {
 function generateNpcAnswer(npc, playerText, mode = "free") {
   const dialogue = npc.dialogue || {};
   const lower = String(playerText || "").toLowerCase();
-  const persona = getPersonaForNpc(npc);
-  const tone = persona ? `${persona.displayName}: ` : "";
-  if (mode === "position") return `${tone}${dialogue.viewpoint || buildNpcLine(npc)} Quelle valeur te semble la plus importante ici ?`;
-  if (mode === "consequence") return `${tone}${dialogue.consequence || "Chaque choix protège quelque chose et expose autre chose."} Qu'est-ce qui te parait le plus grave ?`;
-  if (mode === "counter") return `${tone}${dialogue.counter || "L'autre camp voit un risque que je ne veux pas effacer."} Que répondrais-tu à cette objection ?`;
-  if (mode === "reward") return `${tone}${dialogue.rewardHint || "Si tu aides la zone, tu recevras une récompense de quête."} Cette aide ne t'oblige pas à voter pour moi.`;
-  if (lower.includes("pourquoi")) return `${tone}Parce que ce dilemme oppose plusieurs biens: ${dialogue.values?.join(", ") || "progrès, prudence et justice"}. On doit choisir ce qu'on accepte de risquer.`;
-  if (lower.includes("autre") || lower.includes("contre")) return `${tone}${dialogue.counter || "L'autre camp rappelle une consequence que je ne dois pas balayer."}`;
-  if (lower.includes("vote") || lower.includes("choix")) return `${tone}Ton vote final doit venir de ta justification, pas de ma recompense. Essaie de nommer la valeur que tu veux protéger en premier.`;
-  return `${tone}${dialogue.viewpoint || buildNpcLine(npc)} Je peux developper si tu me demandes une consequence, une objection ou un exemple.`;
+  if (mode === "position") return `${dialogue.viewpoint || buildNpcLine(npc)} Quelle valeur te semble la plus importante ici ?`;
+  if (mode === "consequence") return `${dialogue.consequence || "Chaque choix protège quelque chose et expose autre chose."} Qu'est-ce qui te paraît le plus grave ?`;
+  if (mode === "counter") return `${dialogue.counter || "L'autre camp voit un risque que je ne veux pas effacer."} Que répondrais-tu à cette objection ?`;
+  if (mode === "reward") return `${dialogue.rewardHint || "Si tu aides la zone, tu recevras une récompense de quête."} Cette aide ne t'oblige pas à voter pour moi.`;
+  if (lower.includes("pourquoi")) return `Parce que ce dilemme oppose plusieurs biens: ${dialogue.values?.join(", ") || "progrès, prudence et justice"}. On doit choisir ce qu'on accepte de risquer.`;
+  if (lower.includes("autre") || lower.includes("contre")) return `${dialogue.counter || "L'autre camp rappelle une conséquence que je ne dois pas balayer."}`;
+  if (lower.includes("vote") || lower.includes("choix")) return "Ton vote final doit venir de ta justification, pas de ma récompense. Essaie de nommer la valeur que tu veux protéger en premier.";
+  return `${dialogue.viewpoint || buildNpcLine(npc)} Je peux développer si tu me demandes une conséquence, une objection ou un exemple.`;
 }
 
 function renderChatChoices(npc) {
@@ -6357,7 +6380,7 @@ function openNpcChat(npc) {
   state.chatNpc = npc;
   state.overlay = "chat";
   DOM.chatPanel.classList.remove("hidden");
-  DOM.chatName.textContent = `${npc.name} - ${npc.role}`;
+  DOM.chatName.textContent = npc.name;
   DOM.chatLog.innerHTML = "";
   if (DOM.chatContext) {
     const region = getRegionDefinition(npc.regionId);
